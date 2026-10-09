@@ -1,0 +1,151 @@
+{
+  "date": "2026-10-09T03:27:18.733Z",
+  "passed": 36,
+  "total": 36,
+  "results": [
+    {
+      "name": "Default deployment cells are pure, stable and do not seek a different unoccupied tile",
+      "ok": true
+    },
+    {
+      "name": "Port defaults to its ocean tile when present and has a stable coast fallback otherwise",
+      "ok": true
+    },
+    {
+      "name": "Setting an occupied deployment tile is legal and free of AP or resource cost",
+      "ok": true
+    },
+    {
+      "name": "Deployment settings reject invalid facility, distance, terrain and ownership atomically",
+      "ok": true
+    },
+    {
+      "name": "Setting deployment must support every queued and in-production model",
+      "ok": true
+    },
+    {
+      "name": "New production cannot choose a model incompatible with the configured deployment tile",
+      "ok": true
+    },
+    {
+      "name": "Production waits for owner turn then automatically deploys onto an empty configured cell",
+      "ok": true
+    },
+    {
+      "name": "Blocked production enters FIFO inventory with a maximum of three",
+      "ok": true
+    },
+    {
+      "name": "Moving the blocker automatically releases exactly one FIFO entry per transaction",
+      "ok": true
+    },
+    {
+      "name": "A full queue retains a finished order, then uses the freed slot without losing FIFO",
+      "ok": true
+    },
+    {
+      "name": "Changing to an empty compatible deployment cell immediately releases the FIFO head",
+      "ok": true
+    },
+    {
+      "name": "Cross-player vacancy release preserves unit owner, grants zero AP, and resets on owner turn",
+      "ok": true
+    },
+    {
+      "name": "Destroying a blocker releases its owner inventory after combat without a new counterattack",
+      "ok": true
+    },
+    {
+      "name": "Hidden cross-player automatic deployment is not broadcast in human action logs",
+      "ok": true
+    },
+    {
+      "name": "Automatic deployment events expose complete identifiers to the effect pipeline",
+      "ok": true
+    },
+    {
+      "name": "Each shared deployment tile is allocated deterministically to one facility",
+      "ok": true
+    },
+    {
+      "name": "Ruins, foundations and eliminated owners never release inventory",
+      "ok": true
+    },
+    {
+      "name": "Rejected commands do not release waiting inventory or complete orders",
+      "ok": true
+    },
+    {
+      "name": "Legacy manual deploy is retained but cannot cause a second output from that facility in the same action",
+      "ok": true
+    },
+    {
+      "name": "Automatic output retains the 24 cap because inventory and orders are already reserved",
+      "ok": true
+    },
+    {
+      "name": "Automatic movement capture consumes movement AP plus capture AP in one transaction",
+      "ok": true
+    },
+    {
+      "name": "A move with only one AP reaches the building without granting a free capture",
+      "ok": true
+    },
+    {
+      "name": "Traversed buildings are ignored; only the actual endpoint is captured",
+      "ok": true
+    },
+    {
+      "name": "A collision captures an eligible actual stopping cell, not the unentered requested endpoint",
+      "ok": true
+    },
+    {
+      "name": "Zero-step collisions do not auto-capture the unit current building or spend AP",
+      "ok": true
+    },
+    {
+      "name": "Own and allied buildings are not automatically captured",
+      "ok": true
+    },
+    {
+      "name": "All three states may automatically capture their reachable endpoint",
+      "ok": true
+    },
+    {
+      "name": "Arriving at an enemy foundation captures it as a ruin and discards its old queue",
+      "ok": true
+    },
+    {
+      "name": "Automatic HQ capture terminates play before unrelated waiting stock can spawn",
+      "ok": true
+    },
+    {
+      "name": "Spawning onto a neutral building never grants an uncharged automatic capture",
+      "ok": true
+    },
+    {
+      "name": "Configured cells, FIFO order and completed production survive save/restore without replay",
+      "ok": true
+    },
+    {
+      "name": "Old save files lacking deployment fields read stable defaults and do not auto-release on restore",
+      "ok": true
+    },
+    {
+      "name": "Save validation rejects configured cells with bad coordinates, range or queue terrain compatibility",
+      "ok": true
+    },
+    {
+      "name": "Automatic AI output uses the selected difficulty without modifying human units",
+      "ok": true
+    },
+    {
+      "name": "AI uses deployment settings with FIFO instead of legacy arbitrary manual deployment",
+      "ok": true
+    },
+    {
+      "name": "AI does not repeat a blocked setting for the same head and turn or consult an unseen blocker",
+      "ok": true
+    }
+  ]
+}

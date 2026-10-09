@@ -12,6 +12,8 @@
   letter-spacing: .35px;
 }
 .fx-trail { pointer-events: none; }
+.game-fx-layer .fx-trail path { stroke-linecap: round; stroke-linejoin: round; }
+.game-fx-layer circle { vector-effect: non-scaling-stroke; }
 @media (prefers-reduced-motion: reduce) {
   .game-fx-layer .fx-unit { filter: none; }
 }

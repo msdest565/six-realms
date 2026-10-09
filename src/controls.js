@@ -52,7 +52,7 @@
     // Cached buildings remain inspectable but cannot be used for blind commands.
     const visibleBuilding=s.buildings.find(b=>same(b,c)&&G.visible(s,viewerId,b));
     const intent=options.intent||null,button=options.button||'left';
-    const targeting=['skill','deploy','construct'].includes(intent);
+    const targeting=['skill','deploy','construct','capture','setDeployment'].includes(intent);
     if(button==='left'&&!targeting&&visibleUnit?.owner===s.actor&&viewerId===s.actor){
       return {kind:'select',unitId:visibleUnit.id};
     }
@@ -61,6 +61,11 @@
     if(s.story?.combatLocked||s.story?.queue?.length)return error('请先阅读并确认当前剧情');
     if(!s.turnStarted)return error('回合尚未开始');
 
+    if(intent==='setDeployment'){
+      const facility=observed.buildings.find(b=>b.id===options.facilityId);
+      const reason=G.deploymentReason(observed,facility,c);
+      return reason?error(reason):command({kind:'setDeployment',buildingId:facility.id,q:c.q,r:c.r});
+    }
     if(intent==='deploy'){
       const facility=observed.buildings.find(b=>b.id===options.facilityId);
       const stock=facility?.stock?.find(x=>x.id===options.stockId);

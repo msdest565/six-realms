@@ -48,6 +48,18 @@ test('A distant neutral building first receives a direct movement command',()=>{
 test('Explicit capture never falls back to movement or attack',()=>{
   const a=unit('infantry','P1',0,0),b=building('city',null,2,0),s=fixture([a],[b]);assert.match(kind(s,a,2,0,{intent:'capture'},'error').message,/邻格/);
 });
+test('Capture mode works on the selected unit standing on a sea platform',()=>{
+  const a=unit('aafrigate','P1',0,0),b=building('energyplatform',null,0,0),s=fixture([a],[b]);G.cell(s,a).terrain='ocean';G.vision(s);
+  assert.deepEqual(at(s,a,0,0,{intent:'capture'}),{kind:'command',command:{kind:'capture',unitId:a.id,buildingId:b.id}});
+});
+test('Automatic deployment setting accepts occupied compatible tiles without selecting their unit',()=>{
+  const b=building('barracks','P1',0,0),u=unit('infantry','P1',1,0),s=fixture([u],[b]);
+  assert.deepEqual(at(s,null,1,0,{intent:'setDeployment',facilityId:b.id}),{kind:'command',command:{kind:'setDeployment',buildingId:b.id,q:1,r:0}});
+});
+test('Deployment setting validates facility, range and queued unit terrain',()=>{
+  const b=building('barracks','P1',0,0),s=fixture([],[b]);b.stock=[{id:'inf',type:'infantry',sourceId:b.id}];G.cell(s,{q:1,r:0}).terrain='ocean';
+  kind(s,null,1,0,{intent:'setDeployment',facilityId:b.id},'error');kind(s,null,2,0,{intent:'setDeployment',facilityId:b.id},'error');kind(s,null,0,0,{intent:'setDeployment',facilityId:'missing'},'error');
+});
 test('Allied buildings cannot be captured and allied units cannot be attacked',()=>{
   const a=unit('tank','P1',0,0),t=unit('infantry','P2',1,0),b=building('city','P2',1,0),s=fixture([a,t],[b]);s.players[1].teamId=s.players[0].teamId;
   kind(s,a,1,0,{intent:'capture'},'error');kind(s,a,1,0,{intent:'attack'},'error');

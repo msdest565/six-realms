@@ -1,53 +1,12 @@
 {
-  "date": "2026-10-08T18:57:33.353Z",
+  "date": "2026-10-09T03:27:54.084Z",
   "reports": [
     {
       "map": "STANDARD",
       "goal": "capture_hq",
       "startIndex": 0,
-      "actions": 385,
-      "rounds": 15,
-      "result": {
-        "winner": "P1",
-        "winnerTeamId": "P1",
-        "winningPlayers": [
-          "P1"
-        ],
-        "triggerBuildingId": "STD-P2-hq",
-        "reason": "其余队伍全部出局",
-        "round": 15,
-        "activeMillis": 0,
-        "stats": {
-          "P1": {
-            "produced": 19,
-            "captures": 18,
-            "constructed": 0,
-            "repaired": 3,
-            "upgraded": 3,
-            "energy": 126,
-            "kills": 24,
-            "damage": 2400
-          },
-          "P2": {
-            "produced": 20,
-            "captures": 16,
-            "constructed": 0,
-            "repaired": 0,
-            "upgraded": 3,
-            "energy": 90,
-            "kills": 11,
-            "damage": 1285
-          }
-        },
-        "buildingTotal": 25
-      }
-    },
-    {
-      "map": "STANDARD",
-      "goal": "capture_hq",
-      "startIndex": 1,
-      "actions": 452,
-      "rounds": 16,
+      "actions": 259,
+      "rounds": 10,
       "result": {
         "winner": "P2",
         "winnerTeamId": "P2",
@@ -56,28 +15,28 @@
         ],
         "triggerBuildingId": "STD-P1-hq",
         "reason": "其余队伍全部出局",
-        "round": 16,
+        "round": 10,
         "activeMillis": 0,
         "stats": {
           "P1": {
-            "produced": 22,
-            "captures": 9,
+            "produced": 14,
+            "captures": 11,
             "constructed": 0,
-            "repaired": 2,
+            "repaired": 1,
             "upgraded": 3,
-            "energy": 131,
-            "kills": 18,
-            "damage": 2090
+            "energy": 85,
+            "kills": 7,
+            "damage": 1125
           },
           "P2": {
-            "produced": 26,
+            "produced": 17,
             "captures": 15,
             "constructed": 0,
-            "repaired": 7,
+            "repaired": 6,
             "upgraded": 3,
-            "energy": 162,
-            "kills": 26,
-            "damage": 2660
+            "energy": 113,
+            "kills": 16,
+            "damage": 1770
           }
         },
         "buildingTotal": 25
@@ -85,81 +44,122 @@
     },
     {
       "map": "STANDARD",
-      "goal": "own_all_registered_buildings",
-      "startIndex": 0,
-      "actions": 547,
-      "rounds": 21,
-      "result": {
-        "winner": "P1",
-        "winnerTeamId": "P1",
-        "winningPlayers": [
-          "P1"
-        ],
-        "triggerBuildingId": "STD-P2-market",
-        "reason": "接管全部登记建筑",
-        "round": 21,
-        "activeMillis": 0,
-        "stats": {
-          "P1": {
-            "produced": 25,
-            "captures": 29,
-            "constructed": 0,
-            "repaired": 4,
-            "upgraded": 8,
-            "energy": 196,
-            "kills": 31,
-            "damage": 3600
-          },
-          "P2": {
-            "produced": 25,
-            "captures": 17,
-            "constructed": 0,
-            "repaired": 0,
-            "upgraded": 3,
-            "energy": 90,
-            "kills": 13,
-            "damage": 1635
-          }
-        },
-        "buildingTotal": 25
-      }
-    },
-    {
-      "map": "STANDARD",
-      "goal": "own_all_registered_buildings",
+      "goal": "capture_hq",
       "startIndex": 1,
-      "actions": 693,
-      "rounds": 23,
+      "actions": 335,
+      "rounds": 12,
       "result": {
         "winner": "P2",
         "winnerTeamId": "P2",
         "winningPlayers": [
           "P2"
         ],
-        "triggerBuildingId": "STD-P1-market",
-        "reason": "接管全部登记建筑",
-        "round": 23,
+        "triggerBuildingId": "STD-P1-hq",
+        "reason": "其余队伍全部出局",
+        "round": 12,
         "activeMillis": 0,
         "stats": {
           "P1": {
-            "produced": 30,
-            "captures": 21,
+            "produced": 10,
+            "captures": 9,
             "constructed": 0,
-            "repaired": 2,
+            "repaired": 3,
             "upgraded": 3,
-            "energy": 132,
-            "kills": 19,
-            "damage": 2420
+            "energy": 45,
+            "kills": 8,
+            "damage": 1680
           },
           "P2": {
-            "produced": 37,
-            "captures": 34,
+            "produced": 23,
+            "captures": 21,
             "constructed": 0,
-            "repaired": 14,
+            "repaired": 7,
             "upgraded": 5,
-            "energy": 295,
-            "kills": 36,
-            "damage": 3970
+            "energy": 165,
+            "kills": 15,
+            "damage": 2055
+          }
+        },
+        "buildingTotal": 25
+      }
+    },
+    {
+      "map": "STANDARD",
+      "goal": "own_all_registered_buildings",
+      "startIndex": 0,
+      "actions": 346,
+      "rounds": 13,
+      "result": {
+        "winner": "P2",
+        "winnerTeamId": "P2",
+        "winningPlayers": [
+          "P2"
+        ],
+        "triggerBuildingId": "STD-P1-barracks",
+        "reason": "接管全部登记建筑",
+        "round": 13,
+        "activeMillis": 0,
+        "stats": {
+          "P1": {
+            "produced": 16,
+            "captures": 14,
+            "constructed": 0,
+            "repaired": 1,
+            "upgraded": 3,
+            "energy": 85,
+            "kills": 7,
+            "damage": 1385
+          },
+          "P2": {
+            "produced": 22,
+            "captures": 26,
+            "constructed": 0,
+            "repaired": 8,
+            "upgraded": 4,
+            "energy": 161,
+            "kills": 21,
+            "damage": 2250
+          }
+        },
+        "buildingTotal": 25
+      }
+    },
+    {
+      "map": "STANDARD",
+      "goal": "own_all_registered_buildings",
+      "startIndex": 1,
+      "actions": 373,
+      "rounds": 13,
+      "result": {
+        "winner": "P2",
+        "winnerTeamId": "P2",
+        "winningPlayers": [
+          "P2"
+        ],
+        "triggerBuildingId": "STD-P1-barracks",
+        "reason": "接管全部登记建筑",
+        "round": 13,
+        "activeMillis": 0,
+        "stats": {
+          "P1": {
+            "produced": 10,
+            "captures": 9,
+            "constructed": 0,
+            "repaired": 3,
+            "upgraded": 3,
+            "energy": 45,
+            "kills": 8,
+            "damage": 1740
+          },
+          "P2": {
+            "produced": 24,
+            "captures": 22,
+            "constructed": 0,
+            "repaired": 9,
+            "upgraded": 6,
+            "energy": 179,
+            "kills": 16,
+            "damage": 2340
           }
         },
         "buildingTotal": 25
@@ -169,49 +169,8 @@
       "map": "FS-2",
       "goal": "capture_hq",
       "startIndex": 0,
-      "actions": 362,
-      "rounds": 14,
-      "result": {
-        "winner": "P1",
-        "winnerTeamId": "P1",
-        "winningPlayers": [
-          "P1"
-        ],
-        "triggerBuildingId": "FS-2-P2-HQ",
-        "reason": "其余队伍全部出局",
-        "round": 14,
-        "activeMillis": 0,
-        "stats": {
-          "P1": {
-            "produced": 22,
-            "captures": 33,
-            "constructed": 0,
-            "repaired": 6,
-            "upgraded": 4,
-            "energy": 144,
-            "kills": 20,
-            "damage": 2200
-          },
-          "P2": {
-            "produced": 14,
-            "captures": 23,
-            "constructed": 0,
-            "repaired": 3,
-            "upgraded": 3,
-            "energy": 54,
-            "kills": 8,
-            "damage": 1140
-          }
-        },
-        "buildingTotal": 25
-      }
-    },
-    {
-      "map": "FS-2",
-      "goal": "capture_hq",
-      "startIndex": 1,
-      "actions": 333,
-      "rounds": 12,
+      "actions": 215,
+      "rounds": 9,
       "result": {
         "winner": "P2",
         "winnerTeamId": "P2",
@@ -220,28 +179,69 @@
         ],
         "triggerBuildingId": "FS-2-P1-HQ",
         "reason": "其余队伍全部出局",
-        "round": 12,
+        "round": 9,
         "activeMillis": 0,
         "stats": {
           "P1": {
-            "produced": 15,
-            "captures": 20,
+            "produced": 9,
+            "captures": 9,
             "constructed": 0,
             "repaired": 1,
             "upgraded": 3,
-            "energy": 56,
-            "kills": 2,
-            "damage": 815
+            "energy": 69,
+            "kills": 3,
+            "damage": 1060
           },
           "P2": {
-            "produced": 17,
-            "captures": 30,
+            "produced": 16,
+            "captures": 16,
             "constructed": 0,
-            "repaired": 5,
-            "upgraded": 5,
-            "energy": 96,
-            "kills": 21,
-            "damage": 2110
+            "repaired": 6,
+            "upgraded": 3,
+            "energy": 109,
+            "kills": 13,
+            "damage": 1450
+          }
+        },
+        "buildingTotal": 25
+      }
+    },
+    {
+      "map": "FS-2",
+      "goal": "capture_hq",
+      "startIndex": 1,
+      "actions": 497,
+      "rounds": 18,
+      "result": {
+        "winner": "P2",
+        "winnerTeamId": "P2",
+        "winningPlayers": [
+          "P2"
+        ],
+        "triggerBuildingId": "FS-2-P1-HQ",
+        "reason": "其余队伍全部出局",
+        "round": 18,
+        "activeMillis": 0,
+        "stats": {
+          "P1": {
+            "produced": 21,
+            "captures": 18,
+            "constructed": 0,
+            "repaired": 4,
+            "upgraded": 3,
+            "energy": 80,
+            "kills": 13,
+            "damage": 2270
+          },
+          "P2": {
+            "produced": 30,
+            "captures": 31,
+            "constructed": 0,
+            "repaired": 12,
+            "upgraded": 4,
+            "energy": 224,
+            "kills": 27,
+            "damage": 3470
           }
         },
         "buildingTotal": 25
@@ -251,38 +251,38 @@
       "map": "FS-2",
       "goal": "own_all_registered_buildings",
       "startIndex": 0,
-      "actions": 385,
-      "rounds": 15,
+      "actions": 281,
+      "rounds": 11,
       "result": {
-        "winner": "P1",
-        "winnerTeamId": "P1",
+        "winner": "P2",
+        "winnerTeamId": "P2",
         "winningPlayers": [
-          "P1"
+          "P2"
         ],
-        "triggerBuildingId": "FS-2-P2-NR",
+        "triggerBuildingId": "FS-2-P1-NR",
         "reason": "接管全部登记建筑",
-        "round": 15,
+        "round": 11,
         "activeMillis": 0,
         "stats": {
           "P1": {
-            "produced": 23,
-            "captures": 36,
+            "produced": 10,
+            "captures": 11,
             "constructed": 0,
-            "repaired": 8,
-            "upgraded": 5,
-            "energy": 157,
-            "kills": 20,
-            "damage": 2260
+            "repaired": 1,
+            "upgraded": 3,
+            "energy": 69,
+            "kills": 3,
+            "damage": 1175
           },
           "P2": {
-            "produced": 14,
+            "produced": 21,
             "captures": 23,
             "constructed": 0,
-            "repaired": 3,
+            "repaired": 9,
             "upgraded": 3,
-            "energy": 54,
-            "kills": 8,
-            "damage": 1140
+            "energy": 159,
+            "kills": 16,
+            "damage": 1860
           }
         },
         "buildingTotal": 25
@@ -292,38 +292,38 @@
       "map": "FS-2",
       "goal": "own_all_registered_buildings",
       "startIndex": 1,
-      "actions": 361,
-      "rounds": 13,
+      "actions": 497,
+      "rounds": 18,
       "result": {
         "winner": "P2",
         "winnerTeamId": "P2",
         "winningPlayers": [
           "P2"
         ],
-        "triggerBuildingId": "FS-2-P1-NR",
+        "triggerBuildingId": "FS-2-P1-HQ",
         "reason": "接管全部登记建筑",
-        "round": 13,
+        "round": 18,
         "activeMillis": 0,
         "stats": {
           "P1": {
-            "produced": 16,
-            "captures": 21,
+            "produced": 21,
+            "captures": 18,
             "constructed": 0,
-            "repaired": 1,
+            "repaired": 4,
             "upgraded": 3,
-            "energy": 56,
-            "kills": 2,
-            "damage": 815
+            "energy": 80,
+            "kills": 13,
+            "damage": 2270
           },
           "P2": {
-            "produced": 18,
-            "captures": 34,
+            "produced": 30,
+            "captures": 31,
             "constructed": 0,
-            "repaired": 7,
-            "upgraded": 5,
-            "energy": 121,
-            "kills": 22,
-            "damage": 2230
+            "repaired": 12,
+            "upgraded": 4,
+            "energy": 224,
+            "kills": 27,
+            "damage": 3470
           }
         },
         "buildingTotal": 25
@@ -332,8 +332,8 @@
     {
       "chapter": "C01",
       "goal": "capture_hq",
-      "actions": 25,
-      "rounds": 3,
+      "actions": 26,
+      "rounds": 4,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
@@ -342,18 +342,18 @@
         ],
         "triggerBuildingId": "C01-RHQ",
         "reason": "接管敌方原始总部",
-        "round": 3,
+        "round": 4,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 2,
+            "produced": 3,
             "captures": 3,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
             "energy": 2,
-            "kills": 2,
-            "damage": 220
+            "kills": 3,
+            "damage": 240
           },
           "red": {
             "produced": 0,
@@ -373,8 +373,8 @@
     {
       "chapter": "C01",
       "goal": "own_all_registered_buildings",
-      "actions": 25,
-      "rounds": 3,
+      "actions": 26,
+      "rounds": 4,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
@@ -383,18 +383,18 @@
         ],
         "triggerBuildingId": "C01-RHQ",
         "reason": "接管全部登记建筑",
-        "round": 3,
+        "round": 4,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 2,
+            "produced": 3,
             "captures": 3,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
             "energy": 2,
-            "kills": 2,
-            "damage": 220
+            "kills": 3,
+            "damage": 240
           },
           "red": {
             "produced": 0,
@@ -414,7 +414,7 @@
     {
       "chapter": "C02",
       "goal": "capture_hq",
-      "actions": 98,
+      "actions": 93,
       "rounds": 7,
       "result": {
         "winner": "union",
@@ -431,11 +431,11 @@
             "produced": 8,
             "captures": 3,
             "constructed": 0,
-            "repaired": 5,
+            "repaired": 6,
             "upgraded": 0,
             "energy": 23,
             "kills": 5,
-            "damage": 600
+            "damage": 560
           },
           "red": {
             "produced": 1,
@@ -445,7 +445,7 @@
             "upgraded": 0,
             "energy": 1,
             "kills": 2,
-            "damage": 460
+            "damage": 395
           }
         },
         "buildingTotal": 6
@@ -463,8 +463,8 @@
     {
       "chapter": "C02",
       "goal": "own_all_registered_buildings",
-      "actions": 107,
-      "rounds": 7,
+      "actions": 101,
+      "rounds": 8,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
@@ -473,18 +473,18 @@
         ],
         "triggerBuildingId": "C02-RB",
         "reason": "接管全部登记建筑",
-        "round": 7,
+        "round": 8,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 8,
+            "produced": 10,
             "captures": 4,
             "constructed": 0,
             "repaired": 6,
             "upgraded": 0,
             "energy": 23,
             "kills": 5,
-            "damage": 660
+            "damage": 620
           },
           "red": {
             "produced": 1,
@@ -494,7 +494,7 @@
             "upgraded": 0,
             "energy": 1,
             "kills": 2,
-            "damage": 460
+            "damage": 395
           }
         },
         "buildingTotal": 6
@@ -512,8 +512,8 @@
     {
       "chapter": "C03",
       "goal": "capture_hq",
-      "actions": 137,
-      "rounds": 12,
+      "actions": 109,
+      "rounds": 11,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
@@ -522,28 +522,28 @@
         ],
         "triggerBuildingId": "C03-RHQ",
         "reason": "接管敌方原始总部",
-        "round": 12,
+        "round": 11,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 6,
-            "captures": 14,
+            "produced": 7,
+            "captures": 5,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 16,
+            "energy": 26,
             "kills": 7,
-            "damage": 1070
+            "damage": 1050
           },
           "red": {
             "produced": 2,
-            "captures": 10,
+            "captures": 1,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 10,
-            "kills": 5,
-            "damage": 960
+            "energy": 3,
+            "kills": 6,
+            "damage": 1060
           }
         },
         "buildingTotal": 6
@@ -568,8 +568,8 @@
     {
       "chapter": "C03",
       "goal": "own_all_registered_buildings",
-      "actions": 137,
-      "rounds": 12,
+      "actions": 109,
+      "rounds": 11,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
@@ -578,28 +578,28 @@
         ],
         "triggerBuildingId": "C03-RHQ",
         "reason": "接管全部登记建筑",
-        "round": 12,
+        "round": 11,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 6,
-            "captures": 14,
+            "produced": 7,
+            "captures": 5,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 16,
+            "energy": 26,
             "kills": 7,
-            "damage": 1070
+            "damage": 1050
           },
           "red": {
             "produced": 2,
-            "captures": 10,
+            "captures": 1,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 10,
-            "kills": 5,
-            "damage": 960
+            "energy": 3,
+            "kills": 6,
+            "damage": 1060
           }
         },
         "buildingTotal": 6
@@ -624,8 +624,8 @@
     {
       "chapter": "C04",
       "goal": "capture_hq",
-      "actions": 86,
-      "rounds": 6,
+      "actions": 128,
+      "rounds": 11,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
@@ -634,18 +634,18 @@
         ],
         "triggerBuildingId": "C04-RHQ",
         "reason": "接管敌方原始总部",
-        "round": 6,
+        "round": 11,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 6,
+            "produced": 11,
             "captures": 6,
             "constructed": 0,
-            "repaired": 1,
+            "repaired": 4,
             "upgraded": 0,
-            "energy": 98,
+            "energy": 105,
             "kills": 6,
-            "damage": 670
+            "damage": 1000
           },
           "red": {
             "produced": 1,
@@ -653,9 +653,9 @@
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 8,
-            "kills": 6,
-            "damage": 600
+            "energy": 15,
+            "kills": 9,
+            "damage": 960
           }
         },
         "buildingTotal": 7
@@ -680,38 +680,38 @@
     {
       "chapter": "C04",
       "goal": "own_all_registered_buildings",
-      "actions": 120,
-      "rounds": 9,
+      "actions": 195,
+      "rounds": 16,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
         "winningPlayers": [
           "union"
         ],
-        "triggerBuildingId": "C04-RF",
+        "triggerBuildingId": "C04-UF",
         "reason": "接管全部登记建筑",
-        "round": 9,
+        "round": 16,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 9,
-            "captures": 7,
+            "produced": 16,
+            "captures": 8,
             "constructed": 0,
-            "repaired": 2,
+            "repaired": 10,
             "upgraded": 0,
-            "energy": 104,
+            "energy": 166,
             "kills": 7,
-            "damage": 970
+            "damage": 1290
           },
           "red": {
             "produced": 1,
-            "captures": 3,
+            "captures": 4,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 8,
-            "kills": 9,
-            "damage": 795
+            "energy": 23,
+            "kills": 10,
+            "damage": 1080
           }
         },
         "buildingTotal": 7
@@ -736,7 +736,7 @@
     {
       "chapter": "C05",
       "goal": "capture_hq",
-      "actions": 175,
+      "actions": 145,
       "rounds": 10,
       "result": {
         "winner": "union",
@@ -750,24 +750,24 @@
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 11,
-            "captures": 14,
+            "produced": 10,
+            "captures": 7,
             "constructed": 0,
-            "repaired": 4,
+            "repaired": 3,
             "upgraded": 1,
-            "energy": 86,
+            "energy": 83,
             "kills": 8,
-            "damage": 1410
+            "damage": 1550
           },
           "red": {
             "produced": 2,
-            "captures": 10,
+            "captures": 3,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 9,
-            "kills": 4,
-            "damage": 705
+            "energy": 16,
+            "kills": 6,
+            "damage": 820
           }
         },
         "buildingTotal": 8
@@ -792,7 +792,7 @@
     {
       "chapter": "C05",
       "goal": "own_all_registered_buildings",
-      "actions": 175,
+      "actions": 145,
       "rounds": 10,
       "result": {
         "winner": "union",
@@ -806,24 +806,24 @@
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 11,
-            "captures": 14,
+            "produced": 10,
+            "captures": 7,
             "constructed": 0,
-            "repaired": 4,
+            "repaired": 3,
             "upgraded": 1,
-            "energy": 86,
+            "energy": 83,
             "kills": 8,
-            "damage": 1410
+            "damage": 1550
           },
           "red": {
             "produced": 2,
-            "captures": 10,
+            "captures": 3,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 9,
-            "kills": 4,
-            "damage": 705
+            "energy": 16,
+            "kills": 6,
+            "damage": 820
           }
         },
         "buildingTotal": 8
@@ -848,8 +848,8 @@
     {
       "chapter": "C06",
       "goal": "capture_hq",
-      "actions": 176,
-      "rounds": 11,
+      "actions": 147,
+      "rounds": 10,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
@@ -858,28 +858,28 @@
         ],
         "triggerBuildingId": "C06-RHQ",
         "reason": "接管敌方原始总部",
-        "round": 11,
+        "round": 10,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 10,
-            "captures": 7,
+            "produced": 9,
+            "captures": 8,
             "constructed": 0,
-            "repaired": 0,
+            "repaired": 1,
             "upgraded": 0,
-            "energy": 154,
-            "kills": 9,
-            "damage": 2240
+            "energy": 153,
+            "kills": 8,
+            "damage": 1910
           },
           "red": {
-            "produced": 1,
-            "captures": 5,
+            "produced": 0,
+            "captures": 4,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 26,
-            "kills": 9,
-            "damage": 1315
+            "energy": 60,
+            "kills": 7,
+            "damage": 1385
           }
         },
         "buildingTotal": 8
@@ -897,45 +897,45 @@
           "earliestOwnTurn": 3,
           "unit": "antiair",
           "id": "plan-1",
-          "state": "submitted"
+          "state": "cancelled"
         }
       ]
     },
     {
       "chapter": "C06",
       "goal": "own_all_registered_buildings",
-      "actions": 184,
-      "rounds": 12,
+      "actions": 147,
+      "rounds": 10,
       "result": {
         "winner": "union",
         "winnerTeamId": "union",
         "winningPlayers": [
           "union"
         ],
-        "triggerBuildingId": "C06-RA",
+        "triggerBuildingId": "C06-RHQ",
         "reason": "接管全部登记建筑",
-        "round": 12,
+        "round": 10,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 11,
-            "captures": 9,
+            "produced": 9,
+            "captures": 8,
             "constructed": 0,
-            "repaired": 0,
+            "repaired": 1,
             "upgraded": 0,
-            "energy": 159,
-            "kills": 9,
-            "damage": 2240
+            "energy": 153,
+            "kills": 8,
+            "damage": 1910
           },
           "red": {
-            "produced": 1,
-            "captures": 5,
+            "produced": 0,
+            "captures": 4,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 26,
-            "kills": 9,
-            "damage": 1315
+            "energy": 60,
+            "kills": 7,
+            "damage": 1385
           }
         },
         "buildingTotal": 8
@@ -953,45 +953,45 @@
           "earliestOwnTurn": 3,
           "unit": "antiair",
           "id": "plan-1",
-          "state": "submitted"
+          "state": "cancelled"
         }
       ]
     },
     {
       "chapter": "C07",
       "goal": "capture_hq",
-      "actions": 286,
-      "rounds": 22,
+      "actions": 250,
+      "rounds": 21,
       "result": {
-        "winner": "red",
-        "winnerTeamId": "red",
+        "winner": "union",
+        "winnerTeamId": "union",
         "winningPlayers": [
-          "red"
+          "union"
         ],
-        "triggerBuildingId": "C07-UHQ",
+        "triggerBuildingId": "C07-RHQ",
         "reason": "接管敌方原始总部",
-        "round": 22,
+        "round": 21,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 16,
-            "captures": 12,
+            "produced": 17,
+            "captures": 14,
             "constructed": 0,
-            "repaired": 1,
+            "repaired": 2,
             "upgraded": 0,
-            "energy": 110,
-            "kills": 4,
-            "damage": 1495
+            "energy": 111,
+            "kills": 8,
+            "damage": 1640
           },
           "red": {
             "produced": 1,
-            "captures": 14,
+            "captures": 11,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 81,
-            "kills": 25,
-            "damage": 3420
+            "energy": 61,
+            "kills": 21,
+            "damage": 2870
           }
         },
         "buildingTotal": 8
@@ -1009,45 +1009,45 @@
           "earliestOwnTurn": 3,
           "unit": "marine",
           "id": "plan-1",
-          "state": "submitted"
+          "state": "cancelled"
         }
       ]
     },
     {
       "chapter": "C07",
       "goal": "own_all_registered_buildings",
-      "actions": 292,
-      "rounds": 23,
+      "actions": 256,
+      "rounds": 22,
       "result": {
-        "winner": "red",
-        "winnerTeamId": "red",
+        "winner": "union",
+        "winnerTeamId": "union",
         "winningPlayers": [
-          "red"
+          "union"
         ],
-        "triggerBuildingId": "C07-UF",
+        "triggerBuildingId": "C07-RP",
         "reason": "接管全部登记建筑",
-        "round": 23,
+        "round": 22,
         "activeMillis": 0,
         "stats": {
           "union": {
-            "produced": 16,
-            "captures": 12,
+            "produced": 18,
+            "captures": 15,
             "constructed": 0,
-            "repaired": 1,
+            "repaired": 2,
             "upgraded": 0,
-            "energy": 110,
-            "kills": 4,
-            "damage": 1495
+            "energy": 111,
+            "kills": 8,
+            "damage": 1660
           },
           "red": {
             "produced": 1,
-            "captures": 16,
+            "captures": 11,
             "constructed": 0,
             "repaired": 0,
             "upgraded": 0,
-            "energy": 89,
-            "kills": 25,
-            "damage": 3420
+            "energy": 61,
+            "kills": 21,
+            "damage": 2920
           }
         },
         "buildingTotal": 8
@@ -1065,7 +1065,7 @@
           "earliestOwnTurn": 3,
           "unit": "marine",
           "id": "plan-1",
-          "state": "submitted"
+          "state": "cancelled"
         }
       ]
     },
@@ -1073,32 +1073,32 @@
       "map": "FL-6",
       "teamPreset": "2v2v2",
       "smokeActions": 300,
-      "rounds": 4,
+      "rounds": 5,
       "players": [
         {
           "id": "P1",
-          "turn": 4,
+          "turn": 5,
           "resources": {
-            "money": 25,
-            "energy": 105
+            "money": 10,
+            "energy": 131
           },
-          "cap": 11
+          "cap": 12
         },
         {
           "id": "P2",
           "turn": 4,
           "resources": {
             "money": 25,
-            "energy": 105
+            "energy": 107
           },
-          "cap": 11
+          "cap": 10
         },
         {
           "id": "P3",
           "turn": 4,
           "resources": {
-            "money": 25,
-            "energy": 105
+            "money": 0,
+            "energy": 81
           },
           "cap": 9
         },
@@ -1106,28 +1106,28 @@
           "id": "P4",
           "turn": 4,
           "resources": {
-            "money": 155,
-            "energy": 131
+            "money": 5,
+            "energy": 120
           },
-          "cap": 9
+          "cap": 12
         },
         {
           "id": "P5",
           "turn": 4,
           "resources": {
             "money": 10,
-            "energy": 116
+            "energy": 80
           },
-          "cap": 13
+          "cap": 9
         },
         {
           "id": "P6",
-          "turn": 3,
+          "turn": 4,
           "resources": {
-            "money": 10,
-            "energy": 93
+            "money": 15,
+            "energy": 117
           },
-          "cap": 9
+          "cap": 10
         }
       ]
     }

@@ -16,6 +16,7 @@
   for(const u of s.units){const d=D.byId[u.type];if(!d||!located(u)||spots.has(`${u.q},${u.r}`)||!owners.has(u.owner)||!integer(u.hp,1,G.unitStats(s,u).hp)||u.maxHp!==G.unitStats(s,u).hp||!integer(u.ap,0,2)||!integer(u.counterRemaining,0,1)||!integer(u.spentMove,0)||!integer(u.cooldownReady,0)||!u.status)throw Error('单位数据重复或非法');reserve(u.id);spots.add(`${u.q},${u.r}`);}
   const bs=new Set();for(const b of s.buildings){const d=D.buildingById[b.type];if(!d||!located(b)||bs.has(`${b.q},${b.r}`)||b.owner&&!owners.has(b.owner)||!integer(b.level,1,d.maxLevel)||!['complete','foundation'].includes(b.state)||!integer(b.hp,0,b.maxHp)||b.maxHp!==(b.state==='foundation'?d.hp/2:d.hp)||!Array.isArray(b.stock)||b.stock.length>3)throw Error('建筑数据重复或非法');reserve(b.id);bs.add(`${b.q},${b.r}`);
    if(b.state==='foundation'&&!integer(b.readyOwnTurn,1))throw Error('建设进度非法');
+   if(b.deployment!==undefined&&b.deployment!==null){const point=b.deployment;if(typeof point!=='object'||!Number.isInteger(point.q)||!Number.isInteger(point.r)||G.deploymentPositionReason(s,b,G.cell(s,point)))throw Error('设施部署格非法');}
    for(const stock of b.stock){if(!D.byId[stock.type]||D.byId[stock.type].facility!==b.type||stock.sourceId!==b.id)throw Error('库存来源或单位型号非法');reserve(stock.id);}
    if(b.order){if(!['unit','upgrade'].includes(b.order.kind)||!integer(b.order.readyOwnTurn,1)||b.order.kind==='unit'&&D.byId[b.order.type]?.facility!==b.type)throw Error('生产订单非法');reserve(b.order.id);}
   }

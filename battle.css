@@ -196,3 +196,40 @@ body.in-battle { overflow:hidden; background:#18363b; }
  .dock-footer details { max-height:25vh; }
  .pause-banner { top:61px; }
 }
+
+/* Labels sit above every hex and sprite, so adjoining tiles cannot cover text. */
+.board-label-layer { pointer-events:none; overflow:visible; }
+.board-label-layer text { font-family:"Microsoft YaHei",system-ui,sans-serif; letter-spacing:.1px; paint-order:stroke; stroke:#102a32; stroke-width:.35px; stroke-linejoin:round; }
+.map-label { pointer-events:none; }
+.map-label-expanded rect { stroke-width:1.4px; }
+.map-label-expanded text:first-of-type { font-weight:700; }
+.map-label-stale { opacity:.65; }
+.board[data-label-density="overview"] .map-label-compact { display:none; }
+.capture-range polygon { fill:#88b7c3; fill-opacity:.055; stroke:#aacfd1; stroke-width:1.35px; stroke-dasharray:4 5; }
+.capture-legal polygon { fill:#c4ddb1; fill-opacity:.2; stroke:#e1eda7; stroke-width:3px; stroke-dasharray:none; }
+.capture-blocked polygon { fill:#ce8572; fill-opacity:.11; stroke:#e0a08a; stroke-width:2px; }
+.capture-flag { fill:none; stroke:#ece5bd; stroke-width:2.2px; stroke-linejoin:round; }
+.capture-legal .capture-flag { stroke:#eff5b8; }
+.capture-blocked .capture-flag { stroke:#e4a594; }
+.deployment-choice polygon { fill:#8bc8d3; fill-opacity:.08; stroke:#99d2d9; stroke-width:1.5px; stroke-dasharray:4 4; }
+.deployment-legal polygon { fill:#88cddd; fill-opacity:.22; stroke:#bde8dc; stroke-width:2.5px; stroke-dasharray:none; }
+.deployment-blocked polygon { fill:#be9277; fill-opacity:.06; stroke:#b9a18d; stroke-opacity:.6; }
+.deployment-marker { fill:none; stroke:#b4e1d9; stroke-width:1.6px; opacity:.92; }
+.deployment-marker circle { stroke-dasharray:3 4; }
+.deployment-waiting { stroke:#edd08d; }
+.production-queue { display:grid; gap:7px; margin:12px 0; padding:0; list-style:none; counter-reset:queue-position; }
+.queue-entry { display:flex; align-items:center; gap:8px; padding:9px 10px; border:1px solid #698f86; border-left:3px solid #acd4bd; background:#102f39b0; font-size:11px; counter-increment:queue-position; }
+.queue-entry::before { content:counter(queue-position,decimal-leading-zero); color:#e6d39e; font:11px monospace; flex-shrink:0; }
+.queue-entry svg { width:39px; height:39px; flex-shrink:0; }
+.queue-entry>span,.queue-entry>div { min-width:0; }
+.queue-entry strong { display:block; color:#e5edd3; font-size:11px; }
+.queue-entry small { display:block; margin-top:3px; color:#9fbeb1; font-size:9px; line-height:1.6; }
+.queue-entry.waiting,.queue-entry[data-waiting="true"] { border-left-color:#e3c080; background:#514e3326; }
+.ocean-atmosphere-layer { fill:none; stroke:#d8e9d7; stroke-width:1.3px; stroke-linecap:round; opacity:.23; animation:tidal-light 13s ease-in-out infinite; }
+.battle-vignette { background:radial-gradient(ellipse at 28% 26%,#dcd4a10b,transparent 62%),linear-gradient(180deg,#102e4e44,transparent 23%,transparent 76%,#09283c66); }
+.is-paused .ocean-atmosphere-layer { animation-play-state:paused; }
+@keyframes tidal-light { 0%,100% { opacity:.1; } 48% { opacity:.48; } }
+@media (prefers-reduced-motion:reduce) {
+ .ocean-atmosphere-layer { animation:none; opacity:.2; }
+ .thinking-dot { animation:none; }
+}

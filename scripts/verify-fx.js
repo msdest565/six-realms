@@ -40,6 +40,18 @@ class Element {
   }
 }
 let rafSerial = 0, timestamp = 0, frames = new Map(), reduced = false;
+let activeAudio = null, buffersCreated = 0;
+const audioNodes = [];
+const audioParam = () => ({ value: 0, setValueAtTime(v) { this.value = v; }, linearRampToValueAtTime(v) { this.value = v; }, exponentialRampToValueAtTime(v) { this.value = v; } });
+function audioNode(kind) {
+  const node = { kind, connections: [], started: false, stopped: false, gain: audioParam(), frequency: audioParam(), pan: audioParam(),
+    threshold: {}, knee: {}, ratio: {}, connect(target) { this.connections.push(target); }, disconnect() { this.connections = []; },
+    start() { this.started = true; }, stop(when) {
+      if (Number.isFinite(when) && when > (activeAudio?.currentTime || 0)) { this.stopTime = when; return; }
+      if (!this.stopped) { this.stopped = true; this.onended?.(); }
+    } };
+  audioNodes.push(node); return node;
+}
 global.document = { createElementNS: (_, tag) => new Element(tag) };
 global.requestAnimationFrame = fn => { const id = ++rafSerial; frames.set(id, fn); return id; };
 global.cancelAnimationFrame = id => frames.delete(id);
@@ -54,6 +66,10 @@ function boardFor(unit, building) {
 async function pump(count = 1) {
   for (let i = 0; i < count; i++) {
     const active = [...frames]; frames.clear(); timestamp += 16;
+    if (activeAudio?.state === 'running') {
+      activeAudio.currentTime += .016;
+      for (const node of audioNodes) if (!node.stopped && Number.isFinite(node.stopTime) && node.stopTime <= activeAudio.currentTime) node.stop();
+    }
     active.forEach(([, fn]) => fn(timestamp));
     await Promise.resolve(); await Promise.resolve();
   }
@@ -204,25 +220,129 @@ async function finish(promise, maximum = 1200) {
   await test('FX-17', 'Audio requires explicit unlock, respects mute/volume bounds, and rejected resumes do not escape', async () => {
     let created = 0, resumed = 0, suspended = 0;
     class AudioContext {
-      constructor() { created++; this.currentTime = 0; this.state = 'suspended'; this.destination = {}; }
-      createGain() { return { gain: { setValueAtTime() {} }, connect() {} }; }
-      createDynamicsCompressor() { return { threshold: {}, knee: {}, ratio: {}, connect() {} }; }
+      constructor() { created++; this.currentTime = 0; this.state = 'suspended'; this.destination = {}; this.sampleRate = 4000; activeAudio = this; }
+      createGain() { return audioNode('gain'); }
+      createDynamicsCompressor() { return audioNode('compressor'); }
+      createOscillator() { return audioNode('oscillator'); }
+      createBufferSource() { return audioNode('buffer-source'); }
+      createBiquadFilter() { return audioNode('filter'); }
+      createStereoPanner() { return audioNode('panner'); }
+      createBuffer(channels, frames) { buffersCreated++; const values = Array.from({ length: channels }, () => new Float32Array(frames)); return { getChannelData: channel => values[channel] }; }
       async resume() { resumed++; this.state = 'running'; }
       async suspend() { suspended++; this.state = 'suspended'; }
     }
     global.AudioContext = AudioContext;
-    assert.equal(created, 0); FX.setSoundEnabled(false); assert.equal(await FX.unlock(), false); assert.equal(created, 0);
+    FX.setScene({ terrain: 'ocean', active: true });
+    assert.equal(created, 0); assert.equal(FX.settings().ambienceRunning, false);
+    FX.setSoundEnabled(false); assert.equal(await FX.unlock(), false); assert.equal(created, 0);
     FX.setSoundEnabled(true); assert.equal(await FX.unlock(), true); assert.equal(created, 1); assert.equal(resumed, 1);
     FX.setVolume(2); assert.equal(FX.settings().volume, 1); FX.setVolume(-2); assert.equal(FX.settings().volume, 0); FX.setVolume(.55);
     FX.setPaused(true); FX.setPaused(false); await Promise.resolve(); assert.equal(suspended, 1); assert.equal(resumed, 2);
+    const resume = AudioContext.prototype.resume;
     AudioContext.prototype.resume = async () => { throw new Error('autoplay denied'); };
     FX.setPaused(true); FX.setPaused(false); await Promise.resolve(); await Promise.resolve();
     assert.equal(await FX.unlock(), false);
+    AudioContext.prototype.resume = resume;
     FX.setSoundEnabled(false);
   });
-  const report = { version: '0.8', scope: 'Pure observed action plans, animation lifecycle under deterministic DOM/RAF, and audio unlock/preferences; no claim of audible browser testing', passed: tests.filter(t => t.ok).length, total: tests.length, tests };
+  await test('FX-18', 'Real move -> automatic capture -> FIFO release retains each successful effect in core event order', () => {
+    const a = makeUnit('infantry', 'P1', 0, 0), city = makeBuilding('city', null, 1, 0), base = makeBuilding('barracks', 'P1', 0, 0), s = fixture([a], [base, city]);
+    base.level = 3; base.stock = [{ id: 'fifo-oldest', type: 'walker', sourceId: base.id }, { id: 'fifo-second', type: 'infantry', sourceId: base.id }];
+    const { plan } = perform(s, { kind: 'move', unitId: a.id, q: 1, r: 0 });
+    assert.deepEqual(plan.steps.map(step => step.kind), ['move', 'capture', 'deploy']);
+    assert.equal(plan.steps[1].auto, true); assert.equal(plan.steps[2].auto, true);
+    assert.equal(plan.steps[2].at.type, 'walker'); assert.deepEqual([plan.steps[2].at.q, plan.steps[2].at.r], [0, 0]);
+    assert.deepEqual(base.stock.map(x => x.id), ['fifo-second']);
+    assert.ok(plan.steps[1].eventOrder < plan.steps[2].eventOrder); assert.equal(city.owner, 'P1'); assert.equal(a.ap, 0);
+  });
+  await test('FX-19', 'Real end/begin transaction animates all produced units once and keeps deployment/turn ordering', () => {
+    const a = makeUnit('infantry', 'P1', -5, -5), enemy = makeUnit('infantry', 'P2', -6, -6);
+    const b1 = makeBuilding('barracks', 'P1', 0, 0, 'A-barracks'), b2 = makeBuilding('factory', 'P1', 3, 0, 'B-factory'), s = fixture([a, enemy], [b1, b2]);
+    b1.order = { kind: 'unit', id: 'O-infantry', type: 'infantry', readyOwnTurn: 2 };
+    b2.order = { kind: 'unit', id: 'O-tank', type: 'lighttank', readyOwnTurn: 2 };
+    s.actor = 'P2'; s.players[1].ownTurnIndex = 1;
+    const { plan } = perform(s, { kind: 'end' });
+    const events = s.events.filter(e => e.kind === 'deployment');
+    assert.equal(events.length, 2);
+    assert.deepEqual(plan.steps.map(x => x.kind), ['deploy', 'deploy', 'turn']);
+    assert.deepEqual(plan.steps.filter(x => x.kind === 'deploy').map(x => x.at.id), events.map(e => e.unitId));
+    assert.ok(plan.steps.every(x => x.kind !== 'deploy' || x.auto));
+  });
+  await test('FX-20', 'Released hidden enemy production neither leaks its instance nor adds an audible deployment', () => {
+    const a = makeUnit('infantry', 'P1', -8, -8), b = makeBuilding('barracks', 'P2', 7, 7), s = fixture([a], [b], true);
+    b.stock = [{ id: 'hidden-stock', type: 'infantry', sourceId: b.id }];
+    const { before, plan } = perform(s, { kind: 'end' });
+    const deployed = s.units.find(u => u.owner === 'P2'); assert.ok(deployed);
+    assert.equal(before.entities[b.id], undefined); assert.equal(plan.steps.filter(x => x.kind === 'deploy').length, 0);
+    assert.ok(!JSON.stringify(plan).includes(deployed.id)); assert.ok(!JSON.stringify(plan).includes(b.id));
+  });
+  await test('FX-21', 'One manual deployment is not duplicated; rolling 600-event buffers preserve compound effects', () => {
+    const a = makeUnit('infantry', 'P1', -5, -5), b = makeBuilding('barracks', 'P1', 0, 0), s = fixture([a], [b]);
+    b.stock = [{ id: 'manual-stock', type: 'infantry', sourceId: b.id }];
+    const manual = perform(s, { kind: 'deploy', buildingId: b.id, stockId: 'manual-stock', q: 0, r: 0 }).plan;
+    assert.equal(manual.steps.filter(x => x.kind === 'deploy').length, 1); assert.equal(manual.steps[0].auto, false);
+    const mover = makeUnit('infantry', 'P1', 0, 0), city = makeBuilding('city', null, 1, 0), other = fixture([mover], [city]);
+    other.events = Array.from({ length: 600 }, (_, i) => ({ kind: 'prior', ordinal: i }));
+    const compound = perform(other, { kind: 'move', unitId: mover.id, q: 1, r: 0 }).plan;
+    assert.equal(other.events.length, 600); assert.deepEqual(compound.steps.map(x => x.kind), ['move', 'capture']);
+  });
+  await test('FX-22', 'Queued auto-deploy sprites and top-layer labels stay hidden until their phase; cancellation restores all', async () => {
+    const a = makeUnit('infantry', 'P1', 0, 0), city = makeBuilding('city', null, 1, 0), base = makeBuilding('barracks', 'P1', 0, 0), s = fixture([a], [base, city]);
+    base.stock = [{ id: 'queued-stock', type: 'infantry', sourceId: base.id }];
+    const data = perform(s, { kind: 'move', unitId: a.id, q: 1, r: 0 }), deployed = data.plan.steps.find(x => x.kind === 'deploy').at, board = boardFor(a, city);
+    const spawn = new Element('g'); spawn.setAttribute('data-unit-sprite', deployed.id); spawn.style.opacity = '.83'; board.appendChild(spawn);
+    const label = new Element('text'); label.setAttribute('data-unit-label', deployed.id); label.style.opacity = '.9'; board.appendChild(label);
+    const buildingLabel = new Element('text'); buildingLabel.setAttribute('data-building-label', city.id); buildingLabel.style.opacity = '.6'; board.appendChild(buildingLabel);
+    FX.setPaused(true); const promise = FX.play({ ...data, board });
+    assert.equal(spawn.style.opacity, '0'); assert.equal(label.style.opacity, '0'); assert.equal(buildingLabel.style.opacity, '0');
+    FX.cancel(); assert.equal((await promise).cancelled, true);
+    assert.equal(spawn.style.opacity, '.83'); assert.equal(label.style.opacity, '.9'); assert.equal(buildingLabel.style.opacity, '.6');
+    assert.equal(board.children.length, 5); FX.setPaused(false);
+  });
+  await test('FX-23', 'Ambient classification uses only allowed terrain/building hints and ignores hidden-unit or arbitrary fields', () => {
+    assert.equal(FX.ambienceProfile('ocean'), 'sea'); assert.equal(FX.ambienceProfile('coast'), 'sea');
+    assert.equal(FX.ambienceProfile('road'), 'industrial'); assert.equal(FX.ambienceProfile({ plain: 10, ocean: 4 }), 'sea');
+    assert.equal(FX.ambienceProfile({ plain: 9, factory: 1 }), 'wind');
+    assert.equal(FX.ambienceProfile({ hiddenEnemies: 999, tank: 999, q: 5, r: 5 }), 'wind');
+    assert.equal(FX.ambienceProfile([{ terrain: 'ridge' }, { terrain: 'plain' }]), 'wind');
+  });
+  await test('FX-24', 'Atmosphere stays bounded under repeated camera updates and stops/disconnects on pause, mute, scene exit and cancel', async () => {
+    FX.cancel(); FX.setSoundEnabled(true); FX.setAmbienceEnabled(true); FX.setVolume(.55); FX.setPaused(false); assert.equal(await FX.unlock(), true);
+    FX.setScene({ terrain: 'ocean', active: true }); assert.equal(FX.settings().ambienceRunning, true);
+    const nodeCount = audioNodes.length, bufferCount = buffersCreated;
+    for (let i = 0; i < 1000; i++) FX.setScene({ terrain: i % 2 ? 'ocean' : 'coast', active: true });
+    assert.equal(audioNodes.length, nodeCount); assert.equal(buffersCreated, bufferCount);
+    assert.equal(audioNodes.filter(n => n.started && !n.stopped).length, 3);
+    FX.setPaused(true); assert.equal(FX.settings().ambienceRunning, false); assert.equal(audioNodes.filter(n => n.started && !n.stopped).length, 0);
+    assert.equal(await FX.unlock(), true); assert.equal(FX.settings().unlocked, true); // Space's gesture must retain authorization.
+    FX.setPaused(false); await Promise.resolve(); await Promise.resolve(); assert.equal(FX.settings().ambienceRunning, true);
+    for (let i = 0; i < 30; i++) FX.setScene({ terrain: i % 2 ? 'road' : 'ocean', active: true });
+    assert.ok(buffersCreated <= bufferCount + 1); assert.equal(audioNodes.filter(n => n.started && !n.stopped).length, 3);
+    FX.setAmbienceEnabled(false); assert.equal(FX.settings().ambienceRunning, false);
+    FX.setAmbienceEnabled(true); assert.equal(FX.settings().ambienceRunning, true);
+    FX.setSoundEnabled(false); assert.equal(FX.settings().ambienceRunning, false);
+    FX.setSoundEnabled(true); assert.equal(FX.settings().ambienceRunning, true);
+    FX.setVolume(0); assert.equal(FX.settings().ambienceRunning, false); FX.setVolume(.55);
+    FX.setScene({ active: false }); assert.equal(FX.settings().ambienceRunning, false);
+    FX.setScene({ terrain: 'plain', active: true }); assert.equal(FX.settings().ambienceRunning, true);
+    FX.cancel(); assert.equal(FX.settings().scene.active, false); assert.equal(FX.settings().ambienceRunning, false);
+    assert.equal(audioNodes.filter(n => n.started && !n.stopped).length, 0);
+    assert.equal(audioNodes.filter(n => n.connections.length).length, 2); // shared master + limiter only
+  });
+  await test('FX-25', 'Observed action sounds pan within the current camera and leave no voice nodes after cancellation', async () => {
+    FX.setSoundEnabled(true); FX.setAmbienceEnabled(false); FX.setPaused(false); await FX.unlock();
+    const a = makeUnit('tank', 'P1', -1, 0), t = makeUnit('tank', 'P2', 1, 0), s = fixture([a, t]);
+    const data = perform(s, { kind: 'attack', unitId: a.id, targetId: t.id }), board = boardFor(a); board.setAttribute('viewBox', '-150 -100 300 200');
+    const start = audioNodes.length;
+    assert.equal((await finish(FX.play({ ...data, board }))).cancelled, false);
+    const pans = audioNodes.slice(start).filter(n => n.kind === 'panner').map(n => n.pan.value);
+    assert.ok(pans.some(v => v < -.2)); assert.ok(pans.some(v => v > .2)); assert.ok(pans.every(v => Math.abs(v) <= .65));
+    FX.setPaused(true); FX.cancel(); assert.equal(audioNodes.filter(n => n.connections.length).length, 2);
+    FX.setPaused(false); FX.setSoundEnabled(false);
+  });
+  const report = { version: '0.9', scope: 'Real compound core transactions, observed action plans, deterministic DOM/RAF lifecycle, synthetic audio-node accounting and user-gesture gating; no browser or human audible testing in this revision', passed: tests.filter(t => t.ok).length, total: tests.length, tests };
   fs.mkdirSync(require('node:path').join(__dirname, '../reports'), { recursive: true });
-  fs.writeFileSync(require('node:path').join(__dirname, '../reports/fx-tests-v0.8.json'), JSON.stringify(report, null, 2));
+  fs.writeFileSync(require('node:path').join(__dirname, '../reports/fx-tests-v0.9.json'), JSON.stringify(report, null, 2));
   console.log(`FX verification ${report.passed}/${report.total}`);
   process.exitCode = report.passed === report.total ? 0 : 1;
 })();

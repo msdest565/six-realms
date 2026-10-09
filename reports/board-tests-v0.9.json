@@ -1,0 +1,76 @@
+{
+  "version": "0.9",
+  "kind": "Node VM and markup observation contracts; not a browser layout measurement",
+  "passed": 17,
+  "total": 17,
+  "checks": [
+    {
+      "name": "All map names appear after map cells and routes in an unclipped pointer-free label layer",
+      "ok": true
+    },
+    {
+      "name": "Selected unit and hovered building show full names in a frame sized to text",
+      "ok": true
+    },
+    {
+      "name": "Capture mode shows same cell plus six neighbors and the adjacent legal building",
+      "ok": true
+    },
+    {
+      "name": "Every one of the 38 models uses the same one-cell capture geometry",
+      "ok": true
+    },
+    {
+      "name": "Observed hostile garrison marks its building blocked without hidden-state checks",
+      "ok": true
+    },
+    {
+      "name": "A hidden air garrison does not alter capture colors, labels, or reasons",
+      "ok": true
+    },
+    {
+      "name": "Cached buildings without current observation cannot receive a legal capture marker",
+      "ok": true
+    },
+    {
+      "name": "Setting deployment shows seven local choices and occupied positions remain legal",
+      "ok": true
+    },
+    {
+      "name": "Configured private queue shows waiting at an occupied cell and ready order waits for space",
+      "ok": true
+    },
+    {
+      "name": "Enemy queue and deployment settings remain private even with global visibility",
+      "ok": true
+    },
+    {
+      "name": "Allied production marks are visible under the same team observation permission",
+      "ok": true
+    },
+    {
+      "name": "Movement preview reports two AP automatic capture, or the need to wait with one AP",
+      "ok": true
+    },
+    {
+      "name": "Hidden garrisons do not alter move-and-capture preview before commitment",
+      "ok": true
+    },
+    {
+      "name": "Deployment hover states occupancy waiting without extra AP or money",
+      "ok": true
+    },
+    {
+      "name": "Camera updates label density and sound-scene callback without a board render",
+      "ok": true
+    },
+    {
+      "name": "Board rendering and staged capture hover do not mutate game ownership, AP or queues",
+      "ok": true
+    },
+    {
+      "name": "Ocean ambience has a bounded layer and motion respects pause and reduced-motion",
+      "ok": true
+    }
+  ]
+}

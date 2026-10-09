@@ -16,19 +16,23 @@
     pierce: '#d5faff', shock: '#ffd879', sniper: '#f4efcc', repair: '#76efb6',
     entrench: '#e0c79b', anchor: '#a5dbe4', scan: '#79eddd', jam: '#ca9cff'
   });
-  let enabled = true, soundEnabled = true, volume = .55, paused = false;
+  let enabled = true, soundEnabled = true, ambienceEnabled = true, volume = .55, paused = false;
   let audioContext = null, master = null, unlocked = false, currentRun = null, serial = 0;
   const voices = new Set();
+  const voiceCleanups = new Map(), ambienceBuffers = new Map();
+  let ambientNodes = null, actionPan = 0;
+  let scene = { active: false, profile: 'wind' };
   try {
     const stored = JSON.parse(root.localStorage?.getItem('six-realms-fx-v0.8') || '{}');
     enabled = stored.enabled !== false;
     soundEnabled = stored.soundEnabled !== false;
+    ambienceEnabled = stored.ambienceEnabled !== false;
     if (Number.isFinite(stored.volume)) volume = Math.max(0, Math.min(1, stored.volume));
   } catch (_) { /* Preferences are optional in file:// and private browsing. */ }
   function persist() {
-    try { root.localStorage?.setItem('six-realms-fx-v0.8', JSON.stringify({ enabled, soundEnabled, volume })); } catch (_) {}
+    try { root.localStorage?.setItem('six-realms-fx-v0.8', JSON.stringify({ enabled, soundEnabled, ambienceEnabled, volume })); } catch (_) {}
   }
-  function settings() { return { enabled, soundEnabled, volume, paused, unlocked }; }
+  function settings() { return { enabled, soundEnabled, ambienceEnabled, volume, paused, unlocked, scene: { ...scene }, ambienceRunning: !!ambientNodes }; }
   function copy(p) { return p ? JSON.parse(JSON.stringify(p)) : null; }
   function position(p) { return { q: p.q, r: p.r }; }
   function motionFamily(type, domain) {
@@ -83,7 +87,8 @@
       unit: actor ? copy(actor) : null, target: target ? copy(target) : null, route,
       cells: s.cells, fog: s.settings.fog && s.mission?.fog !== false,
       vision: copy(s.vision[viewerId]), allied: actor ? G.allied(s, viewerId, actor.owner) : false,
-      unitIds: new Set(s.units.map(u => u.id)), buildingIds: new Set(s.buildings.map(b => b.id))
+      unitIds: new Set(s.units.map(u => u.id)), buildingIds: new Set(s.buildings.map(b => b.id)),
+      eventTail: s.events.at(-1) || null, priorEvents: new Set(s.events)
     });
     return before;
   }
@@ -158,14 +163,129 @@
     } else if (command.kind === 'end' && (G.allied(after, viewerId, before.actor) || after.actor === viewerId)) {
       result.steps.push({ kind: 'turn' });
     }
+    // A single transaction may now move -> capture -> release a facility and
+    // deploy its FIFO stock, or begin a turn and deploy multiple completed units.
+    // Preserve the core's event order rather than losing those secondary actions.
+    const events = transactionEvents(after, hidden), captureEvents = new Set(['capture', 'first_capture_enemy_production_facility', 'first_capture_central_city']);
+    const eventCapture = events.some(e => captureEvents.has(e.kind) && e.buildingId);
+    const eventDeploy = events.some(e => e.kind === 'deployment' && e.unitId);
+    if (eventCapture) result.steps = result.steps.filter(step => step.kind !== 'capture');
+    if (eventDeploy) result.steps = result.steps.filter(step => step.kind !== 'deploy');
+    if (command.kind === 'end' && events.some(e => e.kind === 'turn')) result.steps = result.steps.filter(step => step.kind !== 'turn');
+    const displayedCaptures = new Set(), displayedUnits = new Set();
+    for (const event of events) {
+      if (captureEvents.has(event.kind) && event.buildingId && !displayedCaptures.has(event.buildingId)) {
+        const building = G.building(after, event.buildingId), old = observed[event.buildingId];
+        if (building && (old || seen(after, viewerId, building))) {
+          const now = seen(after, viewerId, building) ? summary(after, building) : { ...old, owner: null, color: '#cfbd87' };
+          const source = G.unit(after, event.unitId || command.unitId);
+          result.steps.push({ kind: 'capture', from: seen(after, viewerId, source) ? summary(after, source) : a,
+            at: now, oldColor: old?.color || '#cfbd87', auto: !!(event.automatic || event.auto), eventOrder: events.indexOf(event) });
+          displayedCaptures.add(event.buildingId);
+        }
+      } else if (event.kind === 'deployment' && event.unitId && !displayedUnits.has(event.unitId)) {
+        const unit = G.unit(after, event.unitId);
+        if (!hidden?.unitIds.has(event.unitId) && seen(after, viewerId, unit)) {
+          result.steps.push({ kind: 'deploy', at: summary(after, unit), auto: !!(event.automatic || event.auto), eventOrder: events.indexOf(event) });
+          displayedUnits.add(event.unitId);
+        }
+      } else if (command.kind === 'end' && event.kind === 'turn' && (G.allied(after, viewerId, event.actor) || event.actor === viewerId)) {
+        result.steps.push({ kind: 'turn', eventOrder: events.indexOf(event) });
+      }
+    }
+    // Older game-0.7 snapshots have no enriched deployment event metadata. Their
+    // newly visible units still get a safe fallback in deterministic instance order.
+    for (const unit of after.units) if (!hidden?.unitIds.has(unit.id) && seen(after, viewerId, unit)
+      && !result.steps.some(step => step.kind === 'deploy' && step.at.id === unit.id)) {
+      result.steps.push({ kind: 'deploy', at: summary(after, unit), auto: command.kind !== 'deploy' });
+    }
     result.observed = result.steps.length > 0;
     return result;
   }
 
+  function transactionEvents(after, hidden) {
+    if (!hidden) return [];
+    const index = hidden.eventTail ? after.events.indexOf(hidden.eventTail) : -1;
+    return index >= 0 ? after.events.slice(index + 1) : after.events.filter(event => !hidden.priorEvents.has(event));
+  }
+
   function setEnabled(value) { enabled = !!value; persist(); }
-  function setSoundEnabled(value) { soundEnabled = !!value; applyVolume(); persist(); }
-  function setVolume(value) { if (Number.isFinite(Number(value))) volume = Math.max(0, Math.min(1, Number(value))); applyVolume(); persist(); }
+  function setSoundEnabled(value) { soundEnabled = !!value; applyVolume(); updateAmbience(); persist(); }
+  function setAmbienceEnabled(value) { ambienceEnabled = !!value; updateAmbience(); persist(); }
+  function setVolume(value) { if (Number.isFinite(Number(value))) volume = Math.max(0, Math.min(1, Number(value))); applyVolume(); updateAmbience(); persist(); }
   function applyVolume() { if (master && audioContext) master.gain.setValueAtTime(soundEnabled ? volume * .32 : 0, audioContext.currentTime); }
+  function ambienceProfile(terrain) {
+    const allowed = new Set([...Object.keys(D.terrain), ...Object.keys(D.buildingById)]), counts = {};
+    if (typeof terrain === 'string' && allowed.has(terrain)) counts[terrain] = 1;
+    else if (Array.isArray(terrain)) for (const value of terrain) {
+      const type = typeof value === 'string' ? value : value?.terrain;
+      if (allowed.has(type)) counts[type] = (counts[type] || 0) + 1;
+    }
+    else if (terrain && typeof terrain === 'object') for (const [type, amount] of Object.entries(terrain))
+      if (allowed.has(type) && Number.isFinite(amount) && amount > 0) counts[type] = Math.min(1e6, amount);
+    const total = Object.values(counts).reduce((n, amount) => n + amount, 0) || 1;
+    const sea = (counts.ocean || 0) + (counts.coast || 0) * .6 + (counts.port || 0) + (counts.energyplatform || 0);
+    const industrial = ['road', 'city', 'factory', 'energyfield', 'barracks', 'airfield', 'market', 'hq'].reduce((n, type) => n + (counts[type] || 0), 0);
+    return sea / total >= .2 ? 'sea' : industrial / total >= .35 ? 'industrial' : 'wind';
+  }
+  function setScene(next = {}) {
+    scene = { active: next.active === undefined ? scene.active : !!next.active,
+      profile: next.terrain === undefined ? scene.profile : ambienceProfile(next.terrain) };
+    updateAmbience(); return { ...scene };
+  }
+  function stopAmbience() {
+    const old = ambientNodes; ambientNodes = null;
+    if (!old) return;
+    for (const gain of old.gains) try { gain.gain.setValueAtTime(0, audioContext.currentTime); } catch (_) {}
+    for (const source of old.sources) try { source.stop(); } catch (_) {}
+    for (const item of old.nodes) try { item.disconnect(); } catch (_) {}
+  }
+  function ambientBuffer(profile) {
+    if (ambienceBuffers.has(profile)) return ambienceBuffers.get(profile);
+    const frames = Math.ceil(audioContext.sampleRate * 8), buffer = audioContext.createBuffer(2, frames, audioContext.sampleRate);
+    for (let channel = 0; channel < 2; channel++) {
+      const values = buffer.getChannelData(channel); let brown = 0;
+      for (let i = 0; i < frames; i++) {
+        brown = (brown + .025 * (Math.random() * 2 - 1)) / 1.025;
+        const time = i / audioContext.sampleRate;
+        const wave = profile === 'sea' ? .66 + .21 * Math.sin(time * Math.PI * .5 + channel * 1.2)
+          + .1 * Math.sin(time * Math.PI * .75 + channel) : .85 + .1 * Math.sin(time * Math.PI * .25 + channel);
+        // Crossfade the loop ends to avoid a discontinuity every eight seconds.
+        const edge = Math.min(1, i / (frames * .02), (frames - 1 - i) / (frames * .02));
+        values[i] = brown * 4 * wave * Math.max(0, edge);
+      }
+    }
+    ambienceBuffers.set(profile, buffer); return buffer;
+  }
+  function updateAmbience() {
+    const canPlay = scene.active && ambienceEnabled && soundEnabled && volume > 0 && !paused
+      && unlocked && audioContext?.state === 'running';
+    if (!canPlay) { stopAmbience(); return; }
+    if (ambientNodes?.profile === scene.profile) return;
+    stopAmbience();
+    const created = [];
+    try {
+      const source = audioContext.createBufferSource(), filter = audioContext.createBiquadFilter(), bed = audioContext.createGain();
+      const hum = audioContext.createOscillator(), humGain = audioContext.createGain();
+      const sway = audioContext.createOscillator(), swayGain = audioContext.createGain();
+      created.push(source, filter, bed, hum, humGain, sway, swayGain);
+      source.buffer = ambientBuffer(scene.profile); source.loop = true;
+      filter.type = 'lowpass'; filter.frequency.value = scene.profile === 'sea' ? 780 : scene.profile === 'industrial' ? 350 : 620;
+      bed.gain.setValueAtTime(0, audioContext.currentTime);
+      bed.gain.linearRampToValueAtTime(scene.profile === 'sea' ? .11 : .075, audioContext.currentTime + .65);
+      hum.type = scene.profile === 'industrial' ? 'triangle' : 'sine'; hum.frequency.value = scene.profile === 'industrial' ? 74 : 56;
+      humGain.gain.setValueAtTime(0, audioContext.currentTime);
+      humGain.gain.linearRampToValueAtTime(scene.profile === 'industrial' ? .017 : .006, audioContext.currentTime + .8);
+      sway.type = 'sine'; sway.frequency.value = scene.profile === 'sea' ? .12 : .07; swayGain.gain.value = .018;
+      source.connect(filter); filter.connect(bed); bed.connect(master);
+      hum.connect(humGain); humGain.connect(master); sway.connect(swayGain); swayGain.connect(bed.gain);
+      source.start(); hum.start(); sway.start();
+      ambientNodes = { profile: scene.profile, nodes: created, sources: [source, hum, sway], gains: [bed, humGain] };
+    } catch (_) {
+      for (const item of created) { try { item.stop?.(); } catch (_) {} try { item.disconnect(); } catch (_) {} }
+      ambientNodes = null;
+    }
+  }
   async function unlock() {
     if (!soundEnabled) return false;
     try {
@@ -178,37 +298,52 @@
         limiter.threshold.value = -18; limiter.knee.value = 12; limiter.ratio.value = 7;
         master.connect(limiter); limiter.connect(audioContext.destination); applyVolume();
       }
-      if (!paused && audioContext.state !== 'running') await audioContext.resume();
-      unlocked = audioContext.state === 'running';
+      // The first successful gesture authorizes future resume. Calling unlock
+      // while paused must never erase that authorization (Space resumes too).
+      if (paused && unlocked) return true;
+      if (audioContext.state !== 'running') await audioContext.resume();
+      unlocked = true;
+      if (paused) await audioContext.suspend();
+      updateAmbience();
       return unlocked;
     } catch (_) { return false; }
   }
   function setPaused(value) {
     paused = !!value;
     if (currentRun) currentRun.last = null;
+    if (paused) stopAmbience();
     if (audioContext) {
       const promise = paused ? audioContext.suspend() : unlocked ? audioContext.resume() : null;
-      promise?.catch(() => {});
+      promise?.then(() => updateAmbience()).catch(() => {});
     }
   }
-  function voice(node, connected = []) { voices.add(node); node.onended = () => { voices.delete(node); for (const n of [node, ...connected]) try { n.disconnect(); } catch (_) {} }; return node; }
+  function voice(node, connected = []) {
+    voices.add(node);
+    const cleanup = () => { voices.delete(node); voiceCleanups.delete(node); for (const n of [node, ...connected]) try { n.disconnect(); } catch (_) {} };
+    voiceCleanups.set(node, cleanup); node.onended = cleanup; return node;
+  }
+  function output(gain) {
+    if (!audioContext.createStereoPanner) { gain.connect(master); return null; }
+    const panner = audioContext.createStereoPanner(); panner.pan.value = actionPan;
+    gain.connect(panner); panner.connect(master); return panner;
+  }
   function tone(freq, seconds, waveform = 'sine', gain = .2, delay = 0, endFreq = freq) {
-    if (!audioContext || !unlocked || !soundEnabled || volume === 0 || paused) return;
-    const start = audioContext.currentTime + delay, env = audioContext.createGain(), osc = voice(audioContext.createOscillator(), [env]);
+    if (!audioContext || audioContext.state !== 'running' || !unlocked || !soundEnabled || volume === 0 || paused) return;
+    const start = audioContext.currentTime + delay, env = audioContext.createGain(), panner = output(env), osc = voice(audioContext.createOscillator(), [env, ...(panner ? [panner] : [])]);
     osc.type = waveform; osc.frequency.setValueAtTime(freq, start);
     osc.frequency.exponentialRampToValueAtTime(Math.max(12, endFreq), start + seconds);
     env.gain.setValueAtTime(0, start); env.gain.linearRampToValueAtTime(gain, start + .009);
     env.gain.exponentialRampToValueAtTime(.0001, start + seconds);
-    osc.connect(env); env.connect(master); osc.start(start); osc.stop(start + seconds + .02);
+    osc.connect(env); osc.start(start); osc.stop(start + seconds + .02);
   }
   function noise(seconds, gain = .2, cutoff = 900, delay = 0, highpass = false) {
-    if (!audioContext || !unlocked || !soundEnabled || volume === 0 || paused) return;
-    const start = audioContext.currentTime + delay, env = audioContext.createGain(), filter = audioContext.createBiquadFilter(), source = voice(audioContext.createBufferSource(), [env, filter]);
+    if (!audioContext || audioContext.state !== 'running' || !unlocked || !soundEnabled || volume === 0 || paused) return;
+    const start = audioContext.currentTime + delay, env = audioContext.createGain(), filter = audioContext.createBiquadFilter(), panner = output(env), source = voice(audioContext.createBufferSource(), [env, filter, ...(panner ? [panner] : [])]);
     const buffer = audioContext.createBuffer(1, Math.ceil(audioContext.sampleRate * seconds), audioContext.sampleRate), data = buffer.getChannelData(0);
     for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
     source.buffer = buffer; filter.type = highpass ? 'highpass' : 'lowpass'; filter.frequency.value = cutoff;
     env.gain.setValueAtTime(gain, start); env.gain.exponentialRampToValueAtTime(.0001, start + seconds);
-    source.connect(filter); filter.connect(env); env.connect(master); source.start(start); source.stop(start + seconds + .02);
+    source.connect(filter); filter.connect(env); source.start(start); source.stop(start + seconds + .02);
   }
   const soundDesign = Object.freeze({
     infantry: '轻短脚步与装备碰撞', vehicle: '低频履带马达与机械卡扣', ship: '流水与舰体低鸣',
@@ -218,23 +353,25 @@
     impact: '冲击与碎屑', destruction: '爆破低鸣', capture: '三音据点确认',
     repair: '工具棘轮与恢复双音', scan: '雷达高低脉冲', jam: '失谐电子颤音',
     entrench: '砂石与工程扣合', anchor: '液压锁定', shock: '震荡冲击', sniper: '单次磁轨脉冲',
-    deploy: '部署确认双音', construct: '吊装与机械扣合', produce: '订单确认', upgrade: '升级确认', cancel: '取消低音', turn: '回合交接'
+    deploy: '部署确认双音', construct: '吊装与机械扣合', produce: '订单确认', upgrade: '升级确认', cancel: '取消低音', turn: '回合交接',
+    wind: '低强度双声道风声', sea: '渐起渐落海浪与海风', industrial: '轻机械低鸣与风声'
   });
-  function sound(name) {
-    switch (name) {
+  function sound(name, pan = 0) {
+    const previousPan = actionPan; actionPan = Math.max(-.65, Math.min(.65, Number(pan) || 0));
+    try { switch (name) {
       case 'infantry': noise(.06, .11, 1100); tone(170, .06, 'triangle', .06); noise(.055, .09, 950, .11); break;
       case 'vehicle': tone(68, .23, 'triangle', .14, 0, 54); noise(.12, .08, 600); tone(170, .04, 'square', .025, .13); break;
       case 'ship': noise(.28, .12, 460); tone(85, .27, 'sine', .08, 0, 70); break;
       case 'helicopter': for (let i = 0; i < 4; i++) noise(.045, .065, 580, i * .055); tone(115, .24, 'triangle', .06); break;
       case 'jet': noise(.28, .09, 1400); tone(210, .26, 'sawtooth', .045, 0, 390); break;
       case 'rifle': for (let i = 0; i < 3; i++) { noise(.07, .19, 2700, i * .05); tone(210, .04, 'square', .04, i * .05, 70); } break;
-      case 'shell': noise(.21, .4, 1100); tone(92, .25, 'triangle', .3, 0, 28); break;
+      case 'shell': noise(.04, .16, 2400, 0, true); noise(.16, .3, 1050, .018); tone(92, .21, 'triangle', .26, .012, 28); tone(165, .06, 'square', .025, .055, 105); break;
       case 'missile': noise(.23, .2, 1600); tone(230, .24, 'sawtooth', .06, 0, 850); break;
       case 'mortar': tone(740, .28, 'sine', .1, 0, 160); noise(.1, .16, 900); break;
       case 'rail': case 'sniper': tone(720, .13, 'sawtooth', .12, 0, 110); noise(.05, .2, 3200); break;
       case 'bomb': tone(650, .3, 'sine', .08, 0, 100); noise(.08, .06, 1200); break;
       case 'torpedo': tone(80, .25, 'sine', .13, 0, 40); noise(.22, .1, 300); break;
-      case 'impact': case 'unknown': noise(.22, .24, 1400); tone(75, .2, 'triangle', .17, 0, 25); break;
+      case 'impact': case 'unknown': noise(.045, .15, 2600, 0, true); noise(.17, .18, 1300, .015); tone(75, .18, 'triangle', .15, .01, 25); break;
       case 'destruction': noise(.4, .35, 750); tone(60, .4, 'triangle', .3, 0, 20); break;
       case 'capture': [330, 440, 660].forEach((f, i) => tone(f, .19, 'triangle', .13, i * .09)); break;
       case 'repair': tone(540, .14, 'sine', .1); tone(810, .18, 'sine', .1, .1); noise(.06, .08, 1700, .05); break;
@@ -248,7 +385,15 @@
       case 'produce': tone(440, .13, 'sine', .08); break;
       case 'cancel': tone(260, .12, 'sine', .06, 0, 160); break;
       case 'turn': tone(280, .12, 'sine', .06); tone(350, .12, 'sine', .05, .12); break;
-    }
+    }} finally { actionPan = previousPan; }
+  }
+  function soundAt(run, name, point) {
+    const raw = run.board.viewBox?.baseVal || (() => {
+      const values = run.board.getAttribute('viewBox')?.split(/[\s,]+/).map(Number);
+      return values?.length === 4 ? { x: values[0], width: values[2] } : null;
+    })();
+    const pan = point && raw?.width > 0 ? (point.x - raw.x) / raw.width * 2 - 1 : 0;
+    sound(name, pan);
   }
 
   function node(tag, attrs = {}, parent) {
@@ -291,9 +436,17 @@
   }
   function hideSprite(run, id) {
     if (!id) return;
-    for (const el of run.board.querySelectorAll('[data-unit-sprite],[data-building-sprite]')) if ((el.getAttribute('data-unit-sprite') || el.getAttribute('data-building-sprite')) === id && !run.hidden.some(x => x.el === el)) {
+    for (const el of run.board.querySelectorAll('[data-unit-sprite],[data-building-sprite],[data-unit-label],[data-building-label]')) if ((el.getAttribute('data-unit-sprite') || el.getAttribute('data-building-sprite') || el.getAttribute('data-unit-label') || el.getAttribute('data-building-label')) === id && !run.hidden.some(x => x.el === el)) {
       run.hidden.push({ el, opacity: el.style.opacity }); el.style.opacity = '0';
     }
+  }
+  function restoreSprite(run, id) {
+    const retained = [];
+    for (const item of run.hidden) {
+      const instanceId = item.el.getAttribute('data-unit-sprite') || item.el.getAttribute('data-building-sprite') || item.el.getAttribute('data-unit-label') || item.el.getAttribute('data-building-label');
+      if (instanceId === id) item.el.style.opacity = item.opacity; else retained.push(item);
+    }
+    run.hidden = retained;
   }
   function sprite(run, entity, where) {
     if (!entity) return null;
@@ -347,17 +500,19 @@
       const start = run.xy(path[0]); glyph.wrapper.setAttribute('transform', `translate(${start.x} ${start.y})`); glyph.wrapper.setAttribute('opacity', '1');
       for (let i = 1; i < path.length; i++) {
         const a = run.xy(path[i - 1]), b = run.xy(path[i]), family = path[i].family;
-        sound(family);
+        soundAt(run, family, a);
         const trail = family === 'ship' ? node('path', { d: 'M-11 0L0 10L11 0M-16 8L0 20L16 8', fill: 'none', stroke: '#d3fbef', 'stroke-width': 2, opacity: .6 }, marks)
           : family === 'infantry' ? node('g', { opacity: .45 }, marks) : node('path', { d: family === 'vehicle' ? 'M-7 0L-7 16M7 0L7 16' : 'M-13 0L0 16L13 0', fill: 'none', stroke: family === 'vehicle' ? '#cbb686' : '#d9fff4', 'stroke-width': family === 'vehicle' ? 3 : 1.5, opacity: .35 }, marks);
         if (family === 'infantry') { node('ellipse', { cx: -4, cy: 4, rx: 2.1, ry: 4, fill: '#e2d8bd' }, trail); node('ellipse', { cx: 4, cy: 12, rx: 2.1, ry: 4, fill: '#e2d8bd' }, trail); }
         const angle = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI - 90;
         trail.setAttribute('transform', `translate(${a.x} ${a.y}) rotate(${angle})`);
+        const dust = family === 'vehicle' || family === 'infantry' ? particles(run, { x: a.x, y: a.y + 18 }, '#c7b38b', run.reduced ? 0 : 3, i) : [];
         let domainChanged = false;
         await animate(run, family === 'infantry' ? 175 : family === 'jet' ? 135 : 205, (t, raw) => {
           const x = mix(a.x, b.x, t), y = mix(a.y, b.y, t), bob = run.reduced ? 0 : Math.sin(raw * Math.PI * (family === 'infantry' ? 4 : 2)) * (family === 'infantry' ? 2 : 1);
           glyph.wrapper.setAttribute('transform', `translate(${x} ${y + bob})`);
           glyph.shadow.setAttribute('opacity', family === 'jet' || family === 'helicopter' ? '.2' : '.35');
+          dust.forEach((d, index) => { d.el.setAttribute('cx', a.x + d.dx * raw * .4); d.el.setAttribute('cy', a.y + 18 + d.dy * raw * .15 - raw * 6); d.el.setAttribute('r', 1.5 + raw * (index + 1)); d.el.setAttribute('opacity', (1 - raw) * .22); });
           if (!domainChanged && raw > .5 && path[i].domain !== path[i - 1].domain && root.GameArt?.unitMarkup) {
             glyph.glyph.innerHTML = root.GameArt.unitMarkup(step.unit.type, step.unit.factionStyle, path[i].domain); domainChanged = true;
           }
@@ -366,19 +521,21 @@
             glyph.glyph.setAttribute('opacity', .92 + Math.sin(raw * Math.PI * 12) * .08);
           }
         }, ease);
+        dust.forEach(d => d.el.remove());
         if (run.cancelled) break;
       }
       if (run.cancelled) break;
       if (path.length === 1) await pulse(run, run.xy(path[0]), colors.move, 130, 24);
     }
-    marks.remove(); glyph.wrapper.remove();
+    if (!run.cancelled) await animate(run, 90, t => marks.setAttribute('opacity', 1 - t));
+    marks.remove(); glyph.wrapper.remove(); restoreSprite(run, step.unit.id);
   }
   function projectilePoint(a, b, t, family) {
     const arc = ['mortar', 'bomb', 'missile'].includes(family) ? Math.sin(Math.PI * t) * Math.min(75, Math.hypot(b.x - a.x, b.y - a.y) * .25) : 0;
     return { x: mix(a.x, b.x, t), y: mix(a.y, b.y, t) - arc };
   }
   async function impact(run, step, p, targetGlyph) {
-    sound(step.lethal ? 'destruction' : step.skill === 'shock' ? 'shock' : 'impact');
+    soundAt(run, step.lethal ? 'destruction' : step.skill === 'shock' ? 'shock' : 'impact', p);
     const color = colors[step.skill] || colors.impact, flash = node('circle', { cx: p.x, cy: p.y, r: 3, fill: '#fff1ba', opacity: .9 }, run.layer);
     const smoke = node('circle', { cx: p.x, cy: p.y, r: 9, fill: '#3d5149', opacity: .5 }, run.layer);
     const sparks = particles(run, p, color, step.lethal ? 16 : 8);
@@ -403,7 +560,7 @@
     const target = step.to ? sprite(run, step.to, to) : null;
     const color = colors[step.skill] || (step.counter ? colors.counter : colors.shot);
     if (from) {
-      sound(step.projectile);
+      soundAt(run, step.projectile, from);
       const muzzle = node('path', { d: 'M0-14L4-5L13-8L6 1L12 8L3 6L0 15L-4 5L-12 8L-6 0L-12-8L-4-5Z', fill: color }, run.layer);
       muzzle.setAttribute('transform', `translate(${from.x} ${from.y - 12})`);
       if (step.skill === 'sniper') {
@@ -439,7 +596,16 @@
     const from = step.from && run.xy(step.from), to = step.to && run.xy(step.to);
     if (!p) return;
     const color = colors[step.kind] || step.at?.color || '#d4edba';
-    sound(step.kind);
+    soundAt(run, step.kind, p);
+    if (step.kind === 'deploy') {
+      const glyph = sprite(run, step.at, p), wave = ring(run, p, color, 42, { 'stroke-width': 2 });
+      const ms = step.auto ? 150 : 270;
+      if (!step.auto) floating(run, p, '部署', color, ms);
+      await animate(run, ms, (t, raw) => {
+        wave.setAttribute('r', 9 + t * 38); wave.setAttribute('opacity', (1 - t) * .65);
+        if (glyph) { glyph.wrapper.setAttribute('opacity', Math.min(1, raw * 3)); glyph.wrapper.setAttribute('transform', `translate(${p.x} ${p.y}) scale(${.85 + ease(raw) * .15})`); }
+      }); glyph?.wrapper.remove(); wave.remove(); restoreSprite(run, step.at.id);
+    } else
     if (step.kind === 'repair') {
       const line = from && to ? node('path', { d: `M${from.x} ${from.y}L${to.x} ${to.y}`, stroke: color, 'stroke-width': 2.5, 'stroke-dasharray': '5 7', fill: 'none' }, run.layer) : null;
       const cross = node('path', { d: 'M-5-15H5V-5H15V5H5V15H-5V5H-15V-5H-5Z', fill: color, stroke: '#e3ffe9', 'stroke-width': 1 }, run.layer);
@@ -474,6 +640,9 @@
       for (let i = 0; i < 4; i++) { const a = Math.PI / 4 + i * Math.PI / 2; node('path', { d: `M${p.x + Math.cos(a) * 16} ${p.y + Math.sin(a) * 16}L${p.x + Math.cos(a) * 34} ${p.y + Math.sin(a) * 34}l-8 0m8 0l0-8` }, arms); }
       floating(run, p, '锚定防线', color, 420); await animate(run, 430, t => arms.setAttribute('opacity', Math.min(1, t * 4) * (1 - Math.max(0, (t - .7) / .3)))); arms.remove();
     } else if (step.kind === 'capture') {
+      if (run.heldCaptures.has(step.at.id)) {
+        run.heldCaptures.get(step.at.id).wrapper.remove(); run.heldCaptures.delete(step.at.id); restoreSprite(run, step.at.id);
+      }
       const flag = node('g', {}, run.layer), mast = node('path', { d: `M${p.x} ${p.y + 15}V${p.y - 32}`, stroke: '#e8edce', 'stroke-width': 3 }, flag);
       const cloth = node('path', { fill: step.at.color, stroke: '#f8ffe3', 'stroke-width': 1.2 }, flag);
       floating(run, p, step.at.owner ? '据点接管' : '据点易手', step.at.color, 550);
@@ -499,13 +668,14 @@
     for (const { el, opacity } of run.hidden) el.style.opacity = opacity;
     if (currentRun === run) currentRun = null;
   }
-  function cancel() {
+  function cancel({ keepAmbience = false } = {}) {
     if (currentRun) { const run = currentRun; run.cancelled = true; for (const stop of [...run.waiters]) stop(); cleanup(run); }
-    for (const n of voices) { try { n.stop(); } catch (_) {} }
-    voices.clear();
+    for (const n of [...voices]) { try { n.stop(); } catch (_) {} voiceCleanups.get(n)?.(); }
+    voices.clear(); voiceCleanups.clear();
+    if (!keepAmbience) { scene = { ...scene, active: false }; stopAmbience(); }
   }
   async function play({ before, after, command, board, viewerId, xy, fast = false, spriteScale = .46, unitOffset = { x: -23, y: -24 }, buildingScale = .65, buildingOffset = { x: 0, y: -6 }, onComplete } = {}) {
-    cancel();
+    cancel({ keepAmbience: true });
     let outcome = { played: false, cancelled: false, steps: 0 };
     try {
       if (!after || !command) return outcome;
@@ -520,10 +690,17 @@
       const reduced = !!root.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
       const run = { board, layer: node('g', { class: 'game-fx-layer', 'data-fx-layer': ++serial, 'aria-hidden': 'true', 'pointer-events': 'none' }, board),
         xy: xy || (p => ({ x: Math.sqrt(3) * 44 * (p.q + p.r / 2), y: 66 * p.r })),
-        hidden: [], waiters: new Set(), cancelled: false, speed: reduced ? .14 : fast ? .36 : 1, reduced, scale: spriteScale, offset: unitOffset,
+        hidden: [], waiters: new Set(), heldCaptures: new Map(), cancelled: false, speed: reduced ? .14 : fast ? .36 : 1, reduced, scale: spriteScale, offset: unitOffset,
         buildingScale, buildingOffset };
       currentRun = run; outcome.played = true;
       try {
+        for (const step of sequence.steps) {
+          if (step.kind === 'deploy') hideSprite(run, step.at.id);
+          else if (step.kind === 'capture' && before.entities[step.at.id] && !run.heldCaptures.has(step.at.id)) {
+            const original = before.entities[step.at.id], held = sprite(run, original, run.xy(original));
+            if (held) run.heldCaptures.set(step.at.id, held);
+          }
+        }
         for (const step of sequence.steps) {
           if (run.cancelled) break;
           if (step.kind === 'move') await moveEffect(run, step);
@@ -538,8 +715,8 @@
     } finally { if (typeof onComplete === 'function') onComplete(outcome); }
   }
 
-  const api = { capture, plan, play, cancel, setPaused, unlock, setEnabled, setSoundEnabled, setVolume, settings,
-    motionFamily, projectileFamily, skillKinds, soundDesign };
+  const api = { capture, plan, play, cancel, setPaused, unlock, setEnabled, setSoundEnabled, setAmbienceEnabled, setScene, setVolume, settings,
+    motionFamily, projectileFamily, skillKinds, soundDesign, ambienceProfile };
   root.GameFX = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);
