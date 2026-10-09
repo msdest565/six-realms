@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-09T12:12:48.721Z",
+  "scope": "Node and isolated DOM/Web Audio substitutes; no browser, phone, GPU timing or human listening",
+  "passed": 16,
+  "total": 16,
+  "results": [
+    {
+      "name": "All 99 authoritative visual marker values match the delivery specification",
+      "ok": true
+    },
+    {
+      "name": "38 model registries cover 10 states, all anchors and all three render forms",
+      "ok": true
+    },
+    {
+      "name": "All front/rear forms, portraits and avatars exist and have expected PNG dimensions",
+      "ok": true
+    },
+    {
+      "name": "Rendering is deterministic and directional state never enters gameplay entities",
+      "ok": true
+    },
+    {
+      "name": "Six actual hex directions select diagonal views; asymmetric equipment never mirrors",
+      "ok": true
+    },
+    {
+      "name": "Model timing caps prevent long route animations delaying simulation",
+      "ok": true
+    },
+    {
+      "name": "100 repeated tap/pan/pinch/cancel/orientation sequences never emit a gesture as an order",
+      "ok": true
+    },
+    {
+      "name": "Audio waits for a gesture; pause/background stop every score node and scheduling timer",
+      "ok": true
+    },
+    {
+      "name": "Legacy master mute prevents new score and speech despite enabled new group preferences",
+      "ok": true
+    },
+    {
+      "name": "Six independent group sliders persist; music and voice mute stop their own outputs",
+      "ok": true
+    },
+    {
+      "name": "Voice is optional, local only, subtitle capable and respects AI/visibility/cooldown",
+      "ok": true
+    },
+    {
+      "name": "12 original 192-beat score profiles retain melodic/base/rhythm layers and 90–150s chapter loops",
+      "ok": true
+    },
+    {
+      "name": "192 local WAV files include three variations plus a short tail; peak, PCM and cache budgets hold",
+      "ok": true
+    },
+    {
+      "name": "Sample decodes do not replay old events; muted/pause groups stop live FX and file mode uses fallback",
+      "ok": true
+    },
+    {
+      "name": "Normal/shared layouts and every directional muzzle use the same geometry as the live sprite transform",
+      "ok": true
+    },
+    {
+      "name": "Seven chapters keep rule/map/trigger/clue IDs while all 23 scene bodies come from the new story source",
+      "ok": true
+    }
+  ]
+}

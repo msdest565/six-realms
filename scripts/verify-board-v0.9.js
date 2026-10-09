@@ -13,7 +13,7 @@ function fixture(units=[],buildings=[]){
  const status={innerHTML:''},route={innerHTML:''},labels={innerHTML:''},attributes={},listeners={};let cameraCalls=0,renders=0;
  const board={clientWidth:1280,clientHeight:720,setAttribute:(k,v)=>attributes[k]=v,addEventListener:(k,fn)=>listeners[k]=fn};
  const doc={getElementById:id=>({board,'context-status':status,'route-preview':route,'label-focus-layer':labels}[id]||null),querySelector:()=>null,addEventListener(){}};
- const context={document:doc,innerWidth:1280,innerHeight:720,performance:{now:()=>0},requestAnimationFrame:()=>1,cancelAnimationFrame(){},addEventListener(){},GameControls:Controls,GameFX:{unlock(){}},console};context.window=context;vm.createContext(context);vm.runInContext(fs.readFileSync('src/battle-ui.js','utf8'),context);
+ const context={document:doc,innerWidth:1280,innerHeight:720,performance:{now:()=>0},requestAnimationFrame:()=>1,cancelAnimationFrame(){},addEventListener(){},GameGestures:require('../src/gestures'),GameAnime:require('../src/anime'),GameControls:Controls,GameFX:{unlock(){}},console};context.window=context;vm.createContext(context);vm.runInContext(fs.readFileSync('src/battle-ui.js','utf8'),context);
  const b=context.GameBattleUI.create({ui,D,H,G,A,esc,btn:(text,action)=>`<button data-action="${action}">${text}</button>`,commandButton:(text,cmd)=>`<button>${text}</button>`,xy:c=>({x:Math.sqrt(3)*44*(c.q+c.r/2),y:66*c.r}),bounds:()=>({x:-500,y:-400,w:1000,h:800}),viewer:()=>ui.viewerId||s.actor,knownBuildingAt(c){const actual=s.buildings.find(b=>b.q===c.q&&b.r===c.r);return actual&&G.visible(s,ui.viewerId||s.actor,actual)?actual:Object.values(s.knownBuildings[ui.viewerId||s.actor]).find(b=>b.q===c.q&&b.r===c.r);},unitPanel:()=>'',buildingPanel:()=>'',exercisePanel:()=>'',savesPage:()=>'',render:()=>renders++,act(){},toast(){},home:()=>'',resultPanel:()=>'',onCameraChange:()=>cameraCalls++});
  return {s,ui,b,status,route,labels,attributes,listeners,get cameraCalls(){return cameraCalls;},get renders(){return renders;},hover(q,r){b.bindBoard();listeners.pointermove({target:{closest:()=>({dataset:{cell:q+','+r}})}});}};
 }
@@ -32,22 +32,22 @@ test('Selected unit and hovered building show full names in a frame sized to tex
  const width=Number(f.labels.innerHTML.match(/<rect[^>]*\swidth="([\d.]+)"/)[1]);assert(width>140);
  f.listeners.pointerleave();assert.equal(f.labels.innerHTML,'');
 });
-test('Capture mode shows same cell plus six neighbors and the adjacent legal building',()=>{
- const f=fixture([unit('infantry','P1',0,0)], [building('city',null,1,0)]);f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();
- assert.equal(range(html,'capture-cell').length,7);assert(range(html,'capture-cell').includes('0,0'));assert(html.includes('capture-range capture-legal'));assert(!html.includes('reachable-hex'));
+test('Capture mode highlights only the building under the selected unit',()=>{
+ const f=fixture([unit('infantry','P1',0,0)], [building('city',null,0,0)]);f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();
+ assert.equal(range(html,'capture-cell').length,1);assert(range(html,'capture-cell').includes('0,0'));assert(html.includes('capture-range capture-legal'));assert(!html.includes('reachable-hex'));
 });
 test('Every one of the 38 models uses the same one-cell capture geometry',()=>{
- for(const d of D.units){const f=fixture([unit(d.id,'P1',0,0)],[building('city',null,1,0)]);if(d.branch==='navy')G.cell(f.s,{q:0,r:0}).terrain='ocean';f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();assert.equal(range(html,'capture-cell').length,7,d.id);assert(html.includes('capture-range capture-legal'),d.id);}
+ for(const d of D.units){const f=fixture([unit(d.id,'P1',0,0)],[building('city',null,0,0)]);if(d.branch==='navy')G.cell(f.s,{q:0,r:0}).terrain='ocean';f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();assert.equal(range(html,'capture-cell').length,1,d.id);assert(html.includes('capture-range capture-legal'),d.id);}
 });
-test('Observed hostile garrison marks its building blocked without hidden-state checks',()=>{
- const f=fixture([unit('infantry','P1',0,0),unit('tank','P2',1,0,'GUARD')],[building('city','P2',1,0)]);f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();assert(html.includes('capture-range capture-blocked'));assert(html.includes('建筑格内仍有敌方守军'));
+test('Adjacent guarded buildings are excluded from the capture highlight',()=>{
+ const f=fixture([unit('infantry','P1',0,0),unit('tank','P2',1,0,'GUARD')],[building('city','P2',1,0)]);f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();assert.deepEqual(range(html,'capture-cell'),['0,0']);assert(!html.includes('capture-range capture-legal'));
 });
 test('A hidden air garrison does not alter capture colors, labels, or reasons',()=>{
  const f=fixture([unit('infantry','P1',0,0),unit('fighter','P2',1,0,'HIDDEN')],[building('city','P2',1,0)]);f.s.settings.fog=true;f.s.vision.P1={ground:['0,0','1,0'],air:['0,0']};f.ui.selected='U';f.ui.intent='capture';
  const withHidden=f.b.board();assert(!withHidden.includes('HIDDEN'));f.s.units=f.s.units.filter(u=>u.id!=='HIDDEN');assert.equal(f.b.board(),withHidden);
 });
 test('Cached buildings without current observation cannot receive a legal capture marker',()=>{
- const f=fixture([unit('infantry','P1',0,0)],[building('city','P2',1,0)]);f.s.settings.fog=true;f.s.vision.P1={ground:['0,0'],air:['0,0']};f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();assert(html.includes('等待当前视野确认'));assert(!html.includes('capture-range capture-legal'));
+ const f=fixture([unit('infantry','P1',0,0)],[building('city','P2',0,0)]);f.s.settings.fog=true;f.s.vision.P1={ground:[],air:['0,0']};f.ui.selected='U';f.ui.intent='capture';const html=f.b.board();assert(html.includes('等待当前视野确认'));assert(!html.includes('capture-range capture-legal'));
 });
 test('Setting deployment shows seven local choices and occupied positions remain legal',()=>{
  const fac=building('factory','P1',0,0),f=fixture([unit('tank','P1',0,0)], [fac]);f.ui.intent='setDeployment';f.ui.facility='B';G.cell(f.s,{q:1,r:0}).terrain='ridge';const html=f.b.board();assert.equal(range(html,'deployment-choice').length,7);assert(html.includes('deployment-choice deployment-legal'));assert(html.includes('deployment-choice deployment-blocked'));assert(html.includes('data-deployment-building="B"'));assert(!html.includes('reachable-hex'));

@@ -1,0 +1,15 @@
+// Offline SVG rasterization of the real board renderer. This is not a browser screenshot.
+'use strict';
+const fs=require('fs'),path=require('path'),D=require('../src/data'),H=require('../src/grid'),G=require('../src/game'),M=require('../src/maps'),Anime=require('../src/anime');
+global.GameAnime=Anime;const A=require('../src/art');global.window=globalThis;global.innerWidth=1400;global.innerHeight=860;global.addEventListener=()=>{};global.document={addEventListener(){}};require('../src/battle-ui');
+const s=G.create(M.fixed('L',6),{fog:false,controllers:['local_human','ai','ai','ai','ai','ai']});s.units=[];
+const occupied=new Set();for(const [i,d]of D.units.entries()){const sea=d.branch==='navy',c=s.cells.filter(c=>(sea?c.terrain==='ocean':c.terrain==='plain'||c.terrain==='road'||c.terrain==='coast')&&!occupied.has(H.key(c.q,c.r))).sort((a,b)=>H.distance(a,{q:0,r:0})-H.distance(b,{q:0,r:0})||a.r-b.r||a.q-b.q)[0];occupied.add(H.key(c.q,c.r));s.units.push(G.normalizeUnit({id:'preview-'+d.id,type:d.id,owner:s.players[i%6].id,q:c.q,r:c.r},s));}
+const facility=s.buildings.find(b=>b.type==='factory'),shared=s.units.find(u=>u.type==='tank');shared.q=facility.q;shared.r=facility.r;G.vision(s);
+const ui={game:s,selected:shared.id,tile:G.cell(s,shared),intent:null,camera:{x:0,y:0,width:1900}},xy=c=>({x:Math.sqrt(3)*44*(c.q+c.r/2),y:66*c.r}),esc=x=>String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+const B=global.GameBattleUI.create({ui,D,H,G,A,esc,xy,bounds:()=>({x:-1000,y:-1000,w:2000,h:2000}),viewer:()=>s.players[0].id,knownBuildingAt:c=>s.buildings.find(b=>b.q===c.q&&b.r===c.r),render(){},act(){},toast(){},btn(){return '';}});
+let svg=B.board().match(/<svg[\s\S]*<\/svg>/)[0].replace('<svg ','<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" ');
+const style='<style>text{font-family:Microsoft YaHei,Arial,sans-serif}.chibi-far-symbol{display:none}.map-label rect{fill:#f3f6f0;fill-opacity:.95;stroke:#597e81}.map-label text{fill:#17364b}.map-label-compact{opacity:.9}.hit-hex{opacity:0}.map-label-expanded rect{stroke-width:2}.deployment-marker{fill:none;stroke:#217e75;stroke-width:2}.ocean-atmosphere-layer{fill:none;stroke:#ddf6ef;stroke-width:1.2;opacity:.5}</style>';
+svg=svg.replace(/(<svg[^>]*>)/,'$1'+style).replace(/href="(assets\/units\/[^"]+\.png)"/g,(_,uri)=>'href="data:image/png;base64,'+fs.readFileSync(uri).toString('base64')+'"');
+fs.writeFileSync('reports/anime-board-v1.svg',svg);
+const sharp=require(process.argv[2]||'sharp');
+const started=performance.now();sharp(Buffer.from(svg),{density:96}).png().toFile('reports/anime-board-v1.png').then(()=>{fs.writeFileSync('reports/anime-board-static-v1.json',JSON.stringify({scope:'Offline SVG rasterization; no browser, CSS layout, Web Audio, GPU or phone measurements',cells:s.cells.length,units:s.units.length,owners:6,includesUnitOnBuilding:true,renderMilliseconds:performance.now()-started},null,2));console.log('Static board illustration rendered from battle-ui.js; 919 cells / 38 models / 6 sides');}).catch(e=>{console.error(e.stack);process.exitCode=1;});

@@ -1,0 +1,762 @@
+[
+  {
+    "id": "aafrigate",
+    "sourceAsset": "assets/units/sources/aafrigate.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      742,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "aamissileship",
+    "sourceAsset": "assets/units/sources/aamissileship.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1009
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "amphibious",
+    "sourceAsset": "assets/units/sources/amphibious.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "antiair",
+    "sourceAsset": "assets/units/sources/antiair.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1019
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "antitank",
+    "sourceAsset": "assets/units/sources/antitank.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      676,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "areaaship",
+    "sourceAsset": "assets/units/sources/areaaship.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1010
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "artillery",
+    "sourceAsset": "assets/units/sources/artillery.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      999
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "assaultmarine",
+    "sourceAsset": "assets/units/sources/assaultmarine.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      759,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "battleship",
+    "sourceAsset": "assets/units/sources/battleship.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      941
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "bomber",
+    "sourceAsset": "assets/units/sources/bomber-v2.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1016
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "cruiser",
+    "sourceAsset": "assets/units/sources/cruiser.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      767,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "destroyer",
+    "sourceAsset": "assets/units/sources/destroyer.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      756,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "engineer",
+    "sourceAsset": "assets/units/sources/engineer.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      738,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "fighter",
+    "sourceAsset": "assets/units/sources/fighter.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1019
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "heavy",
+    "sourceAsset": "assets/units/sources/heavy-v2.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      988
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "heavyartillery",
+    "sourceAsset": "assets/units/sources/heavyartillery.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      950
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "heavyfighter",
+    "sourceAsset": "assets/units/sources/heavyfighter.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      999
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "heavyinfantry",
+    "sourceAsset": "assets/units/sources/heavyinfantry.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      745,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "heavymarine",
+    "sourceAsset": "assets/units/sources/heavymarine.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1005
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "helicopter",
+    "sourceAsset": "assets/units/sources/helicopter.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      760,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "infantry",
+    "sourceAsset": "assets/units/sources/infantry.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      489,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "jammer",
+    "sourceAsset": "assets/units/sources/jammer.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      757,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "lightartillery",
+    "sourceAsset": "assets/units/sources/lightartillery.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      764,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "lightbomber",
+    "sourceAsset": "assets/units/sources/lightbomber.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1017
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "lightfighter",
+    "sourceAsset": "assets/units/sources/lightfighter.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      752,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "lighttank",
+    "sourceAsset": "assets/units/sources/lighttank-v2.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      757,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "longrangeaa",
+    "sourceAsset": "assets/units/sources/longrangeaa.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1017
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "longrangerecon",
+    "sourceAsset": "assets/units/sources/longrangerecon.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      767,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "marine",
+    "sourceAsset": "assets/units/sources/marine.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      762,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "missileaa",
+    "sourceAsset": "assets/units/sources/missileaa.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      767,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "navaldestroyer",
+    "sourceAsset": "assets/units/sources/navaldestroyer.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      764,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "reconplane",
+    "sourceAsset": "assets/units/sources/reconplane.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1015
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "scout",
+    "sourceAsset": "assets/units/sources/scout.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1013
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "submarine",
+    "sourceAsset": "assets/units/sources/submarine.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      746,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "tacticalbomber",
+    "sourceAsset": "assets/units/sources/tacticalbomber.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      768,
+      1018
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "tacticalrecon",
+    "sourceAsset": "assets/units/sources/tacticalrecon.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      752,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "tank",
+    "sourceAsset": "assets/units/sources/tank-v2.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      767,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  },
+  {
+    "id": "walker",
+    "sourceAsset": "assets/units/sources/walker.png",
+    "sourceSize": [
+      1536,
+      1024
+    ],
+    "portraitSize": [
+      683,
+      1024
+    ],
+    "chibiSize": [
+      320,
+      320
+    ],
+    "alphaCorners": [
+      0
+    ],
+    "provenance": "built-in image_gen; original paired sheet retained"
+  }
+]

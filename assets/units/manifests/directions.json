@@ -1,0 +1,548 @@
+[
+  {
+    "id": "aafrigate",
+    "sourceAsset": "assets/units/direction-sources/aafrigate-rear.png",
+    "uri": "assets/units/rear/aafrigate.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "aamissileship",
+    "sourceAsset": "assets/units/direction-sources/aamissileship-rear.png",
+    "uri": "assets/units/rear/aamissileship.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "amphibious-land",
+    "sourceAsset": "assets/units/direction-sources/amphibious-land-rear.png",
+    "uri": "assets/units/rear/amphibious-land.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "amphibious",
+    "sourceAsset": "assets/units/direction-sources/amphibious-rear.png",
+    "uri": "assets/units/rear/amphibious.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "antiair",
+    "sourceAsset": "assets/units/direction-sources/antiair-rear.png",
+    "uri": "assets/units/rear/antiair.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "antitank",
+    "sourceAsset": "assets/units/direction-sources/antitank-rear.png",
+    "uri": "assets/units/rear/antitank.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "areaaship",
+    "sourceAsset": "assets/units/direction-sources/areaaship-rear.png",
+    "uri": "assets/units/rear/areaaship.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "artillery",
+    "sourceAsset": "assets/units/direction-sources/artillery-rear.png",
+    "uri": "assets/units/rear/artillery.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "assaultmarine-land",
+    "sourceAsset": "assets/units/direction-sources/assaultmarine-land-rear.png",
+    "uri": "assets/units/rear/assaultmarine-land.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "assaultmarine",
+    "sourceAsset": "assets/units/direction-sources/assaultmarine-rear.png",
+    "uri": "assets/units/rear/assaultmarine.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "battleship",
+    "sourceAsset": "assets/units/direction-sources/battleship-rear.png",
+    "uri": "assets/units/rear/battleship.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "bomber",
+    "sourceAsset": "assets/units/direction-sources/bomber-rear.png",
+    "uri": "assets/units/rear/bomber.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "cruiser",
+    "sourceAsset": "assets/units/direction-sources/cruiser-rear.png",
+    "uri": "assets/units/rear/cruiser.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "destroyer",
+    "sourceAsset": "assets/units/direction-sources/destroyer-rear.png",
+    "uri": "assets/units/rear/destroyer.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "engineer",
+    "sourceAsset": "assets/units/direction-sources/engineer-rear.png",
+    "uri": "assets/units/rear/engineer.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "fighter",
+    "sourceAsset": "assets/units/direction-sources/fighter-rear.png",
+    "uri": "assets/units/rear/fighter.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "heavy",
+    "sourceAsset": "assets/units/direction-sources/heavy-rear.png",
+    "uri": "assets/units/rear/heavy.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "heavyartillery",
+    "sourceAsset": "assets/units/direction-sources/heavyartillery-rear.png",
+    "uri": "assets/units/rear/heavyartillery.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "heavyfighter",
+    "sourceAsset": "assets/units/direction-sources/heavyfighter-rear.png",
+    "uri": "assets/units/rear/heavyfighter.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "heavyinfantry",
+    "sourceAsset": "assets/units/direction-sources/heavyinfantry-rear.png",
+    "uri": "assets/units/rear/heavyinfantry.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "heavymarine-land",
+    "sourceAsset": "assets/units/direction-sources/heavymarine-land-rear.png",
+    "uri": "assets/units/rear/heavymarine-land.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "heavymarine",
+    "sourceAsset": "assets/units/direction-sources/heavymarine-rear.png",
+    "uri": "assets/units/rear/heavymarine.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "helicopter",
+    "sourceAsset": "assets/units/direction-sources/helicopter-rear.png",
+    "uri": "assets/units/rear/helicopter.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "infantry",
+    "sourceAsset": "assets/units/direction-sources/infantry-rear.png",
+    "uri": "assets/units/rear/infantry.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "jammer",
+    "sourceAsset": "assets/units/direction-sources/jammer-rear.png",
+    "uri": "assets/units/rear/jammer.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "lightartillery",
+    "sourceAsset": "assets/units/direction-sources/lightartillery-rear.png",
+    "uri": "assets/units/rear/lightartillery.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "lightbomber",
+    "sourceAsset": "assets/units/direction-sources/lightbomber-rear.png",
+    "uri": "assets/units/rear/lightbomber.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "lightfighter",
+    "sourceAsset": "assets/units/direction-sources/lightfighter-rear.png",
+    "uri": "assets/units/rear/lightfighter.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "lighttank",
+    "sourceAsset": "assets/units/direction-sources/lighttank-rear.png",
+    "uri": "assets/units/rear/lighttank.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "longrangeaa",
+    "sourceAsset": "assets/units/direction-sources/longrangeaa-rear.png",
+    "uri": "assets/units/rear/longrangeaa.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "longrangerecon",
+    "sourceAsset": "assets/units/direction-sources/longrangerecon-rear.png",
+    "uri": "assets/units/rear/longrangerecon.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "marine-land",
+    "sourceAsset": "assets/units/direction-sources/marine-land-rear.png",
+    "uri": "assets/units/rear/marine-land.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "marine",
+    "sourceAsset": "assets/units/direction-sources/marine-rear.png",
+    "uri": "assets/units/rear/marine.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "missileaa",
+    "sourceAsset": "assets/units/direction-sources/missileaa-rear.png",
+    "uri": "assets/units/rear/missileaa.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "navaldestroyer",
+    "sourceAsset": "assets/units/direction-sources/navaldestroyer-rear.png",
+    "uri": "assets/units/rear/navaldestroyer.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "reconplane",
+    "sourceAsset": "assets/units/direction-sources/reconplane-rear.png",
+    "uri": "assets/units/rear/reconplane.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "scout",
+    "sourceAsset": "assets/units/direction-sources/scout-rear.png",
+    "uri": "assets/units/rear/scout.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "submarine",
+    "sourceAsset": "assets/units/direction-sources/submarine-rear.png",
+    "uri": "assets/units/rear/submarine.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "tacticalbomber",
+    "sourceAsset": "assets/units/direction-sources/tacticalbomber-rear.png",
+    "uri": "assets/units/rear/tacticalbomber.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "tacticalrecon",
+    "sourceAsset": "assets/units/direction-sources/tacticalrecon-rear.png",
+    "uri": "assets/units/rear/tacticalrecon.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "tank",
+    "sourceAsset": "assets/units/direction-sources/tank-rear.png",
+    "uri": "assets/units/rear/tank.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  },
+  {
+    "id": "walker",
+    "sourceAsset": "assets/units/direction-sources/walker-rear.png",
+    "uri": "assets/units/rear/walker.png",
+    "size": [
+      320,
+      320
+    ],
+    "pivot": [
+      0.5,
+      0.84
+    ]
+  }
+]

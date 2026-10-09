@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const D = require('../src/data'), H = require('../src/grid'), M = require('../src/maps'), G = require('../src/game');
-const FX = require('../src/fx');
+const Anime=require('../src/anime');const FX = require('../src/fx');
 const tests = [];
 async function test(id, name, fn) {
   try { await fn(); tests.push({ id, name, ok: true }); }
@@ -146,7 +146,7 @@ async function finish(promise, maximum = 1200) {
   await test('FX-08', 'Dedicated AA lethal retaliation uses its actual 150 percent loss', () => {
     const a = makeUnit('lightbomber', 'P1', 0, 0), t = makeUnit('antiair', 'P2', 1, 0), s = fixture([a, t]);
     const { plan } = perform(s, { kind: 'attack', unitId: a.id, targetId: t.id });
-    assert.equal(plan.steps[1].damage, 100); assert.equal(plan.steps[1].lethal, true); assert.equal(plan.steps[1].projectile, 'missile');
+    assert.equal(plan.steps[1].damage, 100); assert.equal(plan.steps[1].lethal, true); assert.equal(plan.steps[1].projectile, 'rifle');
   });
   await test('FX-09', 'An unseen artillery attacker shows only an observed impact and own HP loss', () => {
     const own = makeUnit('infantry', 'P1', 0, 0), enemy = makeUnit('heavyartillery', 'P2', 4, 0), s = fixture([own, enemy], [], true);
@@ -158,6 +158,7 @@ async function finish(promise, maximum = 1200) {
   });
   await test('FX-10', 'Capture has observed ownership colors; building destruction keeps its original sprite metadata', () => {
     const u = makeUnit('infantry', 'P1', 0, 0), city = makeBuilding('city', null, 1, 0), s = fixture([u], [city]);
+    u.q=city.q;
     const captured = perform(s, { kind: 'capture', unitId: u.id, buildingId: city.id }).plan.steps[0];
     assert.equal(captured.kind, 'capture'); assert.equal(captured.at.owner, 'P1'); assert.equal(captured.at.color, s.players[0].color);
     const a = makeUnit('tank', 'P1', 0, 0), b = makeBuilding('factory', 'P2', 1, 0), second = fixture([a], [b]); b.hp = 10;

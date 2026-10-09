@@ -1,0 +1,143 @@
+{
+  "scope": "Engine, observation, AI, effects and tooltip timing; no browser layout measurement",
+  "total": 34,
+  "passed": 34,
+  "results": [
+    {
+      "name": "All 38 models reject adjacent capture and accept their own building tile",
+      "ok": true
+    },
+    {
+      "name": "Default click moves onto a neutral building and pays capture AP",
+      "ok": true
+    },
+    {
+      "name": "One remaining AP cannot capture on arrival for free",
+      "ok": true
+    },
+    {
+      "name": "Naval unit enters and captures a sea platform, which has no HP",
+      "ok": true
+    },
+    {
+      "name": "Selecting a same-cell garrison emits one command, without choices",
+      "ok": true
+    },
+    {
+      "name": "Building ID and unit ID resolve to the same protected combat preview",
+      "ok": true
+    },
+    {
+      "name": "Simultaneous damage matches preview, AP, counters, and statistics",
+      "ok": true
+    },
+    {
+      "name": "Headquarters and all four production types shelter their garrison",
+      "ok": true
+    },
+    {
+      "name": "Income buildings have null HP, remain operational and provide no shelter",
+      "ok": true
+    },
+    {
+      "name": "Bare income buildings cannot be attacked or repaired",
+      "ok": true
+    },
+    {
+      "name": "Ruin, foundation and hostile-owned structures provide no protection",
+      "ok": true
+    },
+    {
+      "name": "Allied facilities shelter allied garrisons",
+      "ok": true
+    },
+    {
+      "name": "Insufficient structural HP spills the remaining damage back to the garrison",
+      "ok": true
+    },
+    {
+      "name": "Dead garrison cannot counterattack; protected surviving garrison can",
+      "ok": true
+    },
+    {
+      "name": "Retaliation also shares damage with the attacker own facility",
+      "ok": true
+    },
+    {
+      "name": "Artillery and damage skills retain shelter without extra or indirect counters",
+      "ok": true
+    },
+    {
+      "name": "A building ID cannot bypass anti-air permission for an air garrison",
+      "ok": true
+    },
+    {
+      "name": "Fog observers cannot discover an unseen guard through target resolution",
+      "ok": true
+    },
+    {
+      "name": "Paid rebuilding restores exactly half, charges both currencies and keeps level",
+      "ok": true
+    },
+    {
+      "name": "Paid rebuilding rejects enemy, foundation, insufficient money or energy atomically",
+      "ok": true
+    },
+    {
+      "name": "A hostile occupant blocks rebuilding without losing resources",
+      "ok": true
+    },
+    {
+      "name": "All three levels recover once, only at owner turn, using 5/7.5/10 percent",
+      "ok": true
+    },
+    {
+      "name": "Recovery rounds upward, caps at full HP, and excludes ruins/foundations/neutral",
+      "ok": true
+    },
+    {
+      "name": "Rebuilding does not grant immediate free regeneration or duplicate production",
+      "ok": true
+    },
+    {
+      "name": "Engineers cannot freely revive ruins or manually exceed half structural HP",
+      "ok": true
+    },
+    {
+      "name": "Legacy snapshots migrate income HP without replaying money or regeneration",
+      "ok": true
+    },
+    {
+      "name": "New saves preserve damage, rebuilding and begin-once state without replay",
+      "ok": true
+    },
+    {
+      "name": "Save validation rejects numerical income HP and unknown facility version",
+      "ok": true
+    },
+    {
+      "name": "An affordable ruined production facility still permits recovery, avoiding false draw",
+      "ok": true
+    },
+    {
+      "name": "All four AI difficulties rebuild affordable ruined military facilities",
+      "ok": true
+    },
+    {
+      "name": "AI moves onto capture targets rather than stopping in the adjacent ring",
+      "ok": true
+    },
+    {
+      "name": "Combat effects identify the garrison and show shared building damage as one attack",
+      "ok": true
+    },
+    {
+      "name": "Rebuilding and owner-turn regeneration produce observed repair effects",
+      "ok": true
+    },
+    {
+      "name": "Tooltip delay, cancellation and output escape use text nodes",
+      "ok": true
+    }
+  ]
+}

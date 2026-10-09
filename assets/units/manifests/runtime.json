@@ -1,0 +1,4400 @@
+{
+  "version": "1.0",
+  "coordinateSpace": [
+    100,
+    100
+  ],
+  "gameplayRuleVersion": "game-0.7",
+  "states": [
+    "idle",
+    "selected",
+    "move",
+    "transition",
+    "attack",
+    "skill",
+    "hit",
+    "exit",
+    "deploy",
+    "capture"
+  ],
+  "modeMarkers": {
+    "direct": {
+      "standard": {
+        "prepare": 0,
+        "launch": 140,
+        "impact": 300,
+        "settle": 620
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 50,
+        "impact": 100,
+        "settle": 220
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 120
+      }
+    },
+    "guided": {
+      "standard": {
+        "prepare": 0,
+        "launch": 180,
+        "impact": 480,
+        "settle": 760
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 65,
+        "impact": 140,
+        "settle": 260
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 160
+      }
+    },
+    "indirect": {
+      "standard": {
+        "prepare": 0,
+        "launch": 180,
+        "impact": 520,
+        "settle": 820
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 65,
+        "impact": 160,
+        "settle": 280
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 160
+      }
+    },
+    "sniper": {
+      "standard": {
+        "prepare": 0,
+        "launch": 340,
+        "impact": 500,
+        "settle": 820
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 100,
+        "impact": 150,
+        "settle": 280
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 160
+      }
+    },
+    "entrench": {
+      "standard": {
+        "prepare": 0,
+        "launch": 120,
+        "impact": 430,
+        "settle": 620
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 40,
+        "impact": 130,
+        "settle": 220
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 120
+      }
+    },
+    "anchor": {
+      "standard": {
+        "prepare": 0,
+        "launch": 100,
+        "impact": 360,
+        "settle": 620
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 35,
+        "impact": 110,
+        "settle": 220
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 120
+      }
+    },
+    "scan": {
+      "standard": {
+        "prepare": 0,
+        "launch": 100,
+        "impact": 380,
+        "settle": 640
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 35,
+        "impact": 115,
+        "settle": 220
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 120
+      }
+    },
+    "repair": {
+      "standard": {
+        "prepare": 0,
+        "launch": 120,
+        "impact": 430,
+        "settle": 720
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 40,
+        "impact": 130,
+        "settle": 250
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 160
+      }
+    },
+    "jam": {
+      "standard": {
+        "prepare": 0,
+        "launch": 100,
+        "impact": 360,
+        "settle": 640
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 35,
+        "impact": 110,
+        "settle": 220
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 120
+      }
+    },
+    "deploy": {
+      "standard": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 120,
+        "settle": 340
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 40,
+        "settle": 140
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 0,
+        "settle": 100
+      }
+    },
+    "capture": {
+      "standard": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 260,
+        "settle": 440
+      },
+      "fast": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 90,
+        "settle": 160
+      },
+      "reduced": {
+        "prepare": 0,
+        "launch": 0,
+        "impact": 0,
+        "settle": 100
+      }
+    }
+  },
+  "movementFamilies": [
+    "P",
+    "T",
+    "R",
+    "W",
+    "G",
+    "N",
+    "A",
+    "H"
+  ],
+  "models": [
+    {
+      "id": "infantry",
+      "name": "前哨",
+      "portrait": "assets/units/portraits/infantry.png",
+      "avatar": "assets/units/avatars/infantry.png",
+      "thumbnail": "assets/units/thumbnails/infantry.png",
+      "chibi": "assets/units/chibi/infantry.png",
+      "forms": [
+        "land"
+      ],
+      "family": "P",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.84,
+        0.52
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/infantry.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "walker",
+      "name": "哨兵",
+      "portrait": "assets/units/portraits/walker.png",
+      "avatar": "assets/units/avatars/walker.png",
+      "thumbnail": "assets/units/thumbnails/walker.png",
+      "chibi": "assets/units/chibi/walker.png",
+      "forms": [
+        "land"
+      ],
+      "family": "P",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.81,
+        0.51
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/walker.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "heavyinfantry",
+      "name": "壁垒",
+      "portrait": "assets/units/portraits/heavyinfantry.png",
+      "avatar": "assets/units/avatars/heavyinfantry.png",
+      "thumbnail": "assets/units/thumbnails/heavyinfantry.png",
+      "chibi": "assets/units/chibi/heavyinfantry.png",
+      "forms": [
+        "land"
+      ],
+      "family": "P",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.81,
+        0.55
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/heavyinfantry.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "lighttank",
+      "name": "雨燕",
+      "portrait": "assets/units/portraits/lighttank.png",
+      "avatar": "assets/units/avatars/lighttank.png",
+      "thumbnail": "assets/units/thumbnails/lighttank.png",
+      "chibi": "assets/units/chibi/lighttank.png",
+      "forms": [
+        "land"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.13,
+        0.53
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/lighttank.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "tank",
+      "name": "棱镜",
+      "portrait": "assets/units/portraits/tank.png",
+      "avatar": "assets/units/avatars/tank.png",
+      "thumbnail": "assets/units/thumbnails/tank.png",
+      "chibi": "assets/units/chibi/tank.png",
+      "forms": [
+        "land"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.1,
+        0.5
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/tank.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "heavy",
+      "name": "磐石",
+      "portrait": "assets/units/portraits/heavy.png",
+      "avatar": "assets/units/avatars/heavy.png",
+      "thumbnail": "assets/units/thumbnails/heavy.png",
+      "chibi": "assets/units/chibi/heavy.png",
+      "forms": [
+        "land"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.1,
+        0.46
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/heavy.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "lightartillery",
+      "name": "火萤",
+      "portrait": "assets/units/portraits/lightartillery.png",
+      "avatar": "assets/units/avatars/lightartillery.png",
+      "thumbnail": "assets/units/thumbnails/lightartillery.png",
+      "chibi": "assets/units/chibi/lightartillery.png",
+      "forms": [
+        "land"
+      ],
+      "family": "W",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.15,
+        0.4
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/lightartillery.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "artillery",
+      "name": "弧光",
+      "portrait": "assets/units/portraits/artillery.png",
+      "avatar": "assets/units/avatars/artillery.png",
+      "thumbnail": "assets/units/thumbnails/artillery.png",
+      "chibi": "assets/units/chibi/artillery.png",
+      "forms": [
+        "land"
+      ],
+      "family": "R",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.2,
+        0.25
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/artillery.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "heavyartillery",
+      "name": "雷砧",
+      "portrait": "assets/units/portraits/heavyartillery.png",
+      "avatar": "assets/units/avatars/heavyartillery.png",
+      "thumbnail": "assets/units/thumbnails/heavyartillery.png",
+      "chibi": "assets/units/chibi/heavyartillery.png",
+      "forms": [
+        "land"
+      ],
+      "family": "R",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.87,
+        0.18
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/heavyartillery.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "antiair",
+      "name": "天幕",
+      "portrait": "assets/units/portraits/antiair.png",
+      "avatar": "assets/units/avatars/antiair.png",
+      "thumbnail": "assets/units/thumbnails/antiair.png",
+      "chibi": "assets/units/chibi/antiair.png",
+      "forms": [
+        "land"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.84,
+        0.45
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/antiair.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "missileaa",
+      "name": "穹盾",
+      "portrait": "assets/units/portraits/missileaa.png",
+      "avatar": "assets/units/avatars/missileaa.png",
+      "thumbnail": "assets/units/thumbnails/missileaa.png",
+      "chibi": "assets/units/chibi/missileaa.png",
+      "forms": [
+        "land"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.68,
+        0.3
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/missileaa.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "longrangeaa",
+      "name": "星垒",
+      "portrait": "assets/units/portraits/longrangeaa.png",
+      "avatar": "assets/units/avatars/longrangeaa.png",
+      "thumbnail": "assets/units/thumbnails/longrangeaa.png",
+      "chibi": "assets/units/chibi/longrangeaa.png",
+      "forms": [
+        "land"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.58,
+        0.29
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/longrangeaa.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "navaldestroyer",
+      "name": "潮刃",
+      "portrait": "assets/units/portraits/navaldestroyer.png",
+      "avatar": "assets/units/avatars/navaldestroyer.png",
+      "thumbnail": "assets/units/thumbnails/navaldestroyer.png",
+      "chibi": "assets/units/chibi/navaldestroyer.png",
+      "forms": [
+        "sea"
+      ],
+      "family": "N",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.18,
+        0.54
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/navaldestroyer.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "cruiser",
+      "name": "巡岚",
+      "portrait": "assets/units/portraits/cruiser.png",
+      "avatar": "assets/units/avatars/cruiser.png",
+      "thumbnail": "assets/units/thumbnails/cruiser.png",
+      "chibi": "assets/units/chibi/cruiser.png",
+      "forms": [
+        "sea"
+      ],
+      "family": "N",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.24,
+        0.53
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/cruiser.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "battleship",
+      "name": "镇海",
+      "portrait": "assets/units/portraits/battleship.png",
+      "avatar": "assets/units/avatars/battleship.png",
+      "thumbnail": "assets/units/thumbnails/battleship.png",
+      "chibi": "assets/units/chibi/battleship.png",
+      "forms": [
+        "sea"
+      ],
+      "family": "N",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.2,
+        0.3
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/battleship.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "marine",
+      "name": "浪锋",
+      "portrait": "assets/units/portraits/marine.png",
+      "avatar": "assets/units/avatars/marine.png",
+      "thumbnail": "assets/units/thumbnails/marine.png",
+      "chibi": "assets/units/chibi/marine.png",
+      "forms": [
+        "land",
+        "sea"
+      ],
+      "family": "P",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.53
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/marine.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "assaultmarine",
+      "name": "破浪",
+      "portrait": "assets/units/portraits/assaultmarine.png",
+      "avatar": "assets/units/avatars/assaultmarine.png",
+      "thumbnail": "assets/units/thumbnails/assaultmarine.png",
+      "chibi": "assets/units/chibi/assaultmarine.png",
+      "forms": [
+        "land",
+        "sea"
+      ],
+      "family": "P",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.83,
+        0.5
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/assaultmarine.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "heavymarine",
+      "name": "礁盾",
+      "portrait": "assets/units/portraits/heavymarine.png",
+      "avatar": "assets/units/avatars/heavymarine.png",
+      "thumbnail": "assets/units/thumbnails/heavymarine.png",
+      "chibi": "assets/units/chibi/heavymarine.png",
+      "forms": [
+        "land",
+        "sea"
+      ],
+      "family": "P",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.55
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/heavymarine.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "aafrigate",
+      "name": "云帆",
+      "portrait": "assets/units/portraits/aafrigate.png",
+      "avatar": "assets/units/avatars/aafrigate.png",
+      "thumbnail": "assets/units/thumbnails/aafrigate.png",
+      "chibi": "assets/units/chibi/aafrigate.png",
+      "forms": [
+        "sea"
+      ],
+      "family": "N",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.52
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/aafrigate.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "aamissileship",
+      "name": "海幕",
+      "portrait": "assets/units/portraits/aamissileship.png",
+      "avatar": "assets/units/avatars/aamissileship.png",
+      "thumbnail": "assets/units/thumbnails/aamissileship.png",
+      "chibi": "assets/units/chibi/aamissileship.png",
+      "forms": [
+        "sea"
+      ],
+      "family": "N",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.67,
+        0.28
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/aamissileship.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "areaaship",
+      "name": "穹海",
+      "portrait": "assets/units/portraits/areaaship.png",
+      "avatar": "assets/units/avatars/areaaship.png",
+      "thumbnail": "assets/units/thumbnails/areaaship.png",
+      "chibi": "assets/units/chibi/areaaship.png",
+      "forms": [
+        "sea"
+      ],
+      "family": "N",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.58,
+        0.25
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/areaaship.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "reconplane",
+      "name": "纸鸢",
+      "portrait": "assets/units/portraits/reconplane.png",
+      "avatar": "assets/units/avatars/reconplane.png",
+      "thumbnail": "assets/units/thumbnails/reconplane.png",
+      "chibi": "assets/units/chibi/reconplane.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.48
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/reconplane.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "tacticalrecon",
+      "name": "望隼",
+      "portrait": "assets/units/portraits/tacticalrecon.png",
+      "avatar": "assets/units/avatars/tacticalrecon.png",
+      "thumbnail": "assets/units/thumbnails/tacticalrecon.png",
+      "chibi": "assets/units/chibi/tacticalrecon.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.48
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/tacticalrecon.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "longrangerecon",
+      "name": "天眼",
+      "portrait": "assets/units/portraits/longrangerecon.png",
+      "avatar": "assets/units/avatars/longrangerecon.png",
+      "thumbnail": "assets/units/thumbnails/longrangerecon.png",
+      "chibi": "assets/units/chibi/longrangerecon.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.48
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/longrangerecon.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "lightfighter",
+      "name": "青隼",
+      "portrait": "assets/units/portraits/lightfighter.png",
+      "avatar": "assets/units/avatars/lightfighter.png",
+      "thumbnail": "assets/units/thumbnails/lightfighter.png",
+      "chibi": "assets/units/chibi/lightfighter.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.48
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/lightfighter.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "fighter",
+      "name": "苍隼",
+      "portrait": "assets/units/portraits/fighter.png",
+      "avatar": "assets/units/avatars/fighter.png",
+      "thumbnail": "assets/units/thumbnails/fighter.png",
+      "chibi": "assets/units/chibi/fighter.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.48
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/fighter.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "heavyfighter",
+      "name": "霄刃",
+      "portrait": "assets/units/portraits/heavyfighter.png",
+      "avatar": "assets/units/avatars/heavyfighter.png",
+      "thumbnail": "assets/units/thumbnails/heavyfighter.png",
+      "chibi": "assets/units/chibi/heavyfighter.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.82,
+        0.48
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/heavyfighter.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "lightbomber",
+      "name": "鸣雷",
+      "portrait": "assets/units/portraits/lightbomber.png",
+      "avatar": "assets/units/avatars/lightbomber.png",
+      "thumbnail": "assets/units/thumbnails/lightbomber.png",
+      "chibi": "assets/units/chibi/lightbomber.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.5,
+        0.67
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/lightbomber.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "tacticalbomber",
+      "name": "惊雷",
+      "portrait": "assets/units/portraits/tacticalbomber.png",
+      "avatar": "assets/units/avatars/tacticalbomber.png",
+      "thumbnail": "assets/units/thumbnails/tacticalbomber.png",
+      "chibi": "assets/units/chibi/tacticalbomber.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.5,
+        0.67
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/tacticalbomber.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "bomber",
+      "name": "远雷",
+      "portrait": "assets/units/portraits/bomber.png",
+      "avatar": "assets/units/avatars/bomber.png",
+      "thumbnail": "assets/units/thumbnails/bomber.png",
+      "chibi": "assets/units/chibi/bomber.png",
+      "forms": [
+        "air"
+      ],
+      "family": "A",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.5,
+        0.67
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/bomber.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "scout",
+      "name": "游隼",
+      "portrait": "assets/units/portraits/scout.png",
+      "avatar": "assets/units/avatars/scout.png",
+      "thumbnail": "assets/units/thumbnails/scout.png",
+      "chibi": "assets/units/chibi/scout.png",
+      "forms": [
+        "land"
+      ],
+      "family": "W",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.87,
+        0.38
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/scout.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "engineer",
+      "name": "织补",
+      "portrait": "assets/units/portraits/engineer.png",
+      "avatar": "assets/units/avatars/engineer.png",
+      "thumbnail": "assets/units/thumbnails/engineer.png",
+      "chibi": "assets/units/chibi/engineer.png",
+      "forms": [
+        "land"
+      ],
+      "family": "W",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.76,
+        0.52
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/engineer.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "antitank",
+      "name": "猎矛",
+      "portrait": "assets/units/portraits/antitank.png",
+      "avatar": "assets/units/avatars/antitank.png",
+      "thumbnail": "assets/units/thumbnails/antitank.png",
+      "chibi": "assets/units/chibi/antitank.png",
+      "forms": [
+        "land"
+      ],
+      "family": "P",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.2,
+        0.36
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/antitank.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "jammer",
+      "name": "脉冲",
+      "portrait": "assets/units/portraits/jammer.png",
+      "avatar": "assets/units/avatars/jammer.png",
+      "thumbnail": "assets/units/thumbnails/jammer.png",
+      "chibi": "assets/units/chibi/jammer.png",
+      "forms": [
+        "land"
+      ],
+      "family": "G",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.86,
+        0.38
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/jammer.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "destroyer",
+      "name": "长钉",
+      "portrait": "assets/units/portraits/destroyer.png",
+      "avatar": "assets/units/avatars/destroyer.png",
+      "thumbnail": "assets/units/thumbnails/destroyer.png",
+      "chibi": "assets/units/chibi/destroyer.png",
+      "forms": [
+        "land"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.9,
+        0.33
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": false,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/destroyer.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "amphibious",
+      "name": "涉潮",
+      "portrait": "assets/units/portraits/amphibious.png",
+      "avatar": "assets/units/avatars/amphibious.png",
+      "thumbnail": "assets/units/thumbnails/amphibious.png",
+      "chibi": "assets/units/chibi/amphibious.png",
+      "forms": [
+        "land",
+        "sea"
+      ],
+      "family": "T",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.81,
+        0.55
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/amphibious.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "submarine",
+      "name": "潜锋",
+      "portrait": "assets/units/portraits/submarine.png",
+      "avatar": "assets/units/avatars/submarine.png",
+      "thumbnail": "assets/units/thumbnails/submarine.png",
+      "chibi": "assets/units/chibi/submarine.png",
+      "forms": [
+        "sea"
+      ],
+      "family": "N",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.76,
+        0.61
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/submarine.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    },
+    {
+      "id": "helicopter",
+      "name": "蜂鸟",
+      "portrait": "assets/units/portraits/helicopter.png",
+      "avatar": "assets/units/avatars/helicopter.png",
+      "thumbnail": "assets/units/thumbnails/helicopter.png",
+      "chibi": "assets/units/chibi/helicopter.png",
+      "forms": [
+        "air"
+      ],
+      "family": "H",
+      "states": [
+        "idle",
+        "selected",
+        "move",
+        "transition",
+        "attack",
+        "skill",
+        "hit",
+        "exit",
+        "deploy",
+        "capture"
+      ],
+      "pivot": [
+        0.5,
+        0.84
+      ],
+      "muzzle": [
+        0.83,
+        0.5
+      ],
+      "rearMuzzle": [
+        0.73,
+        0.35
+      ],
+      "toolTip": [
+        0.78,
+        0.62
+      ],
+      "sensor": [
+        0.5,
+        0.2
+      ],
+      "hitCenter": [
+        0.5,
+        0.52
+      ],
+      "shadow": [
+        0.5,
+        0.84
+      ],
+      "version": "1.0",
+      "symmetricRig": true,
+      "directionViews": [
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 0
+        },
+        {
+          "rear": false,
+          "mirror": false,
+          "direction": 1
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 2
+        },
+        {
+          "rear": false,
+          "mirror": true,
+          "direction": 3
+        },
+        {
+          "rear": true,
+          "mirror": true,
+          "direction": 4
+        },
+        {
+          "rear": true,
+          "mirror": false,
+          "direction": 5
+        }
+      ],
+      "layerSource": "assets/units/layers/helicopter.svg",
+      "layerContract": [
+        "shadow",
+        "water / engine",
+        "rig bitmap mask",
+        "body bitmap clip",
+        "weapon",
+        "terminal",
+        "faction emblem",
+        "far symbol"
+      ],
+      "clips": {
+        "idle": "CSS breathing: selected + max 3 adjacent visible units",
+        "selected": "selection outline + HUD; no automatic portrait cut-in",
+        "move": "interpolate actual visible path, family timing and domain transition",
+        "transition": "replace land / sea bitmap at cell midpoint",
+        "attack": "prepare, muzzle launch, observed impact, settle",
+        "skill": "terminal + skill-specific result icon",
+        "hit": "observed damage confirmation",
+        "exit": "nonviolent rig shutdown / retreat label",
+        "deploy": "hidden until impact, then confirm",
+        "capture": "old owner at prepare; current owner at impact"
+      }
+    }
+  ]
+}

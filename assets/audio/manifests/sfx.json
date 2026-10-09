@@ -1,0 +1,1829 @@
+{
+  "provenance": "Original procedural synthesis; scripts/build-audio.py",
+  "cues": {
+    "infantry": [
+      {
+        "uri": "assets/audio/sfx/infantry_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.37607878777253756
+      },
+      {
+        "uri": "assets/audio/sfx/infantry_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.34244393524555156
+      },
+      {
+        "uri": "assets/audio/sfx/infantry_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3828343449818754
+      },
+      {
+        "uri": "assets/audio/sfx/infantry_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.27829290442144045
+      }
+    ],
+    "track": [
+      {
+        "uri": "assets/audio/sfx/track_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4417560939419198
+      },
+      {
+        "uri": "assets/audio/sfx/track_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42337296175953987
+      },
+      {
+        "uri": "assets/audio/sfx/track_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43842654509060053
+      },
+      {
+        "uri": "assets/audio/sfx/track_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.36801942413793187
+      }
+    ],
+    "wheel": [
+      {
+        "uri": "assets/audio/sfx/wheel_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.429909157444677
+      },
+      {
+        "uri": "assets/audio/sfx/wheel_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4094010820852668
+      },
+      {
+        "uri": "assets/audio/sfx/wheel_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41238182864725537
+      },
+      {
+        "uri": "assets/audio/sfx/wheel_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3759698139867027
+      }
+    ],
+    "leg": [
+      {
+        "uri": "assets/audio/sfx/leg_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4420105675578815
+      },
+      {
+        "uri": "assets/audio/sfx/leg_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42631368782748225
+      },
+      {
+        "uri": "assets/audio/sfx/leg_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43484747480413205
+      },
+      {
+        "uri": "assets/audio/sfx/leg_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.38079833971762617
+      }
+    ],
+    "vehicle": [
+      {
+        "uri": "assets/audio/sfx/vehicle_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4418514710591233
+      },
+      {
+        "uri": "assets/audio/sfx/vehicle_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4244497434570781
+      },
+      {
+        "uri": "assets/audio/sfx/vehicle_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42835531760097717
+      },
+      {
+        "uri": "assets/audio/sfx/vehicle_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3672258977681081
+      }
+    ],
+    "ship": [
+      {
+        "uri": "assets/audio/sfx/ship_v1.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.327451852259836
+      },
+      {
+        "uri": "assets/audio/sfx/ship_v2.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.325486344912131
+      },
+      {
+        "uri": "assets/audio/sfx/ship_v3.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.3312511648762997
+      },
+      {
+        "uri": "assets/audio/sfx/ship_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.27499210011107655
+      }
+    ],
+    "jet": [
+      {
+        "uri": "assets/audio/sfx/jet_v1.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.3324710628620551
+      },
+      {
+        "uri": "assets/audio/sfx/jet_v2.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.32782291324016916
+      },
+      {
+        "uri": "assets/audio/sfx/jet_v3.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.3253004939387635
+      },
+      {
+        "uri": "assets/audio/sfx/jet_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.2621302657496563
+      }
+    ],
+    "helicopter": [
+      {
+        "uri": "assets/audio/sfx/helicopter_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3102603129015137
+      },
+      {
+        "uri": "assets/audio/sfx/helicopter_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.299896985302373
+      },
+      {
+        "uri": "assets/audio/sfx/helicopter_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035845361247631
+      },
+      {
+        "uri": "assets/audio/sfx/helicopter_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.27405405491645163
+      }
+    ],
+    "aa": [
+      {
+        "uri": "assets/audio/sfx/aa_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3409660318051409
+      },
+      {
+        "uri": "assets/audio/sfx/aa_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3349726164184959
+      },
+      {
+        "uri": "assets/audio/sfx/aa_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.34735883686032676
+      },
+      {
+        "uri": "assets/audio/sfx/aa_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.27573132788789595
+      }
+    ],
+    "rifle": [
+      {
+        "uri": "assets/audio/sfx/rifle_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3730336410047652
+      },
+      {
+        "uri": "assets/audio/sfx/rifle_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.36612782758017237
+      },
+      {
+        "uri": "assets/audio/sfx/rifle_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.35922975263374324
+      },
+      {
+        "uri": "assets/audio/sfx/rifle_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.27017968526073094
+      }
+    ],
+    "shell": [
+      {
+        "uri": "assets/audio/sfx/shell_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4144384938881621
+      },
+      {
+        "uri": "assets/audio/sfx/shell_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4010366629688612
+      },
+      {
+        "uri": "assets/audio/sfx/shell_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41291260717685624
+      },
+      {
+        "uri": "assets/audio/sfx/shell_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.38709091768474324
+      }
+    ],
+    "missile": [
+      {
+        "uri": "assets/audio/sfx/missile_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2931655462790078
+      },
+      {
+        "uri": "assets/audio/sfx/missile_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2984417984774474
+      },
+      {
+        "uri": "assets/audio/sfx/missile_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2809814921577009
+      },
+      {
+        "uri": "assets/audio/sfx/missile_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.26268704204764953
+      }
+    ],
+    "mortar": [
+      {
+        "uri": "assets/audio/sfx/mortar_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4153262374497563
+      },
+      {
+        "uri": "assets/audio/sfx/mortar_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4070035341873427
+      },
+      {
+        "uri": "assets/audio/sfx/mortar_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4224448369832384
+      },
+      {
+        "uri": "assets/audio/sfx/mortar_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.366270725249042
+      }
+    ],
+    "rail": [
+      {
+        "uri": "assets/audio/sfx/rail_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.30069041906869526
+      },
+      {
+        "uri": "assets/audio/sfx/rail_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.29838819130474725
+      },
+      {
+        "uri": "assets/audio/sfx/rail_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.29970015535073813
+      },
+      {
+        "uri": "assets/audio/sfx/rail_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.2682191530436963
+      }
+    ],
+    "bomb": [
+      {
+        "uri": "assets/audio/sfx/bomb_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3020518837274236
+      },
+      {
+        "uri": "assets/audio/sfx/bomb_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.29808591951246005
+      },
+      {
+        "uri": "assets/audio/sfx/bomb_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3043934581061438
+      },
+      {
+        "uri": "assets/audio/sfx/bomb_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25212725677060155
+      }
+    ],
+    "torpedo": [
+      {
+        "uri": "assets/audio/sfx/torpedo_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4281424564367952
+      },
+      {
+        "uri": "assets/audio/sfx/torpedo_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42092664929567575
+      },
+      {
+        "uri": "assets/audio/sfx/torpedo_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4213445521442875
+      },
+      {
+        "uri": "assets/audio/sfx/torpedo_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3174861265575309
+      }
+    ],
+    "impact": [
+      {
+        "uri": "assets/audio/sfx/impact_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4174644037045547
+      },
+      {
+        "uri": "assets/audio/sfx/impact_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4462122698491327
+      },
+      {
+        "uri": "assets/audio/sfx/impact_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43498085791103985
+      },
+      {
+        "uri": "assets/audio/sfx/impact_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3760474507593289
+      }
+    ],
+    "unknown": [
+      {
+        "uri": "assets/audio/sfx/unknown_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4306567830535475
+      },
+      {
+        "uri": "assets/audio/sfx/unknown_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43239730126448456
+      },
+      {
+        "uri": "assets/audio/sfx/unknown_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42855900619711995
+      },
+      {
+        "uri": "assets/audio/sfx/unknown_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3686481826509403
+      }
+    ],
+    "hit.light": [
+      {
+        "uri": "assets/audio/sfx/hit_light_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43707578655357604
+      },
+      {
+        "uri": "assets/audio/sfx/hit_light_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43224922464572674
+      },
+      {
+        "uri": "assets/audio/sfx/hit_light_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.40028959686197385
+      },
+      {
+        "uri": "assets/audio/sfx/hit_light_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3620488215700766
+      }
+    ],
+    "hit.armor": [
+      {
+        "uri": "assets/audio/sfx/hit_armor_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43881582642318323
+      },
+      {
+        "uri": "assets/audio/sfx/hit_armor_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4227271421047647
+      },
+      {
+        "uri": "assets/audio/sfx/hit_armor_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.430760045662698
+      },
+      {
+        "uri": "assets/audio/sfx/hit_armor_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.36196411920112614
+      }
+    ],
+    "hit.sea": [
+      {
+        "uri": "assets/audio/sfx/hit_sea_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.30983092746052565
+      },
+      {
+        "uri": "assets/audio/sfx/hit_sea_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2975230640743184
+      },
+      {
+        "uri": "assets/audio/sfx/hit_sea_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.31053058445717435
+      },
+      {
+        "uri": "assets/audio/sfx/hit_sea_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.2598716181651301
+      }
+    ],
+    "hit.air": [
+      {
+        "uri": "assets/audio/sfx/hit_air_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41093496711847716
+      },
+      {
+        "uri": "assets/audio/sfx/hit_air_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41869948610840385
+      },
+      {
+        "uri": "assets/audio/sfx/hit_air_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41983250216023815
+      },
+      {
+        "uri": "assets/audio/sfx/hit_air_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.37070404257883793
+      }
+    ],
+    "hit.building": [
+      {
+        "uri": "assets/audio/sfx/hit_building_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.400352920652337
+      },
+      {
+        "uri": "assets/audio/sfx/hit_building_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4207809026409322
+      },
+      {
+        "uri": "assets/audio/sfx/hit_building_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4266194562125784
+      },
+      {
+        "uri": "assets/audio/sfx/hit_building_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3766682431807764
+      }
+    ],
+    "destruction": [
+      {
+        "uri": "assets/audio/sfx/destruction_v1.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.446881577075618
+      },
+      {
+        "uri": "assets/audio/sfx/destruction_v2.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.46396377635461017
+      },
+      {
+        "uri": "assets/audio/sfx/destruction_v3.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.42416218258361676
+      },
+      {
+        "uri": "assets/audio/sfx/destruction_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.35930368044513156
+      }
+    ],
+    "capture": [
+      {
+        "uri": "assets/audio/sfx/capture_v1.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.3145448652110709
+      },
+      {
+        "uri": "assets/audio/sfx/capture_v2.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.3145448652110709
+      },
+      {
+        "uri": "assets/audio/sfx/capture_v3.wav",
+        "duration": 0.32,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 28224,
+        "short": false,
+        "peak": 0.3145448652110709
+      },
+      {
+        "uri": "assets/audio/sfx/capture_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25977092657660533
+      }
+    ],
+    "repair": [
+      {
+        "uri": "assets/audio/sfx/repair_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/repair_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/repair_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/repair_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25977092657660533
+      }
+    ],
+    "scan": [
+      {
+        "uri": "assets/audio/sfx/scan_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2801076123275443
+      },
+      {
+        "uri": "assets/audio/sfx/scan_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2973072989442019
+      },
+      {
+        "uri": "assets/audio/sfx/scan_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2951620187743701
+      },
+      {
+        "uri": "assets/audio/sfx/scan_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25619732406590656
+      }
+    ],
+    "jam": [
+      {
+        "uri": "assets/audio/sfx/jam_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.28338077450264715
+      },
+      {
+        "uri": "assets/audio/sfx/jam_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.28632711760005836
+      },
+      {
+        "uri": "assets/audio/sfx/jam_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.305151159193176
+      },
+      {
+        "uri": "assets/audio/sfx/jam_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.26530430240692315
+      }
+    ],
+    "entrench": [
+      {
+        "uri": "assets/audio/sfx/entrench_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41541338189096355
+      },
+      {
+        "uri": "assets/audio/sfx/entrench_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4172067444762731
+      },
+      {
+        "uri": "assets/audio/sfx/entrench_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42692794483931484
+      },
+      {
+        "uri": "assets/audio/sfx/entrench_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3595702993516972
+      }
+    ],
+    "anchor": [
+      {
+        "uri": "assets/audio/sfx/anchor_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41932865600404884
+      },
+      {
+        "uri": "assets/audio/sfx/anchor_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42846996407917737
+      },
+      {
+        "uri": "assets/audio/sfx/anchor_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42548397682782585
+      },
+      {
+        "uri": "assets/audio/sfx/anchor_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.37625946805310817
+      }
+    ],
+    "shock": [
+      {
+        "uri": "assets/audio/sfx/shock_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.44095135766466287
+      },
+      {
+        "uri": "assets/audio/sfx/shock_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.432105273256661
+      },
+      {
+        "uri": "assets/audio/sfx/shock_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43332031423733464
+      },
+      {
+        "uri": "assets/audio/sfx/shock_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3787455452148312
+      }
+    ],
+    "sniper": [
+      {
+        "uri": "assets/audio/sfx/sniper_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.29236400304930665
+      },
+      {
+        "uri": "assets/audio/sfx/sniper_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3089985308645029
+      },
+      {
+        "uri": "assets/audio/sfx/sniper_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2969019811570785
+      },
+      {
+        "uri": "assets/audio/sfx/sniper_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25931397094921516
+      }
+    ],
+    "deploy": [
+      {
+        "uri": "assets/audio/sfx/deploy_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/deploy_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/deploy_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/deploy_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25977092657660533
+      }
+    ],
+    "construct": [
+      {
+        "uri": "assets/audio/sfx/construct_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42416266590292984
+      },
+      {
+        "uri": "assets/audio/sfx/construct_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4342768583464613
+      },
+      {
+        "uri": "assets/audio/sfx/construct_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4349861803782006
+      },
+      {
+        "uri": "assets/audio/sfx/construct_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.33700422336031177
+      }
+    ],
+    "produce": [
+      {
+        "uri": "assets/audio/sfx/produce_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42996177347078884
+      },
+      {
+        "uri": "assets/audio/sfx/produce_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42804536853635017
+      },
+      {
+        "uri": "assets/audio/sfx/produce_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41994688338136416
+      },
+      {
+        "uri": "assets/audio/sfx/produce_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3708980039084841
+      }
+    ],
+    "upgrade": [
+      {
+        "uri": "assets/audio/sfx/upgrade_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4258728157288616
+      },
+      {
+        "uri": "assets/audio/sfx/upgrade_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42436776597108444
+      },
+      {
+        "uri": "assets/audio/sfx/upgrade_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4150112442624582
+      },
+      {
+        "uri": "assets/audio/sfx/upgrade_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.36459886346924536
+      }
+    ],
+    "cancel": [
+      {
+        "uri": "assets/audio/sfx/cancel_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.39902996286837417
+      },
+      {
+        "uri": "assets/audio/sfx/cancel_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4206193806310285
+      },
+      {
+        "uri": "assets/audio/sfx/cancel_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43868326857983736
+      },
+      {
+        "uri": "assets/audio/sfx/cancel_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3662357933198091
+      }
+    ],
+    "turn": [
+      {
+        "uri": "assets/audio/sfx/turn_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/turn_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/turn_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3035953965849819
+      },
+      {
+        "uri": "assets/audio/sfx/turn_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25977092657660533
+      }
+    ],
+    "select": [
+      {
+        "uri": "assets/audio/sfx/select_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.41573525322149135
+      },
+      {
+        "uri": "assets/audio/sfx/select_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.435219459569677
+      },
+      {
+        "uri": "assets/audio/sfx/select_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4076653361300963
+      },
+      {
+        "uri": "assets/audio/sfx/select_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3596177846278568
+      }
+    ],
+    "invalid": [
+      {
+        "uri": "assets/audio/sfx/invalid_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42216337481734756
+      },
+      {
+        "uri": "assets/audio/sfx/invalid_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4254300239525433
+      },
+      {
+        "uri": "assets/audio/sfx/invalid_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4380503889076182
+      },
+      {
+        "uri": "assets/audio/sfx/invalid_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.37557704603536246
+      }
+    ],
+    "transition": [
+      {
+        "uri": "assets/audio/sfx/transition_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42223067602364983
+      },
+      {
+        "uri": "assets/audio/sfx/transition_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4250359531947019
+      },
+      {
+        "uri": "assets/audio/sfx/transition_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4405177696821897
+      },
+      {
+        "uri": "assets/audio/sfx/transition_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.38429895078538245
+      }
+    ],
+    "wing": [
+      {
+        "uri": "assets/audio/sfx/wing_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.2793099265106189
+      },
+      {
+        "uri": "assets/audio/sfx/wing_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.31888023271791766
+      },
+      {
+        "uri": "assets/audio/sfx/wing_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3250489482333755
+      },
+      {
+        "uri": "assets/audio/sfx/wing_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.25558089855945076
+      }
+    ],
+    "rifle.heavy": [
+      {
+        "uri": "assets/audio/sfx/rifle_heavy_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3480949333560914
+      },
+      {
+        "uri": "assets/audio/sfx/rifle_heavy_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.37153633727467494
+      },
+      {
+        "uri": "assets/audio/sfx/rifle_heavy_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.36763345608614084
+      },
+      {
+        "uri": "assets/audio/sfx/rifle_heavy_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.2942497376560965
+      }
+    ],
+    "shell.light": [
+      {
+        "uri": "assets/audio/sfx/shell_light_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43328994954635625
+      },
+      {
+        "uri": "assets/audio/sfx/shell_light_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4363047959508188
+      },
+      {
+        "uri": "assets/audio/sfx/shell_light_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43663882807565
+      },
+      {
+        "uri": "assets/audio/sfx/shell_light_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.35465613675659147
+      }
+    ],
+    "shell.heavy": [
+      {
+        "uri": "assets/audio/sfx/shell_heavy_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.433947327165402
+      },
+      {
+        "uri": "assets/audio/sfx/shell_heavy_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4317714106410171
+      },
+      {
+        "uri": "assets/audio/sfx/shell_heavy_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.43466273330643573
+      },
+      {
+        "uri": "assets/audio/sfx/shell_heavy_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.36321291508442793
+      }
+    ],
+    "retire.land": [
+      {
+        "uri": "assets/audio/sfx/retire_land_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4079492324728691
+      },
+      {
+        "uri": "assets/audio/sfx/retire_land_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.4347096622049591
+      },
+      {
+        "uri": "assets/audio/sfx/retire_land_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.42764533013767236
+      },
+      {
+        "uri": "assets/audio/sfx/retire_land_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.3612864429648091
+      }
+    ],
+    "retire.sea": [
+      {
+        "uri": "assets/audio/sfx/retire_sea_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.30180020989678674
+      },
+      {
+        "uri": "assets/audio/sfx/retire_sea_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3117374882549984
+      },
+      {
+        "uri": "assets/audio/sfx/retire_sea_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3087567385892967
+      },
+      {
+        "uri": "assets/audio/sfx/retire_sea_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.2558711995661583
+      }
+    ],
+    "retire.air": [
+      {
+        "uri": "assets/audio/sfx/retire_air_v1.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.3197490573810922
+      },
+      {
+        "uri": "assets/audio/sfx/retire_air_v2.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.32132523622068204
+      },
+      {
+        "uri": "assets/audio/sfx/retire_air_v3.wav",
+        "duration": 0.24,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 21168,
+        "short": false,
+        "peak": 0.30170455488933223
+      },
+      {
+        "uri": "assets/audio/sfx/retire_air_short.wav",
+        "duration": 0.16,
+        "sampleRate": 22050,
+        "channels": 1,
+        "pcmBytes": 14112,
+        "short": true,
+        "peak": 0.2421117528860205
+      }
+    ]
+  }
+}

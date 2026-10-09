@@ -18,9 +18,10 @@
   });
   let enabled = true, soundEnabled = true, ambienceEnabled = true, volume = .55, paused = false;
   let audioContext = null, master = null, unlocked = false, currentRun = null, serial = 0;
-  const voices = new Set();
+  const voices = new Set(), sampleCache = new Map(), sampleLoads = new Map(); let sampleBytes=0, sampleTurn=0, playbackMode='standard';
   const voiceCleanups = new Map(), ambienceBuffers = new Map();
-  let ambientNodes = null, actionPan = 0;
+  let ambientNodes = null, actionPan = 0, actionGroupGain = 1, actionGroup = 'battle';let modelTone=1,modelFilter=1;
+  const voiceGroups=new Map();
   let scene = { active: false, profile: 'wind' };
   try {
     const stored = JSON.parse(root.localStorage?.getItem('six-realms-fx-v0.8') || '{}');
@@ -42,14 +43,16 @@
     if (domain === 'air') return d.system === 'helicopter' || type === 'helicopter' ? 'helicopter' : 'jet';
     return d.infantry ? 'infantry' : 'vehicle';
   }
-  function projectileFamily(type, domain, skill = '') {
+  function projectileFamily(type, domain, skill = '', targetDomain = 'sea') {
     const d = D.byId[type];
     if (skill === 'pierce' || skill === 'sniper') return 'rail';
     if (skill === 'shock') return 'mortar';
     if (!d) return 'unknown';
     if (d.system === 'bomber') return 'bomb';
     if (d.indirect) return 'mortar';
-    if (type === 'submarine') return 'torpedo';
+    if (type === 'submarine') return targetDomain==='sea'?'torpedo':'missile';
+    if(type==='destroyer')return 'rail';
+    if(['antiair','aafrigate','engineer','jammer','reconplane','tacticalrecon','longrangerecon'].includes(type))return 'rifle';
     if (d.system === 'fighter' || d.dedicatedAA || type === 'antitank') return 'missile';
     if (d.infantry || domain === 'air' && motionFamily(type, domain) === 'helicopter') return 'rifle';
     return 'shell';
@@ -76,7 +79,9 @@
   function capture(s, command, viewerId = s.actor) {
     const entities = {};
     for (const e of [...s.units, ...s.buildings]) if (seen(s, viewerId, e)) entities[e.id] = summary(s, e);
-    const actor = G.unit(s, command.unitId), target = G.unit(s, command.targetId) || G.building(s, command.targetId);
+    const actor = G.unit(s, command.unitId), requestedTarget = G.unit(s, command.targetId) || G.building(s, command.targetId || (command.kind === 'repairBuilding' ? command.buildingId : null));
+    const offensive = command.kind === 'attack' || command.kind === 'skill' && ['穿甲弹','震荡弹','定点狙击'].includes(D.byId[actor?.type]?.skill);
+    const target = offensive ? G.combatTarget(s, actor, requestedTarget) : requestedTarget;
     let route = null;
     if (command.kind === 'move' && actor) {
       const found = G.movement(s, actor).get(H.key(command.q, command.r));
@@ -99,8 +104,14 @@
     const hidden = privateSnapshots.get(before), observed = before.entities || {};
     const rawActor = hidden?.unit, currentActor = G.unit(after, command.unitId);
     const a = observed[command.unitId] || (seen(after, viewerId, currentActor) ? summary(after, currentActor) : null);
-    const rawTarget = G.unit(after, command.targetId) || G.building(after, command.targetId);
-    const b = observed[command.targetId], t = seen(after, viewerId, rawTarget) ? summary(after, rawTarget) : null;
+    const targetId = hidden?.target?.id || command.targetId;
+    const rawTarget = G.unit(after, targetId) || G.building(after, targetId);
+    const b = observed[targetId], t = seen(after, viewerId, rawTarget) ? summary(after, rawTarget) : null;
+    const sharedHit = entity => {
+      const old = entity && Object.values(observed).find(b => !b.isUnit && G.hasBuildingHealth(b) && b.state === 'complete' && b.hp > 0 && b.q === entity.q && b.r === entity.r && G.allied(after,b.owner,entity.owner));
+      const now = old && G.building(after,old.id), loss = now ? old.hp-now.hp : 0;
+      return loss>0 ? {to:old,damage:loss,lethal:now.hp<=0} : null;
+    };
     const skill = command.kind === 'skill' ? skillKinds[D.byId[rawActor?.type || a?.type]?.skill] : '';
 
     if (command.kind === 'move' && hidden?.route && currentActor) {
@@ -123,19 +134,19 @@
         }
       } else if (end === 0 && a && hidden.allied) result.steps.push({ kind: 'blocked', at: a });
     } else if (command.kind === 'attack' || command.kind === 'skill' && ['pierce', 'shock', 'sniper'].includes(skill)) {
-      const originalA = observed[command.unitId], originalT = observed[command.targetId];
+      const originalA = observed[command.unitId], originalT = observed[targetId];
       const from = originalA || (t && a ? a : null), to = originalT || t;
       // An observer can see an impact without seeing who fired. No hidden endpoint
       // or hidden attacker's weapon class is added to the projectile.
-      const projectile = from ? projectileFamily(from.type, from.domain, skill) : 'unknown';
+      const projectile = from ? projectileFamily(from.type, from.domain, skill, to?.domain) : 'unknown';
       if (from || to) {
         const loss = originalT ? Math.max(0, originalT.hp - (rawTarget?.hp || 0)) : null;
         result.steps.push({ kind: 'shot', from, to, projectile, skill: from ? skill : '',
-          damage: loss, lethal: !!originalT && loss >= originalT.hp, counter: false });
+          damage: loss, lethal: !!originalT && loss >= originalT.hp, counter: false, shelter:sharedHit(originalT) });
         const counterLoss = originalA ? Math.max(0, originalA.hp - (currentActor?.hp || 0)) : 0;
         if (counterLoss > 0) result.steps.push({ kind: 'shot', from: originalT || t, to: originalA,
-          projectile: originalT || t ? projectileFamily((originalT || t).type, (originalT || t).domain) : 'unknown',
-          skill: '', damage: counterLoss, lethal: counterLoss >= originalA.hp, counter: true });
+          projectile: originalT || t ? projectileFamily((originalT || t).type, (originalT || t).domain, '', originalA?.domain) : 'unknown',
+          skill: '', damage: counterLoss, lethal: counterLoss >= originalA.hp, counter: true, shelter:sharedHit(originalA) });
       }
     } else if (command.kind === 'skill' && skill) {
       if (skill === 'repair') {
@@ -144,6 +155,8 @@
       } else if (skill === 'jam') {
         if (a || b || t) result.steps.push({ kind: 'jam', from: a, to: b || t });
       } else if (a) result.steps.push({ kind: skill, at: a, radius: D.byId[a.type].vision + (skill === 'scan' ? 2 : 0) });
+    } else if (command.kind === 'repairBuilding') {
+      if(b || t) result.steps.push({kind:'repair',from:null,to:b||t,amount:b&&rawTarget?rawTarget.hp-b.hp:null});
     } else if (command.kind === 'capture') {
       const captured = G.building(after, command.buildingId), old = observed[command.buildingId];
       if (captured && (old || seen(after, viewerId, captured))) {
@@ -189,6 +202,9 @@
           result.steps.push({ kind: 'deploy', at: summary(after, unit), auto: !!(event.automatic || event.auto), eventOrder: events.indexOf(event) });
           displayedUnits.add(event.unitId);
         }
+      } else if (event.kind === 'buildingRecovery') {
+        const facility=G.building(after,event.buildingId);
+        if(facility&&(observed[facility.id]||seen(after,viewerId,facility)))result.steps.push({kind:'repair',to:summary(after,facility),amount:event.amount,automatic:true});
       } else if (command.kind === 'end' && event.kind === 'turn' && (G.allied(after, viewerId, event.actor) || event.actor === viewerId)) {
         result.steps.push({ kind: 'turn', eventOrder: events.indexOf(event) });
       }
@@ -210,9 +226,9 @@
   }
 
   function setEnabled(value) { enabled = !!value; persist(); }
-  function setSoundEnabled(value) { soundEnabled = !!value; applyVolume(); updateAmbience(); persist(); }
+  function setSoundEnabled(value) { soundEnabled = !!value; root.GameAudio?.setMaster(soundEnabled,volume);if(!soundEnabled)stopEffects();applyVolume(); updateAmbience(); persist(); }
   function setAmbienceEnabled(value) { ambienceEnabled = !!value; updateAmbience(); persist(); }
-  function setVolume(value) { if (Number.isFinite(Number(value))) volume = Math.max(0, Math.min(1, Number(value))); applyVolume(); updateAmbience(); persist(); }
+  function setVolume(value) { if (Number.isFinite(Number(value))) volume = Math.max(0, Math.min(1, Number(value)));root.GameAudio?.setMaster(soundEnabled,volume);if(volume===0)stopEffects();applyVolume(); updateAmbience(); persist(); }
   function applyVolume() { if (master && audioContext) master.gain.setValueAtTime(soundEnabled ? volume * .32 : 0, audioContext.currentTime); }
   function ambienceProfile(terrain) {
     const allowed = new Set([...Object.keys(D.terrain), ...Object.keys(D.buildingById)]), counts = {};
@@ -230,7 +246,7 @@
   }
   function setScene(next = {}) {
     scene = { active: next.active === undefined ? scene.active : !!next.active,
-      profile: next.terrain === undefined ? scene.profile : ambienceProfile(next.terrain) };
+      profile: next.profile==='crystal'?'crystal':next.terrain === undefined ? scene.profile : ambienceProfile(next.terrain) };
     updateAmbience(); return { ...scene };
   }
   function stopAmbience() {
@@ -242,26 +258,26 @@
   }
   function ambientBuffer(profile) {
     if (ambienceBuffers.has(profile)) return ambienceBuffers.get(profile);
-    const frames = Math.ceil(audioContext.sampleRate * 8), buffer = audioContext.createBuffer(2, frames, audioContext.sampleRate);
+    const sampleRate=Math.min(12000,audioContext.sampleRate),frames = Math.ceil(sampleRate * 8), buffer = audioContext.createBuffer(2, frames, sampleRate);
     for (let channel = 0; channel < 2; channel++) {
       const values = buffer.getChannelData(channel); let brown = 0;
       for (let i = 0; i < frames; i++) {
         brown = (brown + .025 * (Math.random() * 2 - 1)) / 1.025;
-        const time = i / audioContext.sampleRate;
+        const time = i / sampleRate;
         const wave = profile === 'sea' ? .66 + .21 * Math.sin(time * Math.PI * .5 + channel * 1.2)
           + .1 * Math.sin(time * Math.PI * .75 + channel) : .85 + .1 * Math.sin(time * Math.PI * .25 + channel);
         // Crossfade the loop ends to avoid a discontinuity every eight seconds.
         const edge = Math.min(1, i / (frames * .02), (frames - 1 - i) / (frames * .02));
-        values[i] = brown * 4 * wave * Math.max(0, edge);
+        const grain=profile==='crystal'?.07*Math.sin(2*Math.PI*(880+channel*220)*time)*(1+Math.sin(time*2))*.5:profile==='industrial'?.05*Math.sin(2*Math.PI*74*time):0;values[i] = (brown * 4 * wave+grain) * Math.max(0, edge);
       }
     }
     ambienceBuffers.set(profile, buffer); return buffer;
   }
   function updateAmbience() {
-    const canPlay = scene.active && ambienceEnabled && soundEnabled && volume > 0 && !paused
+    const ambientGain=root.GameAudio?.settings().groups.ambience??1;const canPlay = scene.active && ambienceEnabled && soundEnabled && volume > 0 && ambientGain>0 && !paused
       && unlocked && audioContext?.state === 'running';
     if (!canPlay) { stopAmbience(); return; }
-    if (ambientNodes?.profile === scene.profile) return;
+    if (ambientNodes?.profile === scene.profile&&ambientNodes.mix===ambientGain) return;
     stopAmbience();
     const created = [];
     try {
@@ -270,23 +286,24 @@
       const sway = audioContext.createOscillator(), swayGain = audioContext.createGain();
       created.push(source, filter, bed, hum, humGain, sway, swayGain);
       source.buffer = ambientBuffer(scene.profile); source.loop = true;
-      filter.type = 'lowpass'; filter.frequency.value = scene.profile === 'sea' ? 780 : scene.profile === 'industrial' ? 350 : 620;
+      filter.type = 'lowpass'; filter.frequency.value = scene.profile === 'sea' ? 780 : scene.profile === 'industrial' ? 350 : scene.profile==='crystal'?1800:620;
       bed.gain.setValueAtTime(0, audioContext.currentTime);
-      bed.gain.linearRampToValueAtTime(scene.profile === 'sea' ? .11 : .075, audioContext.currentTime + .65);
-      hum.type = scene.profile === 'industrial' ? 'triangle' : 'sine'; hum.frequency.value = scene.profile === 'industrial' ? 74 : 56;
+      bed.gain.linearRampToValueAtTime((scene.profile === 'sea' ? .11 : .075)*ambientGain, audioContext.currentTime + .65);
+      hum.type = scene.profile === 'industrial' ? 'triangle' : 'sine'; hum.frequency.value = scene.profile === 'industrial' ? 74 : scene.profile==='crystal'?220:56;
       humGain.gain.setValueAtTime(0, audioContext.currentTime);
-      humGain.gain.linearRampToValueAtTime(scene.profile === 'industrial' ? .017 : .006, audioContext.currentTime + .8);
-      sway.type = 'sine'; sway.frequency.value = scene.profile === 'sea' ? .12 : .07; swayGain.gain.value = .018;
+      humGain.gain.linearRampToValueAtTime((scene.profile === 'industrial' ? .017 : .006)*ambientGain, audioContext.currentTime + .8);
+      sway.type = 'sine'; sway.frequency.value = scene.profile === 'sea' ? .12 : .07; swayGain.gain.value = .018*ambientGain;
       source.connect(filter); filter.connect(bed); bed.connect(master);
       hum.connect(humGain); humGain.connect(master); sway.connect(swayGain); swayGain.connect(bed.gain);
       source.start(); hum.start(); sway.start();
-      ambientNodes = { profile: scene.profile, nodes: created, sources: [source, hum, sway], gains: [bed, humGain] };
+      ambientNodes = { profile: scene.profile,mix:ambientGain, nodes: created, sources: [source, hum, sway], gains: [bed, humGain] };
     } catch (_) {
       for (const item of created) { try { item.stop?.(); } catch (_) {} try { item.disconnect(); } catch (_) {} }
       ambientNodes = null;
     }
   }
   async function unlock() {
+    root.GameAudio?.unlock();
     if (!soundEnabled) return false;
     try {
       const Context = root.AudioContext || root.webkitAudioContext;
@@ -303,13 +320,14 @@
       if (paused && unlocked) return true;
       if (audioContext.state !== 'running') await audioContext.resume();
       unlocked = true;
+      for(const key of ['select','invalid','rifle','shell','hit.light','hit.armor','infantry','track','capture'])for(const entry of root.GameAudioSamples?.[key]||[])warmSample(entry);
       if (paused) await audioContext.suspend();
       updateAmbience();
       return unlocked;
     } catch (_) { return false; }
   }
   function setPaused(value) {
-    paused = !!value;
+    paused = !!value;root.GameAudio?.setPaused(paused);if(paused)stopEffects();
     if (currentRun) currentRun.last = null;
     if (paused) stopAmbience();
     if (audioContext) {
@@ -318,10 +336,12 @@
     }
   }
   function voice(node, connected = []) {
-    voices.add(node);
-    const cleanup = () => { voices.delete(node); voiceCleanups.delete(node); for (const n of [node, ...connected]) try { n.disconnect(); } catch (_) {} };
+    voices.add(node);voiceGroups.set(node,actionGroup);
+    const cleanup = () => { voices.delete(node);voiceGroups.delete(node); voiceCleanups.delete(node); for (const n of [node, ...connected]) try { n.disconnect(); } catch (_) {} };
     voiceCleanups.set(node, cleanup); node.onended = cleanup; return node;
   }
+  function stopEffects(group=null){for(const n of [...voices]){if(group&&voiceGroups.get(n)!==group)continue;try{n.stop();}catch(_){}voiceCleanups.get(n)?.();}}
+  function refreshAudioGroups(){for(const group of ['battle','movement','ui'])if(root.GameAudio?.settings().groups[group]===0)stopEffects(group);updateAmbience();}
   function output(gain) {
     if (!audioContext.createStereoPanner) { gain.connect(master); return null; }
     const panner = audioContext.createStereoPanner(); panner.pan.value = actionPan;
@@ -329,19 +349,19 @@
   }
   function tone(freq, seconds, waveform = 'sine', gain = .2, delay = 0, endFreq = freq) {
     if (!audioContext || audioContext.state !== 'running' || !unlocked || !soundEnabled || volume === 0 || paused) return;
-    const start = audioContext.currentTime + delay, env = audioContext.createGain(), panner = output(env), osc = voice(audioContext.createOscillator(), [env, ...(panner ? [panner] : [])]);
-    osc.type = waveform; osc.frequency.setValueAtTime(freq, start);
-    osc.frequency.exponentialRampToValueAtTime(Math.max(12, endFreq), start + seconds);
+    if(voices.size>=24)return;const tail=playbackMode==='standard'?1:.5;seconds*=tail;delay*=tail;gain*=actionGroupGain;const start = audioContext.currentTime + delay, env = audioContext.createGain(), panner = output(env), osc = voice(audioContext.createOscillator(), [env, ...(panner ? [panner] : [])]);
+    osc.type = waveform; osc.frequency.setValueAtTime(freq*modelTone, start);
+    osc.frequency.exponentialRampToValueAtTime(Math.max(12, endFreq*modelTone), start + seconds);
     env.gain.setValueAtTime(0, start); env.gain.linearRampToValueAtTime(gain, start + .009);
     env.gain.exponentialRampToValueAtTime(.0001, start + seconds);
     osc.connect(env); osc.start(start); osc.stop(start + seconds + .02);
   }
   function noise(seconds, gain = .2, cutoff = 900, delay = 0, highpass = false) {
     if (!audioContext || audioContext.state !== 'running' || !unlocked || !soundEnabled || volume === 0 || paused) return;
-    const start = audioContext.currentTime + delay, env = audioContext.createGain(), filter = audioContext.createBiquadFilter(), panner = output(env), source = voice(audioContext.createBufferSource(), [env, filter, ...(panner ? [panner] : [])]);
+    if(voices.size>=24)return;const tail=playbackMode==='standard'?1:.5;seconds*=tail;delay*=tail;gain*=actionGroupGain;const start = audioContext.currentTime + delay, env = audioContext.createGain(), filter = audioContext.createBiquadFilter(), panner = output(env), source = voice(audioContext.createBufferSource(), [env, filter, ...(panner ? [panner] : [])]);
     const buffer = audioContext.createBuffer(1, Math.ceil(audioContext.sampleRate * seconds), audioContext.sampleRate), data = buffer.getChannelData(0);
     for (let i = 0; i < data.length; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / data.length);
-    source.buffer = buffer; filter.type = highpass ? 'highpass' : 'lowpass'; filter.frequency.value = cutoff;
+    source.buffer = buffer; filter.type = highpass ? 'highpass' : 'lowpass'; filter.frequency.value = cutoff*modelFilter;
     env.gain.setValueAtTime(gain, start); env.gain.exponentialRampToValueAtTime(.0001, start + seconds);
     source.connect(filter); filter.connect(env); source.start(start); source.stop(start + seconds + .02);
   }
@@ -356,14 +376,43 @@
     deploy: '部署确认双音', construct: '吊装与机械扣合', produce: '订单确认', upgrade: '升级确认', cancel: '取消低音', turn: '回合交接',
     wind: '低强度双声道风声', sea: '渐起渐落海浪与海风', industrial: '轻机械低鸣与风声'
   });
+  // Decode after a gesture; delayed loads never replay old events.
+  function warmSample(entry){
+    if(!entry||sampleCache.has(entry.uri)||sampleLoads.has(entry.uri)||!audioContext?.decodeAudioData||!root.fetch||!/^https?:$/.test(root.location?.protocol||''))return;
+    const load=root.fetch(entry.uri).then(r=>{if(!r.ok)throw Error('sample');return r.arrayBuffer();}).then(b=>audioContext.decodeAudioData(b)).then(buffer=>{
+      const size=buffer.length*buffer.numberOfChannels*4;
+      while(sampleBytes+size>4*1024*1024&&sampleCache.size){const [key,value]=sampleCache.entries().next().value;sampleBytes-=value.bytes;sampleCache.delete(key);}
+      if(size<=4*1024*1024){sampleCache.set(entry.uri,{buffer,bytes:size});sampleBytes+=size;}
+    }).catch(()=>{}).finally(()=>sampleLoads.delete(entry.uri));sampleLoads.set(entry.uri,load);
+  }
+  function sampled(name){
+    const entries=root.GameAudioSamples?.[name];if(!entries||!audioContext||audioContext.state!=='running'||!unlocked||!soundEnabled||volume===0||paused)return false;
+    const entry=playbackMode==='standard'?entries[(sampleTurn++)%3]:entries.find(e=>e.short)||entries[0];
+    warmSample(entry);const cached=sampleCache.get(entry.uri);if(!cached)return false;
+    if(voices.size>=24){stopEffects('movement');if(voices.size>=24)return true;}
+    const env=audioContext.createGain(),filter=audioContext.createBiquadFilter(),panner=output(env),source=voice(audioContext.createBufferSource(),[env,filter,...(panner?[panner]:[])]);
+    filter.type='lowpass';filter.frequency.value=4200*modelFilter;source.buffer=cached.buffer;env.gain.setValueAtTime(actionGroupGain*.55,audioContext.currentTime);source.connect(filter);filter.connect(env);source.start();source.stop(audioContext.currentTime+entry.duration+.01);return true;
+  }
+  function feedback(name='select'){playbackMode='standard';modelTone=1;modelFilter=1;sound(name);}
+  function sampleStatus(){return {cached:sampleCache.size,loading:sampleLoads.size,decodedBytes:sampleBytes,budgetBytes:4*1024*1024};}
   function sound(name, pan = 0) {
-    const previousPan = actionPan; actionPan = Math.max(-.65, Math.min(.65, Number(pan) || 0));
-    try { switch (name) {
+    const previousGain=actionGroupGain,previousGroup=actionGroup;actionGroup=root.GameAudio?.groupFor(name)||'battle';actionGroupGain=root.GameAudio?.effectGain(name)??1;if(actionGroupGain===0)return;const previousPan = actionPan; actionPan = Math.max(-.65, Math.min(.65, Number(pan) || 0));
+    try { if(sampled(name))return;name=({'rifle.heavy':'rifle','shell.light':'shell','shell.heavy':'shell','wing':'jet'})[name]||name;switch (name) {
+      case 'retire.land':case 'retire.sea':case 'retire.air':noise(.15,.10,name==='retire.sea'?450:900);tone(280,.12,'sine',.08);tone(520,.12,'sine',.06,.09);break;
+      case 'transition':noise(.12,.07,500);tone(160,.09,'triangle',.06);break;
+      case 'select':case 'confirm':tone(620,.06,'sine',.07);break;
+      case 'invalid':tone(230,.08,'sine',.06);break;
       case 'infantry': noise(.06, .11, 1100); tone(170, .06, 'triangle', .06); noise(.055, .09, 950, .11); break;
       case 'vehicle': tone(68, .23, 'triangle', .14, 0, 54); noise(.12, .08, 600); tone(170, .04, 'square', .025, .13); break;
       case 'ship': noise(.28, .12, 460); tone(85, .27, 'sine', .08, 0, 70); break;
       case 'helicopter': for (let i = 0; i < 4; i++) noise(.045, .065, 580, i * .055); tone(115, .24, 'triangle', .06); break;
       case 'jet': noise(.28, .09, 1400); tone(210, .26, 'sawtooth', .045, 0, 390); break;
+      case 'aa':for(let i=0;i<4;i++)noise(.045,.12,2200,i*.03);break;
+      case 'hit.light':noise(.1,.13,1400);tone(170,.08,'triangle',.08);break;
+      case 'hit.sea':noise(.2,.14,450);tone(90,.14,'sine',.1);break;
+      case 'hit.air':noise(.13,.1,1700);tone(350,.1,'triangle',.06,0,220);break;
+      case 'hit.armor':case 'hit.building':noise(.15,.17,950);tone(145,.15,'triangle',.14,0,80);break;
+      case 'track':case 'wheel':case 'leg':tone(145,.09,'triangle',.075);noise(.09,.08,700);break;
       case 'rifle': for (let i = 0; i < 3; i++) { noise(.07, .19, 2700, i * .05); tone(210, .04, 'square', .04, i * .05, 70); } break;
       case 'shell': noise(.04, .16, 2400, 0, true); noise(.16, .3, 1050, .018); tone(92, .21, 'triangle', .26, .012, 28); tone(165, .06, 'square', .025, .055, 105); break;
       case 'missile': noise(.23, .2, 1600); tone(230, .24, 'sawtooth', .06, 0, 850); break;
@@ -373,7 +422,7 @@
       case 'torpedo': tone(80, .25, 'sine', .13, 0, 40); noise(.22, .1, 300); break;
       case 'impact': case 'unknown': noise(.045, .15, 2600, 0, true); noise(.17, .18, 1300, .015); tone(75, .18, 'triangle', .15, .01, 25); break;
       case 'destruction': noise(.4, .35, 750); tone(60, .4, 'triangle', .3, 0, 20); break;
-      case 'capture': [330, 440, 660].forEach((f, i) => tone(f, .19, 'triangle', .13, i * .09)); break;
+      case 'capture': [330, 370, 495].forEach((f, i) => tone(f, .19, 'triangle', .13, i * .09)); break;
       case 'repair': tone(540, .14, 'sine', .1); tone(810, .18, 'sine', .1, .1); noise(.06, .08, 1700, .05); break;
       case 'scan': tone(950, .1, 'sine', .1); tone(480, .16, 'sine', .075, .12); break;
       case 'jam': [180, 560, 230, 790].forEach((f, i) => tone(f, .08, 'square', .035, i * .055, f * .8)); break;
@@ -385,15 +434,16 @@
       case 'produce': tone(440, .13, 'sine', .08); break;
       case 'cancel': tone(260, .12, 'sine', .06, 0, 160); break;
       case 'turn': tone(280, .12, 'sine', .06); tone(350, .12, 'sine', .05, .12); break;
-    }} finally { actionPan = previousPan; }
+    }} finally { actionPan = previousPan;actionGroupGain=previousGain;actionGroup=previousGroup; }
   }
   function soundAt(run, name, point) {
+    const d=D.byId[run.soundModel],tier=d?.tier||1;modelTone=d?1.10-(tier-1)*.08:1;modelFilter=d?1.04-(tier-1)*.13:1;
     const raw = run.board.viewBox?.baseVal || (() => {
       const values = run.board.getAttribute('viewBox')?.split(/[\s,]+/).map(Number);
       return values?.length === 4 ? { x: values[0], width: values[2] } : null;
     })();
     const pan = point && raw?.width > 0 ? (point.x - raw.x) / raw.width * 2 - 1 : 0;
-    sound(name, pan);
+    playbackMode=run.mode||'standard';if(run.soundModel&&name==='jet'&&D.byId[run.soundModel]?.system==='recon')name='wing';if(name==='rifle'&&['walker','heavyinfantry','assaultmarine','heavymarine'].includes(run.soundModel))name='rifle.heavy';if(name==='shell'&&['lighttank','scout','amphibious'].includes(run.soundModel))name='shell.light';if(name==='shell'&&['heavy','battleship'].includes(run.soundModel))name='shell.heavy';sound(name, pan);modelTone=1;modelFilter=1;
   }
 
   function node(tag, attrs = {}, parent) {
@@ -403,8 +453,9 @@
     return el;
   }
   const linear = t => t, ease = t => 1 - Math.pow(1 - t, 3), mix = (a, b, t) => a + (b - a) * t;
-  function duration(base, run) { return Math.max(run.reduced ? 40 : 65, base * run.speed); }
+  function duration(base, run) { return Math.max(0,base); }
   function animate(run, ms, update, easing = linear) {
+    if(ms<=0){if(!run.cancelled)update(1,1);return Promise.resolve(!run.cancelled);}
     if (run.cancelled) return Promise.resolve(false);
     return new Promise(resolve => {
       let elapsed = 0, previous = null, done = false, frameId = null;
@@ -452,7 +503,8 @@
     if (!entity) return null;
     const wrapper = node('g', { class: 'fx-unit', 'data-fx-unit': entity.id, transform: `translate(${where.x} ${where.y})` }, run.layer);
     const shadow = node('ellipse', { cx: 0, cy: 23, rx: entity.isUnit ? 21 : 31, ry: 6, fill: '#09211c', opacity: .35 }, wrapper);
-    let offset = entity.isUnit ? run.offset : run.buildingOffset, scale = entity.isUnit ? run.scale : run.buildingScale;
+    const shared=entity.isUnit&&Object.values(run.beforeEntities||{}).some(e=>!e.isUnit&&e.q===entity.q&&e.r===entity.r),l=entity.isUnit&&root.GameAnime?.layout(shared);
+    let offset = l?{x:l.x-l.width/2,y:l.y-l.height*.84}:entity.isUnit ? run.offset : run.buildingOffset, scale = l?l.width/100:entity.isUnit ? run.scale : run.buildingScale;
     const real = [...run.board.querySelectorAll('[data-unit-sprite],[data-building-sprite]')].find(el => (el.getAttribute('data-unit-sprite') || el.getAttribute('data-building-sprite')) === entity.id);
     const rawOffset = real?.getAttribute('data-sprite-offset')?.split(',').map(Number), rawScale = Number(real?.getAttribute('data-sprite-scale'));
     if (rawOffset?.length === 2 && rawOffset.every(Number.isFinite)) offset = { x: rawOffset[0], y: rawOffset[1] };
@@ -462,7 +514,7 @@
       floor.innerHTML = root.GameArt.buildingTileMarkup(entity.type, entity.factionStyle, entity.level);
     }
     const glyph = node('g', { transform: `translate(${offset.x} ${offset.y}) scale(${scale})` }, wrapper);
-    if (entity.isUnit && root.GameArt?.unitMarkup) glyph.innerHTML = root.GameArt.unitMarkup(entity.type, entity.factionStyle, entity.domain);
+    if (entity.isUnit && root.GameArt?.unitMarkup) glyph.innerHTML = root.GameArt.unitMarkup(entity.type, entity.factionStyle, entity.domain,'fx-'+serial+'-'+entity.id);
     else if (!entity.isUnit && root.GameArt?.buildingMarkup) glyph.innerHTML = root.GameArt.buildingMarkup(entity.type, entity.factionStyle, entity.level);
     else node('path', { d: 'M0-20L17 15H-17Z', fill: entity.color, stroke: '#edf5df', 'stroke-width': 2 }, glyph);
     hideSprite(run, entity.id);
@@ -471,7 +523,7 @@
   async function floating(run, p, text, color, ms = 350) {
     const el = node('text', { x: p.x, y: p.y - 29, fill: color, class: 'fx-label', 'text-anchor': 'middle' }, run.layer);
     el.textContent = text;
-    await animate(run, ms, t => { el.setAttribute('y', p.y - 29 - t * 19); el.setAttribute('opacity', 1 - Math.max(0, (t - .5) * 2)); });
+    await animate(run, ms, t => { if(!run.reduced){el.setAttribute('y', p.y - 29 - t * 19); el.setAttribute('opacity', 1 - Math.max(0, (t - .5) * 2));} });
     el.remove();
   }
   function particles(run, p, color, count = 9, seed = 0) {
@@ -483,181 +535,90 @@
   }
   async function pulse(run, p, color, ms = 340, radius = 55, label = '') {
     const waves = [ring(run, p, color), ring(run, p, color, radius, { 'stroke-width': 1.4 })];
-    if (label) floating(run, p, label, color, ms);
+    if (label) floating(run, p, label, color, ms);if(run.reduced){waves.forEach(r=>r.setAttribute('r',24));await animate(run,ms,()=>{});waves.forEach(r=>r.remove());return;}
     await animate(run, ms, t => waves.forEach((r, i) => {
       r.setAttribute('r', 8 + Math.max(0, t - i * .12) * radius);
       r.setAttribute('opacity', (1 - t) * .8);
     }));
     waves.forEach(r => r.remove());
   }
-  async function moveEffect(run, step) {
-    const glyph = sprite(run, step.unit, run.xy(step.segments[0][0]));
-    if (!glyph) return;
-    const marks = node('g', { class: 'fx-trail' }, run.layer);
-    for (let segmentIndex = 0; segmentIndex < step.segments.length; segmentIndex++) {
-      const path = step.segments[segmentIndex];
-      if (segmentIndex) { glyph.wrapper.setAttribute('opacity', '0'); await animate(run, 70, () => {}); }
-      const start = run.xy(path[0]); glyph.wrapper.setAttribute('transform', `translate(${start.x} ${start.y})`); glyph.wrapper.setAttribute('opacity', '1');
-      for (let i = 1; i < path.length; i++) {
-        const a = run.xy(path[i - 1]), b = run.xy(path[i]), family = path[i].family;
-        soundAt(run, family, a);
-        const trail = family === 'ship' ? node('path', { d: 'M-11 0L0 10L11 0M-16 8L0 20L16 8', fill: 'none', stroke: '#d3fbef', 'stroke-width': 2, opacity: .6 }, marks)
-          : family === 'infantry' ? node('g', { opacity: .45 }, marks) : node('path', { d: family === 'vehicle' ? 'M-7 0L-7 16M7 0L7 16' : 'M-13 0L0 16L13 0', fill: 'none', stroke: family === 'vehicle' ? '#cbb686' : '#d9fff4', 'stroke-width': family === 'vehicle' ? 3 : 1.5, opacity: .35 }, marks);
-        if (family === 'infantry') { node('ellipse', { cx: -4, cy: 4, rx: 2.1, ry: 4, fill: '#e2d8bd' }, trail); node('ellipse', { cx: 4, cy: 12, rx: 2.1, ry: 4, fill: '#e2d8bd' }, trail); }
-        const angle = Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI - 90;
-        trail.setAttribute('transform', `translate(${a.x} ${a.y}) rotate(${angle})`);
-        const dust = family === 'vehicle' || family === 'infantry' ? particles(run, { x: a.x, y: a.y + 18 }, '#c7b38b', run.reduced ? 0 : 3, i) : [];
-        let domainChanged = false;
-        await animate(run, family === 'infantry' ? 175 : family === 'jet' ? 135 : 205, (t, raw) => {
-          const x = mix(a.x, b.x, t), y = mix(a.y, b.y, t), bob = run.reduced ? 0 : Math.sin(raw * Math.PI * (family === 'infantry' ? 4 : 2)) * (family === 'infantry' ? 2 : 1);
-          glyph.wrapper.setAttribute('transform', `translate(${x} ${y + bob})`);
-          glyph.shadow.setAttribute('opacity', family === 'jet' || family === 'helicopter' ? '.2' : '.35');
-          dust.forEach((d, index) => { d.el.setAttribute('cx', a.x + d.dx * raw * .4); d.el.setAttribute('cy', a.y + 18 + d.dy * raw * .15 - raw * 6); d.el.setAttribute('r', 1.5 + raw * (index + 1)); d.el.setAttribute('opacity', (1 - raw) * .22); });
-          if (!domainChanged && raw > .5 && path[i].domain !== path[i - 1].domain && root.GameArt?.unitMarkup) {
-            glyph.glyph.innerHTML = root.GameArt.unitMarkup(step.unit.type, step.unit.factionStyle, path[i].domain); domainChanged = true;
-          }
-          if (family === 'helicopter' && !run.reduced) {
-            // A translucent rotor disc preserves the unit's actual silhouette.
-            glyph.glyph.setAttribute('opacity', .92 + Math.sin(raw * Math.PI * 12) * .08);
-          }
-        }, ease);
-        dust.forEach(d => d.el.remove());
-        if (run.cancelled) break;
-      }
-      if (run.cancelled) break;
-      if (path.length === 1) await pulse(run, run.xy(path[0]), colors.move, 130, 24);
+  async function moveEffect(run,step){
+    const first=step.segments[0]?.[0];if(!first)return;
+    run.soundModel=step.unit.type;if(run.reduced){const last=step.segments.at(-1)?.at(-1);if(last){const p=run.xy(last),mark=ring(run,p,step.unit.color||colors.move);mark.setAttribute('r',24);const path=step.segments.at(-1),prior=path?.at(-2);if(prior)root.GameAnime?.remember(step.unit.id,step.unit.type,run.xy(prior),p);soundAt(run,last.family||'vehicle',p);await animate(run,120,()=>{});mark.remove();}return;}
+    const glyph=sprite(run,step.unit,run.xy(first));if(!glyph)return;
+    const count=step.segments.reduce((n,p)=>n+Math.max(0,p.length-1),0),cap=run.mode==='reduced'?400:run.mode==='fast'?650:1400,settle=run.mode==='reduced'?0:run.mode==='fast'?30:60;
+    const entries=step.segments.flatMap(path=>path.slice(1)),base=entries.reduce((n,p)=>n+(root.GameAnime?.moveTiming(step.unit.type,p.domain,run.mode,1).step||180),0),ratio=Math.min(1,(cap-settle)/Math.max(1,base));
+    let lastContact=-Infinity,clock=0;const marks=[];
+    for(const path of step.segments){const start=run.xy(path[0]);glyph.wrapper.setAttribute('transform',`translate(${start.x} ${start.y})`);
+      for(let i=1;i<path.length;i++){const a=run.xy(path[i-1]),b=run.xy(path[i]),p=path[i],f=root.GameAnime?.family(step.unit.type,p.domain)||'T',ms=(root.GameAnime?.moveTiming(step.unit.type,p.domain,run.mode,1).step||180)*ratio;
+        const heading=root.GameAnime?.remember(step.unit.id,step.unit.type,a,b);root.GameAnime?.face(glyph.glyph,step.unit.type,path[i-1].domain,heading);
+        if(['N','A','H'].includes(f)&&clock-lastContact>=(run.mode==='fast'?180:220)){soundAt(run,p.family,a);lastContact=clock;}let switched=false,contact=false;
+        const mark=!run.reduced?node('path',{d: f==='N'?'M-12 0Q0 10 12 0':f==='P'?'M-5 0v4m10-4v4':'M-8 0v10m16-10v10',transform:`translate(${a.x} ${a.y+18})`,fill:'none',stroke:f==='N'?'#def6ef':'#647f7a','stroke-width':2,opacity:.3},run.layer):null;if(mark){marks.push(mark);if(marks.length>2)marks.shift().remove();}
+        await animate(run,ms,(t,raw)=>{const x=mix(a.x,b.x,t),y=mix(a.y,b.y,t);glyph.wrapper.setAttribute('transform',`translate(${x} ${y})`);root.GameAnime?.pose(glyph.glyph,'move',raw,run.mode);
+          if(!contact&&raw>=.5){contact=true;if(!run.reduced&&['P','T','R','W','G'].includes(f)&&clock+ms*.5-lastContact>=(run.mode==='fast'?160:120)){soundAt(run,f==='P'?'infantry':f==='W'?'wheel':f==='G'?'leg':'track',{x,y});lastContact=clock+ms*.5;}}
+          if(!switched&&raw>=.5&&p.domain!==path[i-1].domain){glyph.glyph.innerHTML=root.GameArt.unitMarkup(step.unit.type,step.unit.factionStyle,p.domain,'fx-'+serial+'-'+step.unit.id);root.GameAnime?.face(glyph.glyph,step.unit.type,p.domain,heading);soundAt(run,'transition',{x,y});switched=true;}
+        },ease);clock+=ms;if(run.cancelled)break;
+      }if(run.cancelled)break;
     }
-    if (!run.cancelled) await animate(run, 90, t => marks.setAttribute('opacity', 1 - t));
-    marks.remove(); glyph.wrapper.remove(); restoreSprite(run, step.unit.id);
+    if(!run.cancelled)await animate(run,settle,()=>{});marks.forEach(n=>n.remove());glyph.wrapper.remove();restoreSprite(run,step.unit.id);
   }
   function projectilePoint(a, b, t, family) {
     const arc = ['mortar', 'bomb', 'missile'].includes(family) ? Math.sin(Math.PI * t) * Math.min(75, Math.hypot(b.x - a.x, b.y - a.y) * .25) : 0;
     return { x: mix(a.x, b.x, t), y: mix(a.y, b.y, t) - arc };
   }
-  async function impact(run, step, p, targetGlyph) {
-    soundAt(run, step.lethal ? 'destruction' : step.skill === 'shock' ? 'shock' : 'impact', p);
+  async function impact(run, step, p, targetGlyph, ms=310) {
+    if(step.shelter){
+      floating(run,{x:p.x,y:p.y-30},`设施 −${step.shelter.damage}${step.shelter.lethal?' · 损毁':''}`,'#89d7cc',ms);
+      soundAt(run,step.shelter.lethal?'destruction':'hit.building',p);
+    }
+    const material=!step.from?'unknown':!step.to?.isUnit?'hit.building':step.to.domain==='sea'?'hit.sea':step.to.domain==='air'?'hit.air':D.byId[step.to.type]?.category==='armored'?'hit.armor':'hit.light';run.soundModel=step.to?.type;soundAt(run,step.lethal?(step.to?.isUnit?'retire.'+step.to.domain:'destruction'):material,p);
+    if(run.reduced){if(step.damage!==null&&step.damage>0)floating(run,p,(step.counter?'反击 ':'')+'−'+step.damage,colors.impact,ms);if(step.lethal)floating(run,{x:p.x,y:p.y+22},step.to?.isUnit?'机装退场':'建筑毁坏',colors.impact,ms);await animate(run,ms,()=>{});return;}
     const color = colors[step.skill] || colors.impact, flash = node('circle', { cx: p.x, cy: p.y, r: 3, fill: '#fff1ba', opacity: .9 }, run.layer);
     const smoke = node('circle', { cx: p.x, cy: p.y, r: 9, fill: '#3d5149', opacity: .5 }, run.layer);
-    const sparks = particles(run, p, color, step.lethal ? 16 : 8);
+    const sparks = particles(run, p, color, run.reduced?0:step.lethal ? 10 : 6);
     const wave = step.skill === 'shock' ? ring(run, p, color) : null;
     if (step.damage !== null && step.damage > 0) floating(run, p, `${step.counter ? '反击 ' : ''}−${step.damage}`, step.counter ? colors.counter : '#ffe8bf', step.lethal ? 450 : 360);
-    if (step.lethal) floating(run, { x: p.x, y: p.y + 22 }, step.to?.isUnit ? '击毁' : '建筑毁坏', '#ffd7ac', 450);
-    await animate(run, step.lethal ? 460 : 310, (t, raw) => {
+    if (step.lethal) floating(run, { x: p.x, y: p.y + 22 }, step.to?.isUnit ? '机装退场' : '建筑毁坏', '#ffd7ac', 450);
+    await animate(run, ms, (t, raw) => {
       flash.setAttribute('r', 4 + t * (step.lethal ? 35 : 18)); flash.setAttribute('opacity', Math.max(0, 1 - t * 2));
       smoke.setAttribute('r', 10 + t * (step.lethal ? 31 : 17)); smoke.setAttribute('opacity', (1 - t) * .5);
       sparks.forEach(s => { s.el.setAttribute('cx', p.x + s.dx * t); s.el.setAttribute('cy', p.y + s.dy * t + t * t * 8); s.el.setAttribute('opacity', 1 - t); });
       if (wave) { wave.setAttribute('r', 8 + t * 74); wave.setAttribute('opacity', 1 - t); }
       if (targetGlyph) {
+        root.GameAnime?.pose(targetGlyph.glyph,step.lethal?'exit':'hit',raw,run.mode);
         targetGlyph.wrapper.setAttribute('transform', `translate(${p.x + (run.reduced ? 0 : Math.sin(raw * Math.PI * 8) * (1 - raw) * 3)} ${p.y})`);
         if (step.lethal) targetGlyph.wrapper.setAttribute('opacity', Math.max(0, 1 - t * 1.5));
       }
     });
     [flash, smoke, wave, ...sparks.map(s => s.el)].filter(Boolean).forEach(e => e.remove());
   }
-  async function shotEffect(run, step) {
-    const from = step.from ? run.xy(step.from) : null, to = step.to ? run.xy(step.to) : null;
-    const attacker = step.from ? sprite(run, step.from, from) : null;
-    const target = step.to ? sprite(run, step.to, to) : null;
-    const color = colors[step.skill] || (step.counter ? colors.counter : colors.shot);
-    if (from) {
-      soundAt(run, step.projectile, from);
-      const muzzle = node('path', { d: 'M0-14L4-5L13-8L6 1L12 8L3 6L0 15L-4 5L-12 8L-6 0L-12-8L-4-5Z', fill: color }, run.layer);
-      muzzle.setAttribute('transform', `translate(${from.x} ${from.y - 12})`);
-      if (step.skill === 'sniper') {
-        const reticle = node('g', { stroke: color, 'stroke-width': 1.8, opacity: .8 }, run.layer);
-        if (to) { node('circle', { cx: to.x, cy: to.y, r: 22, fill: 'none' }, reticle); node('path', { d: `M${to.x - 31} ${to.y}h18m26 0h18M${to.x} ${to.y - 31}v18m0 26v18`, fill: 'none' }, reticle); }
-        await animate(run, 180, t => reticle.setAttribute('opacity', 1 - t * .6)); reticle.remove();
-      }
-      const dx = to ? to.x - from.x : 0, dy = to ? to.y - from.y : -1, len = Math.hypot(dx, dy) || 1;
-      await animate(run, 85, (t, raw) => {
-        muzzle.setAttribute('opacity', 1 - t);
-        if (attacker && !run.reduced) attacker.wrapper.setAttribute('transform', `translate(${from.x - dx / len * Math.sin(raw * Math.PI) * 4} ${from.y - dy / len * Math.sin(raw * Math.PI) * 4})`);
-      }); muzzle.remove();
-    }
-    if (from && to) {
-      const beam = ['rail', 'rifle'].includes(step.projectile);
-      const missile = step.projectile === 'missile', shell = node(beam ? 'path' : 'ellipse', beam ? { fill: 'none', stroke: color, 'stroke-width': step.projectile === 'rail' ? 3 : 1.5 }
-        : { cx: from.x, cy: from.y, rx: missile ? 6 : step.projectile === 'bomb' ? 4 : 3, ry: 2.5, fill: color, stroke: '#fff5c9', 'stroke-width': .8 }, run.layer);
-      const trail = node('path', { fill: 'none', stroke: color, 'stroke-width': 1.5, opacity: .4 }, run.layer);
-      await animate(run, step.projectile === 'mortar' || step.projectile === 'bomb' ? 330 : beam ? 160 : 235, t => {
-        const p = projectilePoint(from, to, t, step.projectile), prev = projectilePoint(from, to, Math.max(0, t - .16), step.projectile);
-        if (beam) shell.setAttribute('d', `M${prev.x} ${prev.y}L${p.x} ${p.y}`);
-        else { shell.setAttribute('cx', p.x); shell.setAttribute('cy', p.y); shell.setAttribute('transform', `rotate(${Math.atan2(to.y - from.y, to.x - from.x) * 180 / Math.PI} ${p.x} ${p.y})`); }
-        trail.setAttribute('d', `M${prev.x} ${prev.y}L${p.x} ${p.y}`);
-      }); shell.remove(); trail.remove();
-    }
-    if (to) await impact(run, step, to, target);
-    if (step.skill === 'pierce' && to) await pulse(run, to, colors.pierce, 160, 34, '穿甲');
-    if (step.skill === 'shock' && to && !step.lethal) await pulse(run, to, colors.shock, 160, 33, '震荡');
-    attacker?.wrapper.remove(); target?.wrapper.remove();
+  function glyphPoint(run,entity,glyph,name='muzzle'){const p=run.xy(entity),a=root.GameAnime?.point(entity.type,name,root.GameAnime.headings.get(entity.id))||[.5,.5];const anchorX=a[0];const raw=glyph?.glyph.getAttribute('transform')||'',offset=raw.match(/translate\(([-.\d]+) ([-.\d]+)\)/),scale=Number(raw.match(/scale\(([-.\d]+)\)/)?.[1]||run.scale);return {x:p.x+Number(offset?.[1]||run.offset.x)+anchorX*100*scale,y:p.y+Number(offset?.[2]||run.offset.y)+a[1]*100*scale};}
+  function markers(run,step){return root.GameAnime?.timeline(root.GameAnime.clip(step),run.mode)||{launch:140,impact:300,settle:620};}
+  async function shotEffect(run,step){const from=step.from&&run.xy(step.from),to=step.to&&run.xy(step.to),attacker=from?sprite(run,step.from,from):null,target=to?sprite(run,step.to,to):null,times=markers(run,step),color=colors[step.skill]||colors.shot;
+    if(from&&to&&step.from){const heading=root.GameAnime?.remember(step.from.id,step.from.type,from,to);root.GameAnime?.face(attacker?.glyph,step.from.type,step.from.domain,heading);}
+    await animate(run,times.launch,t=>root.GameAnime?.pose(attacker?.glyph,'attack',t*.3,run.mode));if(run.cancelled)return;
+    const muzzle=from?glyphPoint(run,step.from,attacker):null;
+    if(from){run.soundModel=step.from.type;soundAt(run,['antiair','aafrigate'].includes(step.from.type)?'aa':step.projectile,muzzle);}
+    const bolt=muzzle&&to&&!run.reduced?node('path',{fill:'none',stroke:color,'stroke-width':step.projectile==='rail'?3:2},run.layer):null;
+    const flash=muzzle&&!run.reduced?node('circle',{cx:muzzle.x,cy:muzzle.y,r:5,fill:color},run.layer):null;
+    await animate(run,times.impact-times.launch,(t)=>{if(bolt){const p=projectilePoint(muzzle,to,t,step.projectile),prev=projectilePoint(muzzle,to,Math.max(0,t-.14),step.projectile);bolt.setAttribute('d',`M${prev.x} ${prev.y}L${p.x} ${p.y}`);}if(flash)flash.setAttribute('opacity',Math.max(0,1-t*5));root.GameAnime?.pose(attacker?.glyph,'attack',.3+t*.3,run.mode);});bolt?.remove();flash?.remove();if(run.cancelled)return;
+    if(to)await impact(run,step,to,target,times.settle-times.impact);else await animate(run,times.settle-times.impact,()=>{});
+    if(step.lethal)await animate(run,run.mode==='standard'?120:run.mode==='fast'?40:0,()=>{});
+    attacker?.wrapper.remove();target?.wrapper.remove();
   }
-  async function supportEffect(run, step) {
-    const p = step.at ? run.xy(step.at) : step.to ? run.xy(step.to) : step.from ? run.xy(step.from) : null;
-    const from = step.from && run.xy(step.from), to = step.to && run.xy(step.to);
-    if (!p) return;
-    const color = colors[step.kind] || step.at?.color || '#d4edba';
-    soundAt(run, step.kind, p);
-    if (step.kind === 'deploy') {
-      const glyph = sprite(run, step.at, p), wave = ring(run, p, color, 42, { 'stroke-width': 2 });
-      const ms = step.auto ? 150 : 270;
-      if (!step.auto) floating(run, p, '部署', color, ms);
-      await animate(run, ms, (t, raw) => {
-        wave.setAttribute('r', 9 + t * 38); wave.setAttribute('opacity', (1 - t) * .65);
-        if (glyph) { glyph.wrapper.setAttribute('opacity', Math.min(1, raw * 3)); glyph.wrapper.setAttribute('transform', `translate(${p.x} ${p.y}) scale(${.85 + ease(raw) * .15})`); }
-      }); glyph?.wrapper.remove(); wave.remove(); restoreSprite(run, step.at.id);
-    } else
-    if (step.kind === 'repair') {
-      const line = from && to ? node('path', { d: `M${from.x} ${from.y}L${to.x} ${to.y}`, stroke: color, 'stroke-width': 2.5, 'stroke-dasharray': '5 7', fill: 'none' }, run.layer) : null;
-      const cross = node('path', { d: 'M-5-15H5V-5H15V5H5V15H-5V5H-15V-5H-5Z', fill: color, stroke: '#e3ffe9', 'stroke-width': 1 }, run.layer);
-      cross.setAttribute('transform', `translate(${p.x} ${p.y})`);
-      if (step.amount !== null) floating(run, p, `+${step.amount} 修复`, color, 450);
-      await animate(run, 450, t => { cross.setAttribute('transform', `translate(${p.x} ${p.y - t * 15}) scale(${.8 + t * .3})`); cross.setAttribute('opacity', 1 - t); if (line) line.setAttribute('stroke-dashoffset', -t * 36); });
-      cross.remove(); line?.remove();
-    } else if (step.kind === 'jam') {
-      const link = from && to ? node('path', { stroke: color, fill: 'none', 'stroke-width': 2, opacity: .85 }, run.layer) : null;
-      const brackets = node('path', { d: `M${p.x - 21} ${p.y - 14}h-8v28h8m42-28h8v28h-8`, stroke: color, 'stroke-width': 3, fill: 'none' }, run.layer);
-      floating(run, p, '链路干扰', color, 470);
-      await animate(run, 470, (t, raw) => {
-        if (link) { const pts = Array.from({ length: 9 }, (_, i) => { const f = i / 8; return `${mix(from.x, to.x, f)},${mix(from.y, to.y, f) + Math.sin(i * 2 + raw * 32) * Math.sin(Math.PI * f) * 8}`; }); link.setAttribute('d', 'M' + pts.join('L')); }
-        brackets.setAttribute('opacity', (1 - t) * (.65 + Math.sin(raw * 28) * .3));
-      }); link?.remove(); brackets.remove();
-    } else if (step.kind === 'scan') {
-      const sweep = node('path', { fill: color, opacity: .1 }, run.layer), rings = [ring(run, p, color), ring(run, p, color, 1, { 'stroke-width': 1 })];
-      const scanRadius = Math.min(210, step.radius * 34);
-      floating(run, p, '主动扫描', color, 430);
-      await animate(run, 650, (t, raw) => {
-        rings.forEach((r, i) => { r.setAttribute('r', 10 + Math.max(0, t - i * .13) * scanRadius); r.setAttribute('opacity', (1 - t) * .7); });
-        const angle = raw * Math.PI * 2, radius = scanRadius * t;
-        sweep.setAttribute('d', `M${p.x} ${p.y}L${p.x + Math.cos(angle) * radius} ${p.y + Math.sin(angle) * radius}A${radius} ${radius} 0 0 0 ${p.x + Math.cos(angle - .5) * radius} ${p.y + Math.sin(angle - .5) * radius}Z`);
-      }); sweep.remove(); rings.forEach(r => r.remove());
-    } else if (step.kind === 'entrench') {
-      const bags = node('g', { fill: color, stroke: '#695e43', 'stroke-width': 1.5 }, run.layer);
-      for (let i = 0; i < 6; i++) { const angle = Math.PI * .16 + i * Math.PI * .135; node('rect', { x: p.x + Math.cos(angle) * 28 - 8, y: p.y + Math.sin(angle) * 28 - 4, width: 16, height: 8, rx: 3 }, bags); }
-      floating(run, p, '构筑掩体', color, 420);
-      await animate(run, 420, t => { bags.setAttribute('opacity', Math.min(1, t * 4) * (1 - Math.max(0, (t - .7) / .3))); bags.setAttribute('transform', `translate(0 ${(1 - t) * 12})`); }); bags.remove();
-    } else if (step.kind === 'anchor') {
-      const arms = node('g', { stroke: color, 'stroke-width': 3, fill: 'none' }, run.layer);
-      for (let i = 0; i < 4; i++) { const a = Math.PI / 4 + i * Math.PI / 2; node('path', { d: `M${p.x + Math.cos(a) * 16} ${p.y + Math.sin(a) * 16}L${p.x + Math.cos(a) * 34} ${p.y + Math.sin(a) * 34}l-8 0m8 0l0-8` }, arms); }
-      floating(run, p, '锚定防线', color, 420); await animate(run, 430, t => arms.setAttribute('opacity', Math.min(1, t * 4) * (1 - Math.max(0, (t - .7) / .3)))); arms.remove();
-    } else if (step.kind === 'capture') {
-      if (run.heldCaptures.has(step.at.id)) {
-        run.heldCaptures.get(step.at.id).wrapper.remove(); run.heldCaptures.delete(step.at.id); restoreSprite(run, step.at.id);
-      }
-      const flag = node('g', {}, run.layer), mast = node('path', { d: `M${p.x} ${p.y + 15}V${p.y - 32}`, stroke: '#e8edce', 'stroke-width': 3 }, flag);
-      const cloth = node('path', { fill: step.at.color, stroke: '#f8ffe3', 'stroke-width': 1.2 }, flag);
-      floating(run, p, step.at.owner ? '据点接管' : '据点易手', step.at.color, 550);
-      const waves = [ring(run, p, step.oldColor), ring(run, p, step.at.color)];
-      await animate(run, 620, (t, raw) => {
-        const top = p.y + 10 - ease(Math.min(1, t * 1.6)) * 42;
-        mast.setAttribute('d', `M${p.x} ${p.y + 15}V${top}`);
-        cloth.setAttribute('d', `M${p.x} ${top}q11 ${Math.sin(raw * 20) * 3 - 3} 27 1v16q-15-4-27 0z`);
-        waves.forEach((w, i) => { w.setAttribute('r', 12 + Math.max(0, t - i * .12) * 65); w.setAttribute('opacity', (1 - t) * .8); });
-        flag.setAttribute('opacity', 1 - Math.max(0, (t - .8) * 5));
-      }); flag.remove(); waves.forEach(w => w.remove());
-    } else if (step.kind === 'construct') {
-      const braces = node('path', { d: `M${p.x - 27} ${p.y + 15}v-40h54v40m-54-10h54m-42-30v40m30-40v40`, fill: 'none', stroke: '#e8c782', 'stroke-width': 3, 'stroke-dasharray': '5 4' }, run.layer);
-      await animate(run, 330, t => braces.setAttribute('opacity', Math.sin(t * Math.PI))); braces.remove();
-    } else await pulse(run, p, color, 260, step.kind === 'deploy' ? 42 : 30, step.kind === 'deploy' ? '部署' : step.kind === 'upgrade' ? '升级排程' : step.kind === 'produce' ? '生产排程' : '');
+  async function supportEffect(run,step){const entity=step.at||step.to||step.from,p=entity&&run.xy(entity);if(!p)return;const times=markers(run,step),color=colors[step.kind]||entity.color||'#59cbb4',source=step.from&&sprite(run,step.from,run.xy(step.from));
+    const glyph=step.kind==='deploy'?sprite(run,step.at,p):null;if(glyph)glyph.wrapper.setAttribute('opacity','0');
+    await animate(run,times.launch,t=>root.GameAnime?.pose(source?.glyph,step.kind==='capture'?'capture':'skill',t*.3,run.mode));
+    if(run.cancelled)return;const from=step.from&&run.xy(step.from),line=from&&step.to&&!run.reduced?node('path',{d:`M${from.x} ${from.y}L${p.x} ${p.y}`,fill:'none',stroke:color,'stroke-width':2,'stroke-dasharray':step.kind==='jam'?'3 5':'6 4'},run.layer):null;
+    await animate(run,times.impact-times.launch,t=>{root.GameAnime?.pose(source?.glyph,step.kind==='capture'?'capture':'skill',.3+t*.4,run.mode);});line?.remove();if(run.cancelled)return;
+    run.soundModel=step.from?.type||step.at?.type;soundAt(run,step.kind,p);
+    if(step.kind==='capture'&&run.heldCaptures.has(step.at.id)){run.heldCaptures.get(step.at.id).wrapper.remove();run.heldCaptures.delete(step.at.id);restoreSprite(run,step.at.id);}
+    if(glyph){glyph.wrapper.setAttribute('opacity','1');restoreSprite(run,step.at.id);}
+    const label=step.kind==='repair'?step.amount!==null?`+${step.amount} 修复`:'修复确认':{jam:'链路干扰',scan:'主动扫描',entrench:'构筑掩体',anchor:'锚定防线',capture:'据点接管',deploy:'机装就绪',produce:'整备排程',upgrade:'升级排程',construct:'设施施工'}[step.kind]||'';
+    if(label)floating(run,p,label,color,times.settle-times.impact);
+    const wave=!run.reduced?ring(run,p,color,30):null;
+    if(['repair','entrench','anchor','scan','jam'].includes(step.kind))node('text',{x:p.x,y:p.y-14,fill:color,class:'fx-label','text-anchor':'middle'},run.layer).textContent={repair:'＋',entrench:'▰',anchor:'⚓',scan:'◎',jam:'⌁'}[step.kind];
+    await animate(run,times.settle-times.impact,t=>{if(wave){wave.setAttribute('r',10+t*35);wave.setAttribute('opacity',1-t);}root.GameAnime?.pose(source?.glyph,step.kind==='capture'?'capture':'skill',.7+t*.3,run.mode);root.GameAnime?.pose(glyph?.glyph,'deploy',t,run.mode);});wave?.remove();source?.wrapper.remove();glyph?.wrapper.remove();
   }
 
   function cleanup(run) {
@@ -672,9 +633,9 @@
     if (currentRun) { const run = currentRun; run.cancelled = true; for (const stop of [...run.waiters]) stop(); cleanup(run); }
     for (const n of [...voices]) { try { n.stop(); } catch (_) {} voiceCleanups.get(n)?.(); }
     voices.clear(); voiceCleanups.clear();
-    if (!keepAmbience) { scene = { ...scene, active: false }; stopAmbience(); }
+    if (!keepAmbience) { root.GameAudio?.stop();scene = { ...scene, active: false }; stopAmbience(); }
   }
-  async function play({ before, after, command, board, viewerId, xy, fast = false, spriteScale = .46, unitOffset = { x: -23, y: -24 }, buildingScale = .65, buildingOffset = { x: 0, y: -6 }, onComplete } = {}) {
+  async function play({ before, after, command, board, viewerId, xy, fast = false, mode='standard', spriteScale = .46, unitOffset = { x: -23, y: -24 }, buildingScale = .65, buildingOffset = { x: 0, y: -6 }, onComplete } = {}) {
     cancel({ keepAmbience: true });
     let outcome = { played: false, cancelled: false, steps: 0 };
     try {
@@ -683,16 +644,17 @@
       outcome.steps = sequence.steps.length;
       if (!sequence.observed) return outcome;
       if (!enabled || !board || !root.document || !root.requestAnimationFrame) {
+        playbackMode=mode==='reduced'||root.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'reduced':fast||mode==='fast'?'fast':'standard';
         // Sound remains an independent preference when visual effects are disabled.
-        for (const step of sequence.steps) sound(step.kind === 'shot' ? step.projectile : step.kind === 'move' ? step.segments[0][0].family : step.kind);
+        for (const step of sequence.steps) sound(step.kind === 'shot' ? step.lethal?(step.to?.isUnit?'retire.'+step.to.domain:'destruction'):'unknown' : step.kind === 'move' ? step.segments[0][0].family : step.kind);
         return outcome;
       }
-      const reduced = !!root.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      const reduced = mode==='reduced'||!!root.matchMedia?.('(prefers-reduced-motion: reduce)').matches;mode=reduced?'reduced':fast||mode==='fast'?'fast':'standard';
       const run = { board, layer: node('g', { class: 'game-fx-layer', 'data-fx-layer': ++serial, 'aria-hidden': 'true', 'pointer-events': 'none' }, board),
         xy: xy || (p => ({ x: Math.sqrt(3) * 44 * (p.q + p.r / 2), y: 66 * p.r })),
-        hidden: [], waiters: new Set(), heldCaptures: new Map(), cancelled: false, speed: reduced ? .14 : fast ? .36 : 1, reduced, scale: spriteScale, offset: unitOffset,
+        beforeEntities:before.entities, hidden: [], waiters: new Set(), heldCaptures: new Map(), cancelled: false, speed: 1, mode, reduced, scale: spriteScale, offset: unitOffset,
         buildingScale, buildingOffset };
-      currentRun = run; outcome.played = true;
+      const labelLayer=board.querySelector?.('#board-label-layer');if(labelLayer?.parentNode?.insertBefore)labelLayer.parentNode.insertBefore(run.layer,labelLayer);currentRun = run; outcome.played = true;
       try {
         for (const step of sequence.steps) {
           if (step.kind === 'deploy') hideSprite(run, step.at.id);
@@ -716,7 +678,7 @@
   }
 
   const api = { capture, plan, play, cancel, setPaused, unlock, setEnabled, setSoundEnabled, setAmbienceEnabled, setScene, setVolume, settings,
-    motionFamily, projectileFamily, skillKinds, soundDesign, ambienceProfile };
+    motionFamily, projectileFamily, skillKinds, soundDesign, ambienceProfile, refreshAudioGroups, feedback, sampleStatus };
   root.GameFX = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

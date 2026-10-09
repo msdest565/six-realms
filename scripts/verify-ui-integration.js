@@ -39,13 +39,13 @@ class MiniDocument{
  addEventListener(name,fn){const list=this.listeners.get(name)||[];list.push(fn);this.listeners.set(name,list);}
  dispatch(name,properties){const event={target:this.body,repeat:false,ctrlKey:false,altKey:false,metaKey:false,preventDefault(){this.defaultPrevented=true;},...properties};for(const fn of this.listeners.get(name)||[])fn(event);return event;}
 }
-function harness(){
- const document=new MiniDocument(),stored=new Map(),intervals=[],timers=new Map(),animationFrames=new Map(),pending=[],fxCalls=[],saved=[],executed=[],campaignCalls=[],freeCalls=[],errors=[],sceneCalls=[],ambienceCalls=[];let now=0,nextTimer=1,paused=false,environment,battle;
+function harness(initialStored={}){
+ const document=new MiniDocument(),stored=new Map(Object.entries(initialStored)),intervals=[],timers=new Map(),animationFrames=new Map(),pending=[],fxCalls=[],saved=[],executed=[],campaignCalls=[],freeCalls=[],errors=[],sceneCalls=[],ambienceCalls=[];let now=0,nextTimer=1,paused=false,environment,battle;
  const windowListeners=new Map();
  const sandbox={document,TextEncoder,TextDecoder,Uint32Array,console:{log(){},warn(){},error(...args){errors.push(args.map(String).join(' '));}},innerWidth:1300,innerHeight:800,performance:{now:()=>now},location:{hash:''},navigator:{clipboard:{writeText:async()=>{}}},crypto:{getRandomValues(array){array.fill(0);return array;}},localStorage:{getItem:key=>stored.get(key)||null,setItem:(key,value)=>stored.set(key,String(value)),removeItem:key=>stored.delete(key)},setInterval:(fn,ms)=>{const id=nextTimer++;intervals.push({id,fn,ms});return id;},clearInterval:id=>{const index=intervals.findIndex(t=>t.id===id);if(index>=0)intervals.splice(index,1);},setTimeout:(fn,ms)=>{const id=nextTimer++;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id),requestAnimationFrame:fn=>{const id=nextTimer++;animationFrames.set(id,fn);return id;},cancelAnimationFrame:id=>animationFrames.delete(id),addEventListener:(name,fn)=>{const list=windowListeners.get(name)||[];list.push(fn);windowListeners.set(name,list);},Blob,URL};sandbox.window=sandbox;
- sandbox.GameFX={capture(s,command,viewerId){return {command:copy(command),viewerId,revision:s.revision};},play(options){fxCalls.push(options);return new Promise(resolve=>pending.push({resolve,options}));},cancel(){while(pending.length)pending.shift().resolve();},setPaused(value){paused=!!value;},setSoundEnabled(){},setVolume(){},setAmbienceEnabled(v){ambienceCalls.push(v);},setScene(v){sceneCalls.push(copy(v));},unlock(){}};
+ sandbox.GameFX={capture(s,command,viewerId){return {command:copy(command),viewerId,revision:s.revision};},play(options){fxCalls.push(options);return new Promise(resolve=>pending.push({resolve,options}));},cancel(){while(pending.length)pending.shift().resolve();},setPaused(value){paused=!!value;},setSoundEnabled(v){sandbox.fixtureSound=v;sandbox.GameAudio?.setMaster(v,sandbox.fixtureVolume??.45);},setVolume(v){sandbox.fixtureVolume=v;sandbox.GameAudio?.setMaster(sandbox.fixtureSound!==false,v);},setAmbienceEnabled(v){ambienceCalls.push(v);},setScene(v){sceneCalls.push(copy(v));},unlock(){}};
  const context=vm.createContext(sandbox);
- for(const name of ['data','art','content','grid','maps','random','game','campaign','ai','storage','controls','battle-ui'])vm.runInContext(fs.readFileSync(path.join(project,'src',name+'.js'),'utf8'),context,{filename:name+'.js'});
+ for(const name of ['data','anime','art','audio','gestures','content','grid','maps','random','game','campaign','ai','storage','controls','battle-ui'])vm.runInContext(fs.readFileSync(path.join(project,'src',name+'.js'),'utf8'),context,{filename:name+'.js'});
  const createBattle=context.GameBattleUI.create;context.GameBattleUI.create=env=>{environment=env;battle=createBattle(env);return battle;};
  const createCampaign=context.Campaign.create;context.Campaign.create=(id,progress,settings)=>{campaignCalls.push({id,settings:copy(settings||{})});return createCampaign(id,progress,settings);};
  const createFree=context.Game.create;context.Game.create=(map,settings)=>{freeCalls.push({map:map.id,settings:copy(settings||{})});return createFree(map,settings);};
@@ -110,7 +110,7 @@ function lastSave(h){assert.ok(h.saved.length);return h.saved.at(-1).entry.snaps
  await test('Setting a deployment tile persists it, and clearing an occupied tile deploys exactly the FIFO head in the same save',async()=>{
   const h=harness();await freeGame(h);const G=h.context.Game,s=h.ui.game,b=G.ownBuildings(s).find(b=>b.type==='barracks'),c=[b,...h.context.Hex.neighbors(b)].map(p=>G.cell(s,p)).find(c=>c&&!G.occupied(s,c)&&Number.isFinite(h.context.Hex.cost('infantry',c)));assert.ok(c);
   await h.action('drawer-building');h.battle.pickCell(b.q,b.r);await h.click('[data-action="set-deployment"]');assert.equal(h.ui.intent,'setDeployment');h.battle.pickCell(c.q,c.r);await h.flush();assert.equal(h.executed.at(-1).command.kind,'setDeployment');assert.deepEqual(copy(lastSave(h).buildings.find(x=>x.id===b.id).deployment),{q:c.q,r:c.r});await h.finish();assert.equal(h.ui.drawer,'building');
-  const blocker=G.normalizeUnit({id:'integration-blocker',type:'infantry',owner:s.actor,q:c.q,r:c.r},s);s.units.push(blocker);b.stock.push({id:'fifo-one',type:'infantry',sourceId:b.id},{id:'fifo-two',type:'infantry',sourceId:b.id});G.vision(s);h.env.render();assert.ok(h.document.app.innerHTML.includes('等待队列 2 / 3'));assert.ok(!h.document.app.innerHTML.includes('data-stock="fifo-one"'));
+  const blocker=G.normalizeUnit({id:'integration-blocker',type:'infantry',owner:s.actor,q:c.q,r:c.r},s);s.units.push(blocker);b.stock.push({id:'fifo-one',type:'infantry',sourceId:b.id},{id:'fifo-two',type:'infantry',sourceId:b.id});G.vision(s);h.env.render();assert.ok(h.document.app.innerHTML.includes('仓库 2/3'));assert.ok(!h.document.app.innerHTML.includes('data-stock="fifo-one"'));
   const route=[...G.movement(s,blocker).values()].find(p=>p.path.length===1);assert.ok(route);h.battle.focusUnit(blocker.id);h.battle.pickCell(route.q,route.r);await h.flush();assert.equal(h.executed.at(-1).command.kind,'move');assert.equal(b.stock.length,1);assert.equal(b.stock[0].id,'fifo-two');const spawned=G.occupied(s,c);assert.ok(spawned&&spawned.id!==blocker.id);const saved=lastSave(h);assert.ok(saved.units.some(u=>u.id===spawned.id));assert.equal(saved.buildings.find(x=>x.id===b.id).stock[0].id,'fifo-two');await h.finish();assert.equal(h.errors.length,0);
  });
  await test('Production completion automatically creates a field unit at its saved deployment tile without a manual deploy button',async()=>{
@@ -130,6 +130,53 @@ function lastSave(h){assert.ok(h.saved.length);return h.saved.at(-1).entry.snaps
  });
  await test('Fixture storage is isolated in VM memory and real source files remain unchanged',async()=>{
   const before=fs.readFileSync(path.join(project,'src','ui.js'),'utf8'),h=harness();await freeGame(h,'hell');assert.ok(h.stored.has('six-realms-v0.7'));assert.equal(fs.readFileSync(path.join(project,'src','ui.js'),'utf8'),before);assert.equal(h.context.localStorage.getItem('unrelated-user-key'),null);assert.equal(h.errors.length,0);
+ });
+
+ await test('Touch movement previews before execution, cancel changes no state and confirm saves exactly once',async()=>{
+  const h=harness();await freeGame(h);const s=h.ui.game,u=h.context.Game.ownUnits(s).find(u=>oneStep(h,u)),route=oneStep(h,u);h.battle.focusUnit(u.id);h.ui.isTouch=true;h.ui.camera.width=460;
+  const revision=s.revision,saves=h.saved.length,executed=h.executed.length;h.battle.touchCell(route.q,route.r);
+  assert.ok(h.ui.pendingTouch);assert.equal(h.ui.pendingTouch.command.kind,'move');assert.equal(s.revision,revision);assert.equal(h.executed.length,executed);assert.ok(h.document.app.innerHTML.includes('确认'));
+  await h.action('touch-cancel');assert.equal(h.ui.pendingTouch,null);assert.equal(h.saved.length,saves);
+  h.battle.touchCell(route.q,route.r);await h.action('touch-confirm');await h.flush();assert.equal(h.executed.length,executed+1);assert.equal(s.revision,revision+1);assert.equal(h.ui.pendingTouch,null);await h.finish();assert.equal(lastSave(h).revision,s.revision);assert.equal(h.errors.length,0);
+ });
+ await test('Stale touch previews and paused confirmations cannot execute an outdated order',async()=>{
+  const h=harness();await freeGame(h);const s=h.ui.game,u=h.context.Game.ownUnits(s).find(u=>oneStep(h,u)),route=oneStep(h,u);h.battle.focusUnit(u.id);h.ui.camera.width=460;h.battle.touchCell(route.q,route.r);const executed=h.executed.length;
+  s.revision++;h.battle.confirmTouch();assert.equal(h.executed.length,executed);assert.equal(h.ui.pendingTouch,null);
+  h.battle.touchCell(route.q,route.r);assert.ok(h.ui.pendingTouch);h.ui.paused=true;h.battle.confirmTouch();assert.equal(h.executed.length,executed);h.ui.paused=false;h.battle.clearTouch();
+ });
+ await test('A far-zoom touch recentres and enlarges the target without placing an order',async()=>{
+  const h=harness();await freeGame(h);const s=h.ui.game,u=h.context.Game.ownUnits(s).find(u=>oneStep(h,u)),route=oneStep(h,u);h.battle.focusUnit(u.id);h.ui.camera.width=6000;const revision=s.revision;h.battle.touchCell(route.q,route.r);assert.ok(h.ui.camera.width<6000);assert.equal(h.ui.pendingTouch,null);assert.equal(s.revision,revision);
+ });
+ await test('Lobby exposes all audio groups and retains a migrated total mute',async()=>{
+  const h=harness();await h.action('audio-settings');assert.ok(h.document.getElementById('battle-sound'));assert.equal(h.document.querySelectorAll('[data-audio-group]').length,6);const sound=h.document.getElementById('battle-sound');sound.checked=false;h.document.dispatch('change',{target:sound});await h.flush();assert.equal(h.ui.sound,false);assert.equal(JSON.parse(h.stored.get('six-realms-ui-v08')).sound,false);assert.equal(h.context.GameAudio.settings().muted,true);await h.action('close');assert.equal(h.ui.dialog,null);
+ });
+
+
+ await test('FX-only legacy mute and zero volume migrate before a new music or voice context can start',async()=>{
+  for(const legacy of [{soundEnabled:false,volume:.7},{soundEnabled:true,volume:0}]){const h=harness({'six-realms-fx-v0.8':JSON.stringify(legacy),'six-realms-audio-v1':JSON.stringify({voiceEnabled:true,music:true})});assert.equal(h.ui.sound,legacy.soundEnabled);assert.equal(h.ui.volume,legacy.volume);assert.equal(h.context.GameAudio.settings().muted,!legacy.soundEnabled);assert.equal(h.context.GameAudio.settings().sources,0);}
+ });
+
+
+ await test('Touch long-press cannot use the desktop right-click path; returning to a mouse restores direct orders',async()=>{
+  const h=harness();await freeGame(h);const s=h.ui.game,u=h.context.Game.ownUnits(s).find(u=>oneStep(h,u)),route=oneStep(h,u);h.battle.focusUnit(u.id);h.ui.isTouch=true;
+  let board=h.document.getElementById('board'),target=new Element(h.document,'g',{'data-cell':route.q+','+route.r});assert.ok(h.document.app.innerHTML.includes('data-cell="'+route.q+','+route.r+'"'));const before=h.executed.length;
+  board.listeners.get('contextmenu')[0]({target,pointerType:'touch',preventDefault(){}});assert.equal(h.executed.length,before);assert.equal(h.ui.pendingTouch,null);
+  board.listeners.get('contextmenu')[0]({target,pointerType:'mouse',preventDefault(){}});await h.flush();assert.equal(h.ui.isTouch,false);assert.equal(h.executed.length,before+1);assert.equal(h.executed.at(-1).command.kind,'move');await h.finish();
+ });
+
+ await test('Facility management renders one avatar warehouse row and explanations as tooltips',async()=>{
+  const h=harness();await freeGame(h);const s=h.ui.game,b=h.context.Game.ownBuildings(s).find(b=>b.type==='factory');b.stock=[{id:'queue-a',type:'lighttank',sourceId:b.id},{id:'queue-b',type:'engineer',sourceId:b.id}];
+  h.ui.tile=h.context.Game.cell(s,b);h.ui.drawer='building';h.env.render();const html=h.document.app.innerHTML;
+  assert.ok(html.includes('facility-warehouse'));assert.ok(html.includes('仓库 2/3'));assert.ok(html.includes('assets/units/avatars/lighttank.png'));assert.ok(html.includes('assets/units/avatars/engineer.png'));assert.ok(!html.includes('production-queue'));assert.ok(!html.includes('自动部署与仓库'));assert.ok(html.includes('data-tooltip='));assert.equal(h.document.querySelectorAll('[data-action="set-deployment"]').length,1);assert.ok(h.document.getElementById('production-type'));
+ });
+ await test('Paid rebuild control reaches the engine and saves both currencies and half HP',async()=>{
+  const h=harness();await freeGame(h);const s=h.ui.game,b=h.context.Game.ownBuildings(s).find(b=>b.type==='factory');b.hp=0;const old=copy(h.context.Game.player(s).resources),cost=h.context.Game.repairCost(b);
+  h.ui.tile=h.context.Game.cell(s,b);h.ui.drawer='building';h.env.render();const button=h.document.app.nodes.find(n=>n.dataset.cmd&&JSON.parse(n.dataset.cmd).kind==='repairBuilding');assert.ok(button);assert.equal(button.disabled,false);h.document.dispatch('click',{target:button});await h.flush();await h.finish();
+  assert.equal(b.hp,b.maxHp/2);assert.deepEqual(copy(h.context.Game.player(s).resources),{money:old.money-cost.money,energy:old.energy-cost.energy});assert.equal(lastSave(h).buildings.find(x=>x.id===b.id).hp,b.maxHp/2);assert.equal(h.errors.length,0);
+ });
+ await test('Income facility management omits structural HP, repair and protection controls',async()=>{
+  const h=harness();await freeGame(h);const b=h.context.Game.ownBuildings(h.ui.game).find(b=>b.type==='city'),html=h.env.buildingPanel(b);
+  assert.ok(html.includes('收入据点'));assert.ok(!html.includes('facility-health'));assert.ok(!html.includes('repairBuilding'));assert.ok(!html.includes('facility-warehouse'));assert.equal(b.hp,null);
  });
  const report={date:new Date().toISOString(),scope:'Real ui.js and battle-ui.js controller with an isolated VM DOM fixture; no browser or native UI accessed.',passed:results.filter(r=>r.ok).length,total:results.length,results};
  fs.mkdirSync(path.join(project,'reports'),{recursive:true});fs.writeFileSync(path.join(project,'reports','ui-integration-tests-v0.9.json'),JSON.stringify(report,null,2));console.log(`UI integration: ${report.passed}/${report.total} groups passed`);if(report.passed!==report.total)process.exitCode=1;clearTimeout(watchdog);

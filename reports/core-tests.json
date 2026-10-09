@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-09T03:27:19.904Z",
+  "date": "2026-10-09T12:10:42.999Z",
   "passed": 65,
   "total": 65,
   "results": [
@@ -50,7 +50,7 @@
     },
     {
       "id": "ATK-09",
-      "name": "Building and garrison targets are distinct",
+      "name": "Building and garrison receive one protected attack",
       "ok": true
     },
     {
@@ -95,7 +95,7 @@
     },
     {
       "id": "CAP-01",
-      "name": "All 38 types can capture from legal adjacent tile",
+      "name": "All 38 types capture only their own building tile",
       "ok": true
     },
     {
@@ -105,7 +105,7 @@
     },
     {
       "id": "CAP-04",
-      "name": "Move then capture legal, attack then capture fails",
+      "name": "Move onto building auto-captures, attack then capture fails",
       "ok": true
     },
     {
@@ -140,7 +140,7 @@
     },
     {
       "id": "SKL-04 / SKL-05",
-      "name": "Repair own HQ ruins and air, not enemies or foundation",
+      "name": "HQ ruins need paid rebuilding; air repair remains available",
       "ok": true
     },
     {

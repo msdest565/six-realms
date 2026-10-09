@@ -1,0 +1,157 @@
+{
+  "date": "2026-10-09",
+  "scope": "Design documents and isolated JavaScript execution; no game runtime changes",
+  "dataCoverage": {
+    "source": "src/data.js",
+    "sourceUnitCount": 38,
+    "activeSkills": {
+      "entrench": "构筑掩体",
+      "pierce": "穿甲弹",
+      "anchor": "锚定防线",
+      "scan": "主动扫描",
+      "shock": "震荡弹",
+      "sniper": "定点狙击",
+      "repair": "应急修复",
+      "jam": "链路干扰"
+    },
+    "activeSkillCount": 8,
+    "motion": {
+      "uniqueUnits": 38,
+      "missing": [],
+      "duplicates": []
+    },
+    "audio": {
+      "uniqueUnits": 38,
+      "missing": [],
+      "duplicates": []
+    },
+    "terrainCount": 8,
+    "buildingCount": 9
+  },
+  "timelines": {
+    "classes": 11,
+    "modes": 3,
+    "markers": 3,
+    "valuesChecked": 99,
+    "conflicts": 0
+  },
+  "links": {
+    "checked": 27,
+    "missing": 0
+  },
+  "preview": {
+    "fragmentBytes": 13658,
+    "syntax": true,
+    "elementQueries": true,
+    "scenarios": [
+      {
+        "event": "attack",
+        "mode": "standard",
+        "totalMs": 1240,
+        "pass": true
+      },
+      {
+        "event": "attack",
+        "mode": "fast",
+        "totalMs": 440,
+        "pass": true
+      },
+      {
+        "event": "attack",
+        "mode": "reduced",
+        "totalMs": 240,
+        "pass": true
+      },
+      {
+        "event": "capture",
+        "mode": "standard",
+        "totalMs": 1240,
+        "pass": true
+      },
+      {
+        "event": "capture",
+        "mode": "fast",
+        "totalMs": 500,
+        "pass": true
+      },
+      {
+        "event": "capture",
+        "mode": "reduced",
+        "totalMs": 280,
+        "pass": true
+      },
+      {
+        "event": "repair",
+        "mode": "standard",
+        "totalMs": 720,
+        "pass": true
+      },
+      {
+        "event": "repair",
+        "mode": "fast",
+        "totalMs": 250,
+        "pass": true
+      },
+      {
+        "event": "repair",
+        "mode": "reduced",
+        "totalMs": 160,
+        "pass": true
+      },
+      {
+        "event": "scan",
+        "mode": "standard",
+        "totalMs": 640,
+        "pass": true
+      },
+      {
+        "event": "scan",
+        "mode": "fast",
+        "totalMs": 220,
+        "pass": true
+      },
+      {
+        "event": "scan",
+        "mode": "reduced",
+        "totalMs": 120,
+        "pass": true
+      },
+      {
+        "event": "jam",
+        "mode": "standard",
+        "totalMs": 640,
+        "pass": true
+      },
+      {
+        "event": "jam",
+        "mode": "fast",
+        "totalMs": 220,
+        "pass": true
+      },
+      {
+        "event": "jam",
+        "mode": "reduced",
+        "totalMs": 120,
+        "pass": true
+      }
+    ],
+    "checks": [
+      "no automatic sound",
+      "capture before deployment",
+      "counterattack sequence in schematic",
+      "user-triggered synthetic node lifecycle",
+      "stop cancels animation/audio",
+      "background cancels animation",
+      "saved choices restore without autosaving",
+      "system reduced motion overrides",
+      "audio unavailable retains visual completion"
+    ],
+    "syntheticAudioNodesCreated": 3,
+    "maxConcurrentSyntheticNodes": 2
+  },
+  "limits": [
+    "Isolated DOM and Web Audio stubs verify control flow, not browser layout, device gestures, audio decoding or listening quality.",
+    "In-app browser local preview timed out; local HTTP access was restricted by socket permissions. No visual browser QA or real phone QA is claimed.",
+    "No formal chibi animation, SFX recording, BGM recording, voice recording or game integration was created."
+  ]
+}

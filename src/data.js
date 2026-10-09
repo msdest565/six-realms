@@ -3,16 +3,16 @@
   // Model level describes the series; tier is the facility requirement. Specials have no model level.
   const factions = {
   "union": {
-    "name": "远征联合",
-    "short": "联合军",
-    "accent": "#68d9bc",
+    "name": "晨潮协作联队",
+    "short": "晨潮联队",
+    "accent": "#59cbb4",
     "body": "#a6b5b1",
     "dark": "#435753",
     "symbol": "○"
   },
   "red": {
-    "name": "赤岩防卫",
-    "short": "防卫军",
+    "name": "静海统筹军",
+    "short": "静海军",
     "accent": "#ef8a78",
     "body": "#b2988c",
     "dark": "#604b45",

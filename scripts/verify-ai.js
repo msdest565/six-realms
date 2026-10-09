@@ -3,7 +3,7 @@ const D=require('../src/data'),H=require('../src/grid'),M=require('../src/maps')
 const results=[],battles=[];
 function test(name,fn){try{fn();results.push({name,ok:true});}catch(e){results.push({name,ok:false,error:e.stack});console.error(name,e.stack);}}
 function unit(type,owner,q,r,id=type+owner){return G.normalizeUnit({id,type,owner,q,r});}
-function building(type,owner,q,r,id=type+owner){const d=D.buildingById[type];return {id,type,owner,q,r,level:1,hp:d.hp,maxHp:d.hp,state:'complete',stock:[],order:null};}
+function building(type,owner,q,r,id=type+owner){const d=D.buildingById[type];return G.normalizeBuilding({id,type,owner,q,r,level:1,hp:d.hp,maxHp:d.hp,state:'complete',stock:[],order:null});}
 function fixture(units=[],buildings=[],difficulty='standard',fog=false){
  const s=G.create(M.fixed('S',2),{difficulty,fog});s.cells=[];
  for(let q=-8;q<=8;q++)for(let r=-8;r<=8;r++)s.cells.push({q,r,terrain:'plain'});
@@ -58,7 +58,7 @@ test('Hell scales only AI initial resources and income, retaining caps',()=>{
  const s=G.create(M.fixed('S',2),{difficulty:'hell',deferStart:true});assert.deepEqual(G.player(s,'P1').resources,{money:600,energy:60});assert.deepEqual(G.player(s,'P2').resources,{money:900,energy:90});assert.deepEqual(G.income(s,'P2'),{money:180,energy:21});G.begin(s);execute(s,{kind:'end'});assert.deepEqual(G.player(s).resources,{money:1080,energy:111});G.player(s).resources={money:2999,energy:299};s.turnStarted=false;G.begin(s);assert.deepEqual(G.player(s).resources,{money:3000,energy:300});
 });
 test('Neutral and AI-owned buildings keep baseline HP and construction prices',()=>{
- const h=building('hq','P2',0,0),neutral=building('city',null,2,0),s=fixture([],[h,neutral],'hell');const before=G.player(s).resources.money;execute(s,{kind:'construct',type:'market',q:1,r:0});assert.equal(before-G.player(s).resources.money,D.buildingById.market.cost);assert.equal(s.buildings[2].maxHp,D.buildingById.market.hp/2);assert.equal(neutral.hp,D.buildingById.city.hp);
+ const h=building('hq','P2',0,0),neutral=building('city',null,2,0),s=fixture([],[h,neutral],'hell');const before=G.player(s).resources.money;execute(s,{kind:'construct',type:'market',q:1,r:0});assert.equal(before-G.player(s).resources.money,D.buildingById.market.cost);assert.equal(s.buildings[2].maxHp,null);assert.equal(neutral.hp,null);
 });
 test('Save restoration and repeated exports do not multiply HP or resources again',()=>{
  const s=G.create(M.fixed('S',2),{difficulty:'hell'});const ai=G.ownUnits(s,'P2')[0];ai.hp-=11;const original=JSON.stringify({units:s.units,resources:s.players.map(p=>p.resources)});let restored=s;

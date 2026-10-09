@@ -32,7 +32,11 @@
   }
   function attacks(s,u,targets,kind='attack'){
     const choices=[],reasons=[];
-    for(const target of targets){
+    const seen=new Set();
+    for(let target of targets){
+      const offensive=kind==='attack'||['穿甲弹','震荡弹','定点狙击'].includes(D.byId[u.type].skill);
+      if(offensive)target=G.combatTarget(s,u,target);
+      if(seen.has(target.id))continue;seen.add(target.id);
       const reason=kind==='skill'?G.skillReason(s,u,target):G.attackReason(s,u,target);
       if(reason){reasons.push(reason);continue;}
       const label=kind==='skill'?`${D.byId[u.type].skill} · ${D.byId[target.type]?'单位':'建筑'} ${entityName(target)}`:`攻击${D.byId[target.type]?'单位':'建筑'} · ${entityName(target)}`;
@@ -104,6 +108,8 @@
     if(visibleUnit&&!G.allied(observed,u.owner,visibleUnit.owner))return attacks(observed,u,targets);
     if(visibleBuilding&&!G.allied(observed,u.owner,visibleBuilding.owner)){
       if(!G.captureReason(observed,u,visibleBuilding))return command({kind:'capture',unitId:u.id,buildingId:visibleBuilding.id});
+      const movement=move(observed,u,c);if(movement.kind==='command')return movement;
+      return attacks(observed,u,targets);
     }
     return move(observed,u,c);
   }

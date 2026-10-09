@@ -1,0 +1,135 @@
+{
+  "scope": "Isolated command-resolution checks; no browser input",
+  "passed": 32,
+  "total": 32,
+  "results": [
+    {
+      "name": "Left click always selects a visible current-player unit in normal, move and attack modes",
+      "ok": true
+    },
+    {
+      "name": "No selected unit inspects instead of issuing a command",
+      "ok": true
+    },
+    {
+      "name": "A selected unit moves on one left click or right click",
+      "ok": true
+    },
+    {
+      "name": "Right click never changes selection to another own unit",
+      "ok": true
+    },
+    {
+      "name": "A visible enemy is attacked directly without confirmation",
+      "ok": true
+    },
+    {
+      "name": "Building and garrison use one direct attack",
+      "ok": true
+    },
+    {
+      "name": "Attack choices omit air targets when the attacker lacks AA",
+      "ok": true
+    },
+    {
+      "name": "A neutral building receives movement from an adjacent cell",
+      "ok": true
+    },
+    {
+      "name": "A distant neutral building first receives a direct movement command",
+      "ok": true
+    },
+    {
+      "name": "Explicit capture never falls back to movement or attack",
+      "ok": true
+    },
+    {
+      "name": "Capture mode works on the selected unit standing on a sea platform",
+      "ok": true
+    },
+    {
+      "name": "Automatic deployment setting accepts occupied compatible tiles without selecting their unit",
+      "ok": true
+    },
+    {
+      "name": "Deployment setting validates facility, range and queued unit terrain",
+      "ok": true
+    },
+    {
+      "name": "Allied buildings cannot be captured and allied units cannot be attacked",
+      "ok": true
+    },
+    {
+      "name": "Movement respects remaining AP, energy, anchor and terrain",
+      "ok": true
+    },
+    {
+      "name": "Artillery cannot attack after moving and indirect attacks still need visibility",
+      "ok": true
+    },
+    {
+      "name": "Sniper requires an unmoved attacker and honors cooldown",
+      "ok": true
+    },
+    {
+      "name": "Shock can target a unit but not a co-located building",
+      "ok": true
+    },
+    {
+      "name": "Repair mode repairs a friendly unit instead of selecting it",
+      "ok": true
+    },
+    {
+      "name": "Repair offers two damaged friendly targets on a shared tile",
+      "ok": true
+    },
+    {
+      "name": "Repair rejects self, full HP, foundations and already-repaired targets",
+      "ok": true
+    },
+    {
+      "name": "Jam targets visible enemies including aircraft, but not buildings or protected units",
+      "ok": true
+    },
+    {
+      "name": "Self buffs and scan issue target-free commands",
+      "ok": true
+    },
+    {
+      "name": "Passive skills do not become active commands",
+      "ok": true
+    },
+    {
+      "name": "Deployment commits directly and rejects incompatible terrain",
+      "ok": true
+    },
+    {
+      "name": "Construction commits directly and retains placement and money checks",
+      "ok": true
+    },
+    {
+      "name": "Hidden blockers do not affect direct movement or target errors",
+      "ok": true
+    },
+    {
+      "name": "Hidden aircraft do not reveal themselves via capture, deploy or construction cursors",
+      "ok": true
+    },
+    {
+      "name": "Last observed hidden buildings are inspectable, never blind attack or capture targets",
+      "ok": true
+    },
+    {
+      "name": "Hidden changes to known building ownership/HP do not alter command resolution",
+      "ok": true
+    },
+    {
+      "name": "Observation mode never commands another actor and story lock blocks orders",
+      "ok": true
+    },
+    {
+      "name": "Malformed cells, IDs and modes return errors without throwing",
+      "ok": true
+    }
+  ]
+}

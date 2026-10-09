@@ -3,7 +3,7 @@ const D=require('../src/data'),H=require('../src/grid'),M=require('../src/maps')
 const results=[];
 function test(name,fn){try{fn();results.push({name,ok:true});}catch(e){results.push({name,ok:false});console.error(name,e.stack);}}
 function unit(type,owner,q,r,id=type+owner){return G.normalizeUnit({id,type,owner,q,r});}
-function building(type,owner,q,r,id=type+owner){const d=D.buildingById[type];return {id,type,owner,q,r,level:1,hp:d.hp,maxHp:d.hp,state:'complete',stock:[],order:null};}
+function building(type,owner,q,r,id=type+owner){const d=D.buildingById[type];return G.normalizeBuilding({id,type,owner,q,r,level:1,hp:d.hp,maxHp:d.hp,state:'complete',stock:[],order:null});}
 function fixture(units=[],buildings=[],fog=false){
   const s=G.create(M.fixed('S',2),{fog});s.cells=[];
   for(let q=-8;q<=8;q++)for(let r=-8;r<=8;r++)s.cells.push({q,r,terrain:'plain'});
@@ -30,23 +30,23 @@ test('A visible enemy is attacked directly without confirmation',()=>{
   const a=unit('tank','P1',0,0),t=unit('infantry','P2',1,0),s=fixture([a,t]);
   assert.deepEqual(at(s,a,1,0),{kind:'command',command:{kind:'attack',unitId:a.id,targetId:t.id}});
 });
-test('Building and garrison offer two legal attack targets',()=>{
+test('Building and garrison use one direct attack',()=>{
   const a=unit('tank','P1',0,0),t=unit('infantry','P2',1,0),b=building('city','P2',1,0),s=fixture([a,t],[b]);
-  const r=kind(s,a,1,0,{},'choices');assert.deepEqual(r.choices.map(x=>x.command.targetId),[t.id,b.id]);assert.ok(r.choices.every(x=>x.label.includes('攻击')));
+  const r=kind(s,a,1,0,{},'command');assert.equal(r.command.targetId,t.id);
 });
 test('Attack choices omit air targets when the attacker lacks AA',()=>{
   const a=unit('tank','P1',0,0),t=unit('fighter','P2',1,0),b=building('city','P2',1,0),s=fixture([a,t],[b]);
-  assert.equal(kind(s,a,1,0,{intent:'attack'},'command').command.targetId,b.id);
+  assert.match(kind(s,a,1,0,{intent:'attack'},'error').message,/对空/);
 });
-test('A neutral building is captured directly from an adjacent cell',()=>{
+test('A neutral building receives movement from an adjacent cell',()=>{
   const a=unit('infantry','P1',0,0),b=building('city',null,1,0),s=fixture([a],[b]);
-  assert.deepEqual(at(s,a,1,0),{kind:'command',command:{kind:'capture',unitId:a.id,buildingId:b.id}});
+  assert.deepEqual(at(s,a,1,0),{kind:'command',command:{kind:'move',unitId:a.id,q:1,r:0}});
 });
 test('A distant neutral building first receives a direct movement command',()=>{
   const a=unit('infantry','P1',0,0),b=building('city',null,2,0),s=fixture([a],[b]);assert.equal(kind(s,a,2,0,{},'command').command.kind,'move');
 });
 test('Explicit capture never falls back to movement or attack',()=>{
-  const a=unit('infantry','P1',0,0),b=building('city',null,2,0),s=fixture([a],[b]);assert.match(kind(s,a,2,0,{intent:'capture'},'error').message,/邻格/);
+  const a=unit('infantry','P1',0,0),b=building('city',null,2,0),s=fixture([a],[b]);assert.match(kind(s,a,2,0,{intent:'capture'},'error').message,/本格/);
 });
 test('Capture mode works on the selected unit standing on a sea platform',()=>{
   const a=unit('aafrigate','P1',0,0),b=building('energyplatform',null,0,0),s=fixture([a],[b]);G.cell(s,a).terrain='ocean';G.vision(s);
@@ -80,7 +80,7 @@ test('Repair mode repairs a friendly unit instead of selecting it',()=>{
   const a=unit('engineer','P1',0,0),t=unit('tank','P1',1,0),s=fixture([a,t]);t.hp-=40;assert.deepEqual(at(s,a,1,0,{intent:'skill'}),{kind:'command',command:{kind:'skill',unitId:a.id,targetId:t.id}});
 });
 test('Repair offers two damaged friendly targets on a shared tile',()=>{
-  const a=unit('engineer','P1',0,0),t=unit('tank','P1',1,0),b=building('city','P1',1,0),s=fixture([a,t],[b]);t.hp-=40;b.hp-=40;assert.equal(kind(s,a,1,0,{intent:'skill'},'choices').choices.length,2);
+  const a=unit('engineer','P1',0,0),t=unit('tank','P1',1,0),b=building('factory','P1',1,0),s=fixture([a,t],[b]);t.hp-=40;b.hp=50;assert.equal(kind(s,a,1,0,{intent:'skill'},'choices').choices.length,2);
 });
 test('Repair rejects self, full HP, foundations and already-repaired targets',()=>{
   const a=unit('engineer','P1',0,0),t=unit('tank','P1',1,0),b=building('city','P1',0,1),s=fixture([a,t],[b]);kind(s,a,0,0,{intent:'skill'},'error');kind(s,a,1,0,{intent:'skill'},'error');b.hp-=40;b.state='foundation';kind(s,a,0,1,{intent:'skill'},'error');b.state='complete';b.repairedOnOwnerTurn=1;kind(s,a,0,1,{intent:'skill'},'error');
@@ -107,7 +107,7 @@ test('Hidden blockers do not affect direct movement or target errors',()=>{
 test('Hidden aircraft do not reveal themselves via capture, deploy or construction cursors',()=>{
   for(const mode of ['capture','deploy','construct']){
     const a=unit('infantry','P1',0,0),hidden=unit('fighter','P2',1,0),hq=building('hq','P1',0,1),b=building(mode==='deploy'?'barracks':'city',mode==='capture'?null:'P1',1,0),s=fixture([a,hidden],[hq,...(mode==='construct'?[]:[b])],true);
-    s.vision.P1={ground:['0,0','0,1','1,0'],air:[]};b.stock=[{id:'stock',type:'infantry',sourceId:b.id}];const opts={intent:mode,facilityId:b.id,stockId:'stock',buildType:'market'};const withHidden=at(s,a,1,0,opts);s.units.pop();assert.deepEqual(at(s,a,1,0,opts),withHidden);assert.equal(withHidden.kind,'command');
+    s.vision.P1={ground:['0,0','0,1','1,0'],air:[]};b.stock=[{id:'stock',type:'infantry',sourceId:b.id}];const opts={intent:mode,facilityId:b.id,stockId:'stock',buildType:'market'};const withHidden=at(s,a,1,0,opts);s.units.pop();assert.deepEqual(at(s,a,1,0,opts),withHidden);assert.equal(withHidden.kind,mode==='capture'?'error':'command');
   }
 });
 test('Last observed hidden buildings are inspectable, never blind attack or capture targets',()=>{
@@ -122,4 +122,5 @@ test('Observation mode never commands another actor and story lock blocks orders
 test('Malformed cells, IDs and modes return errors without throwing',()=>{
   const a=unit('tank','P1',0,0),s=fixture([a]);assert.equal(resolve(s,{}).kind,'error');kind(s,a,99,99,{},'error');kind(s,a,1,0,{intent:'unexpected'},'error');kind(s,a,1,0,{viewerId:'unknown'},'error');kind(s,null,1,0,{intent:'deploy',facilityId:'missing',stockId:'missing'},'error');
 });
+require('node:fs').writeFileSync(require('node:path').join(__dirname,'../reports/controls-tests-v1.0.json'),JSON.stringify({scope:'Isolated command-resolution checks; no browser input',passed:results.filter(x=>x.ok).length,total:results.length,results},null,2));
 console.log(`Controls: ${results.filter(x=>x.ok).length}/${results.length} groups passed`);if(results.some(x=>!x.ok))process.exitCode=1;

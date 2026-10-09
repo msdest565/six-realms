@@ -1,0 +1,8 @@
+{
+  "scope": "Offline SVG rasterization; no browser, CSS layout, Web Audio, GPU or phone measurements",
+  "cells": 919,
+  "units": 38,
+  "owners": 6,
+  "includesUnitOnBuilding": true,
+  "renderMilliseconds": 3005.2327
+}

@@ -13,7 +13,7 @@
       "ok": true
     },
     {
-      "name": "Capture mode shows same cell plus six neighbors and the adjacent legal building",
+      "name": "Capture mode highlights only the building under the selected unit",
       "ok": true
     },
     {
@@ -21,7 +21,7 @@
       "ok": true
     },
     {
-      "name": "Observed hostile garrison marks its building blocked without hidden-state checks",
+      "name": "Adjacent guarded buildings are excluded from the capture highlight",
       "ok": true
     },
     {

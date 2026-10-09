@@ -1,0 +1,2414 @@
+{
+  "scope": "Filesystem PNG/WAV metadata and alpha checks, not measured browser/GPU/device memory",
+  "runtimeUnitPngs": 198,
+  "portraitCount": 38,
+  "chibiCount": 84,
+  "wavFileCount": 192,
+  "unitPngDiskBytes": 57168160,
+  "sfxDiskBytes": 1913568,
+  "allUnitImagesRGBAEstimateBytes": 165940736,
+  "note": "All-image estimate includes all portraits; lazy loading and URL sharing reduce actual live residency. No measured GPU figure. WAV decoder LRU 4 MiB + max four 12kHz 8s stereo environment buffers about 2.93 MiB.",
+  "failures": [],
+  "images": [
+    {
+      "uri": "assets/units/chibi/aafrigate.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 117481,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/aamissileship.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 118299,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/amphibious-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 94452,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/amphibious.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 121683,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/antiair.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 108585,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/antitank.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 122084,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/areaaship.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 106464,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/artillery.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 116387,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/assaultmarine-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 84156,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/assaultmarine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 105423,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/battleship.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 103193,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/bomber.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 105933,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/cruiser.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 116043,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/destroyer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 113495,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/engineer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 122878,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/fighter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 114614,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/heavy.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 120398,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/heavyartillery.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 125133,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/heavyfighter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 118871,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/heavyinfantry.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 120414,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/heavymarine-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 111600,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/heavymarine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 127954,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/helicopter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 115964,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/infantry.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 79458,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/jammer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 107725,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/lightartillery.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 112406,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/lightbomber.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 113436,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/lightfighter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 87357,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/lighttank.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 108663,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/longrangeaa.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 121246,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/longrangerecon.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 130169,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/marine-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 84561,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/marine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 146087,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/missileaa.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 132604,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/navaldestroyer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 115743,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/reconplane.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 93210,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/scout.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 111516,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/submarine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 112187,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/tacticalbomber.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 104931,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/tacticalrecon.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 131059,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/tank.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 119402,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/chibi/walker.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 105522,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/aafrigate.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 107545,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/aamissileship.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 100190,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/amphibious-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 77984,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/amphibious.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 102951,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/antiair.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 101989,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/antitank.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 79509,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/areaaship.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 110808,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/artillery.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 105176,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/assaultmarine-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 98571,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/assaultmarine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 98302,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/battleship.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 127806,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/bomber.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 85734,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/cruiser.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 96514,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/destroyer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 101786,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/engineer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 102675,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/fighter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 98506,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/heavy.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 112332,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/heavyartillery.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 102929,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/heavyfighter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 116196,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/heavyinfantry.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 122117,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/heavymarine-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 110257,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/heavymarine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 107158,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/helicopter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 83427,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/infantry.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 112589,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/jammer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 104284,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/lightartillery.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 96913,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/lightbomber.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 100383,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/lightfighter.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 98578,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/lighttank.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 99450,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/longrangeaa.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 106223,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/longrangerecon.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 104576,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/marine-land.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 95186,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/marine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 105896,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/missileaa.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 116308,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/navaldestroyer.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 79042,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/reconplane.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 66088,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/scout.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 104082,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/submarine.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 75829,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/tacticalbomber.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 92996,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/tacticalrecon.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 119168,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/tank.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 103710,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/rear/walker.png",
+      "size": [
+        320,
+        320
+      ],
+      "bytes": 106764,
+      "rgbaBytes": 409600,
+      "transparentCorners": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "uri": "assets/units/portraits/aafrigate.png",
+      "size": [
+        742,
+        1024
+      ],
+      "bytes": 1069494,
+      "rgbaBytes": 3039232,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/aamissileship.png",
+      "size": [
+        768,
+        1009
+      ],
+      "bytes": 1145893,
+      "rgbaBytes": 3099648,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/amphibious.png",
+      "size": [
+        768,
+        1024
+      ],
+      "bytes": 1161181,
+      "rgbaBytes": 3145728,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/antiair.png",
+      "size": [
+        768,
+        1019
+      ],
+      "bytes": 1139523,
+      "rgbaBytes": 3130368,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/antitank.png",
+      "size": [
+        676,
+        1024
+      ],
+      "bytes": 1022645,
+      "rgbaBytes": 2768896,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/areaaship.png",
+      "size": [
+        768,
+        1010
+      ],
+      "bytes": 1359614,
+      "rgbaBytes": 3102720,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/artillery.png",
+      "size": [
+        768,
+        999
+      ],
+      "bytes": 1181344,
+      "rgbaBytes": 3068928,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/assaultmarine.png",
+      "size": [
+        759,
+        1024
+      ],
+      "bytes": 1121250,
+      "rgbaBytes": 3108864,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/battleship.png",
+      "size": [
+        768,
+        941
+      ],
+      "bytes": 1364768,
+      "rgbaBytes": 2890752,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/bomber.png",
+      "size": [
+        768,
+        1016
+      ],
+      "bytes": 868697,
+      "rgbaBytes": 3121152,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/cruiser.png",
+      "size": [
+        767,
+        1024
+      ],
+      "bytes": 1251709,
+      "rgbaBytes": 3141632,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/destroyer.png",
+      "size": [
+        756,
+        1024
+      ],
+      "bytes": 1034268,
+      "rgbaBytes": 3096576,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/engineer.png",
+      "size": [
+        738,
+        1024
+      ],
+      "bytes": 1039158,
+      "rgbaBytes": 3022848,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/fighter.png",
+      "size": [
+        768,
+        1019
+      ],
+      "bytes": 1040008,
+      "rgbaBytes": 3130368,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/heavy.png",
+      "size": [
+        768,
+        988
+      ],
+      "bytes": 1146126,
+      "rgbaBytes": 3035136,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/heavyartillery.png",
+      "size": [
+        768,
+        950
+      ],
+      "bytes": 1137013,
+      "rgbaBytes": 2918400,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/heavyfighter.png",
+      "size": [
+        768,
+        999
+      ],
+      "bytes": 1124908,
+      "rgbaBytes": 3068928,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/heavyinfantry.png",
+      "size": [
+        745,
+        1024
+      ],
+      "bytes": 1203519,
+      "rgbaBytes": 3051520,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/heavymarine.png",
+      "size": [
+        768,
+        1005
+      ],
+      "bytes": 1332188,
+      "rgbaBytes": 3087360,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/helicopter.png",
+      "size": [
+        760,
+        1024
+      ],
+      "bytes": 918303,
+      "rgbaBytes": 3112960,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/infantry.png",
+      "size": [
+        489,
+        1024
+      ],
+      "bytes": 576921,
+      "rgbaBytes": 2002944,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/jammer.png",
+      "size": [
+        757,
+        1024
+      ],
+      "bytes": 1074777,
+      "rgbaBytes": 3100672,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/lightartillery.png",
+      "size": [
+        764,
+        1024
+      ],
+      "bytes": 1047090,
+      "rgbaBytes": 3129344,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/lightbomber.png",
+      "size": [
+        768,
+        1017
+      ],
+      "bytes": 962328,
+      "rgbaBytes": 3124224,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/lightfighter.png",
+      "size": [
+        752,
+        1024
+      ],
+      "bytes": 857120,
+      "rgbaBytes": 3080192,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/lighttank.png",
+      "size": [
+        757,
+        1024
+      ],
+      "bytes": 953882,
+      "rgbaBytes": 3100672,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/longrangeaa.png",
+      "size": [
+        768,
+        1017
+      ],
+      "bytes": 1308119,
+      "rgbaBytes": 3124224,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/longrangerecon.png",
+      "size": [
+        767,
+        1024
+      ],
+      "bytes": 1233396,
+      "rgbaBytes": 3141632,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/marine.png",
+      "size": [
+        762,
+        1024
+      ],
+      "bytes": 1159608,
+      "rgbaBytes": 3121152,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/missileaa.png",
+      "size": [
+        767,
+        1024
+      ],
+      "bytes": 1372295,
+      "rgbaBytes": 3141632,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/navaldestroyer.png",
+      "size": [
+        764,
+        1024
+      ],
+      "bytes": 937582,
+      "rgbaBytes": 3129344,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/reconplane.png",
+      "size": [
+        768,
+        1015
+      ],
+      "bytes": 920029,
+      "rgbaBytes": 3118080,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/scout.png",
+      "size": [
+        768,
+        1013
+      ],
+      "bytes": 1133784,
+      "rgbaBytes": 3111936,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/submarine.png",
+      "size": [
+        746,
+        1024
+      ],
+      "bytes": 1017584,
+      "rgbaBytes": 3055616,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/tacticalbomber.png",
+      "size": [
+        768,
+        1018
+      ],
+      "bytes": 1087735,
+      "rgbaBytes": 3127296,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/tacticalrecon.png",
+      "size": [
+        752,
+        1024
+      ],
+      "bytes": 986914,
+      "rgbaBytes": 3080192,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/tank.png",
+      "size": [
+        767,
+        1024
+      ],
+      "bytes": 1088663,
+      "rgbaBytes": 3141632,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/portraits/walker.png",
+      "size": [
+        683,
+        1024
+      ],
+      "bytes": 767839,
+      "rgbaBytes": 2797568,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/aafrigate.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 33231,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/aamissileship.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 36079,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/amphibious.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 36719,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/antiair.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 30047,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/antitank.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 36784,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/areaaship.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 33235,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/artillery.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 32485,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/assaultmarine.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 37657,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/battleship.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 40414,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/bomber.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 39556,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/cruiser.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 36251,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/destroyer.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 20714,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/engineer.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 33446,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/fighter.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 34230,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/heavy.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 32875,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/heavyartillery.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 33982,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/heavyfighter.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 36489,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/heavyinfantry.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 37973,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/heavymarine.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 39378,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/helicopter.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 39308,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/infantry.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 32249,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/jammer.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 35211,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/lightartillery.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 31954,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/lightbomber.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 40192,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/lightfighter.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 40121,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/lighttank.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 31124,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/longrangeaa.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 35083,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/longrangerecon.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 43431,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/marine.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 44607,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/missileaa.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 37098,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/navaldestroyer.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 39606,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/reconplane.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 40003,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/scout.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 35783,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/submarine.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 33280,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/tacticalbomber.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 36249,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/tacticalrecon.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 35943,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/tank.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 36874,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/avatars/walker.png",
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 37212,
+      "rgbaBytes": 65536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/aafrigate.png",
+      "size": [
+        256,
+        353
+      ],
+      "bytes": 156753,
+      "rgbaBytes": 361472,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/aamissileship.png",
+      "size": [
+        256,
+        336
+      ],
+      "bytes": 155060,
+      "rgbaBytes": 344064,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/amphibious.png",
+      "size": [
+        256,
+        341
+      ],
+      "bytes": 155164,
+      "rgbaBytes": 349184,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/antiair.png",
+      "size": [
+        256,
+        340
+      ],
+      "bytes": 153302,
+      "rgbaBytes": 348160,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/antitank.png",
+      "size": [
+        254,
+        384
+      ],
+      "bytes": 173814,
+      "rgbaBytes": 390144,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/areaaship.png",
+      "size": [
+        256,
+        337
+      ],
+      "bytes": 157459,
+      "rgbaBytes": 345088,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/artillery.png",
+      "size": [
+        256,
+        333
+      ],
+      "bytes": 161848,
+      "rgbaBytes": 340992,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/assaultmarine.png",
+      "size": [
+        256,
+        345
+      ],
+      "bytes": 154992,
+      "rgbaBytes": 353280,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/battleship.png",
+      "size": [
+        256,
+        314
+      ],
+      "bytes": 178185,
+      "rgbaBytes": 321536,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/bomber.png",
+      "size": [
+        256,
+        339
+      ],
+      "bytes": 118953,
+      "rgbaBytes": 347136,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/cruiser.png",
+      "size": [
+        256,
+        342
+      ],
+      "bytes": 168592,
+      "rgbaBytes": 350208,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/destroyer.png",
+      "size": [
+        256,
+        347
+      ],
+      "bytes": 144743,
+      "rgbaBytes": 355328,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/engineer.png",
+      "size": [
+        256,
+        355
+      ],
+      "bytes": 155685,
+      "rgbaBytes": 363520,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/fighter.png",
+      "size": [
+        256,
+        340
+      ],
+      "bytes": 142279,
+      "rgbaBytes": 348160,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/heavy.png",
+      "size": [
+        256,
+        329
+      ],
+      "bytes": 157298,
+      "rgbaBytes": 336896,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/heavyartillery.png",
+      "size": [
+        256,
+        317
+      ],
+      "bytes": 151855,
+      "rgbaBytes": 324608,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/heavyfighter.png",
+      "size": [
+        256,
+        333
+      ],
+      "bytes": 151815,
+      "rgbaBytes": 340992,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/heavyinfantry.png",
+      "size": [
+        256,
+        352
+      ],
+      "bytes": 170052,
+      "rgbaBytes": 360448,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/heavymarine.png",
+      "size": [
+        256,
+        335
+      ],
+      "bytes": 174974,
+      "rgbaBytes": 343040,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/helicopter.png",
+      "size": [
+        256,
+        345
+      ],
+      "bytes": 129045,
+      "rgbaBytes": 353280,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/infantry.png",
+      "size": [
+        183,
+        384
+      ],
+      "bytes": 95453,
+      "rgbaBytes": 281088,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/jammer.png",
+      "size": [
+        256,
+        346
+      ],
+      "bytes": 148744,
+      "rgbaBytes": 354304,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/lightartillery.png",
+      "size": [
+        256,
+        343
+      ],
+      "bytes": 144001,
+      "rgbaBytes": 351232,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/lightbomber.png",
+      "size": [
+        256,
+        339
+      ],
+      "bytes": 128787,
+      "rgbaBytes": 347136,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/lightfighter.png",
+      "size": [
+        256,
+        349
+      ],
+      "bytes": 119406,
+      "rgbaBytes": 357376,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/lighttank.png",
+      "size": [
+        256,
+        346
+      ],
+      "bytes": 135855,
+      "rgbaBytes": 354304,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/longrangeaa.png",
+      "size": [
+        256,
+        339
+      ],
+      "bytes": 173158,
+      "rgbaBytes": 347136,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/longrangerecon.png",
+      "size": [
+        256,
+        342
+      ],
+      "bytes": 163227,
+      "rgbaBytes": 350208,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/marine.png",
+      "size": [
+        256,
+        344
+      ],
+      "bytes": 159023,
+      "rgbaBytes": 352256,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/missileaa.png",
+      "size": [
+        256,
+        342
+      ],
+      "bytes": 181109,
+      "rgbaBytes": 350208,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/navaldestroyer.png",
+      "size": [
+        256,
+        343
+      ],
+      "bytes": 130934,
+      "rgbaBytes": 351232,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/reconplane.png",
+      "size": [
+        256,
+        338
+      ],
+      "bytes": 125539,
+      "rgbaBytes": 346112,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/scout.png",
+      "size": [
+        256,
+        338
+      ],
+      "bytes": 154167,
+      "rgbaBytes": 346112,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/submarine.png",
+      "size": [
+        256,
+        351
+      ],
+      "bytes": 143263,
+      "rgbaBytes": 359424,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/tacticalbomber.png",
+      "size": [
+        256,
+        339
+      ],
+      "bytes": 147879,
+      "rgbaBytes": 347136,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/tacticalrecon.png",
+      "size": [
+        256,
+        349
+      ],
+      "bytes": 143806,
+      "rgbaBytes": 357376,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/tank.png",
+      "size": [
+        256,
+        342
+      ],
+      "bytes": 151971,
+      "rgbaBytes": 350208,
+      "transparentCorners": null
+    },
+    {
+      "uri": "assets/units/thumbnails/walker.png",
+      "size": [
+        256,
+        384
+      ],
+      "bytes": 128509,
+      "rgbaBytes": 393216,
+      "transparentCorners": null
+    }
+  ]
+}

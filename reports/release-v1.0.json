@@ -1,0 +1,93 @@
+{
+  "staticResources": {
+    "scope": "Filesystem and case-sensitive static path validation, no browser/network",
+    "resources": 414,
+    "missing": [],
+    "wrongCase": []
+  },
+  "version": "1.0.0",
+  "date": "2026-10-09T11:05:52.636Z",
+  "scope": "Automated Node/VM and offline vector/image checks; no browser/device/hearing measurements",
+  "suites": [
+    {
+      "name": "核心规则",
+      "file": "core-tests.json",
+      "passed": 65,
+      "total": 65
+    },
+    {
+      "name": "自动部署与 FIFO",
+      "file": "deployment-tests-v0.9.json",
+      "passed": 36,
+      "total": 36
+    },
+    {
+      "name": "键鼠控制",
+      "file": "controls-tests-v1.0.json",
+      "passed": 32,
+      "total": 32
+    },
+    {
+      "name": "界面契约",
+      "file": "ui-tests-v0.8.json",
+      "passed": 20,
+      "total": 20
+    },
+    {
+      "name": "真实控制器集成（VM）",
+      "file": "ui-integration-tests-v0.9.json",
+      "passed": 27,
+      "total": 27
+    },
+    {
+      "name": "可见棋盘与文字",
+      "file": "board-tests-v0.9.json",
+      "passed": 17,
+      "total": 17
+    },
+    {
+      "name": "动作与音频节点",
+      "file": "fx-tests-v0.9.json",
+      "passed": 25,
+      "total": 25
+    },
+    {
+      "name": "原有矢量环境资产",
+      "file": "art-tests.json",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "name": "二次元资源、时轴、手势、音频、剧情",
+      "file": "anime-runtime-tests-v1.0.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "name": "四档 AI",
+      "file": "ai-tests-v0.8.json",
+      "passed": 31,
+      "total": 31
+    }
+  ],
+  "maps": {
+    "total": 540,
+    "random": 497,
+    "fallback": 43,
+    "reproduced": 27
+  },
+  "battleCases": 23,
+  "assets": {
+    "runtimeUnitPngs": 198,
+    "portraits": 38,
+    "chibi": 84,
+    "wavFiles": 192,
+    "alphaFailures": []
+  },
+  "pending": [
+    "desktop browser layout and audible playback",
+    "360/390/430px physical phone and short landscape",
+    "physical GPU memory/frame-time and mono listening",
+    "player recognition rate and loudness/LUFS review"
+  ]
+}

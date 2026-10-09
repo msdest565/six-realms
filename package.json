@@ -1,11 +1,12 @@
 {
-  "name": "six-realms-border-conflict",
-  "version": "0.9.0",
+  "name": "six-realms-mistsea-echoes",
+  "version": "1.1.0",
   "private": true,
-  "description": "Offline browser hex turn-based strategy game",
+  "description": "Offline browser hex strategy — Six Realms: Mistsea Echoes",
   "scripts": {
     "start": "node scripts/serve.js",
     "test": "node scripts/verify.js",
+    "test:facilities": "node scripts/verify-facilities.js",
     "test:core": "node scripts/verify-core.js",
     "test:maps": "node scripts/verify-maps.js",
     "test:battles": "node scripts/verify-battles.js",
@@ -19,6 +20,8 @@
     "test:ai": "node scripts/verify-ai.js",
     "assets": "node scripts/export-assets.js && node scripts/export-portraits.js",
     "content": "node scripts/build-content.js",
-    "export:data": "node scripts/export-runtime.js"
+    "export:data": "node scripts/export-runtime.js",
+    "test:anime": "node scripts/verify-anime-runtime.cjs",
+    "assets:anime": "node scripts/export-anime-manifests.cjs"
   }
 }
