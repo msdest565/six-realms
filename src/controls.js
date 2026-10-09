@@ -26,6 +26,8 @@
     const reason=G.canAct(s,u);
     if(reason)return error(reason);
     if(u.status.anchor)return error('锚定中不能移动');
+    const occupant=G.occupied(s,c);
+    if(occupant&&occupant.id!==u.id&&G.allied(s,u.owner,occupant.owner))return error('可穿过友军格，但不能在有友军的格子停留');
     const route=G.movement(s,u).get(H.key(c.q,c.r));
     if(!route?.path.length)return error(same(u,c)?'单位已经位于此格':'此格无法在剩余移动预算与能源内到达');
     return command({kind:'move',unitId:u.id,q:c.q,r:c.r});
@@ -108,6 +110,9 @@
     if(visibleUnit&&!G.allied(observed,u.owner,visibleUnit.owner))return attacks(observed,u,targets);
     if(visibleBuilding&&!G.allied(observed,u.owner,visibleBuilding.owner)){
       if(!G.captureReason(observed,u,visibleBuilding))return command({kind:'capture',unitId:u.id,buildingId:visibleBuilding.id});
+      if(visibleBuilding.owner&&G.hasBuildingHealth(visibleBuilding)&&visibleBuilding.hp>0){
+        const attack=attacks(observed,u,targets);if(attack.kind==='command')return attack;
+      }
       const movement=move(observed,u,c);if(movement.kind==='command')return movement;
       return attacks(observed,u,targets);
     }

@@ -1,0 +1,72 @@
+{
+  "version": "1.1.1",
+  "scope": "Building damage, controller commands, actual movement and observed effects; no browser measurement",
+  "passed": 16,
+  "total": 16,
+  "results": [
+    {
+      "name": "All structural facilities take a visible direct hit and emit the actual damage effect",
+      "ok": true
+    },
+    {
+      "name": "Default click attacks an in-range hostile facility; explicit movement remains available",
+      "ok": true
+    },
+    {
+      "name": "Neutral, ruined and income buildings retain move-and-capture as their default action",
+      "ok": true
+    },
+    {
+      "name": "A protected garrison and its facility both lose HP and the effect includes structural damage",
+      "ok": true
+    },
+    {
+      "name": "A lethal direct hit reaches zero and disables production without removing ownership",
+      "ok": true
+    },
+    {
+      "name": "All 38 models traverse compatible friendly cells without moving the occupant",
+      "ok": true
+    },
+    {
+      "name": "Allied players also permit transit through their unit cells",
+      "ok": true
+    },
+    {
+      "name": "An occupied friendly destination is rejected atomically and explained by the controller",
+      "ok": true
+    },
+    {
+      "name": "Visible enemies still block a narrow corridor",
+      "ok": true
+    },
+    {
+      "name": "An unseen enemy after a friendly column stops movement on the last free cell",
+      "ok": true
+    },
+    {
+      "name": "A blocked friendly-only prefix leaves position, AP and fuel unchanged",
+      "ok": true
+    },
+    {
+      "name": "Crossing a friendly rubble cell pays its movement and fuel costs",
+      "ok": true
+    },
+    {
+      "name": "Road transit retains the shared per-turn budget across two moves",
+      "ok": true
+    },
+    {
+      "name": "Friendly occupants do not make incompatible terrain traversable",
+      "ok": true
+    },
+    {
+      "name": "Passing an occupied building does not capture it or release its blocked warehouse",
+      "ok": true
+    },
+    {
+      "name": "Movement effects follow friendly transit cells and still finish on a free destination",
+      "ok": true
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-09T12:10:42.999Z",
+  "date": "2026-10-09T16:07:20.653Z",
   "passed": 65,
   "total": 65,
   "results": [
@@ -60,7 +60,7 @@
     },
     {
       "id": "OCC-01 / OCC-02",
-      "name": "One unit per cell and blocked air path",
+      "name": "Friendly cells allow transit but not an occupied destination",
       "ok": true
     },
     {

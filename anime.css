@@ -33,6 +33,8 @@ body[data-motion-mode="reduced"] [data-idle="true"] .chibi-body{animation:none}
 .facility-panel{padding:14px!important}
 .facility-heading{display:flex;align-items:center;gap:12px;margin-bottom:10px}.facility-heading svg{width:58px;height:58px;flex-shrink:0}.facility-heading h3{margin:0 0 4px}.facility-heading small{font-size:12px}
 .facility-metrics{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px}.facility-metrics>span{cursor:help}.facility-health{height:6px;margin:10px 0}
+.map-label .building-health-track{fill:#b8cbc9;fill-opacity:1}.map-label .building-health-fill{fill:#217e75;fill-opacity:1}.map-label .health-damaged .building-health-fill{fill:#b87819}.map-label .health-critical .building-health-fill{fill:#c24842}
+.board[data-label-density="overview"] .building-name-label.map-label-damaged,.board .building-name-label.map-label-damaged{display:block}
 .facility-actions{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.facility-actions button{font-size:12px;padding:6px 9px;min-height:34px}
 .facility-order{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border:1px solid #b5ccc4;background:#e3eee7;border-radius:8px;font-size:12px}
 .facility-model-select{font-size:12px!important;display:grid;gap:5px;margin-top:12px}.facility-model-select select{font-size:13px;width:100%}

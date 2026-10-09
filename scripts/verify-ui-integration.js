@@ -93,6 +93,15 @@ function lastSave(h){assert.ok(h.saved.length);return h.saved.at(-1).entry.snaps
   const decision=h.context.GameAI.decision,project=h.context.GameAI.forViewer;h.context.GameAI.decision=(...args)=>{decisions++;raw=decision(...args);return raw;};h.context.GameAI.forViewer=(...args)=>{const result=project(...args);if(args[2]!==s.actor){projections++;publicResult=result;}return result;};
   const before=h.executed.length;await h.tick();assert.equal(decisions,1);assert.equal(projections,1);assert.equal(raw.command.kind,'move');assert.equal(publicResult.command,null);assert.equal(h.executed.length,before+1);assert.equal(h.executed.at(-1).command.kind,'move');assert.deepEqual(h.executed.at(-1).command,copy(raw.command));assert.equal(s.actor,'P2');assert.equal(h.ui.aiDecision.phase,'dispatch');assert.deepEqual(copy(h.ui.aiDecision.scores),[]);assert.equal(h.ui.aiDecision.threat,null);assert.equal(h.ui.tile,humanTile);assert.equal(h.ui.selected,null);assert.ok(!h.battle.board().includes('stroke="#fff2b6"'));assert.ok(!h.battle.board().includes('reachable-hex'));await h.finish();assert.equal(h.errors.length,0);
  });
+ await test('A default facility attack refreshes its map HP bar and saves the actual structural loss',async()=>{
+  const h=harness();await freeGame(h);const G=h.context.Game,H=h.context.Hex,s=h.ui.game,b=G.ownBuildings(s,'P2').find(b=>b.type==='factory');
+  const c=s.cells.find(c=>H.distance(c,b)===1&&Number.isFinite(H.cost('tank',c)));assert.ok(c);
+  const a=G.normalizeUnit({id:'ATTACKER',type:'tank',owner:'P1',q:c.q,r:c.r});s.units=[a];G.vision(s);h.battle.focusUnit(a.id);
+  const old=b.hp,expected=G.attackPreview(s,a,b).targetHp;h.battle.pickCell(b.q,b.r);await h.flush();
+  assert.equal(h.executed.at(-1).command.kind,'attack');assert.equal(b.hp,expected);assert(b.hp<old);assert.equal(a.q,c.q);assert.equal(b.owner,'P2');
+  assert(h.document.app.innerHTML.includes(`HP ${b.hp}/${b.maxHp}`));assert(h.document.app.innerHTML.includes(`data-building-health="${b.id}"`));assert.equal(lastSave(h).buildings.find(row=>row.id===b.id).hp,b.hp);
+  await h.finish();assert.equal(h.ui.busy,false);assert(h.document.app.innerHTML.includes(`data-hp="${b.hp}"`));assert.equal(h.errors.length,0);
+ });
  await test('Space pauses and resumes a busy effect without replacing the board or saving a partial transaction',async()=>{
   const h=harness();await freeGame(h);const s=h.ui.game,u=h.context.Game.ownUnits(s).find(u=>oneStep(h,u)),route=oneStep(h,u);h.battle.focusUnit(u.id);h.battle.pickCell(route.q,route.r);await h.flush();assert.equal(h.ui.busy,true);const board=h.document.getElementById('board'),writes=h.document.app.writes,saves=h.saved.length,revision=s.revision;
   const event=await h.key('Space');assert.equal(event.defaultPrevented,true);assert.equal(h.ui.paused,true);assert.equal(h.paused,true);assert.equal(h.document.getElementById('board'),board);assert.equal(h.document.app.writes,writes);assert.equal(h.saved.length,saves);const active=s.activeMillis;await h.tick();assert.equal(s.activeMillis,active);assert.equal(s.revision,revision);

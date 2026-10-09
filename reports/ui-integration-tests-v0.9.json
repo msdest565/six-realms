@@ -1,8 +1,8 @@
 {
-  "date": "2026-10-09T12:10:49.753Z",
+  "date": "2026-10-09T16:07:27.612Z",
   "scope": "Real ui.js and battle-ui.js controller with an isolated VM DOM fixture; no browser or native UI accessed.",
-  "passed": 30,
-  "total": 30,
+  "passed": 31,
+  "total": 31,
   "results": [
     {
       "name": "easy: chapter field forwards difficulty to Campaign.create and retry",
@@ -46,6 +46,10 @@
     },
     {
       "name": "Hidden AI movement executes the raw decision once while UI receives only its public projection",
+      "ok": true
+    },
+    {
+      "name": "A default facility attack refreshes its map HP bar and saves the actual structural loss",
       "ok": true
     },
     {

@@ -82,4 +82,32 @@ test('Ocean ambience has a bounded layer and motion respects pause and reduced-m
  const f=fixture();f.s.cells.forEach(c=>c.terrain='ocean');const html=f.b.board(),layer=html.match(/class="ocean-atmosphere-layer"[^>]*>([\s\S]*?)<\/g>/)[1];assert((layer.match(/<path /g)||[]).length<=18);
  const css=fs.readFileSync('battle.css','utf8');assert(css.includes('.is-paused .ocean-atmosphere-layer'));assert(css.includes('@media (prefers-reduced-motion:reduce)'));f.ui.drawer='menu';assert(f.b.battle().includes('id="battle-ambience"'));
 });
+test('Direct building damage updates numeric HP and reduces the visible structural bar',()=>{
+ const a=unit('tank','P1',0,0),fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([a],[fac]);
+ const fill=html=>Number(html.match(/class="building-health-fill"[^>]*width="([\d.]+)"/)[1]);
+ const before=f.b.board();assert(before.includes('HP 200/200'));assert(before.includes('data-building-health="B"'));
+ assert.equal(G.execute(f.s,Controls.resolve(f.s,{unitId:a.id,cell:fac}).command).ok,true);
+ const after=f.b.board();assert(after.includes('HP 150/200'));assert(after.includes('data-hp="150"'));assert(after.includes('map-label-damaged'));assert(fill(after)<fill(before));
+});
+test('Protected garrison and building display separate health changes on one tile',()=>{
+ const a=unit('tank','P1',0,0),t=unit('infantry','P2',1,0,'TARGET'),fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([a,t],[fac]);
+ assert.equal(G.execute(f.s,{kind:'attack',unitId:a.id,targetId:fac.id}).ok,true);f.ui.tile=G.cell(f.s,fac);
+ const html=f.b.board();assert(html.includes('HP 185/200'));assert(html.includes('HP 35/80'));assert(html.includes('data-building-health="B"'));assert(html.includes('data-unit-sprite="TARGET"'));
+});
+test('Destroyed structures keep a zero-width bar and a clear damaged label',()=>{
+ const a=unit('tank','P1',0,0),fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([a],[fac]);fac.hp=10;
+ assert.equal(G.execute(f.s,{kind:'attack',unitId:a.id,targetId:fac.id}).ok,true);
+ const html=f.b.board();assert(html.includes('HP 0/200'));assert(html.includes('已损毁'));assert(/class="building-health-fill"[^>]*width="0"/.test(html));
+});
+test('Income buildings omit structural bars and explain their capture-only role',()=>{
+ const f=fixture([], [G.normalizeBuilding(building('city','P2',1,0))]);assert(!f.b.board().includes('data-building-health='));f.hover(1,0);assert(f.labels.innerHTML.includes('收入据点 · 无结构生命值'));
+});
+test('Hidden structure damage never updates its last-observed health label',()=>{
+ const fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([unit('infantry','P1',0,0)],[fac]);
+ f.s.settings.fog=true;f.s.vision.P1={ground:['0,0'],air:[]};f.ui.tile=G.cell(f.s,fac);
+ const before=f.b.board();fac.hp=25;assert.equal(f.b.board(),before);assert(before.includes('HP 200/200'));assert(before.includes('最后观测'));
+});
+test('Damaged structure labels remain visible and bars override the pale label background',()=>{
+ const css=fs.readFileSync('anime.css','utf8');assert(css.includes('.board .building-name-label.map-label-damaged{display:block}'));assert(css.includes('.map-label .building-health-fill{fill:#217e75'));assert(css.includes('.map-label .health-critical .building-health-fill'));
+});
 const report={version:'0.9',kind:'Node VM and markup observation contracts; not a browser layout measurement',passed:checks.filter(c=>c.ok).length,total:checks.length,checks};fs.mkdirSync('reports',{recursive:true});fs.writeFileSync('reports/board-tests-v0.9.json',JSON.stringify(report,null,2));console.log(`Board v0.9: ${report.passed}/${report.total}`);if(report.passed!==report.total)process.exitCode=1;

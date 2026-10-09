@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-09T12:13:25.891Z",
+  "date": "2026-10-09T16:07:56.712Z",
   "passed": 31,
   "total": 31,
   "results": [
@@ -132,65 +132,65 @@
     {
       "difficulty": "easy",
       "mode": "free",
-      "actions": 269,
-      "rounds": 11,
-      "milliseconds": 1240,
-      "winner": "P1"
+      "actions": 319,
+      "rounds": 13,
+      "milliseconds": 1451,
+      "winner": "P2"
     },
     {
       "difficulty": "easy",
       "mode": "campaign",
-      "actions": 191,
-      "rounds": 24,
-      "milliseconds": 238,
+      "actions": 160,
+      "rounds": 19,
+      "milliseconds": 186,
       "winner": "union"
     },
     {
       "difficulty": "standard",
       "mode": "free",
-      "actions": 356,
-      "rounds": 14,
-      "milliseconds": 1591,
-      "winner": "P1"
-    },
-    {
-      "difficulty": "standard",
-      "mode": "campaign",
-      "actions": 145,
+      "actions": 450,
       "rounds": 17,
-      "milliseconds": 142,
-      "winner": "union"
+      "milliseconds": 1895,
+      "winner": "P2"
     },
     {
-      "difficulty": "hard",
-      "mode": "free",
-      "actions": 578,
-      "rounds": 20,
-      "milliseconds": 17006,
-      "winner": "P1"
-    },
-    {
-      "difficulty": "hard",
+      "difficulty": "standard",
       "mode": "campaign",
-      "actions": 152,
-      "rounds": 18,
-      "milliseconds": 446,
-      "winner": "union"
-    },
-    {
-      "difficulty": "hell",
-      "mode": "free",
-      "actions": 410,
+      "actions": 122,
       "rounds": 13,
-      "milliseconds": 15240,
+      "milliseconds": 119,
+      "winner": "union"
+    },
+    {
+      "difficulty": "hard",
+      "mode": "free",
+      "actions": 569,
+      "rounds": 19,
+      "milliseconds": 10441,
+      "winner": "P1"
+    },
+    {
+      "difficulty": "hard",
+      "mode": "campaign",
+      "actions": 124,
+      "rounds": 13,
+      "milliseconds": 411,
+      "winner": "union"
+    },
+    {
+      "difficulty": "hell",
+      "mode": "free",
+      "actions": 411,
+      "rounds": 12,
+      "milliseconds": 9968,
       "winner": "P1"
     },
     {
       "difficulty": "hell",
       "mode": "campaign",
-      "actions": 128,
-      "rounds": 14,
-      "milliseconds": 480,
+      "actions": 153,
+      "rounds": 17,
+      "milliseconds": 547,
       "winner": "union"
     }
   ]

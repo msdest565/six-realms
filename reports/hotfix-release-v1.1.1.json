@@ -1,0 +1,88 @@
+{
+  "version": "1.1.1",
+  "date": "2026-10-09T16:19:58.327Z",
+  "userDate": "2026-10-10",
+  "scope": "Rule engine, isolated DOM controllers, observed effects, AI games, maps and resource paths; no real browser layout or human audio/balance measurement",
+  "fullVerification": "node scripts/verify.js exited 0",
+  "passed": 338,
+  "total": 338,
+  "suites": [
+    {
+      "file": "core-tests.json",
+      "passed": 65,
+      "total": 65
+    },
+    {
+      "file": "facility-tests-v1.1.json",
+      "passed": 34,
+      "total": 34
+    },
+    {
+      "file": "combat-movement-tests-v1.1.1.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "deployment-tests-v0.9.json",
+      "passed": 36,
+      "total": 36
+    },
+    {
+      "file": "controls-tests-v1.0.json",
+      "passed": 32,
+      "total": 32
+    },
+    {
+      "file": "ui-tests-v0.8.json",
+      "passed": 20,
+      "total": 20
+    },
+    {
+      "file": "ui-integration-tests-v0.9.json",
+      "passed": 31,
+      "total": 31
+    },
+    {
+      "file": "board-tests-v0.9.json",
+      "passed": 23,
+      "total": 23
+    },
+    {
+      "file": "fx-tests-v0.9.json",
+      "passed": 25,
+      "total": 25
+    },
+    {
+      "file": "art-tests.json",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "file": "anime-runtime-tests-v1.0.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "ai-tests-v0.8.json",
+      "passed": 31,
+      "total": 31
+    }
+  ],
+  "maps": {
+    "total": 540,
+    "generated": 497,
+    "fallback": 43,
+    "reproduced": 27
+  },
+  "battles": {
+    "completed": 22,
+    "multiplayerSmoke": 1,
+    "difficultyGames": 8
+  },
+  "staticResources": {
+    "scope": "Filesystem and case-sensitive static path validation, no browser/network",
+    "resources": 415,
+    "missing": [],
+    "wrongCase": []
+  }
+}

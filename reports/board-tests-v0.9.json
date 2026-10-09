@@ -1,8 +1,8 @@
 {
   "version": "0.9",
   "kind": "Node VM and markup observation contracts; not a browser layout measurement",
-  "passed": 17,
-  "total": 17,
+  "passed": 23,
+  "total": 23,
   "checks": [
     {
       "name": "All map names appear after map cells and routes in an unclipped pointer-free label layer",
@@ -70,6 +70,30 @@
     },
     {
       "name": "Ocean ambience has a bounded layer and motion respects pause and reduced-motion",
+      "ok": true
+    },
+    {
+      "name": "Direct building damage updates numeric HP and reduces the visible structural bar",
+      "ok": true
+    },
+    {
+      "name": "Protected garrison and building display separate health changes on one tile",
+      "ok": true
+    },
+    {
+      "name": "Destroyed structures keep a zero-width bar and a clear damaged label",
+      "ok": true
+    },
+    {
+      "name": "Income buildings omit structural bars and explain their capture-only role",
+      "ok": true
+    },
+    {
+      "name": "Hidden structure damage never updates its last-observed health label",
+      "ok": true
+    },
+    {
+      "name": "Damaged structure labels remain visible and bars override the pale label background",
       "ok": true
     }
   ]

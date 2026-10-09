@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-09T12:12:48.721Z",
+  "date": "2026-10-09T16:07:30.907Z",
   "scope": "Node and isolated DOM/Web Audio substitutes; no browser, phone, GPU timing or human listening",
   "passed": 16,
   "total": 16,
