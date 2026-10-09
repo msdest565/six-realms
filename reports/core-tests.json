@@ -1,0 +1,332 @@
+{
+  "date": "2026-10-08T19:01:15.493Z",
+  "passed": 65,
+  "total": 65,
+  "results": [
+    {
+      "id": "DATA-01",
+      "name": "38 units, ten tier trees, eight specials and eleven AA permissions",
+      "ok": true
+    },
+    {
+      "id": "TRN-03 / FC09",
+      "name": "First income once and save preserves it",
+      "ok": true
+    },
+    {
+      "id": "ATK-01",
+      "name": "Infantry 40 attack, 20 counter, own counter preserved",
+      "ok": true
+    },
+    {
+      "id": "ATK-02",
+      "name": "Bomber dies to 150 percent AA counter",
+      "ok": true
+    },
+    {
+      "id": "ATK-03",
+      "name": "AA active attack retains its counter, fighter retaliates ten",
+      "ok": true
+    },
+    {
+      "id": "ATK-04",
+      "name": "Six AA standard retaliation values",
+      "ok": true
+    },
+    {
+      "id": "ATK-05 / ATK-06",
+      "name": "AA also retaliates against land and only once",
+      "ok": true
+    },
+    {
+      "id": "ATK-07",
+      "name": "Indirect and lethal attacks cannot trigger AA",
+      "ok": true
+    },
+    {
+      "id": "ATK-08",
+      "name": "Infantry cannot retaliate to air, ordinary ships use half",
+      "ok": true
+    },
+    {
+      "id": "ATK-09",
+      "name": "Building and garrison targets are distinct",
+      "ok": true
+    },
+    {
+      "id": "ATK-10 / FOG-03",
+      "name": "Direct LOS blocked; indirect still requires visibility",
+      "ok": true
+    },
+    {
+      "id": "OCC-01 / OCC-02",
+      "name": "One unit per cell and blocked air path",
+      "ok": true
+    },
+    {
+      "id": "OCC-03 / OCC-04",
+      "name": "Building co-location legal and death releases a tile",
+      "ok": true
+    },
+    {
+      "id": "MOV-01",
+      "name": "Two moves share whole-turn budget",
+      "ok": true
+    },
+    {
+      "id": "MOV-02",
+      "name": "Road bonus and permanent loss when leaving road",
+      "ok": true
+    },
+    {
+      "id": "MOV-03 / EN02",
+      "name": "Rubble two points but one entry energy charge",
+      "ok": true
+    },
+    {
+      "id": "MOV-04 / EN04",
+      "name": "Amphibious sea/land energy 2/1/1",
+      "ok": true
+    },
+    {
+      "id": "MOV-05",
+      "name": "Three artillery cannot fire after moving, battleship can",
+      "ok": true
+    },
+    {
+      "id": "CAP-01",
+      "name": "All 38 types can capture from legal adjacent tile",
+      "ok": true
+    },
+    {
+      "id": "CAP-02 / CAP-03",
+      "name": "Air garrison blocks; adjacent enemy does not",
+      "ok": true
+    },
+    {
+      "id": "CAP-04",
+      "name": "Move then capture legal, attack then capture fails",
+      "ok": true
+    },
+    {
+      "id": "CAP-05 / CAP-06",
+      "name": "Capture preserves damaged tier, income waits, stock discarded",
+      "ok": true
+    },
+    {
+      "id": "WIN-02 / WIN-03",
+      "name": "Capture HQ wins; HP zero alone never wins",
+      "ok": true
+    },
+    {
+      "id": "WIN-04 / WIN-05",
+      "name": "All buildings includes neutral platform and ruins",
+      "ok": true
+    },
+    {
+      "id": "WIN-06 / ECO-04",
+      "name": "Foundation registered immediately, damage carried through completion",
+      "ok": true
+    },
+    {
+      "id": "ECO-05",
+      "name": "Captured foundation becomes level-one ruins",
+      "ok": true
+    },
+    {
+      "id": "SKL-01 / SKL-02 / SKL-03",
+      "name": "Repair 40 capped, invalid no spend, target once and next turn repeat",
+      "ok": true
+    },
+    {
+      "id": "SKL-04 / SKL-05",
+      "name": "Repair own HQ ruins and air, not enemies or foundation",
+      "ok": true
+    },
+    {
+      "id": "SKL-06",
+      "name": "Piercing fifty and stationary sniper hundred",
+      "ok": true
+    },
+    {
+      "id": "SKL-07",
+      "name": "Scan expires next own start, cooldown two own turns",
+      "ok": true
+    },
+    {
+      "id": "SKL-08",
+      "name": "Shock damage forty, target move penalty lasts one own turn",
+      "ok": true
+    },
+    {
+      "id": "SKL-09",
+      "name": "Jam pending, active, protected, then available",
+      "ok": true
+    },
+    {
+      "id": "TRN-01 / TRN-02",
+      "name": "Order advances only owner turn and upgrade income follows later",
+      "ok": true
+    },
+    {
+      "id": "ECO-01 / ECO-02",
+      "name": "24 cap and stock three, unit/upgrade mutual exclusion",
+      "ok": true
+    },
+    {
+      "id": "DEP-01 / DEP-02 / DEP-04",
+      "name": "Blocked stock retained, new unit fully actionable",
+      "ok": true
+    },
+    {
+      "id": "DEP-03",
+      "name": "Naval deploy only ocean; marine can land; source immutable",
+      "ok": true
+    },
+    {
+      "id": "ECO-03",
+      "name": "Ruined production cancels stock and keeps registry identity",
+      "ok": true
+    },
+    {
+      "id": "FOG-01 / FC33",
+      "name": "Enemies hide outside current sight and stale building retained",
+      "ok": true
+    },
+    {
+      "id": "FOG-02 / EN02",
+      "name": "Hidden collision charges entered steps only",
+      "ok": true
+    },
+    {
+      "id": "EN03 / EN08",
+      "name": "Zero energy blocks movement but not attack",
+      "ok": true
+    },
+    {
+      "id": "MAP-01 / MAP-02",
+      "name": "Standard map count, mirror and connected ground/sea",
+      "ok": true
+    },
+    {
+      "id": "SAV-01 / SAV-02 / FC40",
+      "name": "Snapshots preserve AP, counter and terminal lock",
+      "ok": true
+    },
+    {
+      "id": "EN06 / EN07",
+      "name": "Legacy energy maps once, same values accepted, conflicts explicit",
+      "ok": true
+    },
+    {
+      "id": "FC01–FC08",
+      "name": "Size limits, no unused seats, every fixed map and hash",
+      "ok": true
+    },
+    {
+      "id": "FC10–FC14",
+      "name": "Team order, independent ownership and cannot control ally",
+      "ok": true
+    },
+    {
+      "id": "FC15–FC22",
+      "name": "Original HQ elimination atomic, teammates survive, ruins alone not elimination",
+      "ok": true
+    },
+    {
+      "id": "FC23–FC28",
+      "name": "All-building HQ not elimination, surrender registry unchanged",
+      "ok": true
+    },
+    {
+      "id": "FC29 / FC30",
+      "name": "Conservative stall: empty affordable recovery tile prevents draw",
+      "ok": true
+    },
+    {
+      "id": "FC31 / FC32",
+      "name": "Pending seats skip eliminated players with no duplicate income",
+      "ok": true
+    },
+    {
+      "id": "FC35",
+      "name": "Local human handoff cover requested on switch",
+      "ok": true
+    },
+    {
+      "id": "FC46 / FC47",
+      "name": "AI uses observations, costs, cap, and first-eight HQ restraint",
+      "ok": true
+    },
+    {
+      "id": "CAMP-01 / CAMP-02 / CAMP-03",
+      "name": "Seven exact maps, HQ guards, 47 buildings, 82 units, C02 state",
+      "ok": true
+    },
+    {
+      "id": "CAMP-06 / CAMP-07 / CAMP-08 / CAMP-09",
+      "name": "Scoped construction and chapter production authorization",
+      "ok": true
+    },
+    {
+      "id": "CAMP-10 / CAMP-11",
+      "name": "Finite enemy plan pays and loss permanently cancels",
+      "ok": true
+    },
+    {
+      "id": "STORY-01 / STORY-05 / STORY-06",
+      "name": "Intro before income; unfinished scene saves correctly",
+      "ok": true
+    },
+    {
+      "id": "STORY-02 / STORY-03",
+      "name": "MID event deduplicated after transaction and turn-three fallback",
+      "ok": true
+    },
+    {
+      "id": "STORY-04 / STORY-08 / STORY-10 / HELP-02 / END-01",
+      "name": "All scenes and clues, frozen assisted battle, epilogue gates completion",
+      "ok": true
+    },
+    {
+      "id": "HELP-01 / SAVE-01",
+      "name": "Help is advice only, full campaign state restored",
+      "ok": true
+    },
+    {
+      "id": "SAVE-02",
+      "name": "Checksum rejects corrupted snapshots",
+      "ok": true
+    },
+    {
+      "id": "CAMP-04 / STORY-07",
+      "name": "Campaign HQ victory preserves other assets and ended enemy HP/owner",
+      "ok": true
+    },
+    {
+      "id": "FC37",
+      "name": "Draw consent survives end-turn, requires both humans and freezes AP",
+      "ok": true
+    },
+    {
+      "id": "SAVE-03",
+      "name": "Rechecks typed coordinates, order sources and instance IDs after checksum",
+      "ok": true
+    },
+    {
+      "id": "MAP-03",
+      "name": "Ridge obstruction counts use accessible neighboring costs and ties are shared",
+      "ok": true
+    },
+    {
+      "id": "FOG-04",
+      "name": "A lost own building is acknowledged once; subsequent hidden changes stay unknown",
+      "ok": true
+    },
+    {
+      "id": "HELP-03",
+      "name": "Whole-story assistance preserves mode and stopped battle before intro income",
+      "ok": true
+    }
+  ]
+}

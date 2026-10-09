@@ -1,0 +1,10 @@
+Use case: stylized-concept
+Asset type: original environment and armored-unit mood painting for a browser hex-grid turn-based strategy game, working title Hexa Frontier.
+Primary request: A landscape concept painting of a small science-fiction armored squad crossing a deserted industrial planet, with readable simplified hard-surface silhouettes and hexagonal ground formations.
+Scene/backdrop: muted rocky industrial borderlands, broken low factory walls, a shallow blue-teal energy stream, a three-armed golden relay beacon; distant coral-red opponent vehicles beyond a ridge.
+Subject: a pale gray-green diamond-turret medium tank with one cannon, a narrow four-wheeled scout with a ring antenna, a small two-legged assault walker, a boxy maintenance crawler with articulated arms. Small vehicles are distinct and cohesive; no human characters.
+Style/medium: polished stylized 3D concept illustration, beveled mechanical blocks, restrained surface details, clear silhouettes appropriate for eventual top-down game sprites, atmospheric but not photorealistic.
+Composition/framing: wide landscape approximately 16:9, overhead three-quarter view of the environment with vehicles in the lower middle; readable terrain, no UI panels. A beautiful coherent scene, not a sprite sheet or a literal rule diagram.
+Lighting/mood: soft overcast daylight with warm amber relay lights, subtle teal vehicle indicator lights, quiet frontier atmosphere.
+Color palette: dark desaturated green terrain, warm gray armor, teal friendly markings, coral enemy accents, pale amber energy infrastructure.
+Constraints: original designs, no copied franchise imagery, no logos, no text, no watermark. The image illustrates atmosphere, not exact hex coordinates. Keep the overall image light enough to see terrain and silhouettes against a dark UI.

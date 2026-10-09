@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-08T18:58:33.774Z",
+  "passed": 31,
+  "total": 31,
+  "results": [
+    {
+      "name": "Four profiles and legacy aliases are canonical",
+      "ok": true
+    },
+    {
+      "name": "Only AI receives unit attribute multipliers; catalog and human stay unchanged",
+      "ok": true
+    },
+    {
+      "name": "Damage scales base plus bonuses before armor and terrain cover",
+      "ok": true
+    },
+    {
+      "name": "Preview, execution and counterattack agree at both numerical difficulty extremes",
+      "ok": true
+    },
+    {
+      "name": "Dedicated AA multiplies tuned retaliation once and caps it at attacker HP",
+      "ok": true
+    },
+    {
+      "name": "All 38 deployed AI models receive the correct maximum HP",
+      "ok": true
+    },
+    {
+      "name": "Campaign settings tune enemies, including wounded starting units, before intro",
+      "ok": true
+    },
+    {
+      "name": "Tuning wounded reinforcements is proportional and idempotent without resetting AP",
+      "ok": true
+    },
+    {
+      "name": "Repair uses instance maxHp and cannot overfill a tuned AI unit",
+      "ok": true
+    },
+    {
+      "name": "Hell scales only AI initial resources and income, retaining caps",
+      "ok": true
+    },
+    {
+      "name": "Neutral and AI-owned buildings keep baseline HP and construction prices",
+      "ok": true
+    },
+    {
+      "name": "Save restoration and repeated exports do not multiply HP or resources again",
+      "ok": true
+    },
+    {
+      "name": "Legacy training migrates to easy once and challenge to hard without resource changes",
+      "ok": true
+    },
+    {
+      "name": "Corrupt instance HP and unsupported difficulty versions are rejected",
+      "ok": true
+    },
+    {
+      "name": "Hard focuses a killable enemy instead of spreading fire",
+      "ok": true
+    },
+    {
+      "name": "Hard chooses a safer approach than baseline against stationary artillery",
+      "ok": true
+    },
+    {
+      "name": "Hard production counters observed aircraft with an affordable AA model",
+      "ok": true
+    },
+    {
+      "name": "Hard invests in energy before fuel-heavy expansion when needed",
+      "ok": true
+    },
+    {
+      "name": "Decision previews are pure even when obsolete enemy plans exist",
+      "ok": true
+    },
+    {
+      "name": "Hidden opponent changes do not affect AI command, score or threat summary",
+      "ok": true
+    },
+    {
+      "name": "Public decision redacts invisible actions and never exposes private scores or threat data",
+      "ok": true
+    },
+    {
+      "name": "Decision is deterministic and public projection does not re-evaluate or mutate it",
+      "ok": true
+    },
+    {
+      "name": "All difficulties preserve campaign finite production authorizations",
+      "ok": true
+    },
+    {
+      "name": "easy free natural AI battle completes with legal economy and commands",
+      "ok": true
+    },
+    {
+      "name": "easy campaign natural AI battle completes with legal economy and commands",
+      "ok": true
+    },
+    {
+      "name": "standard free natural AI battle completes with legal economy and commands",
+      "ok": true
+    },
+    {
+      "name": "standard campaign natural AI battle completes with legal economy and commands",
+      "ok": true
+    },
+    {
+      "name": "hard free natural AI battle completes with legal economy and commands",
+      "ok": true
+    },
+    {
+      "name": "hard campaign natural AI battle completes with legal economy and commands",
+      "ok": true
+    },
+    {
+      "name": "hell free natural AI battle completes with legal economy and commands",
+      "ok": true
+    },
+    {
+      "name": "hell campaign natural AI battle completes with legal economy and commands",
+      "ok": true
+    }
+  ],
+  "battles": [
+    {
+      "difficulty": "easy",
+      "mode": "free",
+      "actions": 415,
+      "rounds": 15,
+      "milliseconds": 1227,
+      "winner": "P1"
+    },
+    {
+      "difficulty": "easy",
+      "mode": "campaign",
+      "actions": 144,
+      "rounds": 12,
+      "milliseconds": 111,
+      "winner": "union"
+    },
+    {
+      "difficulty": "standard",
+      "mode": "free",
+      "actions": 362,
+      "rounds": 14,
+      "milliseconds": 960,
+      "winner": "P1"
+    },
+    {
+      "difficulty": "standard",
+      "mode": "campaign",
+      "actions": 137,
+      "rounds": 12,
+      "milliseconds": 92,
+      "winner": "union"
+    },
+    {
+      "difficulty": "hard",
+      "mode": "free",
+      "actions": 1039,
+      "rounds": 30,
+      "milliseconds": 34817,
+      "winner": "P2"
+    },
+    {
+      "difficulty": "hard",
+      "mode": "campaign",
+      "actions": 138,
+      "rounds": 12,
+      "milliseconds": 547,
+      "winner": "union"
+    },
+    {
+      "difficulty": "hell",
+      "mode": "free",
+      "actions": 1000,
+      "rounds": 28,
+      "milliseconds": 37471,
+      "winner": "P1"
+    },
+    {
+      "difficulty": "hell",
+      "mode": "campaign",
+      "actions": 226,
+      "rounds": 24,
+      "milliseconds": 997,
+      "winner": "union"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "version": "0.8",
+  "checks": [
+    {
+      "name": "38 个单位在两个阵营中的完整 SVG 与海陆两栖轮廓",
+      "passed": true
+    },
+    {
+      "name": "六个方向的道路跨格中点与反向入口一致",
+      "passed": true
+    },
+    {
+      "name": "64 种道路邻接组合准确连接，孤立道路没有虚构出口",
+      "passed": true
+    },
+    {
+      "name": "64 种海岸邻接组合，水体朝向相邻海洋",
+      "passed": true
+    },
+    {
+      "name": "海洋内部六条边无硬边，相邻岸线边也不重复描边",
+      "passed": true
+    },
+    {
+      "name": "64 种山脊组合和连续山脊的双向接合",
+      "passed": true
+    },
+    {
+      "name": "邻接缓存兼容地形变化和地图格子追加",
+      "passed": true
+    },
+    {
+      "name": "九类建筑有独立材料地基和结构，75 个建筑等级导出完整",
+      "passed": true
+    },
+    {
+      "name": "8 类地形导出与地图版 SVG 均无外部依赖",
+      "passed": true
+    }
+  ],
+  "passed": 9,
+  "assets": {
+    "units": 76,
+    "terrain": 8,
+    "buildings": 75,
+    "total": 159
+  },
+  "benchmark": {
+    "cells": 961,
+    "milliseconds": 24.93,
+    "characters": 1941684
+  }
+}

@@ -1,0 +1,1781 @@
+{
+  "date": "2026-10-08T17:24:58.901Z",
+  "records": [
+    {
+      "version": "v0.5",
+      "id": "WIN-01",
+      "requirement": "开局分别选择总部模式与全部建筑模式",
+      "expected": "保存不同模式；对局中不能切换，读档保持选择",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "WIN-02",
+      "requirement": "总部模式，飞机从合法相邻空格占领无守军敌原始总部",
+      "expected": "花1 AP后AP归零，立即获胜，后续收入/操作停止",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "WIN-03",
+      "requirement": "总部模式，将敌总部HP打到0",
+      "expected": "总部保留为废墟，敌方归属不变，不立即获胜；后续占领才获胜",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "WIN-04",
+      "requirement": "全建筑模式，已占敌总部但仍有一个中立能源平台",
+      "expected": "不获胜，进度仍少1；不能忽略中立或海上建筑",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "WIN-05",
+      "requirement": "全建筑模式，最后一个非己方建筑为敌方废墟，占领它",
+      "expected": "保留其等级与0 HP，转归属后立即获胜",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "WIN-06",
+      "requirement": "初始登记25座建筑，合法新建一个城市地基",
+      "expected": "支付140，登记目标总数变26；完成与损毁均不减少或重复增加总数",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "CAP-01",
+      "requirement": "逐一用38型号，从合法本格或邻格占领中立建筑",
+      "expected": "均有占领权限；无需步兵专属标记；普通舰船从海洋邻格操作",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "CAP-02",
+      "requirement": "建筑格内有敌方飞机，己方地面单位相邻占领",
+      "expected": "失败且不扣AP；飞机占位也属于守军",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "CAP-03",
+      "requirement": "建筑内无敌军，但旁边有敌军",
+      "expected": "可占领；相邻敌军不自动阻止",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "CAP-04",
+      "requirement": "先移动再占领；另一个场景先攻击再占领",
+      "expected": "前者合法、AP归零；后者因攻击已结束行动而失败",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "CAP-05",
+      "requirement": "占领Ⅱ级受损城市，原所有者无订单",
+      "expected": "等级与HP保留，无即时收入；新所有者下一己方开始收入55",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "CAP-06",
+      "requirement": "占领有单位订单和两件来源库存的工厂",
+      "expected": "原订单与来源库存取消，无退款；原所有者释放3编制；完好工厂新所有者可重新生产",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "OCC-01",
+      "requirement": "飞机尝试停在友军步兵格；反向用步兵进入飞机格",
+      "expected": "都失败；地图同格最多一个单位",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "OCC-02",
+      "requirement": "飞机路径中间格被舰船占据",
+      "expected": "不能穿过该格，合法绕行才可移动",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "OCC-03",
+      "requirement": "将单位移动到无单位的建筑格",
+      "expected": "合法，单位与建筑共格，仍能分别选择",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "OCC-04",
+      "requirement": "前一攻击杀死占位单位，后续单位进入其格",
+      "expected": "死亡单位立即清理，后续移动可使用空格",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "MOV-01",
+      "requirement": "移动3的单位先花1 AP进入两个荒原，再花1 AP移动",
+      "expected": "剩余预算只够1个荒原；不能再获得完整3移动力",
+      "status": "功能已实现",
+      "sources": [
+        "src/grid.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "MOV-02",
+      "requirement": "移动3步兵全程进入4个道路格；另场景进入荒原后走道路",
+      "expected": "前者可用道路奖励；后者整回合预算仍为3",
+      "status": "功能已实现",
+      "sources": [
+        "src/grid.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "MOV-03",
+      "requirement": "能耗2单位进入一个碎石格",
+      "expected": "消耗2移动点、2能源，而不是4能源",
+      "status": "功能已实现",
+      "sources": [
+        "src/grid.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "MOV-04",
+      "requirement": "两栖轻坦依次进入海洋、合法海岸、荒原",
+      "expected": "各格耗能源2/1/1，总耗4；状态由海洋转陆地，军种仍海军",
+      "status": "功能已实现",
+      "sources": [
+        "src/grid.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "MOV-05",
+      "requirement": "三种炮兵移动后分别尝试普通攻击或震荡弹",
+      "expected": "全部拒绝；仍可占领；战列舰另场景移动后可炮击",
+      "status": "功能已实现",
+      "sources": [
+        "src/grid.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "DEP-01",
+      "requirement": "机场本格驻扎地面单位，尝试部署飞机到本格",
+      "expected": "失败；若合法空邻格存在，可部署那里；库存未丢失",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "DEP-02",
+      "requirement": "来源设施所有合法格都被单位占据",
+      "expected": "成品留库存、仍占编制，显示堵塞原因",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "DEP-03",
+      "requirement": "从军港部署普通舰船、陆战队、飞机",
+      "expected": "舰船只到海洋邻格；陆战队可合法陆地/海洋；飞机仍按来源设施与统一占位检查",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "DEP-04",
+      "requirement": "新部署工程车与步兵到两个不同合法格",
+      "expected": "均2 AP、本回合可行动；工程车修复额度1，不能多次部署刷新同一实例",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-01",
+      "requirement": "前哨攻击荒原上敌前哨",
+      "expected": "主动40，敌余40；反击20，己余60；攻击者AP归零，目标反击额度0",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-02",
+      "requirement": "鸣雷100 HP在距离1攻击天幕100 HP",
+      "expected": "主动50，天幕余50；天幕反击标准105、实际100，鸣雷阵亡",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-03",
+      "requirement": "天幕主动攻击苍隼130 HP",
+      "expected": "主动60，苍隼余70；苍隼反击10，天幕余90；天幕自己的反击额度仍1",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-04",
+      "requirement": "六种专职防空分别对苍隼进行合法反击",
+      "expected": "标准反击伤害依次90/120/150/90/135/165，扣血按苍隼剩余HP截断",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-05",
+      "requirement": "轻坦直接攻击天幕，天幕存活且射程合法",
+      "expected": "天幕对轻坦反击30，确认150%也适用于合法地面目标",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-06",
+      "requirement": "同一防空单位在一个反击周期先后遭两次直接攻击",
+      "expected": "仅第一次合法且存活时反击；第二次额度0不反击；下次己方开始恢复1",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-07",
+      "requirement": "炮兵间接攻击防空单位；另场景对防空单位造成致死伤害",
+      "expected": "两种情况均不反击，附近防空也不代为拦截",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-08",
+      "requirement": "前哨被空袭后存活；驱逐舰/战斗机被空袭后合法反击",
+      "expected": "前哨无对空反击；后两者倍率0.5，不错误继承专职防空150%",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-09",
+      "requirement": "同格有敌单位与建筑，分别选择两个目标攻击",
+      "expected": "每次只扣选中目标HP；攻击建筑不引发驻军反击",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ATK-10",
+      "requirement": "直射地表目标隔山脊；另场景炮兵使用友军视野攻击",
+      "expected": "直射拒绝且不扣AP；间接合法，不消耗能源",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-01",
+      "requirement": "工程车修复相邻70/100 HP友军，再尝试修另一友军",
+      "expected": "第一目标变100，实际恢复30；工程车AP0、额度0，第二次失败",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-02",
+      "requirement": "工程车尝试修满血单位或自己",
+      "expected": "都失败，AP和本回合额度不变",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-03",
+      "requirement": "两辆工程车依次修同一受损目标；下次目标所属方回合再修",
+      "expected": "同回合第二次失败；下回合可以再次修复40",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-04",
+      "requirement": "工程车在己方总部废墟同格使用修复",
+      "expected": "总部变40/240，功能恢复、仍原归属，收入下次结算才发",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-05",
+      "requirement": "工程车修相邻友军飞机；另场景修敌建筑或地基",
+      "expected": "飞机可恢复40；敌建筑和未完成地基非法",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-06",
+      "requirement": "棱镜对磐石使用穿甲弹；长钉未移动狙击棱镜",
+      "expected": "主动伤害分别50、100，按技能记冷却，允许合法反击",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-07",
+      "requirement": "A第3回合扫描或掩体，查看B回合、A第4/5回合",
+      "expected": "B回合效果保留；A第4开始到期且技能仍不可用；A第5可用",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-08",
+      "requirement": "弧光震荡棱镜后，在其下个己方开始刷新行动",
+      "expected": "本次伤害40；棱镜移动预算3→2，AP仍2；再下个开始预算恢复3",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SKL-09",
+      "requirement": "干扰目标第N回合只有1 AP，多辆电子战尝试连续干扰",
+      "expected": "待生效/生效/抗干扰期再次选目标均失败；N+1为2 AP且受保护，N+2开始可再干扰",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "TRN-01",
+      "requirement": "第N己方回合提交1回合生产订单，然后对方行动",
+      "expected": "对方回合不推进；N+1己方开始完成，先收入再进库存",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "TRN-02",
+      "requirement": "城市Ⅰ升Ⅱ，在N+1完成",
+      "expected": "N+1城市收入35，N+2收入55；升级不回复HP",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "TRN-03",
+      "requirement": "第一次进入某方行动阶段",
+      "expected": "从600金钱/60能源结算为720/74；重复载入或重画界面不再发一次",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "TRN-04",
+      "requirement": "结束己方回合后，再检查该方冷却、队列和收入",
+      "expected": "不额外减少冷却、不推进队列、不追加收入；只切换行动方",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ECO-01",
+      "requirement": "已有20场上单位、3库存、1生产订单，再下生产",
+      "expected": "编制24，拒绝且不扣款；完成订单变库存仍24，部署仍24",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ECO-02",
+      "requirement": "三库存设施提交生产；另场景有升级中的设施提交生产",
+      "expected": "库存上限或互斥槽检查失败，无扣款",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ECO-03",
+      "requirement": "受损生产建筑HP归零，带有一个订单、两件库存",
+      "expected": "保留建筑/等级/归属与目标ID，三件编制释放、无退款、功能停用",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ECO-04",
+      "requirement": "新建城市地基80 HP，被打到60，再完成",
+      "expected": "完成后140/160，损伤保留；完成当次无新城市收入",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "ECO-05",
+      "requirement": "占领城市地基；另场景地基HP归零",
+      "expected": "都保留目标实例，转Lv.1、完整上限160、0 HP废墟；修复后可用",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "FOG-01",
+      "requirement": "敌军离开全军当前视野",
+      "expected": "立即隐藏，旧位置不可攻击；已探索地形保留，建筑旧归属标过时",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "FOG-02",
+      "requirement": "未知敌军在选定移动路径上",
+      "expected": "预览不泄露；执行途中停在占位格前，只扣已进入格的能源/预算；完全未移动不扣AP",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "FOG-03",
+      "requirement": "当前不可见目标在炮兵射程内",
+      "expected": "不可盲射；友军揭示后才可攻击；AI同样受限",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "MAP-01",
+      "requirement": "复建标准地图及镜像开局",
+      "expected": "247格、25初始建筑、双方各6单位/8座Ⅰ级建筑；单位不叠放，港口邻海",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "MAP-02",
+      "requirement": "从双方总部检查陆地路线，从双方港口检查海上路线",
+      "expected": "中央桥道路连通；上下海域通过边缘连通；所有胜利目标可到达或邻接占领",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/grid.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SAV-01",
+      "requirement": "在行动、反击、修复、占领后保存并加载",
+      "expected": "AP/能源/额度/建筑归属保持，无再次收入、反击或修复刷新",
+      "status": "功能已实现",
+      "sources": [
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "SAV-02",
+      "requirement": "已结束的总部胜利局存档恢复",
+      "expected": "终局理由与赢家保持，行动/收入锁定",
+      "status": "功能已实现",
+      "sources": [
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "END-01",
+      "requirement": "无单位但还有完好生产设施或库存",
+      "expected": "不直接判负或和局；可以继续生产/部署",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "END-02",
+      "requirement": "双方无单位、库存、生产订单和完好生产设施",
+      "expected": "胜利未达成时自动和局；有正常胜利结果时胜利优先",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "UI-01",
+      "requirement": "查看专职防空和工程车卡及攻击预览",
+      "expected": "显示150%/0或1次、修复40/次数、真实反击与最终HP；没有自动拦截圈",
+      "status": "功能已实现",
+      "sources": [
+        "src/ui.js",
+        "src/art.js"
+      ]
+    },
+    {
+      "version": "v0.5",
+      "id": "UI-02",
+      "requirement": "标准局与测试场分别打开，筛选空军显示",
+      "expected": "测试场标签明确；筛选不改变占位、胜利模式和真实棋盘",
+      "status": "功能已实现",
+      "sources": [
+        "src/ui.js",
+        "src/art.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-01",
+      "requirement": "初始化C01—C07",
+      "expected": "尺寸、地形、47建筑/82单位累计、坐标与附件一致，单关单位不叠放；每关双方总部有初始守军",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-02",
+      "requirement": "C02初始化及首次己方开始",
+      "expected": "轻坦80/120，城市0/160废墟；玩家120/30→180/34，废墟仍计目标",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-03",
+      "requirement": "分别以总部/全建筑开启完整战役",
+      "expected": "选择保存并贯穿七关；全建筑初始总数依次4/6/6/7/8/8/8",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-04",
+      "requirement": "总部模式在C03只接管敌总部，未取中立能源平台",
+      "expected": "战术获胜，关键货运线索仍完整；仅未获能源平台纪念章",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-05",
+      "requirement": "全建筑模式在C03接管总部但仍有敌军港或中立能源平台",
+      "expected": "不提前胜利，目标提示指出剩余建筑，不要求全歼",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-06",
+      "requirement": "七关尝试新建；随后退出战役进入标准局",
+      "expected": "战役双方不能新建；标准局仍执行v0.5建设规则",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-07",
+      "requirement": "C01尝试升级兵营Ⅱ；C02兵营Ⅱ生产猎矛",
+      "expected": "C01授权拒绝且不扣费；C02正常付款并1回合生产",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-08",
+      "requirement": "C05接管敌Ⅲ工厂，尝试生产未授权磐石",
+      "expected": "拒绝且不扣费；长钉在满足清单/设施/金钱后可生产",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-09",
+      "requirement": "C06查看所有型号及其生产入口",
+      "expected": "38型号均在授权清单；没有对应设施者仍不能生产，例如本关无己方兵营时不能凭清单造步兵",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-10",
+      "requirement": "触发敌计划但金钱不足、槽忙或无部署格",
+      "expected": "延后/库存等待，无免费即时生成；订单只提交一次",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-11",
+      "requirement": "在计划提交前占领其原来源设施，再让敌军夺回",
+      "expected": "未提交旧计划保持取消，不复活；已经下单者按v0.5占领清理",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-12",
+      "requirement": "C04开局与C03开局比较",
+      "expected": "C04地形建筑已探索、敌位置按真实观察；C03全图可见，不出现AI额外视野",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-13",
+      "requirement": "飞机、地面、海洋单位尝试同格/经过",
+      "expected": "均执行v0.5统一占位；剧情设置不能开放第二层",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "CAMP-14",
+      "requirement": "六种专职防空反击、工程车同回合第二次修复",
+      "expected": "防空150%，工程车第二次拒绝；战役没有缩水属性或次数",
+      "status": "功能已实现",
+      "sources": [
+        "src/maps.js",
+        "src/content.js",
+        "src/game.js",
+        "src/ai.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-01",
+      "requirement": "首次开始C01",
+      "expected": "PROLOGUE、C01-INTRO先播，确认后才首次收入；读档不重复发收入",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-02",
+      "requirement": "一个行动同时满足两个MID条件",
+      "expected": "行动/反击/死亡/胜负完整后只入队一段，不在扣血中间弹窗",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-03",
+      "requirement": "第3己方开始触发MID",
+      "expected": "收入、队列、AP、状态结算先完成，MID随后，关闭后才能操作",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-04",
+      "requirement": "任一关在MID触发之前快速获胜",
+      "expected": "战斗立即锁定，再补MID、播OUTRO，线索完整不漏段",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-05",
+      "requirement": "跳过逐字/镜头、开启即时文本",
+      "expected": "全文仍可见，确认才写已看标记；不跳过关键线索",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-06",
+      "requirement": "场景中途退出并读取",
+      "expected": "恢复待播放段，未读部分不误标为完成；下一关未提前解锁",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-07",
+      "requirement": "C05获胜后观看罗峤对白",
+      "expected": "转变只在章节叙事发生；不修改结束快照中敌单位阵营/HP",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-08",
+      "requirement": "把某关敌总部打成废墟后占领获胜",
+      "expected": "提取备用记录说明成立，0 HP状态不被剧情暗改；C07用备用电台广播",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-09",
+      "requirement": "七关都不完成可选目标但正常通关",
+      "expected": "SYNC至BROADCAST七线索和同一尾声完整；后续起始兵力不变",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "STORY-10",
+      "requirement": "C07-OUTRO完成但EPILOGUE尚未确认",
+      "expected": "可以看见广播结果，但完整战役完成标记等待尾声确认",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "HELP-01",
+      "requirement": "超过当前预算，或同一关连续失败两次",
+      "expected": "可关闭帮助提示出现；不自动投降、增伤、刷新免费兵或改胜利模式",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "HELP-02",
+      "requirement": "玩家选择协同接管",
+      "expected": "保存停止快照，补MID/OUTRO、标assisted_completed并解锁下一关；不计个人战术胜利和纪念章",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "HELP-03",
+      "requirement": "累计150分钟，选择优先体验剩余主线",
+      "expected": "按顺序接管剩余战斗、完整播放未看主线，进入尾声；无隐藏必打关",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "HELP-04",
+      "requirement": "接管通关后重放该关",
+      "expected": "可按任一新选模式正常挑战；不取消已观看剧情或重复奖励线索",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "SAVE-01",
+      "requirement": "关卡间、MID中、敌订单前后存读",
+      "expected": "模式、计时、剧情队列、反击/修复、资源、队列完整恢复，生产与线索不重复",
+      "status": "功能已实现",
+      "sources": [
+        "src/storage.js",
+        "src/campaign.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "END-01",
+      "requirement": "C07正常胜利或接管完成全部23段",
+      "expected": "显示主线完成、通关方式与实际耗时，回顾列表23段可重放",
+      "status": "功能已实现",
+      "sources": [
+        "src/campaign.js",
+        "src/ui.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "TIME-01",
+      "requirement": "预算计算",
+      "expected": "总部122+14+7=143；全建筑136+14+7=157；加重试12和缓冲11=180",
+      "status": "功能已实现",
+      "sources": [
+        "src/content.js",
+        "src/campaign.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "TIME-02",
+      "requirement": "主线文本及转场",
+      "expected": "23段强制正文加完成方式短句不超过3200中文可见字符；没有强制长驻留字幕",
+      "status": "功能已实现",
+      "sources": [
+        "src/content.js",
+        "src/campaign.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "TIME-03",
+      "requirement": "新玩家首次流程",
+      "expected": "两种模式分别记录逐关有效时间、重试和帮助；报告中位数及慢速样本，不用熟练速通代替",
+      "status": "待首次玩家完整流程采样",
+      "sources": [
+        "src/content.js",
+        "src/campaign.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "TIME-04",
+      "requirement": "接管剩余流程",
+      "expected": "从任意关150分钟提示后选择主线推进，剩余完整剧情+转场可在30分钟内结束",
+      "status": "功能已实现；30分钟体验目标待真人采样",
+      "sources": [
+        "src/content.js",
+        "src/campaign.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.6",
+      "id": "TIME-05",
+      "requirement": "全建筑残局",
+      "expected": "不存在不可到达/不登记的最后建筑，不强制追杀逃兵，敌方有限计划不会无限延长",
+      "status": "功能已实现",
+      "sources": [
+        "src/content.js",
+        "src/campaign.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC01",
+      "requirement": "主菜单选择剧情/自由战役",
+      "expected": "两个独立流程，存档与预算标签正确",
+      "status": "功能已实现",
+      "sources": [
+        "src/ui.js",
+        "src/maps.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC02",
+      "requirement": "小型选择6方",
+      "expected": "不可开始；提示大型支持6方",
+      "status": "功能已实现",
+      "sources": [
+        "src/ui.js",
+        "src/maps.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC03",
+      "requirement": "中型3方/大型5方固定局",
+      "expected": "分别加载FM-3/FL-5，不留下无人整套基地",
+      "status": "功能已实现",
+      "sources": [
+        "src/ui.js",
+        "src/maps.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC04",
+      "requirement": "逐套加载9个布局",
+      "expected": "正确271/547/919格，8地形9建筑类型",
+      "status": "功能已实现",
+      "sources": [
+        "src/ui.js",
+        "src/maps.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC05",
+      "requirement": "每方第一次开始",
+      "expected": "600/60→720/74，收入各只一次",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC06",
+      "requirement": "开局HQ/城市共格",
+      "expected": "各有一单位，单位之间无叠格；HQ守军阻挡敌方占领",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC07",
+      "requirement": "港口生产Ⅰ级舰船并部署",
+      "expected": "来源港附近至少2空海洋格可用，不能停港口海岸格",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC08",
+      "requirement": "步兵营/工厂/机场部署",
+      "expected": "所有固定席位各有至少3空地表部署格",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC09",
+      "requirement": "四类设施Ⅰ→Ⅱ→Ⅲ",
+      "expected": "可解锁完整38型号，剧情白名单不作用于自由战役",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC10",
+      "requirement": "任意型号占HQ/市场/平台",
+      "expected": "按本格/邻格、视野/守军条件执行，无型号占领白名单",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC11",
+      "requirement": "陆/海空能源点施工",
+      "expected": "建筑类型、控制半径、可见性及地基胜利登记正确",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC12",
+      "requirement": "新建建筑→敌方占地基",
+      "expected": "原工程取消，0HP废墟及目标登记保留，不退款",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC13",
+      "requirement": "同类型多个工厂",
+      "expected": "各自订单槽与库存，不按类型合并",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC14",
+      "requirement": "24编制含订单库存",
+      "expected": "不能生产第25编制；取消/损失释放对应份额",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC15",
+      "requirement": "海军绕外海和进入海湾",
+      "expected": "只在海洋寻路；桥梁和浅河不能当隐藏通航格",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC16",
+      "requirement": "陆地从任一HQ寻到每个陆地建筑",
+      "expected": "山脊不可走，浅河合法；存在完整合法通路",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC17",
+      "requirement": "同队挡路/机场上站一单位",
+      "expected": "不能穿过/叠放，飞机也不能叠地面",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC18",
+      "requirement": "队友攻击/占领/修复他方盟友",
+      "expected": "攻击占领不合法；工程修复只作用所属玩家资产",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC19",
+      "requirement": "敌方建筑本格有敌军/盟友",
+      "expected": "敌军阻挡占领；盟友不阻挡相邻合法占领但仍占格",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC20",
+      "requirement": "六方普通直击与反击",
+      "expected": "仅直接被攻击者，普通×0.5/专职×1.5，合法目标/射程/视线",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC21",
+      "requirement": "P2/P3先后攻击P1同一防空车",
+      "expected": "P1周期总反击最多1次，不能换攻击者刷新",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC22",
+      "requirement": "工程车技能与目标修复次数",
+      "expected": "每工程车己方回合一次，目标按所属玩家己方周期一次",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC23",
+      "requirement": "电子战/锚定/掩体跨5个敌方回合",
+      "expected": "到期与抗控制仍按受影响者己方计数",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC24",
+      "requirement": "六方其中未行动P4出局",
+      "expected": "本轮列表删除P4；其他玩家不重复收入/多得回合",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC25",
+      "requirement": "三方总部模式P1占P2HQ",
+      "expected": "P2出局，P3仍存活，战局继续",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC26",
+      "requirement": "总部仅被攻击至0HP",
+      "expected": "不淘汰；可被占领/己方修复",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC27",
+      "requirement": "P2出局资产处理",
+      "expected": "刚转移HQ保留新owner，余楼中立，单位移除、订单库存取消、地基成废墟",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC28",
+      "requirement": "P2曾占P3HQ后自己出局",
+      "expected": "P3不复活，原始身份不被当前归属覆盖",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC29",
+      "requirement": "3v3只剩A队一位存活",
+      "expected": "A仍参与，B全出局后A队胜利",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC30",
+      "requirement": "全建筑模式占领P2HQ",
+      "expected": "P2继续控制剩余资产，可反夺HQ",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC31",
+      "requirement": "2v2全建筑分散归队员",
+      "expected": "登记表全部owner属于同队即队伍胜利，无需统一给队长",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC32",
+      "requirement": "投降玩家遗留建筑/海上平台",
+      "expected": "全建筑模式登记保留并中立，不能漏掉该席资产",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC33",
+      "requirement": "全建筑局仅一存活队伍",
+      "expected": "因其他敌对玩家退出直接胜利",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC34",
+      "requirement": "无单位但有HQ/城市可建设",
+      "expected": "不自动出局/和局，仍可能恢复生产",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC35",
+      "requirement": "所有玩家不可恢复的僵局",
+      "expected": "满足完整判据后和局，能恢复的局面不得误判",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC36",
+      "requirement": "人类一致选择和局",
+      "expected": "AI接受；投降与和局结果分别记录",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/grid.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC37",
+      "requirement": "本地玩家交接",
+      "expected": "遮挡页后切换当前视野，选中/预览/日志无敌情残留",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC38",
+      "requirement": "未探明新建筑进入全建筑登记",
+      "expected": "总数公开，坐标与当前owner不从进度栏泄漏",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC39",
+      "requirement": "任意席位存档/读取",
+      "expected": "回合顺序、pendingPlayers、资源、AP/CD/反击额度完整复原",
+      "status": "功能已实现",
+      "sources": [
+        "src/storage.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC40",
+      "requirement": "保存于HQ占领出局事务",
+      "expected": "只保存完整前/后状态，不重复清理与结果结算",
+      "status": "功能已实现",
+      "sources": [
+        "src/storage.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC41",
+      "requirement": "三档随机完整硬验收",
+      "expected": "人数、比例、可达、部署、公平点数同时通过",
+      "status": "功能已实现",
+      "sources": [
+        "src/random.js",
+        "src/maps.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC42",
+      "requirement": "同种子/版本/规模/人数/地貌重建",
+      "expected": "terrain、建筑、能源点与哈希一致",
+      "status": "功能已实现",
+      "sources": [
+        "src/random.js",
+        "src/maps.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC43",
+      "requirement": "只换迷雾/胜利/AI档位",
+      "expected": "地图一致，独立随机流不干扰",
+      "status": "功能已实现",
+      "sources": [
+        "src/random.js",
+        "src/maps.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC44",
+      "requirement": "40随机候选都失败",
+      "expected": "加载匹配固定备用图，显式标注fixed_fallback",
+      "status": "功能已实现",
+      "sources": [
+        "src/random.js",
+        "src/maps.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC45",
+      "requirement": "生成器版本更新后读旧存档",
+      "expected": "使用真实保存地图，不按新版重跑",
+      "status": "功能已实现",
+      "sources": [
+        "src/random.js",
+        "src/maps.js",
+        "src/storage.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC46",
+      "requirement": "AI正常资金与迷雾",
+      "expected": "正常支付，无免费补兵，无全图隐藏信息决策",
+      "status": "功能已实现",
+      "sources": [
+        "src/ai.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC47",
+      "requirement": "陪练AI第1—8/第9己方回合",
+      "expected": "前期优先扩张守备；第9回合采用标准攻势，规则始终一致",
+      "status": "功能已实现",
+      "sources": [
+        "src/ai.js",
+        "src/game.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "FC48",
+      "requirement": "演习清单与完成记录",
+      "expected": "由真实事件标记，不给数值奖励、不强制全部完成才获胜",
+      "status": "功能已实现",
+      "sources": [
+        "src/game.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN01",
+      "requirement": "UI/面板/提示/图例/日志",
+      "expected": "使用能源、能源点、能源站、平台、能耗与闪电图标",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN02",
+      "requirement": "单位移动三格/隐藏碰撞止步",
+      "expected": "按实际进入格扣能源，未进入部分不扣",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN03",
+      "requirement": "能源不足但仍有AP",
+      "expected": "超预算路径拒绝；其他合法攻击/反击/占领/修复正常",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN04",
+      "requirement": "两栖轻坦混合海陆路径",
+      "expected": "海洋2/格、其他合法地形1/格，不按地形点数倍增",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN05",
+      "requirement": "能源站/平台升级与占领",
+      "expected": "原10/16/24、16/24/36收入及原费用/HP沿用",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN06",
+      "requirement": "读取旧资源/建筑字段存档",
+      "expected": "一次性映射到新字段，不重复发放、不换建筑实例ID",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN07",
+      "requirement": "新旧字段同时存在且值不同",
+      "expected": "明确错误，不求和、不静默选择",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    },
+    {
+      "version": "v0.7",
+      "id": "EN08",
+      "requirement": "生产单位与反击能耗",
+      "expected": "生产花金钱，反击不扣能源，未新增维护或能量池",
+      "status": "功能已实现",
+      "sources": [
+        "src/data.js",
+        "src/game.js",
+        "src/storage.js",
+        "src/art.js",
+        "src/ui.js"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+(function (root) {
+  'use strict';
+  const data = root.GameData || (typeof require !== 'undefined' && require('./data.js'));
+  function unitMarkup(id, side = 'union', currentDomain = '') {
+    const p = data.factions[side] || data.factions.union, b = p.body, d = p.dark, a = p.accent;
+    const wheel = (x, y, w = 13, h = 21) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="#142324" stroke="#081719"/><rect x="${x+2}" y="${y+2}" width="${w-4}" height="${h-4}" rx="3" fill="#30413f"/>${Array.from({length:Math.floor((h-3)/6)},(_,i)=>`<path d="M${x+2} ${y+5+i*6}h${w-4}" stroke="#718176" stroke-width="1.4"/>`).join('')}<path d="M${x+w-2} ${y+4}v${h-8}" stroke="#0b1718" stroke-width="2"/>`;
+    const tracks = (wide = false) => wheel(wide ? 12 : 18, 32, wide ? 19 : 16, 49) + wheel(wide ? 69 : 66, 32, wide ? 19 : 16, 49);
+    const emblem = side === 'union' ? `<circle cx="50" cy="60" r="4" fill="none" stroke="${a}" stroke-width="2.6"/>` : `<path d="M50 55l5 9H45z" fill="none" stroke="${a}" stroke-width="2.6"/>`;
+    const person=(x,y,rocket=false)=>`<g transform="translate(${x} ${y})"><rect x="-8" y="12" width="16" height="19" rx="3" fill="${d}"/><path d="M-6 28l-4 16m14-16 5 16" stroke="${d}" stroke-width="6"/><path d="M-13 44h8m11 0h8" stroke="#152626" stroke-width="5"/><path d="M-9 12h18l-2 19H-7z" fill="${b}"/><path d="M-10 17l-7 9m27-9 7 7" stroke="${b}" stroke-width="5"/><circle cy="4" r="8" fill="${d}"/><path d="M-8 4q0-13 16 0" fill="${b}"/><path d="M-6 0q6-5 12 0" stroke="#e5e9d6" stroke-width="1.4" fill="none"/><path d="M-4 5h8" stroke="#97bfd0" stroke-width="2"/><path d="M-7 15h4m6 0h4" stroke="${a}" stroke-width="3"/><path d="M0 13v16m-7-7h14" stroke="${d}" stroke-width="1.7"/><path d="M${rocket?13:11} 9v${rocket?29:25}" stroke="${rocket?b:'#192a27'}" stroke-width="${rocket?7:4}"/>${rocket?`<path d="M9 8h8M13 14h4" stroke="${a}" stroke-width="3"/>`:`<path d="M9 13h6m-2 15h4" stroke="#ccd0b8" stroke-width="2"/>`}</g>`;
+    const people=(n=2,rocket=false)=>n===3?person(28,34)+person(70,34)+person(49,16):person(32,30,rocket)+person(66,20,rocket);
+    const ship=(width=23,turrets=2)=>`<path d="M50 7Q${50+width} 20 ${50+width} 53L${50+width-5} 88H${50-width+5}L${50-width} 53Q${50-width} 20 50 7z" fill="${b}"/><path d="M50 15l${width-8} 22v40H${58-width}V37z" fill="${d}"/><rect x="42" y="42" width="16" height="22" rx="3" fill="${b}"/><path d="M44 50h12" stroke="${a}" stroke-width="3"/>${[24,72,38].slice(0,turrets).map(y=>`<rect x="42" y="${y}" width="16" height="10" rx="3" fill="${b}"/><path d="M47 ${y+3}V${y-10}m6 13V${y-10}" stroke="${d}" stroke-width="3"/>`).join('')}`;
+    let body = {
+      scout: `${wheel(22, 36)}${wheel(65, 36)}${wheel(22, 66, 13, 18)}${wheel(65, 66, 13, 18)}<path d="M40 26h20l7 50-17 10-17-10z" fill="${b}"/><path d="M41 30h18l4 17H37z" fill="${d}"/><path d="M38 52h24v18H38z" fill="${d}"/><path d="M39 75l11 6 11-6" fill="none" stroke="${a}" stroke-width="3"/><circle cx="50" cy="55" r="10" fill="none" stroke="${a}" stroke-width="2.5"/><path d="M50 46V22" stroke="${b}" stroke-width="4"/><circle cx="50" cy="20" r="3" fill="${a}"/>`,
+      walker: `<path d="M36 57l-11 17-3 11 16 1 7-26m19-3 11 17 3 11-16 1-7-26" fill="${d}" stroke="${b}" stroke-width="4"/><path d="M22 83h17v8H22zm39 0h17v8H61z" fill="${b}"/><path d="M26 35l9-8h30l9 8-5 31H31z" fill="${b}"/><rect x="20" y="37" width="18" height="20" rx="4" fill="${d}"/><rect x="62" y="37" width="18" height="20" rx="4" fill="${d}"/><path d="M27 40V17m46 23V17" stroke="${b}" stroke-width="7"/><path d="M25 17h4m42 0h4" stroke="${a}" stroke-width="3"/><path d="M38 35h24v13H38z" fill="${d}"/><path d="M41 39h18" stroke="${a}" stroke-width="3"/>${emblem}`,
+      tank: `${tracks()}<path d="M36 27h28l8 47-22 13-22-13z" fill="${b}"/><path d="M32 73h36" stroke="${d}" stroke-width="6"/><path d="M50 33l20 18-20 24-20-24z" fill="${d}"/><path d="M50 47V12" stroke="${b}" stroke-width="8"/><path d="M46 12h8v8h-8z" fill="${d}"/><path d="M37 50l13-12 13 12" fill="none" stroke="${a}" stroke-width="2"/>${emblem}`,
+      destroyer: `${tracks()}<path d="M34 36h32l6 40-22 10-22-10z" fill="${b}"/><path d="M38 45h24l4 24H34z" fill="${d}"/><path d="M44 47V8h12v39" fill="${b}"/><path d="M48 43V10m4 33V10" stroke="${d}" stroke-width="2"/><path d="M43 11h14" stroke="${a}" stroke-width="3"/><path d="M32 68l-9 12m45-12 9 12" stroke="${b}" stroke-width="6"/>${emblem}`,
+      artillery: `<path d="M30 44L15 32m55 12 15-12M30 73 16 88m54-15 14 15" stroke="${b}" stroke-width="7"/><path d="M9 32h15M77 32h15M10 88h15m51 0h15" stroke="${d}" stroke-width="7"/>${tracks()}<rect x="30" y="34" width="40" height="47" rx="7" fill="${b}"/><circle cx="50" cy="58" r="17" fill="${d}"/><path d="M41 56L36 22h28l-5 34z" fill="${b}"/><path d="M35 22h30v10H35z" fill="${d}"/><path d="M40 24h20" stroke="${a}" stroke-width="3"/><path d="M41 71h18" stroke="${a}" stroke-width="3"/>`,
+      engineer: `${tracks()}<rect x="32" y="30" width="36" height="52" rx="5" fill="${b}"/><path d="M37 32h26v18H37z" fill="${d}"/><path d="M33 46L18 27 10 40m57 6 15-19 8 13" fill="none" stroke="${b}" stroke-width="6"/><path d="M8 39l4 7 7-4m62 0 7 4 4-7" fill="none" stroke="${a}" stroke-width="3"/><path d="M46 56h8v7h7v8h-7v7h-8v-7h-7v-8h7z" fill="${a}" stroke="none"/><path d="M40 38h20" stroke="${a}" stroke-width="2"/>`,
+      heavy: `${tracks(true)}<path d="M29 27h42l8 53-29 10-29-10z" fill="${b}"/><path d="M30 40h40l3 34H27z" fill="${d}"/><path d="M41 47V13m18 34V13" stroke="${b}" stroke-width="9"/><path d="M36 13h10m8 0h10" stroke="${a}" stroke-width="3"/><path d="M30 76h40" stroke="${a}" stroke-width="3"/>${emblem}`,
+      jammer: `<path d="M34 41L19 30m47 11 15-11M30 59H12m58 0h18M35 73 20 86m45-13 15 13" fill="none" stroke="${b}" stroke-width="7"/><circle cx="50" cy="58" r="26" fill="${d}"/><circle cx="50" cy="56" r="19" fill="${b}"/><circle cx="50" cy="56" r="12" fill="${d}"/><path d="M50 44V14M37 47 27 22m36 25 10-25" stroke="${b}" stroke-width="3"/><circle cx="50" cy="14" r="4" fill="${a}"/><circle cx="27" cy="22" r="3" fill="${a}"/><circle cx="73" cy="22" r="3" fill="${a}"/>${emblem}`,
+      infantry:people(), antitank:people(2,true),
+      lighttank:`${tracks()}<rect x="34" y="36" width="32" height="42" rx="5" fill="${b}"/><circle cx="50" cy="51" r="13" fill="${d}"/><path d="M50 44V25" stroke="${b}" stroke-width="7"/><path d="M44 69h12" stroke="${a}" stroke-width="3"/>`,
+      antiair:`${tracks()}<rect x="31" y="35" width="38" height="43" rx="6" fill="${b}"/><circle cx="50" cy="57" r="14" fill="${d}"/><path d="M39 54V26m7 28V22m8 32V22m7 32V26" stroke="${b}" stroke-width="4"/><ellipse cx="50" cy="72" rx="14" ry="5" fill="${d}" stroke="${a}" stroke-width="2"/>`,
+      navaldestroyer:ship(21,2),cruiser:ship(26,3),battleship:`${ship(31,3)}<path d="M22 43v24m56-24v24" stroke="${a}" stroke-width="3"/>`,
+      submarine:`<path d="M50 9q16 5 16 21v46q0 13-16 17-16-4-16-17V30q0-16 16-21z" fill="${b}"/><rect x="41" y="36" width="18" height="27" rx="6" fill="${d}"/><path d="M50 41V23m0 0h7" stroke="${a}" stroke-width="3"/><path d="M28 77h44" stroke="${d}" stroke-width="4"/>`,
+      marine:`<path d="M50 13l26 19-4 57H28l-4-57z" fill="${d}"/><path d="M31 31h38v52H31z" fill="${b}"/><g transform="translate(12 17) scale(.75)">${people()}</g><path d="M34 83h32" stroke="${a}" stroke-width="3"/>`,
+      amphibious:`${tracks()}<rect x="17" y="30" width="15" height="51" rx="7" fill="${b}"/><rect x="68" y="30" width="15" height="51" rx="7" fill="${b}"/><rect x="33" y="36" width="34" height="42" rx="5" fill="${b}"/><circle cx="50" cy="52" r="13" fill="${d}"/><path d="M50 45V24" stroke="${b}" stroke-width="7"/>${emblem}`,
+      helicopter:`<path d="M50 27v57l-11 7h22l-11-7" fill="${b}"/><ellipse cx="50" cy="45" rx="13" ry="22" fill="${b}"/><path d="M42 27h16v13H42z" fill="${d}"/><path d="M25 46v28m50-28v28" stroke="${d}" stroke-width="4"/><path d="M13 46h74M50 9v74" stroke="#b9c4b6" stroke-width="3"/><circle cx="50" cy="46" r="5" fill="${a}"/><path d="M38 81h24" stroke="${a}" stroke-width="2"/>`,
+      fighter:`<path d="M50 7l7 33 30 24v8L56 61l7 24-13-6-13 6 7-24-31 11v-8l30-24z" fill="${b}"/><path d="M46 23h8l3 21H43z" fill="${d}"/><path d="M23 62l20-9m34 9-20-9M50 55v23" stroke="${a}" stroke-width="2"/>`,
+      bomber:`<path d="M50 8l8 38 34 5v13l-34-3v16l18 6v8H24v-8l18-6V61L8 64V51l34-5z" fill="${b}"/><path d="M46 20h8v15h-8z" fill="${d}"/><path d="M21 46v24m14-27v27m30-27v27m14-24v24" stroke="${d}" stroke-width="7"/><path d="M43 55h14M30 84v-8m40 8v-8" stroke="${a}" stroke-width="3"/>`
+    }[id];
+    const model=data.byId[id],grade=model.tier;
+    const infantryBody=heavy=>`${people(3)}${heavy?`<path d="M20 44h18v29H20zm41-4h18v29H61z" fill="${d}"/><path d="M23 48h12m29-4h12" stroke="${a}" stroke-width="3"/><path d="M41 29h16v13H41z" fill="${d}"/>`:''}`;
+    if(id==='walker')body=people(3);
+    if(id==='heavyinfantry')body=infantryBody(true);
+    if(['assaultmarine','heavymarine'].includes(id))body=`<path d="M50 8l31 24-6 58H25l-6-58z" fill="${d}"/><path d="M27 29h46v54H27z" fill="${b}"/><g transform="translate(12 12) scale(.76)">${infantryBody(id==='heavymarine')}</g><path d="M31 83h38" stroke="${a}" stroke-width="3"/>`;
+    if(['marine','assaultmarine','heavymarine'].includes(id)&&currentDomain==='land')body=id==='marine'?people():infantryBody(id==='heavymarine');
+    if(id==='lightartillery')body=`${wheel(20,52,15,29)}${wheel(65,52,15,29)}<path d="M29 75L19 88m52-13 10 13" stroke="${b}" stroke-width="5"/><path d="M34 47h32v30H34z" fill="${b}"/><circle cx="50" cy="59" r="12" fill="${d}"/><path d="M46 54V18h8v36" fill="${b}"/><path d="M43 18h14" stroke="${a}" stroke-width="3"/>`;
+    if(id==='heavyartillery')body=`${tracks(true)}<rect x="28" y="30" width="44" height="51" rx="6" fill="${b}"/><rect x="32" y="43" width="36" height="30" rx="5" fill="${d}"/><path d="M42 54V8h16v46" fill="${b}"/><path d="M41 9h18v10H41z" fill="${d}"/><path d="M21 43L9 32m70 11 12-11M22 75 11 88m67-13 11 13" stroke="${b}" stroke-width="6"/><path d="M39 73h22" stroke="${a}" stroke-width="3"/>`;
+    if(['missileaa','longrangeaa'].includes(id)){
+      const pods=grade===2?[35,55]:[29,42,55,68];
+      body=`${tracks(grade===3)}<rect x="29" y="34" width="42" height="47" rx="6" fill="${b}"/><rect x="34" y="42" width="32" height="31" rx="4" fill="${d}"/>${pods.map(x=>`<path d="M${x} 52V19l5-8 5 8v33z" fill="${b}"/><path d="M${x+2} 25h6" stroke="${a}" stroke-width="3"/>`).join('')}<path d="M50 75V58" stroke="${b}" stroke-width="3"/><ellipse cx="50" cy="71" rx="15" ry="7" fill="${d}" stroke="${a}" stroke-width="2"/>`;
+    }
+    if(model.system==='navalaa'){
+      const width=grade===1?20:grade===2?26:31;
+      body=`${ship(width,0)}<path d="M50 53V22" stroke="${b}" stroke-width="4"/><ellipse cx="50" cy="25" rx="${10+grade*2}" ry="6" fill="${d}" stroke="${a}" stroke-width="2"/>${Array.from({length:grade===3?4:grade},(_,i)=>`<rect x="${(grade===3?29:35)+i*10}" y="${grade===1?67:66}" width="8" height="13" rx="1" fill="${d}"/><path d="M${(grade===3?31:37)+i*10} 69h4m-4 5h4" stroke="${a}" stroke-width="2"/>`).join('')}<path d="M${50-width+7} 44v18m${2*width-14}-18v18" stroke="${a}" stroke-width="2"/>`;
+    }
+    if(!body&&['recon','fighter','bomber'].includes(model.system)){
+      const role=model.system;
+      const span=role==='recon'?24+grade*7:role==='fighter'?(grade===1?30:42):(grade===1?33:44);
+      const wing=role==='recon'?`M50 9L55 40 ${50+span} 47V56L56 54V76L67 85V90H33V85L44 76V54L${50-span} 56V47L45 40z`:role==='fighter'?`M50 7L${56+grade} 37 ${50+span} 62V71L58 59l10 25-18-6-18 6 10-25-${span-8} 12v-9L${44-grade} 37z`:`M50 9L58 44 ${50+span} 53V65L58 60v18l17 6v6H25v-6l17-6V60L${50-span} 65V53L42 44z`;
+      body=`<path d="${wing}" fill="${b}"/><path d="M46 22h8l3 19H43z" fill="${d}"/>${role==='recon'?`<circle cx="50" cy="61" r="${5+grade}" fill="${d}" stroke="${a}" stroke-width="2"/>${grade===1?`<path d="M50 76v9" stroke="${d}" stroke-width="5"/>`:`<path d="M${grade===2?'39 68v17m22-17v17':'29 47v24m42-24v24'}" stroke="${d}" stroke-width="5"/><path d="M37 81v8m26-8v8" stroke="${a}" stroke-width="2"/>`}`:role==='fighter'?`<path d="M${grade===1?'49 66v16':'42 64v20m16-20v20'}" stroke="${d}" stroke-width="${grade===1?6:7}"/><path d="M24 60l17-8m35 8-17-8" stroke="${a}" stroke-width="2"/>`:`<path d="M29 47v24m42-24v24" stroke="${d}" stroke-width="7"/><path d="M44 58h12" stroke="${a}" stroke-width="3"/>`}`;
+    }
+    if(!body)throw new Error(`Missing unit artwork: ${id}`);
+    let equipment='';
+    if(model.branch==='army'&&!model.infantry&&id!=='jammer')equipment+=`<path d="M34 37v35m32-35v35" fill="none" stroke="#ecedd2" stroke-opacity=".37" stroke-width="1.3"/><path d="M38 79h6m12 0h6" stroke="${a}" stroke-width="3"/><circle cx="36" cy="73" r="1.7" fill="#f5e9c2"/><circle cx="64" cy="73" r="1.7" fill="#f5e9c2"/>`;
+    if(id==='lighttank')equipment+=`<rect x="42" y="48" width="16" height="11" rx="3" fill="${b}"/><circle cx="49" cy="53" r="4" fill="${d}"/><path d="M39 39h7m8 0h7M49 29v-8" stroke="#eee8c9" stroke-width="2"/>`;
+    if(id==='tank')equipment+=`<path d="M31 42l6-12h9m23 12-6-12h-9M32 63l6 9h24l6-9" fill="none" stroke="#d5dcc6" stroke-width="2"/><circle cx="58" cy="51" r="5" fill="${b}"/><path d="M50 22h7l4 7" fill="none" stroke="${a}" stroke-width="2"/>`;
+    if(id==='heavy')equipment+=`<path d="M29 37h11m20 0h11M27 66h10m26 0h10M37 82h26" stroke="#e2dec5" stroke-width="3"/><rect x="45" y="51" width="10" height="18" rx="2" fill="${b}"/><path d="M44 50h12m-12 21h12" stroke="${a}" stroke-width="2"/>`;
+    if(['lightartillery','artillery','heavyartillery'].includes(id))equipment+=`<path d="M39 64h7m8 0h7M40 69h20" stroke="#d9dbbe" stroke-width="2"/><path d="M${id==='lightartillery'?44:36} 24h${id==='lightartillery'?12:28}" stroke="${a}" stroke-width="3"/>${id==='heavyartillery'?`<path d="M16 84h12m44 0h12M17 32h12m42 0h12" stroke="#e3c77d" stroke-width="4"/>`:''}`;
+    if(['antiair','missileaa','longrangeaa'].includes(id))equipment+=`<path d="M35 77h30" stroke="#e4bd70" stroke-width="3"/><path d="M47 71h6m-3-3v6" stroke="${a}" stroke-width="2"/>${id==='longrangeaa'?`<path d="M78 50V20" stroke="${d}" stroke-width="3"/><rect x="70" y="15" width="16" height="10" rx="2" fill="${b}"/><path d="M73 17v6m4-6v6m4-6v6" stroke="${a}" stroke-width="1.5"/>`:''}`;
+    if(id==='walker')equipment+=`<path d="M17 54h10m40-10h10M40 33h6" stroke="${a}" stroke-width="4"/><path d="M45 49l-9 12m26-8 8 8" stroke="#182a28" stroke-width="4"/>`;
+    if(id==='heavyinfantry')equipment+=`<path d="M20 41l19 4-2 32-8 8-9-8z" fill="${b}"/><path d="M23 46l12 2-1 26-5 5-5-5z" fill="${d}"/><path d="M25 52h8m-4-4v18" stroke="${a}" stroke-width="2.5"/><path d="M61 38h20v10H61" fill="${b}" stroke="#dce2c9"/>`;
+    if(id==='antitank')equipment+=`<path d="M71 56l-9 27m9-27 12 27" stroke="${d}" stroke-width="3"/><path d="M67 54h10v8H67z" fill="${b}"/><path d="M72 46v8" stroke="${a}" stroke-width="3"/>`;
+    if(['marine','assaultmarine','heavymarine'].includes(id)){
+      equipment+=`<path d="M30 41h7m23-7h7" stroke="#84bad5" stroke-width="4"/>`;
+      if(currentDomain!=='land')equipment+=`<path d="M29 79l21 5 21-5M26 87h48" stroke="#dfd9b7" stroke-width="2"/><path d="M30 16l-11 18m51-18 11 18" stroke="${b}" stroke-width="3"/>`;
+      if(id==='assaultmarine')equipment+=`<path d="M32 61l-9 10m37-19 13 11" stroke="#182c2e" stroke-width="5"/><path d="M47 30h10" stroke="#8dcae8" stroke-width="4"/>`;
+      if(id==='heavymarine')equipment+=`<path d="M22 44h17v28l-9 9-8-9z" fill="${b}"/><path d="M25 48h11v21l-6 6-5-6z" fill="${d}"/><path d="M27 53h7m-4-4v15" stroke="#9dccdf" stroke-width="2.5"/>`;
+    }
+    if(model.branch==='navy'&&!model.infantry&&id!=='amphibious')equipment+=`<path d="M${id==='battleship'?26:34} 31v35m${id==='battleship'?48:32}-35v35" stroke="#e2e1c4" stroke-width="1.5" stroke-opacity=".6"/><path d="M46 45h8m-8 4h8" stroke="#83b6ca" stroke-width="2"/>`;
+    if(['navaldestroyer','cruiser','battleship'].includes(id))equipment+=`<rect x="46" y="48" width="8" height="15" rx="2" fill="${d}"/><path d="M46 47h8m-8 6h8" stroke="#dfcc9c" stroke-width="2"/><path d="M50 39V29m0 3h11" stroke="${d}" stroke-width="2"/><path d="M${id==='navaldestroyer'?36:29} 70h5m${id==='navaldestroyer'?18:32} 0h5" stroke="${a}" stroke-width="3"/>`;
+    if(id==='cruiser')equipment+=`<path d="M37 40h26v8H37z" fill="${b}"/><path d="M40 43h20" stroke="#90c4d3" stroke-width="2.5"/><path d="M35 60h7m16 0h7" stroke="#d7cb9b" stroke-width="3"/><path d="M50 32v-5m-8 9h16" stroke="${a}" stroke-width="2"/>`;
+    if(id==='battleship')equipment+=`<path d="M38 22h24v12H38zM38 70h24v12H38z" fill="${b}"/><path d="M44 25V9m12 16V9M44 73V59m12 14V59" stroke="${b}" stroke-width="4"/><path d="M42 11h4m8 0h4M23 48h11v10H23zm43 0h11v10H66z" fill="${d}"/><path d="M26 50h5m38 0h5" stroke="${a}" stroke-width="2"/>`;
+    if(model.system==='navalaa')equipment+=`<path d="M48 22h4m-2-3v6" stroke="#dcdcc1" stroke-width="2"/>${id==='areaaship'?`<rect x="37" y="32" width="26" height="18" rx="3" fill="${b}"/><path d="M39 36h22m-22 4h22m-22 4h22" stroke="${a}" stroke-width="1.8"/>`:''}`;
+    if(id==='aafrigate')equipment+=`<circle cx="57" cy="61" r="7" fill="${b}"/><path d="M55 60V47m4 13V47" stroke="${b}" stroke-width="3"/><path d="M53 48h8" stroke="#e0c391" stroke-width="2"/>`;
+    if(id==='submarine')equipment+=`<path d="M42 15h16m-20 54h24m-23 4h22M50 82v9" stroke="#c1cabb" stroke-width="1.4"/><circle cx="50" cy="58" r="3" fill="${a}"/><path d="M35 79l-8 8m38-8 8 8" stroke="${b}" stroke-width="3"/>`;
+    if(id==='amphibious')equipment+=`<path d="M22 40v29m56-29v29M20 73h10m40 0h10" stroke="#99c3cf" stroke-width="2"/><path d="M43 69h14" stroke="${a}" stroke-width="3"/>`;
+    if(id==='scout')equipment+=`<path d="M42 34h16m-19 5h22" stroke="#a0ccdb" stroke-width="2"/><circle cx="50" cy="55" r="4" fill="${a}"/>`;
+    if(id==='engineer')equipment+=`<path d="M35 50h30" stroke="#e1bc67" stroke-width="4" stroke-dasharray="5 4"/><path d="M20 32l-4 7m64-7 4 7" stroke="#e9d6a2" stroke-width="2"/><rect x="38" y="76" width="7" height="6" fill="${d}"/><rect x="55" y="76" width="7" height="6" fill="${d}"/>`;
+    if(id==='jammer')equipment+=`<circle cx="50" cy="56" r="7" fill="#92e4cf"/><path d="M50 42v-9m-12 18-9-5m33 5 9-5M44 67l-4 8m16-8 4 8" stroke="${a}" stroke-width="2"/><path d="M43 8q7-8 14 0" fill="none" stroke="${a}" stroke-width="2"/>`;
+    if(id==='destroyer')equipment+=`<path d="M35 66l-12 18m42-18 12 18M43 10h14" stroke="#d3d7bb" stroke-width="3"/><path d="M48 18v21m4-21v21" stroke="#7fd0d0" stroke-width="1.2"/>`;
+    if(model.branch==='air')equipment+=`<path d="M48 23h4l2 13h-8z" fill="#87bdd4" stroke="#c1e2e0" stroke-width="1"/><path d="M50 40v15" stroke="#edf0d6" stroke-width="1.6"/>`;
+    if(model.system==='recon')equipment+=`<circle cx="50" cy="61" r="${grade+2}" fill="#82c7d7" stroke="#1e3b49" stroke-width="1.5"/><path d="M${grade===1?'28 49h8m28 0h8':grade===2?'24 49h12m28 0h12':'17 49h18m30 0h18'}" stroke="${a}" stroke-width="3"/>`;
+    if(id==='tacticalrecon')equipment+=`<path d="M35 78v12m30-12v12" stroke="${b}" stroke-width="4"/><path d="M37 75h26" stroke="#ccd9c5" stroke-width="1.7"/>`;
+    if(id==='longrangerecon')equipment+=`<path d="M12 47h76v8H12z" fill="${b}"/><path d="M14 48h27m18 0h27" stroke="#d4deca" stroke-width="1.5"/><rect x="26" y="41" width="9" height="24" rx="3" fill="${d}"/><rect x="65" y="41" width="9" height="24" rx="3" fill="${d}"/><path d="M29 43h3m36 0h3" stroke="${a}" stroke-width="2"/><circle cx="50" cy="62" r="8" fill="${d}"/><circle cx="50" cy="62" r="5" fill="#8ad1dc"/>`;
+    if(model.system==='fighter')equipment+=`<path d="M${grade===1?'30 58v9m40-9v9':grade===2?'22 61v10m56-10v10':'15 63v11m70-11v11'}" stroke="#ecd4a2" stroke-width="3"/>${grade===3?`<path d="M38 73l-5 16m29-16 5 16" stroke="${b}" stroke-width="4"/><path d="M41 77v8m18-8v8" stroke="#b3d9d9" stroke-width="2"/>`:''}`;
+    if(model.system==='bomber')equipment+=`<path d="M44 47h12v25H44z" fill="${d}"/><path d="M47 51h6m-6 6h6m-6 6h6" stroke="#e2c37e" stroke-width="2"/>${grade>1?`<path d="M31 78v12m38-12v12" stroke="${b}" stroke-width="5"/>`:''}<path d="M${grade===3?'19 49v8m16-11v8m30-8v8m14-11v8':'27 48v8m46-8v8'}" stroke="#cfdbc9" stroke-width="2"/>`;
+    if(id==='helicopter'){
+      body=body.replace('<path d="M13 46h74M50 9v74" stroke="#b9c4b6" stroke-width="3"/>','');
+      equipment+=`<path d="M23 48h10v14H23zm44 0h10v14H67z" fill="${d}"/><path d="M25 50h6m38 0h6" stroke="#e2bf7b" stroke-width="2"/><g class="unit-rotor"><path d="M12 46h76M50 8v76" stroke="#ced9ca" stroke-width="3"/><path d="M13 44h24m26 4h24M48 9v23m4 28v23" stroke="#75857d" stroke-width="1.2"/><circle cx="50" cy="46" r="4" fill="${a}"/></g><path d="M37 84h26m-13-6v12" stroke="#dce0c5" stroke-width="2"/>`;
+    }
+    const ticks=model.system?Array.from({length:grade},(_,i)=>`<rect x="${47-grade*4+i*8}" y="95" width="5" height="3" rx="1" fill="${a}" stroke="none"/>`).join(''):'';
+    const wake=model.branch==='navy'&&currentDomain!=='land'?`<path d="M20 56Q11 73 24 89M80 56Q89 73 76 89M33 93h34" fill="none" stroke="#b3e1e2" stroke-width="2" opacity=".6"/>`:'';
+    return `<g class="unit-art unit-${id}" data-art-role="${model.system||model.specialRole}">${wake}<ellipse cx="50" cy="87" rx="35" ry="8" fill="#071519" opacity=".55"/><g stroke="#152b2c" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round">${body}${equipment}${ticks}</g></g>`;
+  }
+  function unitSvg(id, side = 'union', className = '', currentDomain = '') {
+    const u = data.byId[id];
+    return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="${className}" role="img" aria-label="${data.factions[side].name} ${u.name} ${u.type}">${unitMarkup(id, side, currentDomain)}</svg>`;
+  }
+  function hexPoints(size) {
+    return Array.from({length: 6}, (_, i) => { const angle = (60 * i - 30) * Math.PI / 180; return `${(size * Math.cos(angle)).toFixed(2)},${(size * Math.sin(angle)).toFixed(2)}`; }).join(' ');
+  }
+  const terrainColors={plain:'#405b4e',road:'#49614f',rubble:'#626d56',ruins:'#46534d',water:'#486b5a',ocean:'#1a455e',coast:'#a59669',ridge:'#69735e'};
+  const offsets=[[1,0],[0,1],[-1,1],[-1,0],[0,-1],[1,-1]], terrainIndexes=new WeakMap();
+  const coordinateKey=c=>`${c.q},${c.r}`;
+  const point=(angle,radius=44)=>({x:+(Math.cos(angle*Math.PI/180)*radius).toFixed(3),y:+(Math.sin(angle*Math.PI/180)*radius).toFixed(3)});
+  const pointText=p=>`${p.x},${p.y}`;
+  const edge=i=>[point(i*60-30),point(i*60+30)];
+  const edgeMid=i=>point(i*60,44*Math.sqrt(3)/2);
+  function terrainContext(cells,cell){
+    let index=terrainIndexes.get(cells);
+    if(!index||index.length!==cells.length){index={length:cells.length,byCoordinate:new Map(cells.map(c=>[coordinateKey(c),c]))};terrainIndexes.set(cells,index);}
+    const neighbors=offsets.map(([dq,dr])=>index.byCoordinate.get(`${cell.q+dq},${cell.r+dr}`));
+    return {neighbors,road:neighbors.flatMap((c,i)=>c?.terrain==='road'?[i]:[]),ridge:neighbors.flatMap((c,i)=>c?.terrain==='ridge'?[i]:[]),sea:neighbors.flatMap((c,i)=>c?.terrain==='ocean'?[i]:[]),water:neighbors.flatMap((c,i)=>['water','ocean'].includes(c?.terrain)?[i]:[])};
+  }
+  function wavePaths(worldX,worldY){
+    const paths=[];
+    for(let absoluteY=Math.floor((worldY-50)/18)*18;absoluteY<worldY+50;absoluteY+=18){
+      const points=[];
+      for(let x=-48;x<=48;x+=4)points.push({x,y:+(absoluteY-worldY+1.65*Math.sin((worldX+x)/10)).toFixed(3)});
+      paths.push(`<path d="M${points.map(pointText).join('L')}" fill="none" stroke="#74b5c5" stroke-width=".85" opacity=".23"/>`);
+    }
+    return paths.join('');
+  }
+  function terrainDrawing(type,seed=0,ctx=null,cell={q:0,r:0}){
+    let details='';
+    if(type==='plain'||type==='road')details+=`<path d="M-39 7Q-10-10 28 17L13 35Q-7 18-39 27z" fill="#79976b" opacity=".14"/><path d="M-22 12l3-4m0 6 3-5M15-15l3-4m0 6 3-5M-10-23l4 1M22 23l5-1" stroke="#a9b68a" stroke-width="1.15" opacity=".56"/><path d="M-20 25l11-3m11-28 9-2" stroke="#293f38" stroke-width="1.2" opacity=".5"/>`;
+    if(type==='road'){
+      const directions=ctx?ctx.road:[0,3],arms=directions.map(i=>{const m=edgeMid(i);return `<path class="terrain-road-arm" data-direction="${i}" d="M0,0L${pointText(m)}" fill="none" stroke="#293d38" stroke-width="19"/><path d="M0,0L${pointText(m)}" fill="none" stroke="#928b6e" stroke-width="13"/><path d="M0,0L${pointText(m)}" fill="none" stroke="#d4c895" stroke-width="1.3" stroke-dasharray="6 6"/>`;}).join('');
+      details+=`<g stroke-linecap="butt">${arms}<circle r="${directions.length>2?10:7}" fill="#928b6e"/><circle r="${directions.length>2?4:2}" fill="none" stroke="#d4c895" stroke-width="1.2"/>${directions.length===0?'<path d="M-9 0h18" stroke="#d4c895" stroke-width="1.3" stroke-dasharray="5 4"/>':''}</g>`;
+    }
+    if(type==='rubble')details=`<path d="M-33 25l6-15 15 5 5 12 24-3 13 8H-20z" fill="#34473e" opacity=".55"/><path d="M-28 8l7-17 15 5-3 16zM4-15l12-7 13 13-14 8zM5 11l14-3 9 17H-1zM-26 26l6-10 12 6-5 8z" fill="#9c9e79" stroke="#526047" stroke-width="1.3"/><path d="M-21-9l4 13-11 4M16-22l-1 16 14-3M19 8l-5 14 14 3" fill="#747f62" stroke="none"/><path d="M-16 3l5 1M9 16l5-3M-6-20l4-2M26 10l5 2" stroke="#cbc29b" stroke-width="1.4"/>`;
+    if(type==='ruins')details=`<path d="M-35 23l22-10 21 3 22 13-18 8H-21z" fill="#263d37"/><path d="M-26 19V-16l13-7v34z" fill="#849080" stroke="#374a42" stroke-width="1.5"/><path d="M-13-23v34l12 8V-12z" fill="#b3ad8d"/><path d="M-27-16l8-4 6 5m-8-1v15m4-19v6" stroke="#354f47" stroke-width="3"/><path d="M5 22V-9l13-7v30z" fill="#9e9f80"/><path d="M18-16l13 7v31l-13-8z" fill="#687464"/><path d="M8-5h6m-6 8h6m7-7 7 4m-7 5 7 4" stroke="#334c46" stroke-width="3"/><path d="M-5 24l7-8 10 11m-33 3 9-3 6 4" fill="#aaa581" stroke="#526147" stroke-width="1.2"/><path d="M-29 29h58" stroke="#bd9767" stroke-width="1" opacity=".6"/>`;
+    if(type==='ocean')details=wavePaths(Math.sqrt(3)*44*(cell.q+cell.r/2),66*cell.r)+`<path d="M${-30+(Math.abs(seed)%17)} 24q5-3 10-1M${6+(Math.abs(seed)%13)}-25q4-2 8 0" fill="none" stroke="#a3d3d2" stroke-width="1.3" opacity=".35"/>`;
+    if(type==='water'){
+      const directions=ctx?ctx.water:[1,4];
+      details=`<path d="M-36 12q21-14 52-4l15 16-22 13-34-5z" fill="#a4a67d" opacity=".5"/>${directions.map(i=>{const m=edgeMid(i);return `<path class="terrain-river-arm" data-direction="${i}" d="M0 0L${pointText(m)}" fill="none" stroke="#a9b58b" stroke-width="31"/><path d="M0 0L${pointText(m)}" fill="none" stroke="#3b8391" stroke-width="24"/><path d="M0 0L${pointText(m)}" fill="none" stroke="#a0d2c8" stroke-width="1.5" opacity=".55"/>`;}).join('')}<ellipse rx="${directions.length?16:27}" ry="${directions.length?16:19}" fill="#3b8391"/><path d="M-12-3q6-4 13 0m-5 10q5-3 10-1" fill="none" stroke="#c1daca" stroke-width="1.6"/><path d="M-29 27l6-2m36-54 8 2" stroke="#d5cc9a" stroke-width="2"/>`;
+    }
+    if(type==='coast'){
+      const directions=ctx?ctx.sea:[4,5];
+      details=`<path d="M-28 18l8-4m13 13 8-2M-8-12l4 1M19 9l7-2" fill="none" stroke="#d9cb96" stroke-width="2.2" opacity=".65"/>`;
+      for(const i of directions){const [p0,p1]=edge(i),v0={x:+(p0.x*.49).toFixed(3),y:+(p0.y*.49).toFixed(3)},v1={x:+(p1.x*.49).toFixed(3),y:+(p1.y*.49).toFixed(3)},m=edgeMid(i),control={x:+(m.x*.39).toFixed(3),y:+(m.y*.39).toFixed(3)};
+        details+=`<g class="terrain-shore" data-direction="${i}"><path d="M${pointText(p0)}L${pointText(p1)}L${pointText(v1)}Q${pointText(control)} ${pointText(v0)}Z" fill="${terrainColors.ocean}"/><path d="M${pointText(v0)}Q${pointText(control)} ${pointText(v1)}" fill="none" stroke="#e0d2a0" stroke-width="5"/><path d="M${pointText(v0)}Q${pointText(control)} ${pointText(v1)}" fill="none" stroke="#c1ddd0" stroke-width="1.7"/><path d="M${pointText({x:+(p0.x*.76).toFixed(3),y:+(p0.y*.76).toFixed(3)})}L${pointText({x:+(p1.x*.76).toFixed(3),y:+(p1.y*.76).toFixed(3)})}" stroke="#76b9c5" stroke-width="1" opacity=".38"/></g>`;
+      }
+    }
+    if(type==='ridge'){
+      const directions=ctx?ctx.ridge:[0,3];
+      details=`${directions.map(i=>{const m=edgeMid(i);return `<g class="terrain-ridge-link" data-direction="${i}"><path d="M0 1Q${pointText({x:+(m.x*.52).toFixed(3),y:+(m.y*.52-3).toFixed(3)})} ${pointText(m)}" fill="none" stroke="#505d49" stroke-width="29"/><path d="M0-3Q${pointText({x:+(m.x*.52).toFixed(3),y:+(m.y*.52-3).toFixed(3)})} ${pointText(m)}" fill="none" stroke="#a0a383" stroke-width="9"/><path d="M0-3L${pointText(m)}" stroke="#d4cfac" stroke-width="1.5" opacity=".65"/></g>`;}).join('')}<path d="M-35 25l15-36L-8 3 5-27 30 27z" fill="#899579" stroke="#3d4d40" stroke-width="1.2"/><path d="M-20-11L-16 25h-19zM5-27l6 54H-8z" fill="#b7b99a"/><path d="M-20-11l7 17-8-4-8 10zM5-27l9 20-8-4-9 9z" fill="#e4dec1"/><path d="M-10 20l5-7m20 7 4-5" stroke="#53654f" stroke-width="2"/>`;
+    }
+    return details;
+  }
+  function terrainMarkup(type,size=44,seed=0){
+    if(!data.terrain[type])throw new Error(`Missing terrain artwork: ${type}`);
+    const id=`terrain-icon-${type}-${size}`;
+    return `<g class="terrain-art terrain-${type}"><defs><clipPath id="${id}"><polygon points="${hexPoints(44)}"/></clipPath></defs><g transform="scale(${size/44})"><polygon points="${hexPoints(44)}" fill="${terrainColors[type]}"/><g clip-path="url(#${id})" stroke-linecap="round" stroke-linejoin="round">${terrainDrawing(type,seed)}</g><polygon points="${hexPoints(43.5)}" fill="none" stroke="#cad4ae" stroke-opacity=".19" stroke-width="1"/></g></g>`;
+  }
+  function terrainMarkupContext(cell,cells,size=44){
+    const type=cell.terrain,ctx=terrainContext(cells,cell),seed=cell.q*31+cell.r*17,id=`terrain-cell-${cell.q<0?'n':'p'}${Math.abs(cell.q)}-${cell.r<0?'n':'p'}${Math.abs(cell.r)}-${size}`;
+    let borders='';
+    for(let i=0;i<6;i++){
+      const neighbor=ctx.neighbors[i],continuous=neighbor?.terrain===type&&['ocean','ridge','water','road'].includes(type)||type==='ocean'&&neighbor?.terrain==='coast'||type==='coast'&&neighbor?.terrain==='ocean';
+      if(!continuous){const [p0,p1]=edge(i);borders+=`<path class="terrain-boundary" data-direction="${i}" d="M${pointText(p0)}L${pointText(p1)}" fill="none" stroke="${type==='ocean'?'#8db5aa':'#c5cb9c'}" stroke-opacity="${neighbor?.terrain===type ? .12 : .24}" stroke-width=".65"/>`;}
+    }
+    return `<g class="terrain-art terrain-${type}" data-art-context="adjacency"><defs><clipPath id="${id}"><polygon points="${hexPoints(44)}"/></clipPath></defs><g transform="scale(${size/44})"><polygon points="${hexPoints(44)}" fill="${terrainColors[type]||data.terrain[type]?.color}"/><g clip-path="url(#${id})" stroke-linecap="round" stroke-linejoin="round">${terrainDrawing(type,seed,ctx,cell)}</g>${borders}</g></g>`;
+  }
+  function terrainSvg(type){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" role="img" aria-label="${data.terrain[type].name}">${terrainMarkup(type)}</svg>`;}
+  const buildingPalettes={hq:{base:'#405963',edge:'#d3c598',body:'#dfd8b9',dark:'#526969'},city:{base:'#39596c',edge:'#8ebfd0',body:'#bbc9c3',dark:'#456775'},market:{base:'#766247',edge:'#e9bb74',body:'#d8bd82',dark:'#816247'},energyfield:{base:'#68633a',edge:'#ecdb78',body:'#d7cb8c',dark:'#756a40'},energyplatform:{base:'#315969',edge:'#d3cf83',body:'#cbbd83',dark:'#47606a'},barracks:{base:'#526843',edge:'#bfd294',body:'#b7c193',dark:'#617454'},factory:{base:'#635449',edge:'#e4a981',body:'#c6b596',dark:'#765a49'},port:{base:'#355768',edge:'#91c0d2',body:'#bfd0c6',dark:'#496475'},airfield:{base:'#505d5e',edge:'#b9c5c0',body:'#b7c0b0',dark:'#4c6668'}};
+  function buildingTileMarkup(type,side,level=1){
+    const p=buildingPalettes[type]||buildingPalettes.hq,a=data.factions[side]?.accent||'#e9c77c';
+    return `<g class="building-tile building-tile-${type}" pointer-events="none"><polygon points="${hexPoints(41.7)}" fill="${p.base}" stroke="#15292a" stroke-width="3"/><polygon points="${hexPoints(38.3)}" fill="none" stroke="${p.edge}" stroke-width="1.5" stroke-opacity=".78"/><path d="M-24 26h48m-41 4h34M-29-17l7-4m44 0 7 4" stroke="${p.edge}" stroke-width="1.2" opacity=".35"/><path d="M-13-35h26M-13 35h26" stroke="${a}" stroke-width="3.8"/>${Array.from({length:Math.min(3,level)},(_,i)=>`<circle cx="${(i-(Math.min(3,level)-1)/2)*6}" cy="32" r="1.5" fill="${p.edge}"/>`).join('')}</g>`;
+  }
+  function buildingMarkup(type,side,level=1){
+    const a=data.factions[side]?.accent||'#e9c77c',p=buildingPalettes[type]||buildingPalettes.hq,light=p.body,dark=p.dark,metal='#e6dfc0',outline='#213b3c';
+    level=Math.max(1,Math.min(data.buildingById[type]?.maxLevel||3,Number(level)||1));
+    const windows=(x,y,n=3)=>Array.from({length:n},(_,i)=>`<rect x="${x+i*6}" y="${y}" width="3" height="4" fill="#94c6d4" stroke="none"/>`).join('');
+    const deck=`<path d="M-37 22l14-7h46l14 7-12 11h-50z" fill="${p.base}" stroke="${outline}" stroke-width="1.8"/><path d="M-32 24h64m-54 5h44" stroke="${p.edge}" stroke-opacity=".55" stroke-width="1.2"/>`;
+    const bodies={
+      hq:`<path d="M-31 18V-11l11-10h39l12 10v29z" fill="${light}"/><path d="M-31-11l11-10h39l12 10H-31z" fill="${metal}"/><path d="M-26-7h52v11h-52z" fill="${dark}"/>${windows(-22,-4,8)}<path d="M-20 18V7h9v11m22 0V7h9v11" fill="${dark}"/><path d="M-7 18V4H7v14" fill="#243d43"/><path d="M0 4V17m-5-8h10" stroke="${a}" stroke-width="2"/><path d="M-17-20v-16m0 0 14 4-14 5" fill="${a}" stroke="${a}" stroke-width="1.6"/><path d="M19-22v-11m-8 0h16" stroke="${dark}" stroke-width="3"/><path d="M12-36q6-7 12 0l-6 6z" fill="${light}" stroke="${dark}" stroke-width="1.6"/><path d="M-26 11h6m40 0h6" stroke="${a}" stroke-width="2.5"/>`,
+      city:`<path d="M-31 20v-27h18v27m3 0v-48h23v48m4 0v-35h15v35" fill="${light}"/><path d="M-31-7l6-6h12v6M-10-28l7-7h16v7M17-15l5-5h10v5" fill="${metal}"/><path d="M-10-28V20H-3v-48M17-15v35h6v-35" fill="${dark}"/>${[-23,-14,-5,4].map(y=>windows(0,y,2)).join('')}${windows(-27,0,2)}${windows(-27,9,2)}${windows(25,-8,1)}${windows(25,1,1)}${windows(25,10,1)}<path d="M-8 20V11H7v9" fill="${dark}"/><path d="M-32 25h64" stroke="${p.edge}" stroke-width="2"/>`,
+      market:`<path d="M-32 19V-10h64v29z" fill="${light}"/><path d="M-35-10l10-14h50l10 14z" fill="${dark}"/><path d="M-32-10h64v9h-64z" fill="#d8a46c"/>${Array.from({length:8},(_,i)=>`<path d="M${-32+i*8}-10h4v9h-4z" fill="${i%2?'#f1dab0':'#99b9a7'}" stroke="none"/>`).join('')}<path d="M-21 19V4h13v15m16 0V4h13v15" fill="${dark}"/><rect x="-8" y="-20" width="16" height="6" rx="1" fill="${p.edge}"/><path d="M-30 22h8v7h-8zm52 0h8v7h-8z" fill="#aa7851"/><path d="M-27 22v7m54-7v7" stroke="${metal}" stroke-width="1.2"/>`,
+      energyfield:`<path d="M-29 20V-5h20v25M10 20V-9h20v29" fill="${light}"/><path d="M-31-6h24v5h-24zM8-10h24v5H8z" fill="${dark}"/><path d="M-25 3v12m6-12v12m-6-12v12m27-15v15m6-15v15m6-15v15" stroke="${dark}" stroke-width="2"/><path d="M-20-7v-14m40 10v-14m-46 6h12m28-4h12" stroke="${dark}" stroke-width="2.5"/><path d="M-23-21v-5m6 5v-5m34 1v-5m6 5v-5" stroke="#b3d0bf" stroke-width="3"/><path d="M4-31L-8-6H2L-3 16 16-12H6l7-19z" fill="#f1dc81" stroke="#827543" stroke-width="1.2"/><path d="M-29 25h58" stroke="#c5ae62" stroke-width="3" stroke-dasharray="5 4"/>`,
+      energyplatform:`<path d="M-27 29V10m54 19V10m-39 19V10m24 19V10" stroke="${dark}" stroke-width="5"/><path d="M-33 2h66v11h-66z" fill="${light}"/><path d="M-33 4h66" stroke="#f0d087" stroke-width="2.5" stroke-dasharray="5 4"/><path d="M-27 0v-21h19V0m17 0v-16h18V0" fill="${dark}"/><path d="M-24-17h12m24 5h12" stroke="#a0c7c8" stroke-width="3"/><path d="M-30-22V-31H21v27" fill="none" stroke="${light}" stroke-width="4"/><path d="M-29-27H18m-42-4 7 8 8-8 8 8 8-8" fill="none" stroke="${dark}" stroke-width="1.4"/><path d="M3-27L-7-6H3l-4 12 15-21H5l5-12z" fill="#efda7d"/><path d="M-34 31q8-4 15 0m9 2q8-4 15 0m6-3q7-4 13 0" fill="none" stroke="#9ed0d2" stroke-width="1.5"/>`,
+      barracks:`<path d="M-33 17l10-31 19 31zm26 0 18-40 22 40z" fill="${light}"/><path d="M-23-14l3 31h16zM11-23l4 40h18z" fill="${dark}"/><path d="M-23 17V4h7v13m25 0V-1h9v18" fill="#2a4139"/><path d="M-27-5h9M5-12h13" stroke="${p.edge}" stroke-width="2"/><path d="M-7-21v-14m0 0 15 4-15 6" fill="${a}" stroke="${a}" stroke-width="1.5"/><path d="M-29 24h12m4 0h12m4 0h12" stroke="#e2d7aa" stroke-width="2"/><path d="M-21 22v6m23-6v6m16-6v6" stroke="${dark}" stroke-width="2"/>`,
+      factory:`<path d="M-32 20V-8l16-11v11L0-19v11l16-11v11h16v28z" fill="${light}"/><path d="M-32-8l16-11v11L0-19v11l16-11v11h16" fill="none" stroke="${metal}" stroke-width="2"/><path d="M22-8v-26h8v26" fill="${dark}"/><path d="M20-35h12v5H20z" fill="#af9278"/><path d="M-9 20V6H9v14" fill="${dark}"/><path d="M-8 8H8m-16 4H8m-16 4H8" stroke="#b7b296" stroke-width="1.3"/>${windows(-26,0,3)}${windows(13,0,3)}<path d="M-24 23h48" stroke="#d8b775" stroke-width="3" stroke-dasharray="5 5"/><path d="M-27 8v9h9m35-9v9h11" fill="none" stroke="${dark}" stroke-width="2"/>`,
+      port:`<path d="M-34 25V8h68v17z" fill="${dark}"/><path d="M-34 8h68v6h-68z" fill="${light}"/><path d="M-27 6v-28h8V6" fill="${light}"/><path d="M-25-23h48m0 0v21" fill="none" stroke="#d6c49a" stroke-width="4"/><path d="M-25-18l10-5 8 5 8-5 8 5 8-5" fill="none" stroke="${dark}" stroke-width="1.5"/><path d="M23-3q-6 4 0 9" fill="none" stroke="${p.edge}" stroke-width="2"/><path d="M-7 25l6-10h14l8 10-7 7H-2z" fill="#94b5b8"/><path d="M3 14h9v8H3z" fill="${light}"/><path d="M-30 30q6-4 12 0m35 0q6-4 12 0" fill="none" stroke="#9bcdd2" stroke-width="1.7"/>`,
+      airfield:`<path d="M-13-34h27v68h-27z" fill="#283f44"/><path d="M-10-30h21m-21 3h21M0-21V22m-10 5h21m-21 3h21" stroke="#e1d9b8" stroke-width="1.6" stroke-dasharray="7 5"/><path d="M-33 7V-10q8-14 17 0V7z" fill="${light}"/><path d="M-29 7V-8h10V7" fill="${dark}"/><path d="M18 7V-14h15V7" fill="${light}"/><path d="M20-13v-12h12v12" fill="${dark}"/><path d="M17-27h18v5H17z" fill="${light}"/><path d="M20-24h12" stroke="#99c8d0" stroke-width="2"/><path d="M0-11l3 14 7 5H3l-3 10L-3 8h-7l7-5z" fill="${a}" stroke="#8bc4c3" stroke-width=".8"/>`
+    };
+    if(type==='node')return `<g class="building-art building-node"><path d="M0-27L-25 18h50z" fill="${dark}" stroke="#d3d0a9" stroke-width="2"/><circle r="12" fill="#233d45" stroke="${a}" stroke-width="3"/><circle r="4" fill="${a}"/></g>`;
+    const expansion=level>1?`<path d="M-35 18V8h9v10m52 0V8h9v10" fill="${p.dark}"/><path d="M-32 11h4m28 0h4" stroke="${p.edge}" stroke-width="2"/>${level===3?`<path d="M-37 24v-5h11v5m52 0v-5h11v5" fill="${light}"/><path d="M-34 20h5m58 0h5" stroke="${a}" stroke-width="2"/>`:''}`:'';
+    const levels=Array.from({length:level},(_,i)=>`<path d="M${(i-(level-1)/2)*9-3} 37l3-3 3 3-3 3z" fill="${p.edge}" stroke="none"/>`).join('');
+    return `<g class="building-art building-${type}" stroke="${outline}" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><ellipse cy="27" rx="38" ry="8" fill="#10272b" opacity=".7" stroke="none"/>${deck}${expansion}${bodies[type]||bodies.hq}<path d="M-21 30h42" stroke="${a}" stroke-width="2.7"/>${levels}</g>`;
+  }
+  function buildingSvg(type,side='union',level=1){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" role="img" aria-label="${data.buildingById[type].name} Lv.${level}">${buildingMarkup(type,side,level)}</svg>`;}
+  const art = { unitMarkup, unitSvg, terrainMarkup, terrainSvg, hexPoints, buildingMarkup, buildingSvg, terrainContext, terrainMarkupContext, buildingTileMarkup };
+  root.GameArt = art;
+  if (typeof module !== 'undefined' && module.exports) module.exports = art;
+})(typeof window !== 'undefined' ? window : globalThis);

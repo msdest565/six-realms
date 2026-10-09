@@ -1,0 +1,22 @@
+{
+  "name": "six-realms-border-conflict",
+  "version": "0.8.0",
+  "private": true,
+  "description": "Offline browser hex turn-based strategy game",
+  "scripts": {
+    "start": "node scripts/serve.js",
+    "test": "node scripts/verify.js",
+    "test:core": "node scripts/verify-core.js",
+    "test:maps": "node scripts/verify-maps.js",
+    "test:battles": "node scripts/verify-battles.js",
+    "test:ui": "node scripts/verify-ui.js",
+    "test:ui-integration": "node scripts/verify-ui-integration.js",
+    "test:controls": "node scripts/verify-controls.js",
+    "test:fx": "node scripts/verify-fx.js",
+    "test:art": "node scripts/verify-art.js",
+    "test:ai": "node scripts/verify-ai.js",
+    "assets": "node scripts/export-assets.js && node scripts/export-portraits.js",
+    "content": "node scripts/build-content.js",
+    "export:data": "node scripts/export-runtime.js"
+  }
+}

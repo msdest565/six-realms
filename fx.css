@@ -1,0 +1,17 @@
+/* Original action feedback: SVG overlays stay inside the map's camera. */
+.game-fx-layer { pointer-events: none; overflow: visible; }
+.game-fx-layer .fx-unit { filter: drop-shadow(0 2px 2px #061d1a80); }
+.game-fx-layer .fx-label {
+  font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  paint-order: stroke fill;
+  stroke: #09241f;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  letter-spacing: .35px;
+}
+.fx-trail { pointer-events: none; }
+@media (prefers-reduced-motion: reduce) {
+  .game-fx-layer .fx-unit { filter: none; }
+}

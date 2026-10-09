@@ -1,0 +1,4870 @@
+{
+  "date": "2026-10-08T17:21:54.084Z",
+  "total": 540,
+  "generated": 497,
+  "fallback": 43,
+  "reproduced": 27,
+  "milliseconds": 134355,
+  "samples": [
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "dbbe29607d146de7993cf3e32205e583be6f5eb5fc10c32e27647b46e89aa5c9"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "61a55c3b030c5cea90665b13af8b276fc6720aecb4f573a404393fc4209047c8"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f91a92ed822e735aeb8ca6961adae4b6dc35e6ba455e0ddb47ea6f1318d1b153"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "abdca5236116b1d08ad2abd47d9df98283598fefbf8dfe13dcd032e39bc2493f"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a0b61326010d8b675cab2485975ef39417bc14a8cf602fa289a960342ae4f4b9"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "167bdfed57fe6b1d81baf34d677f98e985752ebf1418a551c4088f8164a63209"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2951c616166be48d2088e3ba9c8eacaa1854749b9452f699864dcf3fc10dbd32"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "23bf30617ea858a932933629e9e2080aa9cec904e344f2c9c6ee40d8a56c2a8e"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "23bf30617ea858a932933629e9e2080aa9cec904e344f2c9c6ee40d8a56c2a8e"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2929648134f8004043d733827ebe1b0f87ae376128337d7c507b611bf47b74c8"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "96e169697a7e9af30a9d34482db81b45a828ad5932ecc564e44c22910952822f"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "529e1c1a48ff5f393be9b16b204fe0d70973e3653c3e2ec362042eaebdb7b63a"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f2e28402c0164df92d6ec73dd4d5de9d41da3ae9fca418d97c642cb2524f1386"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "29d7d4d6eba06b10906403292546867f1d8c8c2f8932a07bc82a4d105660e1ae"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "397a06ee7a953ac634e4f65b393df9af8f4453090fb11554b47e70623797bd19"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e58768b573f5e2818b07f1c16779a0a747de825fff14daebb417a43e8a5ddf07"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a4c83ceae2a902316c40efa6a9a60d0496d369f8bb06b2917eb483832ded441b"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4d50903cad51bd877f54b6fe885e2f9a4fa5f11f231c291021bf6e96230e4a35"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4a820ba25813dca6d60e08bbcbb3336a68b791720dcdeeedb63bd5ce2017a5e9"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "85ba9f08b1419652a08842f58fa4dbde65262d6c94b7cc8e690a1342765d276d"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 1,
+      "hash": "a7971e311a9763a854ac0ced2d197a520225e66751bcaa5c9be93ef235dde804"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 1,
+      "hash": "ea5554c9577328782b7ceadd534dc652099c8386b9646d2702924a632549dd20"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "67758c168e144ba857a59c2bafcc850c47c45e7ddaf9779007cbb3c2aa719976"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ac48da6e613c82db8bf38dca1f6d2a23cf8b045e59f4be83a5e216e477628c6f"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ae6a78b2b7ad6a9f19f1f3d514ce30af8c34692fc6eaf3f761386110ded837a0"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "91b272bdfed2139b08e24a37bed98ef17a615aee16d3ce2e4b56f87c4fd452e3"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "660057d4bc6654e30c368f5eeaa332c8bec56393497bf3bb39919dcef589b62f"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "47dd65966ac97b3aeac6be2d1dadadc52b0dc235d3f947044ce361083950ba52"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "47dd65966ac97b3aeac6be2d1dadadc52b0dc235d3f947044ce361083950ba52"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 1,
+      "hash": "e16f2f3d4bf26840edaccce456fb4813b46942f2743a6cb99b9f80d45ebfa1c4"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "67092773e5a987dbfbcabeab5ff0f2d52d6788e26264843cd4a3fed84434adc5"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c4fb67e8e893bd706ab1dcd5b26d8563664029a90b8132ef307026981145fc68"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cf1a30c55a293ba7edaed2a4d9f91493fdb29368853ea9875ab2bb0ab51be69b"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3fd21554f890843cb336a2c37841805e4332897774c719ff34f86196fce999e2"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "faa9f0b9fe45e5fabffd0dc1eec282be551857f4c5c902367b48a726340f3b1b"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cbc8b43f5c538821e6cad445c1aae5d0210bf5cc798d2136902d915393a51841"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b080615a541f723ee5ebc7c5f5bc5df00e9890fa3fc4af352a1ccee6389334bf"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4baf636c9c10abae24164ddc7dc68cd7c6e7f25b0c95954c7e7b6d396616283c"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "69776cd5ea8c7f248bd048897cff38aeefb13d4b2fd28ce531f057a1d3d41eb9"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "aaa3f06fae113d68abe986c20cb9e62ea43afbf2b7731038c81263646d40e2fa"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "78a856b5238944c4dc8937d5fd9056aae493f807e9ba329a12475261db1703d9"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0e724db76fa822dae4b2ac99451ae46c5907bbd80864773f54fcf22fca959da9"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cd24423e224ad69b85e682a37ed67b35e3420a38d2e48cdd084c8a8898cf455e"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "625b73bb8733862f169ff4ded64021bbd164e11e6aec5eacbf3d8454ba3a11d4"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ee5084724ec29f8d7745bac88a5261bf65055b29b3b0f740ea7ed8b273f2dd32"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ab6313fe6b6e3c2b47a6a27816e85ada992ab4b226ea2bc6fc71debb8c84130b"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0c94d2822dfa6101949b9fb26099966e03af80fa96f9b53c97bf83369e89758e"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "29fe47670f2f6874ed88623dbc9b3b4ef5996ed4474d07091f0742ba9e78527d"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "29fe47670f2f6874ed88623dbc9b3b4ef5996ed4474d07091f0742ba9e78527d"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "dbff1dc7e8094e783477f640fe203a7c4a9b349533fa90022a856128b03edef2"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ab44bdacd7ed7c8491f71c6fb48893bad2cb9503489c873fdffaae4de4c2e2a9"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b85fefbe6444ba948bef287cc76c2eadc7bfae594cc72ae9977e5b1a83e24c8c"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "51beaad0db0260b269c5d32aeaf2a581d7968cce4789658cb1c143de358ead8f"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b4b80db9f2ac74c1c1a19dc25c14439caa4e18c3fd8baf5b7f3c4947759caa70"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5b692128a4083b1a57e0fa28032960ec7cdf2681e392982798b563f5fb8455b7"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0ae13dd6ff7234f2c17b03fa2b3ca7a6276b9ef6e2b355e4727169ceecbfbcb7"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1f48d160d8209b589db6f9961665a40fd6f5e37af162d9beed7ad6a3b5e627e5"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6126cdaf07ccd1f4b1bd2ea5a343ecfb2de8a75c8c007738d2f9287595a323b1"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5c9f5383850f887847e0f0a96a27c7879c0baef562a152464ad81e386ab81fbe"
+    },
+    {
+      "size": "S",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1f35a4dfc216cc8d3b8c3f4a44420f81fdc524f9bd1f993ac0b69c3cbd41d870"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c727e18833ded1baba3f157bffbddff0f113400bfd339bec72dcf5157b0d47af"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3b246d1a80527a2f5e90261df55b5a61289a218c27c6edfc61734bae6ef74060"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "50f1746c398260be3bbf3546742c88fbb2d293452b3e4f016f35c197101b510e"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2b60d18a5eceeb2231ea38b9449014e6a8158fc25dcd8cba6249c930a225474f"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "bd9fdf53c4c5f0af0195f5c72f45d34356580108297335cb279cc2a727084fe2"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "8f5321c12ccdc39534e5003b6ec017faaa2c63a90361c2fd302cc03d8dbadc10"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9c0f0970e4f304d4dfd4c28258f17156ea14a1c3bbfc7bd7a1672f37d358e5be"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c9e9bfbdd11556662080d3cbc864475983a3d467a7210ddea91071ab1ab2f192"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c9e9bfbdd11556662080d3cbc864475983a3d467a7210ddea91071ab1ab2f192"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6d381dde420a087c54b7c4f1aa3a164f71ade97b4391c50528b5425289315efc"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2bf36390715776659559cb7688ac2c1168635be481b3c46b83f6d6c3bfebad01"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "30dcaccedbe9d4bf621e7d1b0b2470b35ebe60501c027e524d47c70e66cb3e63"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f814f39c4812618f807a211707452d136b5391b218b3af8f4fe161a5575af8e0"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f2cb339532e960aecbff15d527fe0f035590f4ac5b01da733ac5761c7668ea36"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b9cbc9d1624ca7174ffcbfea547cbea50b6c5cc67df0d87f91d2bbb18812d78f"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cffca4de72e35430f01af565b7f0f8da42fefe5e3699edc2f24e00837cf37155"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5fbfca8da6e64d29f834d2626f4521bc104cdc60bf5fbbe361a4eacba3632d87"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "28eb78a5a0b9e3d420116f87e852e7e95c7dc1713f1125d113c81c4eab3e9f43"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "33ab1910ecc79af0fd96f2d8fb063dd4334a3f863884cc05ca79344174d2e170"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e3539fa2145ea5fc6ba6e5e74cf437402992d81e329b275ce7af7ba0b33ce221"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ab7868e454c7879a5d488928cb0a986f4c4144b1867be3f4313406f6847ca71a"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "efdd4de05924d9d7d4c8930de550981c990e9bc3683cee8a7499075cc2ba1d24"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c98faa82e5bd781b34664b8bfb47d4af88c424e0c018908c8b92c4ff66f6bd7b"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "596033c83fd06242a71f098a223d86c2c5dfdcce5862b6e6675839c8f5db3c64"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b8024b7c42fc2e3da0d42dd97ba4d28cd8b488e56c76c7727b2743410b0301ad"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ec9dce929eacc43b18f8fea130f878e1892e17133deae08dfcac26e16638eb96"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "bc50b034897c5962ec1ff8b8e1eefda2aca69907eae2bcad54a5c0ab67cd0dd7"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7457130cb3a1816026540622f854084f8cc9b940b510bd27fbcbd733dcfe5c79"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7457130cb3a1816026540622f854084f8cc9b940b510bd27fbcbd733dcfe5c79"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6298b234bd8c1e01244c23833bbfc6f69230a2bda520d880986c7a6677333914"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "23ff3486fcf7a8bd4f697f4628f09d6b112b07dad115532f21485699e2562f46"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b151469c68ce0804ab79c9e2ec7a82fb3b020d1dd69adc3f1d888726d2a80020"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "43240d22ad8a4b75819e65ed26b9527f1794b33ceaf4713dbd68ea2805c87501"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "12e3e9cc7533c702d06d905f9c3dde7f92a863aac9c6d2cf5030622aceac8bfd"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f2e03a2b6117d3cccb3c0fb62f78d00017a0a178c714a06c962a878708a31b07"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6536a4c76a0c522d448b617ac580056d5e18571c9de25cfcc930818d01eb7bf0"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "60d23145767a5b9025a2c0e88b0703551c5bd6e31ae9e31eedebcf24c171591d"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ff1ea71b9956efd280212aedfdbb0fa863cd89e86490d2bf55c9d25474d216a0"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7ca97c96db48cc89d881414fa1f1c7b5bc43960d41c7a45053f426d193088869"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a8117291b420c4e9acd83d1753ff74539981137b565e0b87b67266bf7fbb9a1b"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "62daaf21f3d3741598bbf5c0ac91cfa83448eb807675cf41966a10507c0344f4"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "07c5031c5452d8df17c768631e92e2d5f3b8a9836e5d80c48845fe6f84e08307"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b7ba751531247c27e003f8acec6d8e822f908163ae1cac0efa4c44ba20d48cf1"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1b34fbe1c434645b82091e8c84f56d908d6340104766470d7a957231443c3bab"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "baa449ee077dd960b077ae3bd848b0e10175fe6ce40097a9e51c060411665845"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "feb4ad2df4e6d93cb6bc543db157f95e1057467d8320e18429f14aff5c7d4a54"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7ae6af808dedcfa5070dbe337dfaf19a0c25afeac0a18e6fac12c259f335c78b"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c5cd4dcdabcb5c0e956efd5214b499dfce269b4486fe4bc556a905d7908b7a6d"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c5cd4dcdabcb5c0e956efd5214b499dfce269b4486fe4bc556a905d7908b7a6d"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "08c323cc1683535db40c6066be1ba19eebf8aec6332047cd01390e0e0ca558f7"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "302ef9791dbf88b4cc0d0f444eb25f13ae6d2ce56d5827b980dd27f8517e5d88"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "17e1ee270905ed41fd535271da9d91085a702a181563eca6c88a67bed4662c21"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5b65cdae0881e0315286d1ed4ad2950279127d7d5af3bb4183c7fb037f38a4a8"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "bc8cc705968858c144d2e9cfc9bf4f585763e653de7017f2fd64edb44f7d0d73"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "885c90fa20acd7fb7113b4bc160d41b838c6cd97c58753bc14de11d4ce0c6480"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c400fa802af25236c8a01d4ad25ff1e7ffe2f7b164c49f9fdff01e63ba10e156"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ed1865ee17faac551edd153f70f9feac70a566d47d8f4085662a146e2e053152"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f821d683ca2b3b77c82089530974994c3d89b249658ae1cf6ab0fe45c905d675"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "22ed67c93be080ca5d2d18f226bb5d47b97a69388c264b901856e30163709fe4"
+    },
+    {
+      "size": "M",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e65d640ca9c13d7d9f177cbb9082f8b2abeb92e442a13080407ae51e4f66b37b"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "707bf3b7ecb9df7a795babe33b2acae06589e9b8dd830bcef3d00f7e8ec499bb"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "8a36ca71184ca51a114ff4b1a4c424680c4d4508134a931989e0d58f1a206217"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9b276403965d14225d5b610e6d35f941836064e3e7afaadf8cb525fc86483a4e"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e10fd12084cf928ecef30f6c8fe4a50532f229f9a5bced13addb3695924f00f4"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "214692e2870069ca1a838e011896b51caa0c203116ac3aa29d7114000e702bec"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "fdd631a489d8cd45f9ab1ddcd3fe857afe2b38119ad0775967c6d9e957664483"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e15adca198c4a71370339beaf5c3708109c0b26e51890f699aadd5b2c38aac9d"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1b6def6694323b0790248fb460fbade51d37178dc298d5cdad35a6a806800ef5"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1b6def6694323b0790248fb460fbade51d37178dc298d5cdad35a6a806800ef5"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "212adc7c4a07a2e3afeac7736ce81bfe31740f3f1e5320a8fae6b7f9a7ce70b0"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f8600342d74f148408b9bfac3c08655c26411b49d528ad4c42a17c5277e0207f"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a1378aaf857b04f1cfac1df8af99f7e86eccbfb2bad5ec50c398d5b99bb7b1c9"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "331d5c566e8c020fb2d9c745eb39a268736e76a3bbba188412e356db44111550"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "17c334b19595ca8a8328a2c573ca9a0c0cc870206f381e3ff1e168bd03ffb9e4"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "10e42ec4bb9af5ab4f3f762523d0989db12be128cce3b4d500f96b9108319f34"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f5d521bf47d475bfb8b1ac557f8822b897a4d026205729078bf3bfbbffb9ba64"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e6bcc234ae0b9149a153d0a451bd3c919234672c7b10ce839855d4bcc1f6d5de"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1ea47f576c1147ca0e230b0deb717adb76487bc64fe9ad1473929f2464a5649f"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7e1c0e6501229d3cd1565a9a732fe86a16404bbca766674ecde55e0d218d13bd"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1fd8664ff5b9db0c7e8fd926c73199ee25a5f52e8a57860762ab830a70fa10ab"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "fb87b3cc177fe370c9a9c86601802ab2ce2d0b9864ec6ab263bbd33cd8c6ecc6"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "287755da13c9f0b8206998b92997e402959a2c395b404b066948756b558e759e"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "13a3a23bae9bc6083ec33981bc95257d0ed901aa9b4575e0eeaa1aca781da00d"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "32d6f05168cf4971ba2af8d63b65c6b12cd191116f6e9f07d3e89518b8bfa80d"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1fc7dbd0f3b9f60f8be968f692af970bb6a365c54a96a90d905708ed3420c5ef"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5204019614bb3c958941254a6d68f76146fa141c1bd64ef65f566a511b9d068d"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "08279d7cbea815f190d6e1f41ea7f55f8a3e8d4865f4f55be1ab4c01713a5838"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cf7c6662c59a37a6bf03df0e13f33dc05b701c4891c564f0e55c99e5f2d43c3b"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cf7c6662c59a37a6bf03df0e13f33dc05b701c4891c564f0e55c99e5f2d43c3b"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e869ab1d4f51e349f21225d4dc7a2120c19077c3419ac5680ef128a407d302f9"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "53ea503f7d442c6a79b9d842907b767ff8af90cd272849330e411dc894af53b9"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "bde304d0bfdf9c69a38ab862c78538a1dfb6be24d0ffde5f2ab5100766491ee1"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "dab30c030e58e9b8c2d97e3d31ae19e2aea061bbf0c695e4245625dc9e44e781"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "84c826a1d3ac3b19d48a08749a483f969b295aefa9289d950de463c09b17f748"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3dc0eeee52ddeed7695b73bb08d0ee7c5272d2a6949a2b271264159c099d0735"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "139b1c6750b7495a902d86ce976f892b7ba56b323d3fe47fe60e3ddfa6830b8f"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5257f9d5b003595f1d356c6c6a92e4a29355945b5a880a6907d3bb18bdeb1622"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "72a360ccce6692b7b0de08a4fd0a346803de49bdd4d8d1d4d57bb34b7718e52a"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "8d3c038e49e08299340e318b5b81bba4cdba78a7af27735e6641e282534dd6c9"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "12ede377ae41b2c694bc79b54f2d4c916f9f1fb0205c60ec51451a65686de17a"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4b54c1baae4aaef88f1d820214f2ddca0681a017753a4731c7e87e541863a8be"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0fdaac8e76e27f6b33fc279159f61ac7698a41f1f89a13dc8c11476841690d7b"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "fb06c987c534954e9e3d365899f8c0818729ba5f5b21b1dd9d8a1e81188e6143"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2696dbb5171f93e68868a03e59c66615e3900550c629de41e4ef383ef79ad8e5"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2f5a81d95530c5df977e7153cb7c2d0b3166ac6920b208e67ce985f485d8975c"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3cad41bc6e9bad91d8a97388a7b828de83ee532f0c9e304a7735a82745f41cee"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3992b8c7d7ab8a375097a8ccd0a7dc820f85443bdf0ee932fca9c823b797e3d3"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "70d243236105142844016f5cba7e934d64855ad86e9651fe92b0075c9cafad15"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "70d243236105142844016f5cba7e934d64855ad86e9651fe92b0075c9cafad15"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "364149ea29f384fde9f6dd8475a661db823587a4cdff8d56593be7839a39cde4"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4ea8803f765e755e0c43bdbbf5cd49bec71f2ea4c208c05a3f064c00d5549376"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "98b3da0c1b68202de73eb1ab69741757cedbb0a60b198645eb469a6a50660e46"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "41229f693a51f1ecc4d4599ec0ced025654104a34ff167aa8cb63b870320de6d"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4b910ded1cd0d4b0fe3aa97a55fb2ae957edcc866691f41396b2770917bb0f4c"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "52f675da924abf8473186ac70934bf4987011c2dc21e146d804aaa812090a8cb"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c885bb298d3b894954ef8c90484b5af0ef41bbe13ac0f4dc86f26bdeb4c77e5c"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "14ef9ee7465efd8799df212de51380907c56503a83cfbd7e1514bc4f8ab96082"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "14acb847c0407228f32b8c761332980b5188417020088983dcb05924f7a8858f"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5c79dda7a87b2881864e17cf292e76da70e65f4584d7ba4193e3c88ecf36688d"
+    },
+    {
+      "size": "M",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e6580efc046782f4693c218cf0419cd84588e24844d6e1e3d6f060d3510f157b"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 1,
+      "hash": "9f29876a76e1a33c3c371b216111d5f7eb7e69ef38f17c28f044e2dabad5b309"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6dc3be86ff751891ad36483935bc96d7faa8751132a47ee67e43b958a117ac91"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 1,
+      "hash": "1e3903c995843f5296a0031fd5b0ff1f0ce2ce37980507ddf8a63b363aced1f6"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 1,
+      "hash": "fb42f733b600eaca67c7801f9f3afc17130850cbcfa12d9a961227f193c0d7de"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "60d58d2b441b9920dbb78cb32e4c0f957776328f7089f2f4f59171b02236e1dc"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "565388e527eb78f6cd02f671a895f673a8c98e52e185cd52172e1c77aa443e75"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 1,
+      "hash": "3b6dbbe0c4303c1b7f9a80244480b98f09c35fdf78a1620b3f787d28ddca7ed2"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "80be4e5e8068df9abca43fa8934f345e33f10d0dd76e54d238d009db2d27e47e"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "80be4e5e8068df9abca43fa8934f345e33f10d0dd76e54d238d009db2d27e47e"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "eb15e743125dfc8683eadb6c909c08480c69a587e3839cd197c74a04e0ffa091"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e4aadcd8e469aaae47dd134749d2578f5a636acd05a20e10fa7c1681f5138747"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 3,
+      "hash": "86839d81b3942173464102e20639456427dd6a1a899820de9d9b00dd8567102d"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b0b71779e809adc59e8b0ba7a8027360caf2d43a2c5a1f68a024f739a2a410db"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 2,
+      "hash": "7f47265fcdc073f4e1f53cb54d62071253403dc564d40de163c6a7381a254b87"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "fd93797e96b34980084f8b60fad6b712bb970e0a0b3055c2efc42ad70306cefe"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4cf41837e146b37269f079fb208dceb6fc8dbc7e0fc83a7c66ee5a94e71a2e30"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4adbe6fd62855d755fd1130a7c9d5c1710eaea13b10390a6b0ac4ff542959500"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 1,
+      "hash": "d17e3ab13f6d3cb07b9b8e3c90aaed07258b15f9a184581b230e21e0f7d4852f"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 1,
+      "hash": "b3ef713b233873131bca70561ab2b64c38fffac81d07a27f01057fcf3c8670c3"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0577f486321e14e8e108a645063bf5cc353480d8daf6049a0b197b61b28a0bae"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0254a5d0eb28887cd6c9118e0ed777fdd2601620db12b71cf6aba1d7bc262aa7"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a91b74ea37f66c3d47714392274c2a8cbe1623c06427a9c3c401df723dadb2f4"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 1,
+      "hash": "6138e2fd306ec409db6fcec70af63c0c2b03da7a595a0393b35ee04f8b4dce57"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "74ec3f225f043637ac3ff9903f04bf33b8209e777b62b5bbfe51a6317053b18e"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cf3a2d668f9c95d12e9a5fd8024dd4b5edce6697af31a1e915b90da53ae6738c"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "082fc67395fa39b61be694b722f7e150df9d4f7ba2b27862a0169c4a7c5bd3dc"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9c9c5d66fe730104c8acb87832dd682bf6abafe5c18bc5e0fe87aad97af905c1"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 1,
+      "hash": "d70c231a389ec97de6e4c914154304a2284733d49903b3fdce13378a3e60076a"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 1,
+      "hash": "d70c231a389ec97de6e4c914154304a2284733d49903b3fdce13378a3e60076a"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "06825d5414773bdac6f7e856f74aa7e0d9059b818c17e375850e4b76a41dd4ad"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "245a7990a34b6711b78b82eff4b135462927518ec847e7390b5e21d5d67b65cc"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 2,
+      "hash": "375486e088086b8738f0c867132b919f8f1d34eff66a130ecc13cdcdc0439ee5"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a3e7ccd532e5a7ee2dc915ae64d638bb3be22b54b93f26a0a30b1b6b142838cb"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 1,
+      "hash": "1a29f5a3cdbc3da1ecbd1ff42e052c4a4b11383e8114b56c2c211b3d633f794f"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d67294c4f13dd8bab2b37623cb13b3b3d6782e05b9714286614068f597a3c693"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 1,
+      "hash": "eab8584ad937ed592e21990a7a40bcfa04aef196a332597278e0992c14e2903c"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9caf01aa9bddbcb6eabed561e6ee6dcf9daff00ee0fc477bb01c46b3322f356e"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 2,
+      "hash": "4527e020a26382f4889588bbaea55472490ad2650218a72b2bb277ffbb1e608f"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "600f452fa2e5e5aa1635bab5f4061ffe704608637188d6e99f3dcdf9b61fa4a8"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 2,
+      "hash": "b931f39fb17ce47bcaa53b36a93f755d5400880624a1ed847aef859820bbdcaf"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "dad6830bbbac0257606828c1f4ef4496efc1fbb835206d7637a01615449d2fa5"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 1,
+      "hash": "8a3ff098a1bbf7ef9ecae33cbd9b928cb2d660ee1fc63b22a7c2fffcf8b24ccc"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3cd1ad2a1520e1411c0ceebb3d1a65339cc0ef59e7606ffbb4fd51cca6b110e9"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 2,
+      "hash": "f85f44bf5a2e2d5222bb4089511e871aeb8076c37049b54db04e0cba7e10add4"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "29333fc549613ed5742f95d580a181d83f0e23f621e089a0b0f12751de44062c"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5a2cc84e96f5b4d1b1f9627426f2a2f097e5ad6a12360a6b1a67b4eeed507d0f"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1b2228e3c30258fa6ded10f87415049f7e32dddc3a1aaa9fedd2864b021e7e44"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e5181745dc2e45aa9d263832c09c4dc0fd564bf38683732b0fdce784556d2abf"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e5181745dc2e45aa9d263832c09c4dc0fd564bf38683732b0fdce784556d2abf"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4a370002e01e7ae3ed289e0a0bbed8269e747d47ce082da1b3d983ded199896c"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c7786d008e299f7a148d676b51ce0a6a6760dd3dd3cae0ee3863b9399743aa3d"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "70ef356c15ec5bfa0547af0ad437223fa206461ba93a58d4718281b1f4df6e96"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cc043a8bd5a4d0ef03084185ea0c7d4c887a2c2870ee6f3b2326bf866c83bd3b"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "223ece9d3b1a4e3d3a67e3c7073ed7b1c573015e271961f532d00ed46e921b45"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "76527dbc228a31570da865bd9950d254aaa5ae72df33af8060715cd78ef890af"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "88588db6c60f79b6b0972c5027026df7db097f0e5d9e1a0a090e43ba292abb05"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 2,
+      "hash": "ef451b0f88bacad4bc4df7565fa1692decd74161ad27a4e358ffb616105bf57f"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e9da82ca1e7cd92a885f86f6a561cbd6aac40ee7a268b39c7ad95fc1d11a40d9"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1267346c1dfb414da5821147d4785c2716208912d158c30882c591ad28cc7cd6"
+    },
+    {
+      "size": "M",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ced5a9e8f5d301f96e3f046fb6e70f41e2eaf10fcfcd7822f2bd56d6e1b51865"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "775c33b4b262273fe235a9413fda60a5cd63739d7a0a2d182b5fd405ec358a46"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7e26ecb6aa6ac294cb13a8e1b09abb96a77fc234fa048d8d0d9ddc0b745df495"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6b14724719e7b2c40e8152b17fd21729762df7a22ff3f3c209a6ba8e6eb260b7"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e4232b3061f24c3a919e747455aec7a15d03f28ee0dbc545988466fb94b39c3e"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "da6cf6b8d5718a525b7ead2251aac514542bf80dc4b6e64b8c0e65792a155da3"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "41d6299f03c67f7ae24024a114042dfbab6bb33e59d2436186397726a0da5c79"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9b30dc9d7460b7724fd3d665c5c0b41803349f00533963e7be69a15ba5f656b9"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "043e82df20368546032eceacb3d0c72634b17361afd960fbfa208b3b72eb30ed"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "043e82df20368546032eceacb3d0c72634b17361afd960fbfa208b3b72eb30ed"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2c706d9a29f36c12948ec67227d71cce27d03c97a39d2c1d497e8c13ba796f4a"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d98b8ea4e9da9a8e7fe1c885e4350ca8ce5d7490ecc2be097d5fbbe99bfee362"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "17f3074b93fa15a30bd5468ae3ad141afc5627d3859961c629ffde46d2c16a8e"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "da3de6560ddeb7e7ba7266f79672110d6b938e8d2f05b23898705c838a0d22fa"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "eb5f6595890942f987363bfafcb9ff38709f94aa6451012f1b9b0187e4934ae6"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e01195645fb543ac795a7174f10538d35c6ff655308afe175983232bea056bfd"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1567bad0429f1a979d63c4fbaba33ce60ffe06cba51e261b3ca07a203774abd5"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "18b7e47a1c9f54a723dcf3d27e2bc045f229b44a780d9214ae848c78d3034b27"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4d71f915bdfafbac38010547540d37eaada2130cdfa9b3a8ed057f94810f903b"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d23a625ba8cdfadf3c46069486c8c76aa5275f3b479f4f7bca17f23f795b283e"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1e085723ff59feb5fbe89635612641250e9c08d2a6736d20c6750d37d8f6981c"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "47285931cfefb5b9b67800fc30a591a45ee4a20565ce99de68001d22e1dbbf7d"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9f9d8b049cb9f73e5057c23d20024b6ff649f23c32469ca3d2f547b36ece5208"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e17b8d6c65c7831989049556afa7c33f1f49f20b19dc85d43210142cc1c140b0"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b40756eff4e0d4b56106cfee7f3dade945720fc78ac240afdef2595c3e74fb87"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cf24c3ae7a985f4eaaed11e7d6df7ec6c277dee47a8bbcfb57ba8e1378487b2d"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "40b85e0990a73eb300c84fe306c81f19093d355130bcec152c7bb4605f0e234d"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c415bd3162e39af40afe06197d761537f7230d993e12f02cd26f05d0250f835f"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1c68ac37318a14473f839566f9b19e04aa9355a70b1e67fe2deed8018ee2f8aa"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1c68ac37318a14473f839566f9b19e04aa9355a70b1e67fe2deed8018ee2f8aa"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1a6b76c1c5b6454770f683375e33eb4cca0b2b9f0a20501e7e9a7855d72c30a4"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ec8fa8e713695db38c20d5e255fe0768b172f55dfdb2bd66eaad383a9c5bede5"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d40e0a3c68bff5b784b51f57724784a534e6a4ac48c9a4e7141d10a5065da45c"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "12f7e2c43b845873bc6141ea78813149281ca491a7df64163903bb6228208b2e"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d2cf068a02b78fa32714253c6a7e0ac5c04187c4145eb261a51ce781ca7aac6b"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "23f7751f58c6acd80d3977f94e5e0ea6d7df74b77efd4018e201b442f4a8f04b"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a56ae4981431947d9e508992f850dbeb72405e5cbad25c7911d5acd0caf4ad66"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "66df70729ef79b66c1eb12bf03208a399850efbf104dcbc9f0fc045a7461b5b3"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f30ff8b10ee7cb546915c951f444ea4ebc7da9cd7865a24a24aaf67f9ad31ba3"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3e4eb2f4a8d31432becabdba1fa462aec854939f1e3b5e821035825ec24ff102"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4ed48a5bccc4aac3a1d449017e3f3cb1d32b8e25f9808a5095d1b9ffee5bab17"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "20f8a3b49e6ed071d541c304aed5bc84c648601b3a260e995c38559d6c0e7cf3"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ec5903389e1ff1a86844aff95fc9e2be8f17e3962f61ab5ea8d90aac8f26fb91"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c9f66aa906ff47aaf9230b855d26420a62ccc19b169ab47563ad7f1d7f8f0b5e"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f852842945b1120f92ef8c711fa9149b14f8eb287ce8092555b0f2537a83fa50"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "93d1a15f282a54b63c80a29be59e364c3d7eb1d7a8de3aff20761b228ebb7afa"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 1,
+      "hash": "878b16cbd6ab9cfc5929ea0b35f9329678190f52237a0d690ab3ee0bb44d6b9e"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "23656db26eb1ae673a5eee3154bb5346535ad83bc0b87d85e7e27509dde7852c"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3bcab6391479f627b94b3ef39d7606e8de8c96b3030b055dd0b7a0be2e22dc99"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3bcab6391479f627b94b3ef39d7606e8de8c96b3030b055dd0b7a0be2e22dc99"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0a28fdc6d5e2c035a5e6a8798a4c7dbc7f124e11b2aab9af5d4ee59a893d064b"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "08712a9c36d9393cff7bfaf29b339db7688e2ff1972d0444e6a1f6c303e2d198"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9b0ad3c30fe2d01a28f3dc50baaa775903b48730852d731b3a47f2f517ab2b73"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "28ddac27165e4f4bef059adbb119f58893b1be238585969bd10a4df07029ce6b"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9c5b1d5a98f8d83dd80f1069d2cfa73afd809ccbba475283e20eab3bfd28631b"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 1,
+      "hash": "b3631a9142a30763af80df6cdf46a2290c794f5133bc87fa401d27db001b0d7e"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b116e5c594a6b7131d8c1bc93cecca541a424f281ad6083ed8745dcedc70e6dd"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2f0f5cc47778561a176384c5325e1f9db268361a4d0edd9696c58740e0372ab4"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d919e4a80e4fb2aa9a701e7a322488ff37f3aafa1a0a94df96f5b50688155713"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "452e77f37da62bc559760d9ffdc6361a863b81b20855ad4f73fafbbb010601f6"
+    },
+    {
+      "size": "L",
+      "players": 2,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a586fdd1da89b35a943a478f884e8cbb975e9ffed48d0365aaab68df9e2b7b77"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ea553581c9da26f2d017feecd4c4da553683ac0b43365bb109aa617ddda71d61"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f65a7e701820c96436463bdbcc04d3447786c380a05dbce57701d2012f34f1f3"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0f62deab1ed1fd11a35d3e5b6f4a8deffd8b87735d3e15db8899fa6c12f6dcaa"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "63616f05b719599c0b0393923e865a69085fdcb5e33ee1c3f7105cc1405669e5"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3949c897dd8e6e9a68202c4b641de01b4dedc1cb641c88ed3e0add48a1772761"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "886949c9bdc1a977332d05699bf33ab4bed0a14be17c48eec666f9566a627229"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "64a773f0a624e91b1fc2ed90c184951215c9a73ff5272a60f97be9616d85a869"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "70f9e893a49b1123ee5a8c4617f72aa617f4a2e171722ef2d6e90bea0b8312af"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "70f9e893a49b1123ee5a8c4617f72aa617f4a2e171722ef2d6e90bea0b8312af"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "fc742fbab412d2a9e09591f5dc44136dd497aaa6f8bb5b2d1b555fb1b92afed0"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cd894dcd8b26886c2041e5ca03f9d7b595e620192117ea5e157e07e30c2296ec"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4f7bac86b0dd9c444519484d9413ef87ef34542736e3d427ed63e9463d9ca8f1"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c0bd03c8f073fca20524deb60ee13966efac694a45a5904fcaed1f117887b34a"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4076510fbca60cb25639dbdac32ddf848a0e45b90b958502970b1056a76bd3e7"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f285a47293bea208a2203c4536443d75134f260e786bff0ef67782b88a169c94"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "cc302ce816c99b65674131552e9effb70dbb7563736b02291891ef99fcac8a96"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6201d3a66238ef72c6c95cf9d5528d8ad7f9e22bd670a674216d7b576d0167f8"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f8a032cb4879dc1e867941f611935ab7a7c81fc0f7e8ce6b576c056ba0838647"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9360ffd49f0add6d9c751a0a8c7e744ed1f7f966e9177eb7f930396d3611509d"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "15d564cba5bc5d80b8e8fb92b1e16d2c8b081d20504ed202a199c1cb12e71e30"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9974bd7321ed5ce65d7becb4cb171788ffe9b5818fa3524c1c6ca76e13f3f01a"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "de6a9ee903b1f690e245b7a6153432ef166b4e10118b87c004396b5b0cd986db"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "dcac66c953c9b4a9d5d2afbac09a2fff393f761219bc3b8ac33c5064ce644f6b"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1a57b9e3d32dd6e239c626396dcf390bd366513cc48a202008162674b78b7cd9"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "027830ff98cb11c53a16df860b539e3c3ca14df85c2b839ba009a0916c9d5685"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "13a1fd06801481b6159d9473f1f6e6ed53d908d4a944c9bf81b204ad585f1347"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f8b9faf962272ef64555a1ba30c62626a39a5e58313407be5a6a89bddb7a1603"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0542a7bd4945d36514484291d47b3a886c26c205eddba52dcad73ae5f1815066"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0542a7bd4945d36514484291d47b3a886c26c205eddba52dcad73ae5f1815066"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "049596f5c6b776208fa46c615bff9c08268041c9cdfce418a273039f4f77bdff"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7e2b78d94cf4fb8bb07309b464133767e3ba011a49c2a916ec4c074bf84dff1f"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f08d35b204c189a52912c3c650f16f3cfecf9f4d3e4a03c8940a92277c8dadb5"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1f5d81b62bd032ae5f29da053302fc785f370dee8d84972a051d738113f2a8ef"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1be947ba2591a8989d4482c178fd2015bc28167199a733f77c86403c9684e2d0"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "465d80861beb9495b030ba2872b8b9d74e254c0c39448758a7b08c9e8827b10a"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "859102d70d2a2546e90a21226ee27acf9acf5da8b301e328a27a62c80ed3ef84"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "798cc0faa2a090c20ffe0d0df5da539cd3f5182bab79cef3136180f5fe13c867"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "fb8816b2237479306dce3d9ce1fde2a9006fdd58eb5a0cc31d7a067894abff1f"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2e89f6914e5536ce7393067c2f66fecd48c03a063cd757a2128ed84a10dd46a8"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "8b026c61aba74332e2b069b5c0d9a63b2b62f8de37be6b6d30dbb07db6d06c6d"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7a03f0ae89ecf7b5295a9d190ec0e7db361defd17502e92c90a8a08901de65bd"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "14447b6960c07174c75a02314cb33f93c82aeeb843e8bb0418d194dda9ec4a5f"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ad967063263824f2249a204e6bb8d92622da68670a8d0841bd28c9f74cde6260"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f29c1b8b8aa1f0962fb3a42debf048f1719263f8e9c1a0e3379b6b98c5106460"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2ce346dd606304ee05a36fb73c647dd99653de9923a5ea3d6b9485cd2e19a108"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7b8e66dde4544e6d75c6966fa6300fc944c982be7382bd7dd9d8f27c51a43203"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "79ee8c5931b619243e683e1fc1f7e4ae0ba820d401dfcc536147e059cf995fb9"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b51b11ae878fc5f3640d56f5c49c1e1578aef2bb59002feb4f516172a4d380d0"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b51b11ae878fc5f3640d56f5c49c1e1578aef2bb59002feb4f516172a4d380d0"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9a176419e5e2f0f405a52f47f20671a0565a5d254400b0347662a2965e1a6621"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "86924ae91f3b771104caa831d700b3baa91dca3fcb3caadb4542ca366b056aad"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "eddadec04de3e069ee2227e74e4294fa19452b55ec657001e1cbe742a2d94acc"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "49e6ca3d947960c7ddc428e192fd2b6c424c7d36938f69ca636fc1fe86b25682"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ce90391788ea37c8dddce561083bf1028f9b8245b6a7a9ccf91fe5c46fc9ebd7"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9e7695ff0dfb9a855ccaf5641ede1f80ad82b8886bc467a551d7635a11f75bb9"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a63d5be1ff51197a0840b91cab0c712620039361e0f19efcc02540d8bde21e31"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "844ee4cbab4d82473752d10e7c483c9ca9c0a1f4ebdcb155b53a0417ff83d395"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2a47ddfc64d4b128c45bffabf85c32b3665a9332cf05dec6d2cc34d8bf031d90"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9e9d03d9e1dc9e26e295889efccee2140eb032080b4d74f48988da93581dfb13"
+    },
+    {
+      "size": "L",
+      "players": 3,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6d18b6ed315a1484fffc49299dffb7032da156733212c0cf068214bbe16b24d9"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 2,
+      "hash": "8429c32923de3502f82b9ac4b877e656e5f70d47d2cf08ed0235752d49f5757f"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 1,
+      "hash": "dfa6d8170cc775dfe68c3b992f22240042f8ca5188730437b79de864a064404f"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "270b5158f90e64c449d8381d7b854dd10be745a009012f1ec032661db0754c34"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 2,
+      "hash": "1ab7ddb25ec51417d0206982bbd42f4542a3c20df7d6f989f4b967b3d3748010"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "176dbc4abc1e67b16713610bb8dbd04d84f95e4dd860008e31a46c96047c1563"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0842f178c279217865c10035dc2fef67634eed5156184186ca2630d9e59684a8"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 1,
+      "hash": "86c75fcbd455abaf8f20dff9e8205b91f3fa5d5cc47fa66f496a695ea4a56875"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 1,
+      "hash": "05bf30455f48af2bccb178be07f4e8c39f9a9ebf3e0d2b235ad8559a8fbf7d3a"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 1,
+      "hash": "05bf30455f48af2bccb178be07f4e8c39f9a9ebf3e0d2b235ad8559a8fbf7d3a"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 1,
+      "hash": "efd8adfff3794664e6dace0632cbde1a45bed13e86ddce7db9dcc15ca6677bf0"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "399089dd9181e5fba38e0f833633c59a517105021e0f9d46e6c6d7f90048dab6"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 1,
+      "hash": "d32433f27ffef30f934570f58b4dcefd8490128ca760474bbd8dbfeedeb1607e"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "75f5eaeecb1635467629e042dec6c1056d57b3eb79839cbe4562e1b1317a9dbb"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "038b7453a11c63ba20d0946800ba88ab5f70c7edfa1067afc4bfdbda8d077e28"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 2,
+      "hash": "c29f239a8d45372334068fc9181a6ebf3d1bf9eaf70558c195c377dfa4f23d27"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "942df26b89c65c75b61660d48db4da0f4ff0c09a112ce046cdc8ce631612a39f"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 2,
+      "hash": "3d037194fae3a32fcc20b228165b425411acc0910759e53803c941e543dfb194"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1b0427ca7cc9c03a1c47221d22e65a6ff98098e077c85f3087658dc6abb9ddc7"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a34f3727076f3cbd0a5e63d1e43ee3ea2160923479e35ae6b86b76fafe388ae3"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 2,
+      "hash": "c72bfd29c8378c69173c6311f96dc654fd92f35b354300c28b65eaec5d821f06"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9218f82d76e2761bd07ba503d893e98a370efa59e52e4e548f542aad8e429d8c"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "df0d359d8f8bbc9dcb8bed552e574fa91af28f3180b368617ea04523011105c2"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 1,
+      "hash": "e97d7050bc9f129df10cdb93ea05f39b1b0d8f2efd9a365e494a4459678832e9"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 1,
+      "hash": "b55ba1e5c5481b167833d2e3e5d808c4825197dc234a70473c44275cc0b4ef30"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d65b5bfd79ab0a7f41453dbaf5896129e252759709b4a44085fee6ea7f9ae6de"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 1,
+      "hash": "3e6e95871266f63656bb50424281685d8c6235fe0344d17b7dfbd42a1188cc47"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7686e6232abfd13fcc89e3cc2b4b5670c427a8392aa5f1a7f93815d35653d914"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 2,
+      "hash": "efd425dae1ed6266603f421fbbb16cd5483a06e3229dea0f4a165e5c0c894301"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 2,
+      "hash": "efd425dae1ed6266603f421fbbb16cd5483a06e3229dea0f4a165e5c0c894301"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 1,
+      "hash": "b5300ab68939baf0fdeda1cb6c15c37b175356113f7da97d79398cde70e5aca1"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b7faf9605725cafe8a132ac90e5192a1541cd576e59fc5af5f29506fdc0f93c5"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "252bac3bed0f7dae5712a8c465933bf2d91e921c96862d9b4273a15aaeca5fb1"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "472fc30be212cf7efa99bf8137564163426066129293d2f1dd6ce51c6f3f92b7"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d5bb54f5c83cd8eb4cea2ca4752938432dd1d7c7dbda08663e39f26ba4189ab5"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5a8e7284e884bb59bcf8a261e0b9f00ac657ec17fd64eeaadb41469284c22ccd"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "38015a773cffd72fb1b0e0e46cb851aaa81d2016af0232369dee372b1b8c92b8"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1254d022054a59163a8508ec99a47e16f30ffa952856b33243d574d9ec48f52c"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "163261a0002830feebc6f0bfb40d2503d854c66d9da0dd40c149b0757f36764a"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "10b8c22ab507cba3fc52d03c72584ba3d56914df3eeda79a233fafe1343dae5c"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 2,
+      "hash": "4ce4bd84a2e47c2274b9fa0772f0ccb7a4ab4f259ed38f91f5b590271fc59f88"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6533a21a3fd6e93ace48f6819688bb803aa90a11cb613608781ad00bb01fef10"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a4a81be337217c4799a18a3f4213a841dfcbb224b01d548fa0e700d8966d055e"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9b694a482ebc5373e0574054b302762e7e20bd00666825d3a029e7e7b6e62137"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 1,
+      "hash": "6a2ee1ce28081dde571e432f4d5d4885a4604b3596e252cd7c4989a9e35b313e"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 2,
+      "hash": "443bf4b04564be1b98889deb2e8f9c64f4a4d577f17e93f59e7eecbcd11dfcc6"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "db60c23383596987a75bcfeccb8150f9a6eb40f1aa0994ec1d24cb7ffae86a89"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f226674937d15f36c20ba81855e688606c152e4a5ad6a22fce7fe61dcef0d616"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 2,
+      "hash": "23d6a833cac974be83043c34b62d7a919cd2f123585e63dbcf175588716ce68c"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 2,
+      "hash": "23d6a833cac974be83043c34b62d7a919cd2f123585e63dbcf175588716ce68c"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "dae16443428f502ac21d24b2eb8811d9b437f38351dc67b744c6326377a57c82"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "84da8090b492b5a0d89b03ec94d40dc3338cf5f28ed66a62d75644272ce9959c"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2ab3d029bda71992c79c0532aa98bff1a6dc80c4f0bed4c4ec946c482ee6ce92"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "c716bfa8aa72e155409fefd435a0196457942a18c83ff51f592bd07f84cfc973"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 2,
+      "hash": "276190f392e15c733e7185609d76d8e153c07aee4afdaff31cd998dce27b4936"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ec1ed79b86c0c3e72cbd24312fd0b42d96de46c96e37cf4b2ad364b02b9341c1"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "37f9e6d40b9b77b00bcdc5eefeab18453f1589d3c8e2f154d7d9aca935ea0336"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 8,
+      "hash": "ae90c6b1e75a9ca62676ecb0e123aa6aca7865f594e9679c6ae9b7b7d19fa340"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 2,
+      "hash": "b15ea60623375a27fea0a929a86dfd47ddb825a5df7c28fb027c502655cddc96"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "745cc3755e0cc10027ef6c40589f3de52b1f83ef5ea469bb03433a4be0498124"
+    },
+    {
+      "size": "L",
+      "players": 4,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4b7185a15fa1671823149847efa64213389e3aa82363ffd8c344ba32628dbb34"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 19,
+      "hash": "b0b06eff08421c92685ef4efe033db4f16f7aba263809ee029539ba1e8a3fad8"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 19,
+      "hash": "58540bd3526c59fc5388b0009f62582b314e054e27b532b42d5956d7976d5137"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 19,
+      "hash": "58540bd3526c59fc5388b0009f62582b314e054e27b532b42d5956d7976d5137"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 14,
+      "hash": "472efd824401f8523363c0be236c1efd3dfdae6d5d31e57ce972cd55e5e2b74a"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 39,
+      "hash": "a5692c4e17c8790ff0624f80dd6e5ec8e34de4dbfe44ce0c794c50e369da879a"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 22,
+      "hash": "7713e8d9ea3bed1d609eb5e761e0c4cdd48fa16d269aa38aa5df540aafb0d4cf"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 35,
+      "hash": "02260b950d108521cbf41c1d07dd8d8ed1e93b878d7ea86c90c900e28da1aeb5"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 21,
+      "hash": "07c348cec26c45ba4e9b1c9379e9040c620989768c90b62ae29da6803ca4ef05"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 22,
+      "hash": "508f6035bdaf9edcd9bd683a4e6640a3c1b6a2922be5856196a1e527c4b2bb9d"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 11,
+      "hash": "9c1f7e32e6c57e69d9b31010506db47ba6edda099b83ad772c54de750b0cd89a"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 35,
+      "hash": "e1fce7f015f51e3a9705391be527a7ec496b5ce066b8b2acfb2880d0decd22a6"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 35,
+      "hash": "e1fce7f015f51e3a9705391be527a7ec496b5ce066b8b2acfb2880d0decd22a6"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 24,
+      "hash": "f67dc879b7509dedef7dee7936650824daf471f73a31a38010e4d62cac50b183"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 36,
+      "hash": "edbacb046aedc41f72125cc8fc8ef33d70f25392a6e1ff7d3c439dc6204b2e1d"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 7,
+      "hash": "308ee0112ab88ff26c2383899a9498479c80c101359b3cd1a629bd53771dae64"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 33,
+      "hash": "f18b16e9eb826759a0d90e8d5c4267c8605313333d6c32a9ed56f3274000a0ec"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 34,
+      "hash": "19982dec8635a8b87bb687ba307cec760546b870c9acf8ccb6bc5b74c1b3324a"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 5,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "fixed_fallback",
+      "attempt": null,
+      "hash": "8f5e0b33479cef745be584615d540092a0f3eec1f25bd4aadb0650f50a72099c"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6f646dd3d5e2871a7b0b4fb79cef12fd8cb159afc2db5700b59bda27dcf6ce4d"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "ee54c27f3ea183398a0a777d100ac10cfe99fb76ea075d41228028d39012f07f"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "8a0cd477c768eede5e0a2098a594d1dab0dbe252a7a3a57586cb7fd970a7228d"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "71eb9194ac871ff3bb59fb2cc6cd9437386b43da223e2d4af856b1c8020e4180"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "97ae1c1691c267f997f39cf00996b513c4a03b55dfe3df428d26873160d478a7"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d8c24821d018818552b66c831570a033ba5734d5f2d080690e078bfc103122e1"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b49407ec6d69f500ffbfe9cb6117df6da6a80363c5b96d29f2caa3d224f2823f"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1b4d80c2e3dad8fad97e8362404fc50cfd0eb6f1b0b99a94a9383531c3f0ec06"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1b4d80c2e3dad8fad97e8362404fc50cfd0eb6f1b0b99a94a9383531c3f0ec06"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "800646ae6ffd7a3427b04fe17a15856f5d05cd7ce1c382fe8d6ced5f4ad0eedb"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "402ac005e4e5cc05e87542bb9fb12876a437c3680311268d0233e06823e636b2"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b782d8020557f028eee5e374585e6e5cf7e901aa2a509014d1932bf9cc17ae37"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d8267060d0af4a6738d8b96d7ef0a621735e6b5f1d0beadc4d2d0e2da9ae9d71"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "895eb008b2a0a091b9c2887fde5a5be466aea9f5620dd83c0f9bd5235a344dae"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "bd27c40c42d32364eee9bfc89147fca810b2e7651e7ec9a1d998467fb1a06c21"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "f3ffca145bc9beea09f42fba450c4373ede1fe4b3d41d4716fbb4e9c154d7b03"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "88880fa0c0f18d01c5648be960b7f795057d24f069fa20a35d939d80d3102774"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0ea9fb4b79472cc33bb15eb77cf8816b24e5e6828ad5225153bf9f934b01482d"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "237a9a1189355c860d7cd36e549c72e90affd31fe68f67b3d852dc17a628fccd"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "balanced_coast",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "410e8e4469d57a964e8e6bc5bf2e44f27f80a5cd2d32eb1c0b0f60fc460c0493"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a597db8ba7a3204a54c09c50a9c2937dfe253c928d4754dda0048ada2c5dc83c"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e20a887144cbc3919c28e29ca23cb529d009f4ada19cd156d17b551ec0073c54"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0c20834b6de1850436a6327fa2bd09196782e39db5cb52e5e29251e4e607de46"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9f8ce9ee71249d59b34bb2da3508e0c26951544809335ef449a391db337d4cac"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0ab9ca3c24f15f46fe192b66b738e5a72f1af284132a36beeef893c8810c243b"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e91e99e63191b2e018a4c67b5288990ee781bf0b494e6ccc303c4e2078253455"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "e7b03c63edd00323203651792deced8c371f6b3751c439c8bfb4a75e6dc73562"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "8465ecccdbb4e353d4cff674c8a77cf9f4693c44455ef0e3fe085b851b2ff1c7"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "8465ecccdbb4e353d4cff674c8a77cf9f4693c44455ef0e3fe085b851b2ff1c7"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b519a8e213da173d28a82bff3d14f3de29603c53f7d452e46ba5d52ae4c66ee2"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0e24458cd1ef99ee32c9c365106b045ce5414e9fa11582a594aa1be59011cbeb"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2110f68f2ec2436387fca6efc4f1ce5edfca52e7cac5a1c179f90448ed24f3ee"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "16e2ddd8b326e8c678f1b306a72734832217d0db07c0ae992bfd3b44b8be7e04"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9a5245bf1c102a10bf6523b5b0aa3429c0d25b4fafdbd98857d3e992821dd024"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "de94ee4ea90fb53f3bf91f06c2ca8fd71c9ef52509b422c65aa13216f9f13e30"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "7655af5ae38f74561d6a385716d79244b6a8617d325accba4a503872473102c4"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "0434dbc8b3012bc3a71da8a9b92277598c3a67bbe4932b24730394b9aaa8712d"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "95e749b56b0c295ce03076a083b1d8c8236a4e3dbc155280b0cf04efec2a2255"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b1dcab9e03ef25ee3862311675d123774795975a0a45ccc49621f240432bb48d"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "bay_corridors",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "3a5e37377fe4644101572c2d02824bea2a1b948177787be1ac86719d4f4dcd22"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "六域演习",
+      "source": "random",
+      "attempt": 0,
+      "hash": "2572a8eca14913fb114062f36c4303c9c96810ebc4dfd52ebffa99ac27c176f9"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "中文 地图",
+      "source": "random",
+      "attempt": 0,
+      "hash": "33c7fc3486e0f1603ccfc85fc010f84f801560d28fd4c1601c1dcf0a589604f1"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "seed",
+      "source": "random",
+      "attempt": 0,
+      "hash": "fd852798b329faa492eca5fa002660d53ae2fd4c5176720be383566da3472cd7"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "SEED",
+      "source": "random",
+      "attempt": 0,
+      "hash": "43fd9593b1034d6d97fe0178a3ce1f880f29fed410a1fdd606585e1318924d21"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "12345",
+      "source": "random",
+      "attempt": 0,
+      "hash": "44fe9eed4b7c2759678ec2595bf89961037dba96b3b70b7bfc83052ae7cc6f3e"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "0",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a5156d4f7dd7d1647c0689faa16f11725c54fe20dd57c55a0947ff8a7384a0d3"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "internal space",
+      "source": "random",
+      "attempt": 0,
+      "hash": "d20506fdadfed49db6adf90ba18baa7ffb4a0ee4913e2c59f575f285fc62b829"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b216868a0f6412a46df158d3d4035f22f2c241beac29887e64d7e906a828045e"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "é",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b216868a0f6412a46df158d3d4035f22f2c241beac29887e64d7e906a828045e"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "🌊🛩️",
+      "source": "random",
+      "attempt": 0,
+      "hash": "36c795bc31016fa08dc50e2c8390c9136eef1fb198f7b448b70f0f81e566eabc"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界边界",
+      "source": "random",
+      "attempt": 0,
+      "hash": "54dae1d418470bb6fdedbc56d8779ff6e44b0ba16b3b922621125f943d75ed16"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "random",
+      "attempt": 0,
+      "hash": "4748dea0986ff263ca5bd3fa9333808becda12faa6554557bd6dd3e9fc88b46e"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "中文😀",
+      "source": "random",
+      "attempt": 0,
+      "hash": "5753aa05a12036abaaea5d7d67008c6801fb4a79fd180868e6077eb2c95fadc9"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "123 中文 abc",
+      "source": "random",
+      "attempt": 0,
+      "hash": "6b0d68508ef53c99597d336f4839cefd09d3c2f42f6469e55d9f3c6989f15285"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "Coast-07",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1386f4f99c64cffb6246b37150e6bef602477d21003a33c964427fd450ae7e34"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "多方六域",
+      "source": "random",
+      "attempt": 0,
+      "hash": "b133ec503dbf8caea556a6475249f4eaf493acbaad9bde05cc47f49a8a03c356"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "海湾",
+      "source": "random",
+      "attempt": 0,
+      "hash": "9b79bb791628d5a1b5f66209476d99847d5bc39c7f1c2bb22f0a9f32b200324f"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "island",
+      "source": "random",
+      "attempt": 0,
+      "hash": "a33edb0772eb9822e9a36777a610b735be85380a8f81ed97694ba98463013379"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "桥梁",
+      "source": "random",
+      "attempt": 0,
+      "hash": "08f6366e875a099ff4f3812a9da42e9a866ab6feb3d34d0b51ac8c2ac8275ccd"
+    },
+    {
+      "size": "L",
+      "players": 6,
+      "landscapeId": "island_bridges",
+      "seed": "2026-10-09",
+      "source": "random",
+      "attempt": 0,
+      "hash": "1953b6fdd0601cbd1fdcdb7b5f5994229e2f22cd29fa83f7f7d3c0770df6f6f5"
+    }
+  ]
+}

@@ -1,0 +1,3421 @@
+{
+  "schemaVersion": "design-campaign-0.6-energy-0.7",
+  "campaignId": "TIDELINE",
+  "title": "潮线上的命令",
+  "baseRulesVersion": "0.5",
+  "designOnly": true,
+  "coordinateSystem": "axial_q_equals_column",
+  "victoryModes": [
+    "capture_original_enemy_hq",
+    "own_all_registered_buildings"
+  ],
+  "timing": {
+    "hqCombatMinutes": 122,
+    "allBuildingsCombatMinutes": 136,
+    "storyMinutes": 14,
+    "menuAndLoadingMinutes": 7,
+    "retryReserveMinutes": 12,
+    "bufferMinutes": 11,
+    "totalCeilingMinutes": 180,
+    "remainingStoryOfferAtMinutes": 150
+  },
+  "catalog": {
+    "infantry": {
+      "code": "IF-09",
+      "label": "步枪步兵（前哨）",
+      "branch": "army",
+      "facility": "barracks",
+      "tier": 1,
+      "hp": 80,
+      "buildTurns": 1,
+      "cost": 35,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": true
+    },
+    "walker": {
+      "code": "IN-02",
+      "label": "突击步兵（哨兵）",
+      "branch": "army",
+      "facility": "barracks",
+      "tier": 2,
+      "hp": 100,
+      "buildTurns": 1,
+      "cost": 50,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": true
+    },
+    "heavyinfantry": {
+      "code": "IN-03",
+      "label": "重装步兵（壁垒）",
+      "branch": "army",
+      "facility": "barracks",
+      "tier": 3,
+      "hp": 140,
+      "buildTurns": 2,
+      "cost": 80,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": true
+    },
+    "lighttank": {
+      "code": "LT-11",
+      "label": "轻型坦克（雨燕）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 1,
+      "hp": 120,
+      "buildTurns": 1,
+      "cost": 90,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "tank": {
+      "code": "MB-03",
+      "label": "主战坦克（棱镜）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 2,
+      "hp": 160,
+      "buildTurns": 1,
+      "cost": 140,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "heavy": {
+      "code": "HV-07",
+      "label": "重型攻坚坦克（磐石）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 3,
+      "hp": 220,
+      "buildTurns": 2,
+      "cost": 220,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "lightartillery": {
+      "code": "AR-01",
+      "label": "轻型榴弹炮（火萤）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 1,
+      "hp": 80,
+      "buildTurns": 1,
+      "cost": 110,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "artillery": {
+      "code": "AR-05",
+      "label": "自行榴弹炮（弧光）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 2,
+      "hp": 110,
+      "buildTurns": 1,
+      "cost": 180,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "heavyartillery": {
+      "code": "AR-03",
+      "label": "重型远程炮（雷砧）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 3,
+      "hp": 140,
+      "buildTurns": 2,
+      "cost": 260,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "antiair": {
+      "code": "AA-12",
+      "label": "自行防空车（天幕）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 1,
+      "hp": 100,
+      "buildTurns": 1,
+      "cost": 120,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "missileaa": {
+      "code": "AA-02",
+      "label": "导弹防空车（穹盾）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 2,
+      "hp": 130,
+      "buildTurns": 1,
+      "cost": 180,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "longrangeaa": {
+      "code": "AA-03",
+      "label": "远程防空平台（星垒）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 3,
+      "hp": 160,
+      "buildTurns": 2,
+      "cost": 260,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "navaldestroyer": {
+      "code": "NV-13",
+      "label": "驱逐舰（潮刃）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 1,
+      "hp": 180,
+      "buildTurns": 1,
+      "cost": 240,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "cruiser": {
+      "code": "NV-15",
+      "label": "巡洋舰（巡岚）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 2,
+      "hp": 220,
+      "buildTurns": 1,
+      "cost": 340,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "battleship": {
+      "code": "NV-16",
+      "label": "战列舰（镇海）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 3,
+      "hp": 300,
+      "buildTurns": 2,
+      "cost": 480,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "marine": {
+      "code": "AM-17",
+      "label": "海军陆战步兵（浪锋）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 1,
+      "hp": 90,
+      "buildTurns": 1,
+      "cost": 55,
+      "amphibious": true,
+      "layer": "surface",
+      "infantry": true
+    },
+    "assaultmarine": {
+      "code": "AM-02",
+      "label": "突击陆战队（破浪）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 2,
+      "hp": 120,
+      "buildTurns": 1,
+      "cost": 85,
+      "amphibious": true,
+      "layer": "surface",
+      "infantry": true
+    },
+    "heavymarine": {
+      "code": "AM-03",
+      "label": "重装陆战队（礁盾）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 3,
+      "hp": 160,
+      "buildTurns": 2,
+      "cost": 125,
+      "amphibious": true,
+      "layer": "surface",
+      "infantry": true
+    },
+    "aafrigate": {
+      "code": "NA-01",
+      "label": "防空护卫舰（云帆）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 1,
+      "hp": 150,
+      "buildTurns": 1,
+      "cost": 220,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "aamissileship": {
+      "code": "NA-02",
+      "label": "防空导弹舰（海幕）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 2,
+      "hp": 200,
+      "buildTurns": 1,
+      "cost": 320,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "areaaship": {
+      "code": "NA-03",
+      "label": "区域防空舰（穹海）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 3,
+      "hp": 260,
+      "buildTurns": 2,
+      "cost": 440,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "reconplane": {
+      "code": "RC-A1",
+      "label": "轻型侦察机（纸鸢）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 1,
+      "hp": 60,
+      "buildTurns": 1,
+      "cost": 90,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "tacticalrecon": {
+      "code": "RC-A2",
+      "label": "战术侦察机（望隼）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 2,
+      "hp": 80,
+      "buildTurns": 1,
+      "cost": 140,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "longrangerecon": {
+      "code": "RC-A3",
+      "label": "远程侦察机（天眼）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 3,
+      "hp": 100,
+      "buildTurns": 2,
+      "cost": 210,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "lightfighter": {
+      "code": "FT-01",
+      "label": "轻型战斗机（青隼）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 1,
+      "hp": 100,
+      "buildTurns": 1,
+      "cost": 170,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "fighter": {
+      "code": "AF-20",
+      "label": "战斗机（苍隼）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 2,
+      "hp": 130,
+      "buildTurns": 1,
+      "cost": 260,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "heavyfighter": {
+      "code": "FT-03",
+      "label": "重型战斗机（霄刃）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 3,
+      "hp": 170,
+      "buildTurns": 2,
+      "cost": 340,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "lightbomber": {
+      "code": "BM-01",
+      "label": "轻型轰炸机（鸣雷）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 1,
+      "hp": 100,
+      "buildTurns": 1,
+      "cost": 190,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "tacticalbomber": {
+      "code": "BM-02",
+      "label": "战术轰炸机（惊雷）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 2,
+      "hp": 140,
+      "buildTurns": 1,
+      "cost": 270,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "bomber": {
+      "code": "AF-21",
+      "label": "远程轰炸机（远雷）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 3,
+      "hp": 180,
+      "buildTurns": 2,
+      "cost": 360,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    },
+    "scout": {
+      "code": "RC-01",
+      "label": "侦察车（游隼）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 1,
+      "hp": 80,
+      "buildTurns": 1,
+      "cost": 70,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "engineer": {
+      "code": "SP-06",
+      "label": "战地工程车（织补）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 1,
+      "hp": 100,
+      "buildTurns": 1,
+      "cost": 100,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "antitank": {
+      "code": "IF-10",
+      "label": "反坦克步兵（猎矛）",
+      "branch": "army",
+      "facility": "barracks",
+      "tier": 2,
+      "hp": 80,
+      "buildTurns": 1,
+      "cost": 65,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": true
+    },
+    "jammer": {
+      "code": "EW-08",
+      "label": "电子战平台（脉冲）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 2,
+      "hp": 90,
+      "buildTurns": 1,
+      "cost": 130,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "destroyer": {
+      "code": "AT-04",
+      "label": "反装甲歼击车（长钉）",
+      "branch": "army",
+      "facility": "factory",
+      "tier": 3,
+      "hp": 140,
+      "buildTurns": 2,
+      "cost": 160,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "amphibious": {
+      "code": "AM-18",
+      "label": "两栖轻型坦克（涉潮）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 2,
+      "hp": 120,
+      "buildTurns": 1,
+      "cost": 120,
+      "amphibious": true,
+      "layer": "surface",
+      "infantry": false
+    },
+    "submarine": {
+      "code": "NV-14",
+      "label": "潜艇（潜锋）",
+      "branch": "navy",
+      "facility": "port",
+      "tier": 2,
+      "hp": 140,
+      "buildTurns": 1,
+      "cost": 260,
+      "amphibious": false,
+      "layer": "surface",
+      "infantry": false
+    },
+    "helicopter": {
+      "code": "AF-19",
+      "label": "武装直升机（蜂鸟）",
+      "branch": "air",
+      "facility": "airfield",
+      "tier": 1,
+      "hp": 90,
+      "buildTurns": 1,
+      "cost": 160,
+      "amphibious": false,
+      "layer": "air",
+      "infantry": false
+    }
+  },
+  "buildingTypes": {
+    "hq": "指挥总部",
+    "city": "行政城市",
+    "market": "商贸中心",
+    "energyfield": "陆地能源站",
+    "energyplatform": "海上能源平台",
+    "barracks": "步兵营",
+    "factory": "装甲工厂",
+    "port": "军港",
+    "airfield": "机场"
+  },
+  "missions": [
+    {
+      "id": "C01",
+      "title": "断线的清晨",
+      "region": "岚岸",
+      "storyTime": "第一天06:10",
+      "size": [
+        7,
+        5
+      ],
+      "budget": {
+        "hq": 8,
+        "allBuildings": 10,
+        "story": 1
+      },
+      "targetRounds": {
+        "hq": [
+          3,
+          4
+        ],
+        "allBuildings": [
+          4,
+          5
+        ]
+      },
+      "fog": false,
+      "initialResources": {
+        "union": {
+          "money": 0,
+          "energy": 20
+        },
+        "red": {
+          "money": 0,
+          "energy": 20
+        }
+      },
+      "authorizationCeilings": {
+        "barracks": 1,
+        "factory": 1,
+        "port": 1,
+        "airfield": 1
+      },
+      "playerProductionWhitelist": [
+        "infantry",
+        "scout"
+      ],
+      "terrainRules": [
+        {
+          "terrain": "road",
+          "positions": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              6,
+              2
+            ]
+          ]
+        },
+        {
+          "terrain": "rubble",
+          "positions": [
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ]
+          ]
+        }
+      ],
+      "buildings": [
+        {
+          "key": "UHQ",
+          "type": "hq",
+          "owner": "union",
+          "position": [
+            1,
+            2
+          ],
+          "level": 1,
+          "storyLabel": "临时行动队指挥点",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UB",
+          "type": "barracks",
+          "owner": "union",
+          "position": [
+            1,
+            3
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RHQ",
+          "type": "hq",
+          "owner": "red",
+          "position": [
+            5,
+            2
+          ],
+          "level": 1,
+          "storyLabel": "岚岸广播所",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NC",
+          "type": "city",
+          "owner": null,
+          "position": [
+            3,
+            2
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        }
+      ],
+      "units": [
+        {
+          "key": "U01",
+          "type": "infantry",
+          "owner": "union",
+          "position": [
+            2,
+            2
+          ]
+        },
+        {
+          "key": "U02",
+          "type": "infantry",
+          "owner": "union",
+          "position": [
+            1,
+            2
+          ]
+        },
+        {
+          "key": "U03",
+          "type": "scout",
+          "owner": "union",
+          "position": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "R01",
+          "type": "infantry",
+          "owner": "red",
+          "position": [
+            5,
+            2
+          ]
+        },
+        {
+          "key": "R02",
+          "type": "infantry",
+          "owner": "red",
+          "position": [
+            4,
+            2
+          ]
+        },
+        {
+          "key": "R03",
+          "type": "scout",
+          "owner": "red",
+          "position": [
+            5,
+            1
+          ]
+        }
+      ],
+      "enemyProductionPlan": [],
+      "lesson": "移动与2 AP；清除守军后占领；单位不能叠放；普通反击。",
+      "approach": "两支步兵走道路，侦察车从上侧绕行。先消耗前沿守军的反击额度，再集中火力；留一支未攻击单位接管广播所。",
+      "allBuildingsRoute": "中央城市就在推进线上，接管城市后继续向广播所推进；无需回到已属己方的建筑。",
+      "optionalGoal": {
+        "id": "C01-OPT",
+        "text": "接管中央城市",
+        "kind": "owns_building_on_completion",
+        "buildingKey": "NC"
+      },
+      "midTrigger": {
+        "kind": "any",
+        "events": [
+          "first_legal_attack",
+          "player_own_turn_3"
+        ],
+        "fallback": "before_outro"
+      },
+      "clue": "SYNC",
+      "difficulty": "低；没有敌方补兵。",
+      "mapId": "C01-MAP",
+      "initialPlayer": "union",
+      "constructionEnabled": false,
+      "factionUnitCap": 24,
+      "initialExploration": "all_terrain_and_building_sites",
+      "scenes": {
+        "intro": "C01-INTRO",
+        "mid": "C01-MID",
+        "outro": "C01-OUTRO"
+      },
+      "nextMission": "C02",
+      "prerequisite": null,
+      "originalHQKeys": {
+        "union": "UHQ",
+        "red": "RHQ"
+      },
+      "aiPolicy": {
+        "hqGuardUnitKey": "R01",
+        "outsideCombatHelp": false,
+        "productionPlanFinite": true,
+        "avoidChasingToCorners": true
+      },
+      "deposits": {
+        "land": [],
+        "sea": []
+      },
+      "recommendedPlayerHQGuardUnitKey": "U02"
+    },
+    {
+      "id": "C02",
+      "title": "雨中的供电站",
+      "region": "白沼",
+      "storyTime": "第一天10:40",
+      "size": [
+        9,
+        7
+      ],
+      "budget": {
+        "hq": 12,
+        "allBuildings": 14,
+        "story": 2
+      },
+      "targetRounds": {
+        "hq": [
+          4,
+          5
+        ],
+        "allBuildings": [
+          5,
+          6
+        ]
+      },
+      "fog": false,
+      "initialResources": {
+        "union": {
+          "money": 120,
+          "energy": 30
+        },
+        "red": {
+          "money": 40,
+          "energy": 20
+        }
+      },
+      "authorizationCeilings": {
+        "barracks": 2,
+        "factory": 1,
+        "port": 1,
+        "airfield": 1
+      },
+      "playerProductionWhitelist": [
+        "infantry",
+        "scout",
+        "walker",
+        "engineer",
+        "antitank",
+        "lighttank",
+        "lightartillery"
+      ],
+      "terrainRules": [
+        {
+          "terrain": "water",
+          "positions": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              4,
+              6
+            ]
+          ]
+        },
+        {
+          "terrain": "road",
+          "positions": [
+            [
+              0,
+              3
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              3
+            ]
+          ]
+        },
+        {
+          "terrain": "ridge",
+          "positions": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        },
+        {
+          "terrain": "ruins",
+          "positions": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        }
+      ],
+      "buildings": [
+        {
+          "key": "UHQ",
+          "type": "hq",
+          "owner": "union",
+          "position": [
+            1,
+            3
+          ],
+          "level": 1,
+          "storyLabel": "白沼救援协调点",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UB",
+          "type": "barracks",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ],
+          "level": 2,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UF",
+          "type": "factory",
+          "owner": "union",
+          "position": [
+            1,
+            2
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RHQ",
+          "type": "hq",
+          "owner": "red",
+          "position": [
+            7,
+            3
+          ],
+          "level": 1,
+          "storyLabel": "配电值班指挥室",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RB",
+          "type": "barracks",
+          "owner": "red",
+          "position": [
+            7,
+            4
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NC",
+          "type": "city",
+          "owner": null,
+          "position": [
+            4,
+            3
+          ],
+          "level": 1,
+          "hp": 0,
+          "storyLabel": "停电的医院街区",
+          "stock": [],
+          "order": null
+        }
+      ],
+      "units": [
+        {
+          "key": "U01",
+          "type": "infantry",
+          "owner": "union",
+          "position": [
+            1,
+            3
+          ]
+        },
+        {
+          "key": "U02",
+          "type": "infantry",
+          "owner": "union",
+          "position": [
+            2,
+            4
+          ]
+        },
+        {
+          "key": "U03",
+          "type": "engineer",
+          "owner": "union",
+          "position": [
+            2,
+            2
+          ]
+        },
+        {
+          "key": "U04",
+          "type": "lighttank",
+          "owner": "union",
+          "position": [
+            3,
+            3
+          ],
+          "hp": 80
+        },
+        {
+          "key": "U05",
+          "type": "antitank",
+          "owner": "union",
+          "position": [
+            3,
+            4
+          ]
+        },
+        {
+          "key": "R01",
+          "type": "walker",
+          "owner": "red",
+          "position": [
+            7,
+            3
+          ]
+        },
+        {
+          "key": "R02",
+          "type": "infantry",
+          "owner": "red",
+          "position": [
+            6,
+            3
+          ]
+        },
+        {
+          "key": "R03",
+          "type": "lighttank",
+          "owner": "red",
+          "position": [
+            6,
+            4
+          ]
+        },
+        {
+          "key": "R04",
+          "type": "lightartillery",
+          "owner": "red",
+          "position": [
+            7,
+            2
+          ]
+        }
+      ],
+      "enemyProductionPlan": [
+        {
+          "facility": "RB",
+          "earliestOwnTurn": 2,
+          "unit": "infantry"
+        }
+      ],
+      "lesson": "工程车每回合修复一次40；每目标一次维修；装甲/反坦克与废墟减伤。",
+      "approach": "工程车先到(3,2)修复受损轻坦；反坦克步兵在桥边掩护。城市废墟可直接占领，修复后才恢复收入。不要把修复误当作占领前提。",
+      "allBuildingsRoute": "中央城市和敌步兵营均在桥两侧；安排第二支单位接管侧面的步兵营。",
+      "optionalGoal": {
+        "id": "C02-OPT",
+        "text": "成功执行一次工程修复",
+        "kind": "successful_skill_count",
+        "skill": "应急修复",
+        "minimum": 1
+      },
+      "midTrigger": {
+        "kind": "any",
+        "events": [
+          "first_successful_repair",
+          "player_own_turn_3"
+        ],
+        "fallback": "before_outro"
+      },
+      "clue": "ORIGINAL",
+      "difficulty": "低到中；敌方最多额外生产1支步兵。",
+      "mapId": "C02-MAP",
+      "initialPlayer": "union",
+      "constructionEnabled": false,
+      "factionUnitCap": 24,
+      "initialExploration": "all_terrain_and_building_sites",
+      "scenes": {
+        "intro": "C02-INTRO",
+        "mid": "C02-MID",
+        "outro": "C02-OUTRO"
+      },
+      "nextMission": "C03",
+      "prerequisite": "C01",
+      "originalHQKeys": {
+        "union": "UHQ",
+        "red": "RHQ"
+      },
+      "aiPolicy": {
+        "hqGuardUnitKey": "R01",
+        "outsideCombatHelp": false,
+        "productionPlanFinite": true,
+        "avoidChasingToCorners": true
+      },
+      "deposits": {
+        "land": [],
+        "sea": []
+      },
+      "recommendedPlayerHQGuardUnitKey": "U01"
+    },
+    {
+      "id": "C03",
+      "title": "盐湾航道",
+      "region": "盐湾",
+      "storyTime": "第一天17:20",
+      "size": [
+        11,
+        7
+      ],
+      "budget": {
+        "hq": 16,
+        "allBuildings": 18,
+        "story": 2
+      },
+      "targetRounds": {
+        "hq": [
+          5,
+          6
+        ],
+        "allBuildings": [
+          6,
+          7
+        ]
+      },
+      "fog": false,
+      "initialResources": {
+        "union": {
+          "money": 200,
+          "energy": 80
+        },
+        "red": {
+          "money": 160,
+          "energy": 60
+        }
+      },
+      "authorizationCeilings": {
+        "barracks": 2,
+        "factory": 1,
+        "port": 2,
+        "airfield": 1
+      },
+      "playerProductionWhitelist": [
+        "infantry",
+        "scout",
+        "walker",
+        "engineer",
+        "antitank",
+        "lighttank",
+        "lightartillery",
+        "navaldestroyer",
+        "cruiser",
+        "marine",
+        "assaultmarine",
+        "aafrigate",
+        "aamissileship",
+        "amphibious",
+        "submarine"
+      ],
+      "terrainRules": [
+        {
+          "terrain": "ocean",
+          "where": {
+            "rMax": 2
+          }
+        },
+        {
+          "terrain": "coast",
+          "where": {
+            "rEquals": 3
+          }
+        },
+        {
+          "terrain": "road",
+          "positions": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              10,
+              4
+            ]
+          ]
+        },
+        {
+          "terrain": "ruins",
+          "positions": [
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        },
+        {
+          "terrain": "ridge",
+          "positions": [
+            [
+              5,
+              6
+            ]
+          ]
+        }
+      ],
+      "buildings": [
+        {
+          "key": "UHQ",
+          "type": "hq",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ],
+          "level": 1,
+          "storyLabel": "盐湾救援调度点",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UP",
+          "type": "port",
+          "owner": "union",
+          "position": [
+            1,
+            3
+          ],
+          "level": 2,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RHQ",
+          "type": "hq",
+          "owner": "red",
+          "position": [
+            9,
+            3
+          ],
+          "level": 1,
+          "storyLabel": "航道调度所",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RP",
+          "type": "port",
+          "owner": "red",
+          "position": [
+            8,
+            3
+          ],
+          "level": 2,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NO",
+          "type": "energyplatform",
+          "owner": null,
+          "position": [
+            5,
+            1
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NC",
+          "type": "city",
+          "owner": null,
+          "position": [
+            5,
+            4
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        }
+      ],
+      "units": [
+        {
+          "key": "U01",
+          "type": "marine",
+          "owner": "union",
+          "position": [
+            2,
+            3
+          ]
+        },
+        {
+          "key": "U02",
+          "type": "assaultmarine",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ]
+        },
+        {
+          "key": "U03",
+          "type": "navaldestroyer",
+          "owner": "union",
+          "position": [
+            2,
+            2
+          ]
+        },
+        {
+          "key": "U04",
+          "type": "aafrigate",
+          "owner": "union",
+          "position": [
+            1,
+            1
+          ]
+        },
+        {
+          "key": "U05",
+          "type": "amphibious",
+          "owner": "union",
+          "position": [
+            3,
+            2
+          ]
+        },
+        {
+          "key": "R01",
+          "type": "marine",
+          "owner": "red",
+          "position": [
+            9,
+            3
+          ]
+        },
+        {
+          "key": "R02",
+          "type": "navaldestroyer",
+          "owner": "red",
+          "position": [
+            7,
+            2
+          ]
+        },
+        {
+          "key": "R03",
+          "type": "submarine",
+          "owner": "red",
+          "position": [
+            7,
+            1
+          ]
+        },
+        {
+          "key": "R04",
+          "type": "amphibious",
+          "owner": "red",
+          "position": [
+            8,
+            4
+          ]
+        },
+        {
+          "key": "R05",
+          "type": "aafrigate",
+          "owner": "red",
+          "position": [
+            8,
+            1
+          ]
+        }
+      ],
+      "enemyProductionPlan": [
+        {
+          "facility": "RP",
+          "earliestOwnTurn": 2,
+          "unit": "marine"
+        },
+        {
+          "facility": "RP",
+          "earliestOwnTurn": 4,
+          "unit": "navaldestroyer"
+        }
+      ],
+      "lesson": "普通舰船只能海洋；舰船可邻格占领；陆战队免能源两栖；海洋能耗。",
+      "approach": "驱逐舰从海上提供火力，陆战队沿海岸/道路推进；两栖轻坦在海陆之间选择更省能源路线。尽早接管敌港口可以阻止后续订单。",
+      "allBuildingsRoute": "海上分队接管中央能源平台，陆战队接管道路城市；最后两处敌建筑相邻，减少收尾折返。",
+      "optionalGoal": {
+        "id": "C03-OPT",
+        "text": "接管中央海上能源平台",
+        "kind": "owns_building_on_completion",
+        "buildingKey": "NO"
+      },
+      "midTrigger": {
+        "kind": "any",
+        "events": [
+          "first_sea_move",
+          "player_own_turn_3"
+        ],
+        "fallback": "before_outro"
+      },
+      "clue": "CARGO",
+      "difficulty": "中；最多2个敌生产计划，没有边缘援兵。",
+      "mapId": "C03-MAP",
+      "initialPlayer": "union",
+      "constructionEnabled": false,
+      "factionUnitCap": 24,
+      "initialExploration": "all_terrain_and_building_sites",
+      "scenes": {
+        "intro": "C03-INTRO",
+        "mid": "C03-MID",
+        "outro": "C03-OUTRO"
+      },
+      "nextMission": "C04",
+      "prerequisite": "C02",
+      "originalHQKeys": {
+        "union": "UHQ",
+        "red": "RHQ"
+      },
+      "aiPolicy": {
+        "hqGuardUnitKey": "R01",
+        "outsideCombatHelp": false,
+        "productionPlanFinite": true,
+        "avoidChasingToCorners": true
+      },
+      "deposits": {
+        "land": [],
+        "sea": [
+          [
+            5,
+            1
+          ]
+        ]
+      },
+      "recommendedPlayerHQGuardUnitKey": "U02"
+    },
+    {
+      "id": "C04",
+      "title": "看不见的航线",
+      "region": "镜原",
+      "storyTime": "第二天05:50",
+      "size": [
+        11,
+        7
+      ],
+      "budget": {
+        "hq": 18,
+        "allBuildings": 20,
+        "story": 2
+      },
+      "targetRounds": {
+        "hq": [
+          5,
+          6
+        ],
+        "allBuildings": [
+          6,
+          7
+        ]
+      },
+      "fog": true,
+      "initialResources": {
+        "union": {
+          "money": 260,
+          "energy": 90
+        },
+        "red": {
+          "money": 180,
+          "energy": 60
+        }
+      },
+      "authorizationCeilings": {
+        "barracks": 2,
+        "factory": 2,
+        "port": 2,
+        "airfield": 2
+      },
+      "playerProductionWhitelist": [
+        "infantry",
+        "scout",
+        "walker",
+        "engineer",
+        "antitank",
+        "lighttank",
+        "lightartillery",
+        "navaldestroyer",
+        "cruiser",
+        "marine",
+        "assaultmarine",
+        "aafrigate",
+        "aamissileship",
+        "amphibious",
+        "submarine",
+        "tank",
+        "artillery",
+        "antiair",
+        "missileaa",
+        "reconplane",
+        "tacticalrecon",
+        "lightfighter",
+        "fighter",
+        "lightbomber",
+        "tacticalbomber",
+        "helicopter"
+      ],
+      "terrainRules": [
+        {
+          "terrain": "road",
+          "positions": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              9,
+              3
+            ]
+          ]
+        },
+        {
+          "terrain": "ridge",
+          "positions": [
+            [
+              6,
+              2
+            ],
+            [
+              6,
+              4
+            ]
+          ]
+        },
+        {
+          "terrain": "ruins",
+          "positions": [
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              4
+            ]
+          ]
+        }
+      ],
+      "buildings": [
+        {
+          "key": "UHQ",
+          "type": "hq",
+          "owner": "union",
+          "position": [
+            1,
+            3
+          ],
+          "level": 1,
+          "storyLabel": "镜原联合观察所",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UF",
+          "type": "factory",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ],
+          "level": 2,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UA",
+          "type": "airfield",
+          "owner": "union",
+          "position": [
+            1,
+            2
+          ],
+          "level": 2,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RHQ",
+          "type": "hq",
+          "owner": "red",
+          "position": [
+            9,
+            3
+          ],
+          "level": 1,
+          "storyLabel": "警戒联队指挥所",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RF",
+          "type": "factory",
+          "owner": "red",
+          "position": [
+            9,
+            4
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RA",
+          "type": "airfield",
+          "owner": "red",
+          "position": [
+            9,
+            2
+          ],
+          "level": 2,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NC",
+          "type": "city",
+          "owner": null,
+          "position": [
+            5,
+            3
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        }
+      ],
+      "units": [
+        {
+          "key": "U01",
+          "type": "tacticalrecon",
+          "owner": "union",
+          "position": [
+            2,
+            1
+          ]
+        },
+        {
+          "key": "U02",
+          "type": "lightfighter",
+          "owner": "union",
+          "position": [
+            2,
+            2
+          ]
+        },
+        {
+          "key": "U03",
+          "type": "lightbomber",
+          "owner": "union",
+          "position": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "U04",
+          "type": "antiair",
+          "owner": "union",
+          "position": [
+            2,
+            4
+          ]
+        },
+        {
+          "key": "U05",
+          "type": "tank",
+          "owner": "union",
+          "position": [
+            3,
+            3
+          ]
+        },
+        {
+          "key": "U06",
+          "type": "infantry",
+          "owner": "union",
+          "position": [
+            1,
+            3
+          ]
+        },
+        {
+          "key": "R01",
+          "type": "fighter",
+          "owner": "red",
+          "position": [
+            8,
+            1
+          ]
+        },
+        {
+          "key": "R02",
+          "type": "lightbomber",
+          "owner": "red",
+          "position": [
+            8,
+            2
+          ]
+        },
+        {
+          "key": "R03",
+          "type": "missileaa",
+          "owner": "red",
+          "position": [
+            8,
+            4
+          ]
+        },
+        {
+          "key": "R04",
+          "type": "walker",
+          "owner": "red",
+          "position": [
+            9,
+            3
+          ]
+        },
+        {
+          "key": "R05",
+          "type": "scout",
+          "owner": "red",
+          "position": [
+            7,
+            3
+          ]
+        },
+        {
+          "key": "R06",
+          "type": "helicopter",
+          "owner": "red",
+          "position": [
+            7,
+            5
+          ]
+        }
+      ],
+      "enemyProductionPlan": [
+        {
+          "facility": "RF",
+          "earliestOwnTurn": 2,
+          "unit": "antiair"
+        },
+        {
+          "facility": "RA",
+          "earliestOwnTurn": 3,
+          "unit": "lightfighter"
+        }
+      ],
+      "lesson": "侦察共享视野；不能盲射；专职防空150%反击；先用地面火力削弱防空。",
+      "approach": "侦察机扫描提供当前目标，坦克从中央路逼近防空车；轰炸机不要直接攻击满血专职防空。防空仅在自己被攻击时反击，不能代附近友军拦截。",
+      "allBuildingsRoute": "中央城市、敌机场和工厂围绕同一推进线；飞机也可在清守军后接管建筑，仍不能与其他单位共格。",
+      "optionalGoal": {
+        "id": "C04-OPT",
+        "text": "成功执行一次主动扫描",
+        "kind": "successful_skill_count",
+        "skill": "主动扫描",
+        "minimum": 1
+      },
+      "midTrigger": {
+        "kind": "any",
+        "events": [
+          "first_successful_scan",
+          "player_own_turn_3"
+        ],
+        "fallback": "before_outro"
+      },
+      "clue": "TRACK",
+      "difficulty": "中；视野先教学，再给攻击预览；不用强制牺牲飞机演示反击。",
+      "mapId": "C04-MAP",
+      "initialPlayer": "union",
+      "constructionEnabled": false,
+      "factionUnitCap": 24,
+      "initialExploration": "all_terrain_and_building_sites",
+      "scenes": {
+        "intro": "C04-INTRO",
+        "mid": "C04-MID",
+        "outro": "C04-OUTRO"
+      },
+      "nextMission": "C05",
+      "prerequisite": "C03",
+      "originalHQKeys": {
+        "union": "UHQ",
+        "red": "RHQ"
+      },
+      "aiPolicy": {
+        "hqGuardUnitKey": "R04",
+        "outsideCombatHelp": false,
+        "productionPlanFinite": true,
+        "avoidChasingToCorners": true
+      },
+      "deposits": {
+        "land": [],
+        "sea": []
+      },
+      "recommendedPlayerHQGuardUnitKey": "U06"
+    },
+    {
+      "id": "C05",
+      "title": "两份命令",
+      "region": "砺岭",
+      "storyTime": "第二天12:10",
+      "size": [
+        11,
+        9
+      ],
+      "budget": {
+        "hq": 20,
+        "allBuildings": 22,
+        "story": 2
+      },
+      "targetRounds": {
+        "hq": [
+          6,
+          7
+        ],
+        "allBuildings": [
+          7,
+          8
+        ]
+      },
+      "fog": true,
+      "initialResources": {
+        "union": {
+          "money": 450,
+          "energy": 100
+        },
+        "red": {
+          "money": 240,
+          "energy": 60
+        }
+      },
+      "authorizationCeilings": {
+        "barracks": 3,
+        "factory": 3,
+        "port": 2,
+        "airfield": 2
+      },
+      "playerProductionWhitelist": [
+        "infantry",
+        "scout",
+        "walker",
+        "engineer",
+        "antitank",
+        "lighttank",
+        "lightartillery",
+        "navaldestroyer",
+        "cruiser",
+        "marine",
+        "assaultmarine",
+        "aafrigate",
+        "aamissileship",
+        "amphibious",
+        "submarine",
+        "tank",
+        "artillery",
+        "antiair",
+        "missileaa",
+        "reconplane",
+        "tacticalrecon",
+        "lightfighter",
+        "fighter",
+        "lightbomber",
+        "tacticalbomber",
+        "helicopter",
+        "heavyinfantry",
+        "jammer",
+        "destroyer"
+      ],
+      "terrainRules": [
+        {
+          "terrain": "water",
+          "positions": [
+            [
+              5,
+              0
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              5,
+              7
+            ],
+            [
+              5,
+              8
+            ]
+          ]
+        },
+        {
+          "terrain": "road",
+          "positions": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              4
+            ]
+          ]
+        },
+        {
+          "terrain": "ruins",
+          "positions": [
+            [
+              6,
+              3
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              5
+            ]
+          ]
+        },
+        {
+          "terrain": "ridge",
+          "positions": [
+            [
+              4,
+              2
+            ],
+            [
+              6,
+              6
+            ]
+          ]
+        }
+      ],
+      "buildings": [
+        {
+          "key": "UHQ",
+          "type": "hq",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ],
+          "level": 1,
+          "storyLabel": "砺岭联合指挥点",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UB",
+          "type": "barracks",
+          "owner": "union",
+          "position": [
+            1,
+            5
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UF",
+          "type": "factory",
+          "owner": "union",
+          "position": [
+            1,
+            3
+          ],
+          "level": 2,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RHQ",
+          "type": "hq",
+          "owner": "red",
+          "position": [
+            9,
+            4
+          ],
+          "level": 1,
+          "storyLabel": "生产线中央指挥室",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RF",
+          "type": "factory",
+          "owner": "red",
+          "position": [
+            8,
+            3
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RB",
+          "type": "barracks",
+          "owner": "red",
+          "position": [
+            8,
+            5
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NC",
+          "type": "city",
+          "owner": null,
+          "position": [
+            5,
+            4
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NM",
+          "type": "market",
+          "owner": null,
+          "position": [
+            4,
+            7
+          ],
+          "level": 1,
+          "stock": [],
+          "order": null
+        }
+      ],
+      "units": [
+        {
+          "key": "U01",
+          "type": "tank",
+          "owner": "union",
+          "position": [
+            2,
+            4
+          ]
+        },
+        {
+          "key": "U02",
+          "type": "artillery",
+          "owner": "union",
+          "position": [
+            2,
+            2
+          ]
+        },
+        {
+          "key": "U03",
+          "type": "jammer",
+          "owner": "union",
+          "position": [
+            3,
+            3
+          ]
+        },
+        {
+          "key": "U04",
+          "type": "destroyer",
+          "owner": "union",
+          "position": [
+            3,
+            5
+          ]
+        },
+        {
+          "key": "U05",
+          "type": "heavyinfantry",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ]
+        },
+        {
+          "key": "U06",
+          "type": "engineer",
+          "owner": "union",
+          "position": [
+            2,
+            3
+          ]
+        },
+        {
+          "key": "R01",
+          "type": "heavyinfantry",
+          "owner": "red",
+          "position": [
+            9,
+            4
+          ]
+        },
+        {
+          "key": "R02",
+          "type": "tank",
+          "owner": "red",
+          "position": [
+            7,
+            4
+          ]
+        },
+        {
+          "key": "R03",
+          "type": "heavy",
+          "owner": "red",
+          "position": [
+            8,
+            4
+          ]
+        },
+        {
+          "key": "R04",
+          "type": "artillery",
+          "owner": "red",
+          "position": [
+            8,
+            2
+          ]
+        },
+        {
+          "key": "R05",
+          "type": "antiair",
+          "owner": "red",
+          "position": [
+            7,
+            5
+          ]
+        },
+        {
+          "key": "R06",
+          "type": "antitank",
+          "owner": "red",
+          "position": [
+            8,
+            5
+          ]
+        }
+      ],
+      "enemyProductionPlan": [
+        {
+          "facility": "RB",
+          "earliestOwnTurn": 2,
+          "unit": "antitank"
+        },
+        {
+          "facility": "RF",
+          "earliestOwnTurn": 3,
+          "unit": "tank"
+        }
+      ],
+      "lesson": "炮兵不能移动后射击；干扰下一己方回合AP；侧翼与Ⅲ级型号。",
+      "approach": "留炮兵在可射击位置，让其他单位侦察；长钉处理重装甲，干扰关键前排，坦克保护工程车。下方市场是较短侧线，不需要清空全部敌军。",
+      "allBuildingsRoute": "分一支便宜单位接管下方市场；主力接管桥城和敌三座建筑。目标都在中部和右侧，不追逐逃兵。",
+      "optionalGoal": {
+        "id": "C05-OPT",
+        "text": "成功执行一次链路干扰",
+        "kind": "successful_skill_count",
+        "skill": "链路干扰",
+        "minimum": 1
+      },
+      "midTrigger": {
+        "kind": "any",
+        "events": [
+          "first_successful_jam",
+          "player_own_turn_3"
+        ],
+        "fallback": "before_outro"
+      },
+      "clue": "PAIR",
+      "difficulty": "中到高；罗峤态度改变只发生在战后，不偷改敌军归属。",
+      "mapId": "C05-MAP",
+      "initialPlayer": "union",
+      "constructionEnabled": false,
+      "factionUnitCap": 24,
+      "initialExploration": "all_terrain_and_building_sites",
+      "scenes": {
+        "intro": "C05-INTRO",
+        "mid": "C05-MID",
+        "outro": "C05-OUTRO"
+      },
+      "nextMission": "C06",
+      "prerequisite": "C04",
+      "originalHQKeys": {
+        "union": "UHQ",
+        "red": "RHQ"
+      },
+      "aiPolicy": {
+        "hqGuardUnitKey": "R01",
+        "outsideCombatHelp": false,
+        "productionPlanFinite": true,
+        "avoidChasingToCorners": true
+      },
+      "deposits": {
+        "land": [],
+        "sea": []
+      },
+      "recommendedPlayerHQGuardUnitKey": "U05"
+    },
+    {
+      "id": "C06",
+      "title": "最后一道潮门",
+      "region": "潮门海峡",
+      "storyTime": "第二天19:30",
+      "size": [
+        13,
+        9
+      ],
+      "budget": {
+        "hq": 22,
+        "allBuildings": 24,
+        "story": 2
+      },
+      "targetRounds": {
+        "hq": [
+          6,
+          8
+        ],
+        "allBuildings": [
+          7,
+          9
+        ]
+      },
+      "fog": true,
+      "initialResources": {
+        "union": {
+          "money": 600,
+          "energy": 140
+        },
+        "red": {
+          "money": 300,
+          "energy": 100
+        }
+      },
+      "authorizationCeilings": {
+        "barracks": 3,
+        "factory": 3,
+        "port": 3,
+        "airfield": 3
+      },
+      "playerProductionWhitelist": [
+        "infantry",
+        "walker",
+        "heavyinfantry",
+        "lighttank",
+        "tank",
+        "heavy",
+        "lightartillery",
+        "artillery",
+        "heavyartillery",
+        "antiair",
+        "missileaa",
+        "longrangeaa",
+        "navaldestroyer",
+        "cruiser",
+        "battleship",
+        "marine",
+        "assaultmarine",
+        "heavymarine",
+        "aafrigate",
+        "aamissileship",
+        "areaaship",
+        "reconplane",
+        "tacticalrecon",
+        "longrangerecon",
+        "lightfighter",
+        "fighter",
+        "heavyfighter",
+        "lightbomber",
+        "tacticalbomber",
+        "bomber",
+        "scout",
+        "engineer",
+        "antitank",
+        "jammer",
+        "destroyer",
+        "amphibious",
+        "submarine",
+        "helicopter"
+      ],
+      "terrainRules": [
+        {
+          "terrain": "ocean",
+          "where": {
+            "rMax": 2
+          }
+        },
+        {
+          "terrain": "ocean",
+          "where": {
+            "qEquals": 0
+          }
+        },
+        {
+          "terrain": "coast",
+          "where": {
+            "rEquals": 3,
+            "qMin": 1
+          }
+        },
+        {
+          "terrain": "coast",
+          "where": {
+            "qEquals": 1,
+            "rMin": 4
+          }
+        },
+        {
+          "terrain": "water",
+          "positions": [
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              6,
+              8
+            ]
+          ]
+        },
+        {
+          "terrain": "road",
+          "positions": [
+            [
+              2,
+              5
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              5
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              8,
+              5
+            ],
+            [
+              9,
+              5
+            ],
+            [
+              10,
+              5
+            ],
+            [
+              11,
+              5
+            ]
+          ]
+        },
+        {
+          "terrain": "ridge",
+          "positions": [
+            [
+              6,
+              6
+            ],
+            [
+              8,
+              6
+            ]
+          ]
+        },
+        {
+          "terrain": "ruins",
+          "positions": [
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ]
+          ]
+        }
+      ],
+      "buildings": [
+        {
+          "key": "UHQ",
+          "type": "hq",
+          "owner": "union",
+          "position": [
+            2,
+            5
+          ],
+          "level": 1,
+          "storyLabel": "潮门联合前进指挥点",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UF",
+          "type": "factory",
+          "owner": "union",
+          "position": [
+            2,
+            6
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UP",
+          "type": "port",
+          "owner": "union",
+          "position": [
+            2,
+            3
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UA",
+          "type": "airfield",
+          "owner": "union",
+          "position": [
+            3,
+            6
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RHQ",
+          "type": "hq",
+          "owner": "red",
+          "position": [
+            11,
+            3
+          ],
+          "level": 1,
+          "storyLabel": "水闸守备所",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RP",
+          "type": "port",
+          "owner": "red",
+          "position": [
+            9,
+            3
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RF",
+          "type": "factory",
+          "owner": "red",
+          "position": [
+            10,
+            5
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RA",
+          "type": "airfield",
+          "owner": "red",
+          "position": [
+            10,
+            6
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        }
+      ],
+      "units": [
+        {
+          "key": "U01",
+          "type": "heavy",
+          "owner": "union",
+          "position": [
+            2,
+            5
+          ]
+        },
+        {
+          "key": "U02",
+          "type": "heavyartillery",
+          "owner": "union",
+          "position": [
+            3,
+            4
+          ]
+        },
+        {
+          "key": "U03",
+          "type": "heavymarine",
+          "owner": "union",
+          "position": [
+            3,
+            3
+          ]
+        },
+        {
+          "key": "U04",
+          "type": "battleship",
+          "owner": "union",
+          "position": [
+            3,
+            1
+          ]
+        },
+        {
+          "key": "U05",
+          "type": "areaaship",
+          "owner": "union",
+          "position": [
+            4,
+            2
+          ]
+        },
+        {
+          "key": "U06",
+          "type": "heavyfighter",
+          "owner": "union",
+          "position": [
+            4,
+            5
+          ]
+        },
+        {
+          "key": "U07",
+          "type": "longrangerecon",
+          "owner": "union",
+          "position": [
+            4,
+            4
+          ]
+        },
+        {
+          "key": "U08",
+          "type": "engineer",
+          "owner": "union",
+          "position": [
+            3,
+            6
+          ]
+        },
+        {
+          "key": "R01",
+          "type": "heavymarine",
+          "owner": "red",
+          "position": [
+            11,
+            3
+          ]
+        },
+        {
+          "key": "R02",
+          "type": "cruiser",
+          "owner": "red",
+          "position": [
+            9,
+            1
+          ]
+        },
+        {
+          "key": "R03",
+          "type": "aamissileship",
+          "owner": "red",
+          "position": [
+            10,
+            2
+          ]
+        },
+        {
+          "key": "R04",
+          "type": "submarine",
+          "owner": "red",
+          "position": [
+            8,
+            1
+          ]
+        },
+        {
+          "key": "R05",
+          "type": "longrangeaa",
+          "owner": "red",
+          "position": [
+            9,
+            5
+          ]
+        },
+        {
+          "key": "R06",
+          "type": "heavy",
+          "owner": "red",
+          "position": [
+            10,
+            5
+          ]
+        },
+        {
+          "key": "R07",
+          "type": "tacticalbomber",
+          "owner": "red",
+          "position": [
+            10,
+            7
+          ]
+        },
+        {
+          "key": "R08",
+          "type": "heavyartillery",
+          "owner": "red",
+          "position": [
+            11,
+            6
+          ]
+        }
+      ],
+      "enemyProductionPlan": [
+        {
+          "facility": "RP",
+          "earliestOwnTurn": 2,
+          "unit": "aafrigate"
+        },
+        {
+          "facility": "RF",
+          "earliestOwnTurn": 3,
+          "unit": "antiair"
+        }
+      ],
+      "lesson": "各体系Ⅲ级仍用熟悉规则；海上火力、地面推进、空中侦察协同；按任务选择生产。",
+      "approach": "海军沿上方海域靠近沿岸总部，地面经道路桥推进，侦察机共享视野；优先消除敌方防空再让战斗机逼近。无需生产全部型号。",
+      "allBuildingsRoute": "四座敌建筑集中在东北区域；舰船处理沿岸点，地面/空军接管工厂和机场，完成后立即收束。",
+      "optionalGoal": {
+        "id": "C06-OPT",
+        "text": "结束时陆军、海军、空军各至少有一个存活单位",
+        "kind": "alive_branches_on_completion",
+        "branches": [
+          "army",
+          "navy",
+          "air"
+        ]
+      },
+      "midTrigger": {
+        "kind": "any",
+        "events": [
+          "first_capture_enemy_production_facility",
+          "player_own_turn_3"
+        ],
+        "fallback": "before_outro"
+      },
+      "clue": "ROUTE",
+      "difficulty": "高；初始敌8支、最多补2支，不用无限援兵延长时长。",
+      "mapId": "C06-MAP",
+      "initialPlayer": "union",
+      "constructionEnabled": false,
+      "factionUnitCap": 24,
+      "initialExploration": "all_terrain_and_building_sites",
+      "scenes": {
+        "intro": "C06-INTRO",
+        "mid": "C06-MID",
+        "outro": "C06-OUTRO"
+      },
+      "nextMission": "C07",
+      "prerequisite": "C05",
+      "originalHQKeys": {
+        "union": "UHQ",
+        "red": "RHQ"
+      },
+      "aiPolicy": {
+        "hqGuardUnitKey": "R01",
+        "outsideCombatHelp": false,
+        "productionPlanFinite": true,
+        "avoidChasingToCorners": true
+      },
+      "deposits": {
+        "land": [],
+        "sea": []
+      },
+      "recommendedPlayerHQGuardUnitKey": "U01"
+    },
+    {
+      "id": "C07",
+      "title": "零点之前",
+      "region": "潮门·灯塔市",
+      "storyTime": "第二天23:40",
+      "size": [
+        13,
+        9
+      ],
+      "budget": {
+        "hq": 26,
+        "allBuildings": 28,
+        "story": 3
+      },
+      "targetRounds": {
+        "hq": [
+          7,
+          9
+        ],
+        "allBuildings": [
+          8,
+          10
+        ]
+      },
+      "fog": true,
+      "initialResources": {
+        "union": {
+          "money": 500,
+          "energy": 120
+        },
+        "red": {
+          "money": 420,
+          "energy": 90
+        }
+      },
+      "authorizationCeilings": {
+        "barracks": 3,
+        "factory": 3,
+        "port": 3,
+        "airfield": 3
+      },
+      "playerProductionWhitelist": [
+        "infantry",
+        "walker",
+        "heavyinfantry",
+        "lighttank",
+        "tank",
+        "heavy",
+        "lightartillery",
+        "artillery",
+        "heavyartillery",
+        "antiair",
+        "missileaa",
+        "longrangeaa",
+        "navaldestroyer",
+        "cruiser",
+        "battleship",
+        "marine",
+        "assaultmarine",
+        "heavymarine",
+        "aafrigate",
+        "aamissileship",
+        "areaaship",
+        "reconplane",
+        "tacticalrecon",
+        "longrangerecon",
+        "lightfighter",
+        "fighter",
+        "heavyfighter",
+        "lightbomber",
+        "tacticalbomber",
+        "bomber",
+        "scout",
+        "engineer",
+        "antitank",
+        "jammer",
+        "destroyer",
+        "amphibious",
+        "submarine",
+        "helicopter"
+      ],
+      "terrainRules": [
+        {
+          "terrain": "ocean",
+          "where": {
+            "rMax": 1
+          }
+        },
+        {
+          "terrain": "coast",
+          "where": {
+            "rEquals": 2
+          }
+        },
+        {
+          "terrain": "water",
+          "positions": [
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              7,
+              5
+            ],
+            [
+              7,
+              6
+            ],
+            [
+              7,
+              7
+            ],
+            [
+              7,
+              8
+            ]
+          ]
+        },
+        {
+          "terrain": "road",
+          "positions": [
+            [
+              1,
+              4
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              7,
+              4
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              9,
+              4
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              11,
+              4
+            ]
+          ]
+        },
+        {
+          "terrain": "ruins",
+          "positions": [
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              5
+            ],
+            [
+              8,
+              3
+            ],
+            [
+              8,
+              5
+            ]
+          ]
+        }
+      ],
+      "buildings": [
+        {
+          "key": "UHQ",
+          "type": "hq",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ],
+          "level": 1,
+          "storyLabel": "灯塔市联合协调点",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UB",
+          "type": "barracks",
+          "owner": "union",
+          "position": [
+            2,
+            5
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UF",
+          "type": "factory",
+          "owner": "union",
+          "position": [
+            2,
+            3
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "UA",
+          "type": "airfield",
+          "owner": "union",
+          "position": [
+            3,
+            5
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RHQ",
+          "type": "hq",
+          "owner": "red",
+          "position": [
+            10,
+            4
+          ],
+          "level": 1,
+          "storyLabel": "中央接线楼",
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RF",
+          "type": "factory",
+          "owner": "red",
+          "position": [
+            10,
+            3
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "RP",
+          "type": "port",
+          "owner": "red",
+          "position": [
+            9,
+            2
+          ],
+          "level": 3,
+          "stock": [],
+          "order": null
+        },
+        {
+          "key": "NC",
+          "type": "city",
+          "owner": null,
+          "position": [
+            6,
+            4
+          ],
+          "level": 1,
+          "storyLabel": "市政交接站",
+          "stock": [],
+          "order": null
+        }
+      ],
+      "units": [
+        {
+          "key": "U01",
+          "type": "heavyinfantry",
+          "owner": "union",
+          "position": [
+            1,
+            4
+          ]
+        },
+        {
+          "key": "U02",
+          "type": "tank",
+          "owner": "union",
+          "position": [
+            3,
+            3
+          ]
+        },
+        {
+          "key": "U03",
+          "type": "artillery",
+          "owner": "union",
+          "position": [
+            4,
+            5
+          ]
+        },
+        {
+          "key": "U04",
+          "type": "missileaa",
+          "owner": "union",
+          "position": [
+            4,
+            3
+          ]
+        },
+        {
+          "key": "U05",
+          "type": "fighter",
+          "owner": "union",
+          "position": [
+            3,
+            6
+          ]
+        },
+        {
+          "key": "U06",
+          "type": "bomber",
+          "owner": "union",
+          "position": [
+            4,
+            6
+          ]
+        },
+        {
+          "key": "U07",
+          "type": "jammer",
+          "owner": "union",
+          "position": [
+            2,
+            4
+          ]
+        },
+        {
+          "key": "U08",
+          "type": "engineer",
+          "owner": "union",
+          "position": [
+            3,
+            5
+          ]
+        },
+        {
+          "key": "U09",
+          "type": "assaultmarine",
+          "owner": "union",
+          "position": [
+            3,
+            2
+          ]
+        },
+        {
+          "key": "R01",
+          "type": "heavyinfantry",
+          "owner": "red",
+          "position": [
+            10,
+            4
+          ]
+        },
+        {
+          "key": "R02",
+          "type": "heavy",
+          "owner": "red",
+          "position": [
+            9,
+            4
+          ]
+        },
+        {
+          "key": "R03",
+          "type": "destroyer",
+          "owner": "red",
+          "position": [
+            9,
+            3
+          ]
+        },
+        {
+          "key": "R04",
+          "type": "heavyartillery",
+          "owner": "red",
+          "position": [
+            10,
+            6
+          ]
+        },
+        {
+          "key": "R05",
+          "type": "longrangeaa",
+          "owner": "red",
+          "position": [
+            9,
+            5
+          ]
+        },
+        {
+          "key": "R06",
+          "type": "heavyfighter",
+          "owner": "red",
+          "position": [
+            8,
+            6
+          ]
+        },
+        {
+          "key": "R07",
+          "type": "walker",
+          "owner": "red",
+          "position": [
+            8,
+            4
+          ]
+        },
+        {
+          "key": "R08",
+          "type": "aamissileship",
+          "owner": "red",
+          "position": [
+            9,
+            1
+          ]
+        }
+      ],
+      "enemyProductionPlan": [
+        {
+          "facility": "RF",
+          "earliestOwnTurn": 2,
+          "unit": "antiair"
+        },
+        {
+          "facility": "RP",
+          "earliestOwnTurn": 3,
+          "unit": "marine"
+        }
+      ],
+      "lesson": "综合选择；可以绕开非守军；保留未行动单位用于最后占领；胜利后马上终止操作。",
+      "approach": "炮兵与反装甲火力处理中央装甲，防空保护轰炸机，工程车维持推进；城市接管后提供前线视野。清除接线楼守军，任意剩余可行动单位都能完成最后占领。",
+      "allBuildingsRoute": "城市在主路上，敌工厂与接线楼相邻，港口位于上方短支路；不要求追到地图角落全歼。",
+      "optionalGoal": {
+        "id": "C07-OPT",
+        "text": "接管市政站且结束时其HP大于0",
+        "kind": "owns_healthy_building_on_completion",
+        "buildingKey": "NC"
+      },
+      "midTrigger": {
+        "kind": "any",
+        "events": [
+          "first_capture_central_city",
+          "player_own_turn_3"
+        ],
+        "fallback": "before_outro"
+      },
+      "clue": "BROADCAST",
+      "difficulty": "最终综合关；标题零点不是实时倒计时，不因回合数强制失败。",
+      "mapId": "C07-MAP",
+      "initialPlayer": "union",
+      "constructionEnabled": false,
+      "factionUnitCap": 24,
+      "initialExploration": "all_terrain_and_building_sites",
+      "scenes": {
+        "intro": "C07-INTRO",
+        "mid": "C07-MID",
+        "outro": "C07-OUTRO"
+      },
+      "nextMission": null,
+      "prerequisite": "C06",
+      "originalHQKeys": {
+        "union": "UHQ",
+        "red": "RHQ"
+      },
+      "aiPolicy": {
+        "hqGuardUnitKey": "R01",
+        "outsideCombatHelp": false,
+        "productionPlanFinite": true,
+        "avoidChasingToCorners": true
+      },
+      "deposits": {
+        "land": [],
+        "sea": []
+      },
+      "recommendedPlayerHQGuardUnitKey": "U01"
+    }
+  ],
+  "terrainCodeNames": {
+    "plain": "荒原",
+    "road": "道路",
+    "rubble": "碎石",
+    "ruins": "工业废墟地形",
+    "water": "浅河",
+    "ocean": "海洋",
+    "coast": "海岸",
+    "ridge": "山脊"
+  },
+  "resourceTerminologyVersion": "0.7",
+  "resourceTerminology": {
+    "resourceId": "energy",
+    "landSourceId": "energyfield",
+    "seaSourceId": "energyplatform",
+    "depositLabel": "能源点",
+    "numericBalanceUnchanged": true
+  }
+}

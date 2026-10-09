@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-08T19:12:19.042Z",
+  "scope": "Real ui.js and battle-ui.js controller with an isolated VM DOM fixture; no browser or native UI accessed.",
+  "passed": 18,
+  "total": 18,
+  "results": [
+    {
+      "name": "easy: chapter field forwards difficulty to Campaign.create and retry",
+      "ok": true
+    },
+    {
+      "name": "easy: free-game difficulty reaches the real engine and saved snapshot",
+      "ok": true
+    },
+    {
+      "name": "standard: chapter field forwards difficulty to Campaign.create and retry",
+      "ok": true
+    },
+    {
+      "name": "standard: free-game difficulty reaches the real engine and saved snapshot",
+      "ok": true
+    },
+    {
+      "name": "hard: chapter field forwards difficulty to Campaign.create and retry",
+      "ok": true
+    },
+    {
+      "name": "hard: free-game difficulty reaches the real engine and saved snapshot",
+      "ok": true
+    },
+    {
+      "name": "hell: chapter field forwards difficulty to Campaign.create and retry",
+      "ok": true
+    },
+    {
+      "name": "hell: free-game difficulty reaches the real engine and saved snapshot",
+      "ok": true
+    },
+    {
+      "name": "Next chapter retains selected difficulty after the configuration field disappears",
+      "ok": true
+    },
+    {
+      "name": "Automatic assisted chapter chain retains difficulty and victory mode",
+      "ok": true
+    },
+    {
+      "name": "Hidden AI movement executes the raw decision once while UI receives only its public projection",
+      "ok": true
+    },
+    {
+      "name": "Space pauses and resumes a busy effect without replacing the board or saving a partial transaction",
+      "ok": true
+    },
+    {
+      "name": "Space in editable fields does not pause the game",
+      "ok": true
+    },
+    {
+      "name": "Direct construction commits money and foundation to the same saved transaction",
+      "ok": true
+    },
+    {
+      "name": "Production button immediately pays and saves a complete facility order",
+      "ok": true
+    },
+    {
+      "name": "Inventory selection plus one tile click deploys and saves both stock removal and new unit",
+      "ok": true
+    },
+    {
+      "name": "Repeated clicks while busy execute no extra commands and rejected movement does not save",
+      "ok": true
+    },
+    {
+      "name": "Fixture storage is isolated in VM memory and real source files remain unchanged",
+      "ok": true
+    }
+  ]
+}

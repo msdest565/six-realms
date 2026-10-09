@@ -1,0 +1,93 @@
+{
+  "version": "0.8",
+  "scope": "Pure observed action plans, animation lifecycle under deterministic DOM/RAF, and audio unlock/preferences; no claim of audible browser testing",
+  "passed": 17,
+  "total": 17,
+  "tests": [
+    {
+      "id": "FX-01",
+      "name": "Every unit has a movement/weapon family and every active skill has its own effect",
+      "ok": true
+    },
+    {
+      "id": "FX-02",
+      "name": "Movement follows the actual legal detour, not an invented straight line",
+      "ok": true
+    },
+    {
+      "id": "FX-03",
+      "name": "A hidden collision truncates before the blocked tile and does not animate the planned endpoint",
+      "ok": true
+    },
+    {
+      "id": "FX-04",
+      "name": "Enemy movement drops hidden coordinates and separates disconnected visible segments",
+      "ok": true
+    },
+    {
+      "id": "FX-05",
+      "name": "A wholly hidden AI move creates no effects, sounds or observed unit metadata",
+      "ok": true
+    },
+    {
+      "id": "FX-06",
+      "name": "Shots and countershots derive damage and order from the completed transaction",
+      "ok": true
+    },
+    {
+      "id": "FX-07",
+      "name": "Lethal direct shots and indirect attacks never fabricate a countershot",
+      "ok": true
+    },
+    {
+      "id": "FX-08",
+      "name": "Dedicated AA lethal retaliation uses its actual 150 percent loss",
+      "ok": true
+    },
+    {
+      "id": "FX-09",
+      "name": "An unseen artillery attacker shows only an observed impact and own HP loss",
+      "ok": true
+    },
+    {
+      "id": "FX-10",
+      "name": "Capture has observed ownership colors; building destruction keeps its original sprite metadata",
+      "ok": true
+    },
+    {
+      "id": "FX-11",
+      "name": "All eight active skills receive their specific successful effect, with actual capped repair amount",
+      "ok": true
+    },
+    {
+      "id": "FX-12",
+      "name": "Execution errors and mismatched observers cannot create successful action feedback",
+      "ok": true
+    },
+    {
+      "id": "FX-13",
+      "name": "A complete visual action leaves the authoritative state untouched and restores original opacity",
+      "ok": true
+    },
+    {
+      "id": "FX-14",
+      "name": "Pause freezes frame progress; resume finishes; cancel settles immediately even with RAF stopped",
+      "ok": true
+    },
+    {
+      "id": "FX-15",
+      "name": "No board, detached board and disabled effects complete exactly once without hanging",
+      "ok": true
+    },
+    {
+      "id": "FX-16",
+      "name": "Reduced motion and fast AI shorten motion, and abandoned playback is cleaned before the next one",
+      "ok": true
+    },
+    {
+      "id": "FX-17",
+      "name": "Audio requires explicit unlock, respects mute/volume bounds, and rejected resumes do not escape",
+      "ok": true
+    }
+  ]
+}

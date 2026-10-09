@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-08T19:12:31.333Z",
+  "passed": 20,
+  "total": 20,
+  "kind": "Node DOM-fixture contracts; browser checks documented separately",
+  "results": [
+    {
+      "name": "Full viewport camera respects actual aspect ratio without re-rendering",
+      "ok": true
+    },
+    {
+      "name": "All WASD directions move the view; taps also work",
+      "ok": true
+    },
+    {
+      "name": "Typing, modifiers and dialogs do not pan the map",
+      "ok": true
+    },
+    {
+      "name": "Space toggles pause while an animation runs, held Space does not toggle repeatedly",
+      "ok": true
+    },
+    {
+      "name": "Camera continues to work while paused and held keys clear on blur",
+      "ok": true
+    },
+    {
+      "name": "Left selection followed by destination sends one move command with no confirmation",
+      "ok": true
+    },
+    {
+      "name": "Right-click does not change the selected unit",
+      "ok": true
+    },
+    {
+      "name": "Busy animation prevents duplicate commands or selection changes",
+      "ok": true
+    },
+    {
+      "name": "Enemy inspection is separate from issuing commands",
+      "ok": true
+    },
+    {
+      "name": "Hidden enemies cannot be selected for inspection or printed on the board",
+      "ok": true
+    },
+    {
+      "name": "Local handoff contains no board or unit sprites",
+      "ok": true
+    },
+    {
+      "name": "End results wait for the last visual action to complete",
+      "ok": true
+    },
+    {
+      "name": "Main battle frame owns selection, resources, turn controls and all drawers",
+      "ok": true
+    },
+    {
+      "name": "AI decision UI uses sanitized explanations and hides raw command scores",
+      "ok": true
+    },
+    {
+      "name": "New difficulty profiles have matching UI labels and actual unit statistics",
+      "ok": true
+    },
+    {
+      "name": "Facility drawer gives left-click inspection priority over old targeting modes",
+      "ok": true
+    },
+    {
+      "name": "Next-unit and direct focus cannot reveal unseen AI coordinates",
+      "ok": true
+    },
+    {
+      "name": "A previously selected enemy has no highlight after leaving observation",
+      "ok": true
+    },
+    {
+      "name": "Jam hover describes AP interference instead of fictitious attack damage",
+      "ok": true
+    },
+    {
+      "name": "Repair hover shows actual capped HP gain",
+      "ok": true
+    }
+  ]
+}
