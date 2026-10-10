@@ -2,7 +2,7 @@
 // check, not a browser, layout, audio-output, or accessibility measurement.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');
 const project=path.resolve(__dirname,'..'),results=[];
-const watchdog=setTimeout(()=>{console.error('UI integration did not complete: an unresolved fixture effect blocked the test chain.');process.exitCode=1;},30000);
+const watchdog=require.main===module?setTimeout(()=>{console.error('UI integration did not complete: an unresolved fixture effect blocked the test chain.');process.exitCode=1;},30000):null;
 const decode=s=>String(s||'').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&');
 const copy=x=>JSON.parse(JSON.stringify(x));
 class Classes{
@@ -11,7 +11,7 @@ class Classes{
  contains(v){return this.values.has(v);}toggle(v,force){const on=force===undefined?!this.values.has(v):!!force;on?this.values.add(v):this.values.delete(v);return on;}
 }
 class Element{
- constructor(doc,tag='div',attributes={}){this.doc=doc;this.tagName=tag.toUpperCase();this.attributes=attributes;this.id=attributes.id||'';this.dataset={};for(const [k,v] of Object.entries(attributes))if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v;this.classList=new Classes(attributes.class);this.style={};this.disabled=Object.hasOwn(attributes,'disabled');this.hidden=Object.hasOwn(attributes,'hidden');this.checked=Object.hasOwn(attributes,'checked');this.value=attributes.value||'';this.clientWidth=1300;this.clientHeight=800;this.listeners=new Map();this.nodes=[];this.inert=false;this.isContentEditable=false;this.textContent='';this._html='';this.writes=0;}
+ constructor(doc,tag='div',attributes={}){this.doc=doc;this.tagName=tag.toUpperCase();this.attributes=attributes;this.id=attributes.id||'';this.dataset={};for(const [k,v] of Object.entries(attributes))if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v;this.classList=new Classes(attributes.class);this.style={setProperty(name,value){this[name]=value;}};this.disabled=Object.hasOwn(attributes,'disabled');this.hidden=Object.hasOwn(attributes,'hidden');this.checked=Object.hasOwn(attributes,'checked');this.value=attributes.value||'';this.clientWidth=doc.viewport?.width||1300;this.clientHeight=doc.viewport?.height||800;this.listeners=new Map();this.nodes=[];this.inert=false;this.isContentEditable=false;this.textContent='';this._html='';this.writes=0;}
  set innerHTML(value){this._html=String(value);this.writes++;this.nodes=this.doc.parse(this._html);}
  get innerHTML(){return this._html;}
  matches(selector){return selector.split(',').some(part=>{part=part.trim();if(part===':disabled')return this.disabled;if(part.startsWith('.'))return this.classList.contains(part.slice(1));if(part.startsWith('#'))return this.id===part.slice(1);const attr=/^\[([^=\]]+)(?:="([^"]*)")?\]$/.exec(part);if(attr)return Object.hasOwn(this.attributes,attr[1])&&(attr[2]===undefined||this.attributes[attr[1]]===attr[2]);return this.tagName===part.toUpperCase();});}
@@ -24,7 +24,7 @@ class Element{
  createSVGPoint(){return {x:0,y:0,matrixTransform(){return {x:this.x,y:this.y};}};}getScreenCTM(){return {inverse(){return {};}};}
 }
 class MiniDocument{
- constructor(){this.listeners=new Map();this.body=new Element(this,'body');this.header=new Element(this,'header',{class:'masthead'});this.app=new Element(this,'main',{id:'app'});this.modal=new Element(this,'div',{id:'modal-root'});this.toast=new Element(this,'div',{id:'toast'});this.static=[this.body,this.header,this.app,this.modal,this.toast];this.hidden=false;this.activeElement=this.body;}
+ constructor(viewport){this.viewport=viewport;this.documentElement={style:{setProperty(name,value){this[name]=value;}}};this.listeners=new Map();this.body=new Element(this,'body');this.header=new Element(this,'header',{class:'masthead'});this.app=new Element(this,'main',{id:'app'});this.modal=new Element(this,'div',{id:'modal-root'});this.toast=new Element(this,'div',{id:'toast'});this.static=[this.body,this.header,this.app,this.modal,this.toast];this.hidden=false;this.activeElement=this.body;}
  parse(html){const nodes=[],pattern=/<([a-z][\w:-]*)\b([^<>]*)>/gi;let match;
   while((match=pattern.exec(html))){const attributes={},parts=/([\w:-]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'))?/g;let attr;while((attr=parts.exec(match[2])))attributes[attr[1]]=decode(attr[2]??attr[3]??'');
    if(!attributes.id&&!['button','select','input','a'].includes(match[1].toLowerCase())&&!/battle-frame|pause-banner|preview-grid|end-turn/.test(attributes.class||'')&&!Object.hasOwn(attributes,'data-camera-box'))continue;
@@ -39,13 +39,13 @@ class MiniDocument{
  addEventListener(name,fn){const list=this.listeners.get(name)||[];list.push(fn);this.listeners.set(name,list);}
  dispatch(name,properties){const event={target:this.body,repeat:false,ctrlKey:false,altKey:false,metaKey:false,preventDefault(){this.defaultPrevented=true;},...properties};for(const fn of this.listeners.get(name)||[])fn(event);return event;}
 }
-function harness(initialStored={}){
- const document=new MiniDocument(),stored=new Map(Object.entries(initialStored)),intervals=[],timers=new Map(),animationFrames=new Map(),pending=[],fxCalls=[],saved=[],executed=[],campaignCalls=[],freeCalls=[],errors=[],sceneCalls=[],ambienceCalls=[];let now=0,nextTimer=1,paused=false,environment,battle;
+function harness(initialStored={},viewport={width:1300,height:800,coarse:false}){
+ const document=new MiniDocument(viewport),stored=new Map(Object.entries(initialStored)),intervals=[],timers=new Map(),animationFrames=new Map(),pending=[],fxCalls=[],saved=[],executed=[],campaignCalls=[],freeCalls=[],errors=[],sceneCalls=[],ambienceCalls=[];let now=0,nextTimer=1,paused=false,environment,battle;
  const windowListeners=new Map();
- const sandbox={document,TextEncoder,TextDecoder,Uint32Array,console:{log(){},warn(){},error(...args){errors.push(args.map(String).join(' '));}},innerWidth:1300,innerHeight:800,performance:{now:()=>now},location:{hash:''},navigator:{clipboard:{writeText:async()=>{}}},crypto:{getRandomValues(array){array.fill(0);return array;}},localStorage:{getItem:key=>stored.get(key)||null,setItem:(key,value)=>stored.set(key,String(value)),removeItem:key=>stored.delete(key)},setInterval:(fn,ms)=>{const id=nextTimer++;intervals.push({id,fn,ms});return id;},clearInterval:id=>{const index=intervals.findIndex(t=>t.id===id);if(index>=0)intervals.splice(index,1);},setTimeout:(fn,ms)=>{const id=nextTimer++;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id),requestAnimationFrame:fn=>{const id=nextTimer++;animationFrames.set(id,fn);return id;},cancelAnimationFrame:id=>animationFrames.delete(id),addEventListener:(name,fn)=>{const list=windowListeners.get(name)||[];list.push(fn);windowListeners.set(name,list);},Blob,URL};sandbox.window=sandbox;
+ const sandbox={document,TextEncoder,TextDecoder,Uint32Array,console:{log(){},warn(){},error(...args){errors.push(args.map(String).join(' '));}},innerWidth:viewport.width,innerHeight:viewport.height,matchMedia:()=>({matches:!!viewport.coarse}),performance:{now:()=>now},location:{hash:''},navigator:{clipboard:{writeText:async()=>{}}},crypto:{getRandomValues(array){array.fill(0);return array;}},localStorage:{getItem:key=>stored.get(key)||null,setItem:(key,value)=>stored.set(key,String(value)),removeItem:key=>stored.delete(key)},setInterval:(fn,ms)=>{const id=nextTimer++;intervals.push({id,fn,ms});return id;},clearInterval:id=>{const index=intervals.findIndex(t=>t.id===id);if(index>=0)intervals.splice(index,1);},setTimeout:(fn,ms)=>{const id=nextTimer++;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id),requestAnimationFrame:fn=>{const id=nextTimer++;animationFrames.set(id,fn);return id;},cancelAnimationFrame:id=>animationFrames.delete(id),addEventListener:(name,fn)=>{const list=windowListeners.get(name)||[];list.push(fn);windowListeners.set(name,list);},Blob,URL};sandbox.window=sandbox;
  sandbox.GameFX={capture(s,command,viewerId){return {command:copy(command),viewerId,revision:s.revision};},play(options){fxCalls.push(options);return new Promise(resolve=>pending.push({resolve,options}));},cancel(){while(pending.length)pending.shift().resolve();},setPaused(value){paused=!!value;},setSoundEnabled(v){sandbox.fixtureSound=v;sandbox.GameAudio?.setMaster(v,sandbox.fixtureVolume??.45);},setVolume(v){sandbox.fixtureVolume=v;sandbox.GameAudio?.setMaster(sandbox.fixtureSound!==false,v);},setAmbienceEnabled(v){ambienceCalls.push(v);},setScene(v){sceneCalls.push(copy(v));},unlock(){}};
  const context=vm.createContext(sandbox);
- for(const name of ['data','anime','art','audio','gestures','content','grid','maps','random','game','campaign','ai','storage','controls','battle-ui'])vm.runInContext(fs.readFileSync(path.join(project,'src',name+'.js'),'utf8'),context,{filename:name+'.js'});
+ for(const name of ['data','anime','art','audio','gestures','content','grid','maps','random','game','campaign','ai','storage','controls','mobile','battle-ui'])vm.runInContext(fs.readFileSync(path.join(project,'src',name+'.js'),'utf8'),context,{filename:name+'.js'});
  const createBattle=context.GameBattleUI.create;context.GameBattleUI.create=env=>{environment=env;battle=createBattle(env);return battle;};
  const createCampaign=context.Campaign.create;context.Campaign.create=(id,progress,settings)=>{campaignCalls.push({id,settings:copy(settings||{})});return createCampaign(id,progress,settings);};
  const createFree=context.Game.create;context.Game.create=(map,settings)=>{freeCalls.push({map:map.id,settings:copy(settings||{})});return createFree(map,settings);};
@@ -59,7 +59,8 @@ function harness(initialStored={}){
  async function finish(){assert.equal(paused,false,'Paused effects must not be completed by fixture');while(pending.length)pending.shift().resolve();await flush();}
  async function tick(ms=1000){now+=ms;const ticker=intervals.find(t=>t.ms===100);assert.ok(ticker,'UI timer exists');ticker.fn();await flush();}
  async function key(code,extra={}){const e=document.dispatch('keydown',{code,key:code==='Space'?' ':code,...extra});await flush();return e;}
- return {context,document,stored,saved,executed,campaignCalls,freeCalls,fxCalls,errors,pending,sceneCalls,ambienceCalls,flush,click,change,action,finish,tick,key,get ui(){return environment.ui;},get env(){return environment;},get battle(){return battle;},get paused(){return paused;}};
+ function resize(width,height){viewport.width=width;viewport.height=height;context.innerWidth=width;context.innerHeight=height;for(const el of document.nodes){el.clientWidth=width;el.clientHeight=height;}for(const fn of windowListeners.get('resize')||[])fn();}
+ return {elapse(ms){now+=ms;},resize,context,document,stored,saved,executed,campaignCalls,freeCalls,fxCalls,errors,pending,sceneCalls,ambienceCalls,flush,click,change,action,finish,tick,key,get ui(){return environment.ui;},get env(){return environment;},get battle(){return battle;},get paused(){return paused;}};
 }
 async function test(name,fn){try{await fn();results.push({name,ok:true});}catch(e){results.push({name,ok:false,error:e.stack});console.error(name,e.stack);}}
 async function freeGame(h,difficulty='standard'){await h.action('free');await h.change('[data-setting="difficulty"]',difficulty);await h.click('[data-action="preview"]');await h.click('[data-action="start-free"]');await h.click('[data-action="close"]');}
@@ -67,7 +68,8 @@ async function chapter(h,difficulty='standard'){await h.action('campaign');await
 function oneStep(h,unit){return [...h.context.Game.movement(h.ui.game,unit).values()].find(route=>route.path.length===1);}
 function lastSave(h){assert.ok(h.saved.length);return h.saved.at(-1).entry.snapshot;}
 
-(async()=>{
+module.exports={harness,freeGame,chapter,oneStep,lastSave,Element,copy};
+if(require.main===module)(async()=>{
  for(const difficulty of ['easy','standard','hard','hell']){
   await test(`${difficulty}: chapter field forwards difficulty to Campaign.create and retry`,async()=>{
    const h=harness();await chapter(h,difficulty);assert.equal(h.campaignCalls.at(-1).settings.difficulty,difficulty);assert.equal(h.ui.game.settings.difficulty,difficulty);await h.action('retry');assert.equal(h.campaignCalls.at(-1).id,'C01');assert.equal(h.campaignCalls.at(-1).settings.difficulty,difficulty);assert.equal(h.errors.length,0);

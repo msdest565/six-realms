@@ -1,0 +1,105 @@
+{
+  "version": "1.1.2",
+  "date": "2026-10-10T03:36:51.770Z",
+  "userDate": "2026-10-10",
+  "scope": "Rule/AI/map games, real controllers in isolated VM, synthetic pointer timing, CSS contracts, image encoding and resource paths. Browser access to localhost was blocked by a saved permission; no real device layout, FPS or audio acceptance.",
+  "fullVerification": "node scripts/verify.js exited 0; final lifecycle/tooltip edits rechecked with mobile, UI-integration and facilities suites",
+  "passed": 371,
+  "total": 371,
+  "suites": [
+    {
+      "file": "core-tests.json",
+      "passed": 65,
+      "total": 65
+    },
+    {
+      "file": "facility-tests-v1.1.json",
+      "passed": 34,
+      "total": 34
+    },
+    {
+      "file": "combat-movement-tests-v1.1.1.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "deployment-tests-v0.9.json",
+      "passed": 36,
+      "total": 36
+    },
+    {
+      "file": "controls-tests-v1.0.json",
+      "passed": 32,
+      "total": 32
+    },
+    {
+      "file": "ui-tests-v0.8.json",
+      "passed": 20,
+      "total": 20
+    },
+    {
+      "file": "ui-integration-tests-v0.9.json",
+      "passed": 31,
+      "total": 31
+    },
+    {
+      "file": "board-tests-v0.9.json",
+      "passed": 23,
+      "total": 23
+    },
+    {
+      "file": "fx-tests-v0.9.json",
+      "passed": 25,
+      "total": 25
+    },
+    {
+      "file": "art-tests.json",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "file": "anime-runtime-tests-v1.0.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "ai-tests-v0.8.json",
+      "passed": 31,
+      "total": 31
+    },
+    {
+      "file": "mobile-tests-v1.1.2.json",
+      "passed": 33,
+      "total": 33
+    }
+  ],
+  "maps": {
+    "total": 540,
+    "generated": 497,
+    "fallback": 43,
+    "reproduced": 27
+  },
+  "battles": {
+    "completed": 22,
+    "multiplayerSmoke": 1,
+    "difficultyGames": 8
+  },
+  "staticResources": {
+    "scope": "Filesystem and case-sensitive static path validation, no browser/network",
+    "resources": 615,
+    "missing": [],
+    "wrongCase": []
+  },
+  "mobileImages": {
+    "files": 198,
+    "originalBytes": 57168160,
+    "encodedBytes": 8432872,
+    "savedPercent": 85
+  },
+  "distribution": {
+    "web": true,
+    "apkBuilt": false,
+    "tapSdkIntegrated": false,
+    "tapTapSubmitted": false
+  }
+}

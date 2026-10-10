@@ -1,0 +1,140 @@
+{
+  "date": "2026-10-10T03:33:24.801Z",
+  "scope": "Real UI controllers in VM, synthetic pointer timing and CSS contracts at 7 viewport profiles. No browser, phone, FPS or touch hardware measurement.",
+  "total": 33,
+  "passed": 33,
+  "results": [
+    {
+      "name": "320×568: layout profile, camera and real command controls",
+      "ok": true
+    },
+    {
+      "name": "360×800: layout profile, camera and real command controls",
+      "ok": true
+    },
+    {
+      "name": "390×844: layout profile, camera and real command controls",
+      "ok": true
+    },
+    {
+      "name": "430×932: layout profile, camera and real command controls",
+      "ok": true
+    },
+    {
+      "name": "844×390: layout profile, camera and real command controls",
+      "ok": true
+    },
+    {
+      "name": "1024×768: layout profile, camera and real command controls",
+      "ok": true
+    },
+    {
+      "name": "1300×800: layout profile, camera and real command controls",
+      "ok": true
+    },
+    {
+      "name": "An explicitly saved animation preference overrides the phone default",
+      "ok": true
+    },
+    {
+      "name": "Rotate a phone: keep hex pixel size and cancel the old pending command without spending AP",
+      "ok": true
+    },
+    {
+      "name": "Headquarters and overview keep the camera object used by pointer gestures",
+      "ok": true
+    },
+    {
+      "name": "Opening the tactical map dismisses a pending order and panel, without executing it",
+      "ok": true
+    },
+    {
+      "name": "A garrisoned friendly facility remains manageable from the unit command dock",
+      "ok": true
+    },
+    {
+      "name": "Long-press inspection preserves selection and never issues a move or attack",
+      "ok": true
+    },
+    {
+      "name": "Inspecting a fogged tile does not expose the hidden enemy or current facility health",
+      "ok": true
+    },
+    {
+      "name": "Backgrounding during an action saves committed state and returns paused; AI stays stopped",
+      "ok": true
+    },
+    {
+      "name": "A manually paused game is not resumed by visibility changes",
+      "ok": true
+    },
+    {
+      "name": "Returning from a suspended background timer does not add the inactive minutes to play time",
+      "ok": true
+    },
+    {
+      "name": "Touch help is accessible in the battlefield and explains all essential gestures",
+      "ok": true
+    },
+    {
+      "name": "A normal tap still selects once and never becomes a hold",
+      "ok": true
+    },
+    {
+      "name": "Holding for 650ms opens intel once and never becomes a tap on release",
+      "ok": true
+    },
+    {
+      "name": "Dragging cancels long press and cannot issue an action",
+      "ok": true
+    },
+    {
+      "name": "Pinching cancels hold; lifting the second finger cannot turn into an order",
+      "ok": true
+    },
+    {
+      "name": "Pointer cancellation removes the queued hold",
+      "ok": true
+    },
+    {
+      "name": "Mouse orders are not delayed by the touch hold timer",
+      "ok": true
+    },
+    {
+      "name": "Holding a facility button displays literal explanation and suppresses its release click",
+      "ok": true
+    },
+    {
+      "name": "A quick button tap has no tooltip and remains a normal click",
+      "ok": true
+    },
+    {
+      "name": "Touch pointerout after releasing a held button keeps its explanation visible",
+      "ok": true
+    },
+    {
+      "name": "Tooltip hold is cancelled by scrolling, dragging, cancellation or multi-touch",
+      "ok": true
+    },
+    {
+      "name": "Terrain cache reuses connected art but invalidates when neighbouring terrain changes",
+      "ok": true
+    },
+    {
+      "name": "All 38 models retain front, rear, sea and land mobile forms plus their original fallbacks",
+      "ok": true
+    },
+    {
+      "name": "Encoded art covers all 198 originals, preserves WebP format and stays within a 12 MiB mobile budget",
+      "ok": true
+    },
+    {
+      "name": "A failed mobile image retries PNG once, then permits the vector fallback",
+      "ok": true
+    },
+    {
+      "name": "Responsive CSS defines safe areas, scrolling drawers and independent bottom panels without relying on :has()",
+      "ok": true
+    }
+  ]
+}

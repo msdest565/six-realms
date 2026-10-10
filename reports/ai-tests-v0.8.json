@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-09T16:07:56.712Z",
+  "date": "2026-10-10T03:30:53.144Z",
   "passed": 31,
   "total": 31,
   "results": [
@@ -134,7 +134,7 @@
       "mode": "free",
       "actions": 319,
       "rounds": 13,
-      "milliseconds": 1451,
+      "milliseconds": 1446,
       "winner": "P2"
     },
     {
@@ -142,7 +142,7 @@
       "mode": "campaign",
       "actions": 160,
       "rounds": 19,
-      "milliseconds": 186,
+      "milliseconds": 180,
       "winner": "union"
     },
     {
@@ -150,7 +150,7 @@
       "mode": "free",
       "actions": 450,
       "rounds": 17,
-      "milliseconds": 1895,
+      "milliseconds": 2673,
       "winner": "P2"
     },
     {
@@ -158,7 +158,7 @@
       "mode": "campaign",
       "actions": 122,
       "rounds": 13,
-      "milliseconds": 119,
+      "milliseconds": 217,
       "winner": "union"
     },
     {
@@ -166,7 +166,7 @@
       "mode": "free",
       "actions": 569,
       "rounds": 19,
-      "milliseconds": 10441,
+      "milliseconds": 17944,
       "winner": "P1"
     },
     {
@@ -174,7 +174,7 @@
       "mode": "campaign",
       "actions": 124,
       "rounds": 13,
-      "milliseconds": 411,
+      "milliseconds": 675,
       "winner": "union"
     },
     {
@@ -182,7 +182,7 @@
       "mode": "free",
       "actions": 411,
       "rounds": 12,
-      "milliseconds": 9968,
+      "milliseconds": 17599,
       "winner": "P1"
     },
     {
@@ -190,7 +190,7 @@
       "mode": "campaign",
       "actions": 153,
       "rounds": 17,
-      "milliseconds": 547,
+      "milliseconds": 1006,
       "winner": "union"
     }
   ]

@@ -7,7 +7,7 @@ if (!Number.isInteger(port) || port < 1 || port > 65535) {
   console.error('Invalid port. Use an integer between 1 and 65535.');
   process.exit(1);
 }
-const mime = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.wav':'audio/wav','.md':'text/plain; charset=utf-8','.json':'application/json; charset=utf-8'};
+const mime = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.webp':'image/webp','.wav':'audio/wav','.md':'text/plain; charset=utf-8','.json':'application/json; charset=utf-8'};
 const server = http.createServer((request, response) => {
   response.setHeader('X-Six-Realms-Preview', '1');
   try {

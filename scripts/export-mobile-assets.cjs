@@ -1,0 +1,9 @@
+'use strict';
+// Distribution encoding only; source artwork stays untouched.
+const fs=require('node:fs'),path=require('node:path');
+const modulePath=process.env.SIX_REALMS_SHARP_PATH||'sharp';
+let sharp;try{sharp=require(modulePath);}catch{throw Error('Sharp is required only to regenerate mobile assets. Set SIX_REALMS_SHARP_PATH to its installed module path. Running the game does not require it.');}
+const root=path.resolve(__dirname,'..'),groups={portraits:768,thumbnails:384,avatars:96,chibi:256,rear:256};
+(async()=>{const assets=[];for(const [group,size] of Object.entries(groups)){const input=path.join(root,'assets','units',group),output=path.join(root,'assets','mobile','units',group);fs.mkdirSync(output,{recursive:true});for(const name of fs.readdirSync(input).filter(n=>n.endsWith('.png')).sort()){const source=path.join(input,name),target=path.join(output,name.replace(/\.png$/,'.webp'));await sharp(source).resize({width:size,height:size,fit:'inside',withoutEnlargement:true}).webp({quality:82,alphaQuality:100,effort:5}).toFile(target);assets.push({source:path.relative(root,source).replaceAll('\\','/'),uri:path.relative(root,target).replaceAll('\\','/'),originalBytes:fs.statSync(source).size,bytes:fs.statSync(target).size});}}
+ const report={version:'1.1.2',scope:'Encoded mobile distribution images; no subjective visual acceptance.',files:assets.length,originalBytes:assets.reduce((n,a)=>n+a.originalBytes,0),bytes:assets.reduce((n,a)=>n+a.bytes,0),assets};fs.writeFileSync(path.join(root,'assets/mobile/manifest.json'),JSON.stringify(report));console.log(JSON.stringify({files:report.files,originalMB:(report.originalBytes/1048576).toFixed(2),mobileMB:(report.bytes/1048576).toFixed(2),savedPercent:Math.round(100*(1-report.bytes/report.originalBytes))}));
+})().catch(e=>{console.error(e.stack);process.exitCode=1;});
