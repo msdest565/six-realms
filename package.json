@@ -1,6 +1,6 @@
 {
   "name": "six-realms-mistsea-echoes",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "private": true,
   "description": "Offline browser hex strategy — Six Realms: Mistsea Echoes",
   "scripts": {
@@ -27,6 +27,7 @@
     "test:mobile": "node scripts/verify-mobile.js",
     "assets:mobile": "node scripts/export-mobile-assets.cjs",
     "test:mobile-actions": "node scripts/verify-mobile-actions.js",
+    "test:tutorial": "node scripts/verify-tutorial.cjs",
     "test:scene": "node scripts/verify-scene-v1.1.4.cjs",
     "assets:interface": "node scripts/export-interface-art.cjs"
   }

@@ -1,7 +1,7 @@
 {
   "version": "1.1.4",
   "scope": "Isolated controller VM, generated SVG budgets and Node HTML generation timing. Not browser paint/FPS or device layout measurements.",
-  "date": "2026-10-10T06:02:12.947Z",
+  "date": "2026-10-10T07:47:48.805Z",
   "passed": 14,
   "total": 14,
   "benchmarks": [
@@ -20,7 +20,7 @@
         "masks": 12,
         "clipPaths": 931,
         "bytes": 2449835,
-        "medianGenerationMs": 3.974
+        "medianGenerationMs": 5.41
       },
       "current": {
         "cells": 181,
@@ -29,7 +29,7 @@
         "masks": 0,
         "clipPaths": 1,
         "bytes": 308936,
-        "medianGenerationMs": 1.067
+        "medianGenerationMs": 1.441
       },
       "nodeReductionPercent": 85.6
     },
@@ -48,7 +48,7 @@
         "masks": 12,
         "clipPaths": 931,
         "bytes": 2449839,
-        "medianGenerationMs": 3.559
+        "medianGenerationMs": 3.78
       },
       "current": {
         "cells": 398,
@@ -57,7 +57,7 @@
         "masks": 0,
         "clipPaths": 1,
         "bytes": 427636,
-        "medianGenerationMs": 1.824
+        "medianGenerationMs": 2.309
       },
       "nodeReductionPercent": 76.7
     }

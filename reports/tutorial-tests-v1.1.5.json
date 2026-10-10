@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-10T07:53:19.989Z",
+  "scope": "Controller integration + curriculum/rules/static CSS, no browser or real phone layout measurement",
+  "passed": 17,
+  "total": 17,
+  "results": [
+    {
+      "name": "seven existing IDs, actual units, 47 authored lessons, 37 instrument drawings",
+      "ok": true
+    },
+    {
+      "name": "opening story suppresses coach, then nonmodal first lesson appears inside frame",
+      "ok": true
+    },
+    {
+      "name": "direct selection and successful move each advance once; rejected command does not",
+      "ok": true
+    },
+    {
+      "name": "undo completes reading practice without changing tutorial format or save schema",
+      "ok": true
+    },
+    {
+      "name": "end turn advances despite actor change; AI commands cannot advance",
+      "ok": true
+    },
+    {
+      "name": "mobile off/on menu is persistent and immediately removes hints; disabled actions earn no progress",
+      "ok": true
+    },
+    {
+      "name": "off preference survives reload, mission progress independent, replay scoped to current mission",
+      "ok": true
+    },
+    {
+      "name": "each mission can read all steps without a forced command or reward; completion survives replay entry",
+      "ok": true
+    },
+    {
+      "name": "library has all roles, facilities, buttons and curriculum; mobile backdrop/X dismiss",
+      "ok": true
+    },
+    {
+      "name": "library from lobby supports real tab changes and close",
+      "ok": true
+    },
+    {
+      "name": "pause suppresses coach and focus; resume restores it, dialogs and AI never overlay",
+      "ok": true
+    },
+    {
+      "name": "capture advances on successful auto occupation only, skill filters require right model",
+      "ok": true
+    },
+    {
+      "name": "real arrival occupation teaches correctly even with a full 600-event ring",
+      "ok": true
+    },
+    {
+      "name": "old UI preferences and malformed teaching storage gracefully retain gameplay",
+      "ok": true
+    },
+    {
+      "name": "free battle has no automatic lessons but reference and menu toggle remain available",
+      "ok": true
+    },
+    {
+      "name": "teaching reference uses static rules only; no unseen positions or HP are fetched",
+      "ok": true
+    },
+    {
+      "name": "mobile coach is compact, edge placed, hidden obeys CSS, safe insets and landscape handled",
+      "ok": true
+    }
+  ]
+}
