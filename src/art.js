@@ -117,14 +117,14 @@
   }
   function wavePaths(worldX,worldY){
     const paths=[];
-    for(let absoluteY=Math.floor((worldY-50)/18)*18;absoluteY<worldY+50;absoluteY+=18){
+    for(let absoluteY=Math.floor((worldY-50)/28)*28;absoluteY<worldY+50;absoluteY+=28){
       const points=[];
-      for(let x=-48;x<=48;x+=4)points.push({x,y:+(absoluteY-worldY+1.65*Math.sin((worldX+x)/10)).toFixed(3)});
-      paths.push(`<path d="M${points.map(pointText).join('L')}" fill="none" stroke="#74b5c5" stroke-width=".85" opacity=".23"/>`);
+      for(let absoluteX=Math.floor((worldX-50)/12)*12;absoluteX<=worldX+60;absoluteX+=12)points.push({x:+(absoluteX-worldX).toFixed(3),y:+(absoluteY-worldY+1.65*Math.sin(absoluteX/10)).toFixed(3)});
+      paths.push(`<path d="M${points.map(pointText).join('L')}" fill="none" stroke="#cee7df" stroke-width="1.1" opacity=".27"/>`);
     }
     return paths.join('');
   }
-  function terrainDrawing(type,seed=0,ctx=null,cell={q:0,r:0}){
+  function terrainDrawing(type,seed=0,ctx=null,cell={q:0,r:0},shorePaint=terrainColors.ocean){
     let details='';
     if(type==='plain'||type==='road')details+=`<path d="M-39 7Q-10-10 28 17L13 35Q-7 18-39 27z" fill="#79976b" opacity=".14"/><path d="M-22 12l3-4m0 6 3-5M15-15l3-4m0 6 3-5M-10-23l4 1M22 23l5-1" stroke="#a9b68a" stroke-width="1.15" opacity=".56"/><path d="M-20 25l11-3m11-28 9-2" stroke="#293f38" stroke-width="1.2" opacity=".5"/>`;
     if(type==='road'){
@@ -133,6 +133,7 @@
     }
     if(type==='rubble')details=`<path d="M-33 25l6-15 15 5 5 12 24-3 13 8H-20z" fill="#34473e" opacity=".55"/><path d="M-28 8l7-17 15 5-3 16zM4-15l12-7 13 13-14 8zM5 11l14-3 9 17H-1zM-26 26l6-10 12 6-5 8z" fill="#9c9e79" stroke="#526047" stroke-width="1.3"/><path d="M-21-9l4 13-11 4M16-22l-1 16 14-3M19 8l-5 14 14 3" fill="#747f62" stroke="none"/><path d="M-16 3l5 1M9 16l5-3M-6-20l4-2M26 10l5 2" stroke="#cbc29b" stroke-width="1.4"/>`;
     if(type==='ruins')details=`<path d="M-35 23l22-10 21 3 22 13-18 8H-21z" fill="#263d37"/><path d="M-26 19V-16l13-7v34z" fill="#849080" stroke="#374a42" stroke-width="1.5"/><path d="M-13-23v34l12 8V-12z" fill="#b3ad8d"/><path d="M-27-16l8-4 6 5m-8-1v15m4-19v6" stroke="#354f47" stroke-width="3"/><path d="M5 22V-9l13-7v30z" fill="#9e9f80"/><path d="M18-16l13 7v31l-13-8z" fill="#687464"/><path d="M8-5h6m-6 8h6m7-7 7 4m-7 5 7 4" stroke="#334c46" stroke-width="3"/><path d="M-5 24l7-8 10 11m-33 3 9-3 6 4" fill="#aaa581" stroke="#526147" stroke-width="1.2"/><path d="M-29 29h58" stroke="#bd9767" stroke-width="1" opacity=".6"/>`;
+    if(type==='ruins')details+='<g class="ruin-vines" fill="none" stroke="#447c63" stroke-width="1.9"><path d="M-28 27q18-14 13-33t7-16M3 27q15-13 12-26"/></g><path d="M-15 5l-7-5 1 8 6 3M-11-14l6-4-1 8-6 2M12 12l9-4-3 8-7 1" fill="#65a878"/><g class="ruin-crystals" stroke="#bbeee2" stroke-width=".8"><path d="M-3 30l-5-11 7-12 5 16z" fill="#65cbbb"/><path d="M-1 7v23l5-7" fill="#a6e8d8"/><path d="M21 25l-3-7 5-8 3 10z" fill="#73b9d8"/></g><path d="M-4 32h11m11-6h8" stroke="#adf0d7" stroke-width="1.1" opacity=".65"/>';
     if(type==='ocean')details=wavePaths(Math.sqrt(3)*44*(cell.q+cell.r/2),66*cell.r)+`<path d="M${-30+(Math.abs(seed)%17)} 24q5-3 10-1M${6+(Math.abs(seed)%13)}-25q4-2 8 0" fill="none" stroke="#a3d3d2" stroke-width="1.3" opacity=".35"/>`;
     if(type==='water'){
       const directions=ctx?ctx.water:[1,4];
@@ -142,7 +143,7 @@
       const directions=ctx?ctx.sea:[4,5];
       details=`<path d="M-28 18l8-4m13 13 8-2M-8-12l4 1M19 9l7-2" fill="none" stroke="#d9cb96" stroke-width="2.2" opacity=".65"/>`;
       for(const i of directions){const [p0,p1]=edge(i),v0={x:+(p0.x*.49).toFixed(3),y:+(p0.y*.49).toFixed(3)},v1={x:+(p1.x*.49).toFixed(3),y:+(p1.y*.49).toFixed(3)},m=edgeMid(i),control={x:+(m.x*.39).toFixed(3),y:+(m.y*.39).toFixed(3)};
-        details+=`<g class="terrain-shore" data-direction="${i}"><path d="M${pointText(p0)}L${pointText(p1)}L${pointText(v1)}Q${pointText(control)} ${pointText(v0)}Z" fill="${terrainColors.ocean}"/><path d="M${pointText(v0)}Q${pointText(control)} ${pointText(v1)}" fill="none" stroke="#e0d2a0" stroke-width="5"/><path d="M${pointText(v0)}Q${pointText(control)} ${pointText(v1)}" fill="none" stroke="#c1ddd0" stroke-width="1.7"/><path d="M${pointText({x:+(p0.x*.76).toFixed(3),y:+(p0.y*.76).toFixed(3)})}L${pointText({x:+(p1.x*.76).toFixed(3),y:+(p1.y*.76).toFixed(3)})}" stroke="#76b9c5" stroke-width="1" opacity=".38"/></g>`;
+        details+=`<g class="terrain-shore" data-direction="${i}"><path d="M${pointText(p0)}L${pointText(p1)}L${pointText(v1)}Q${pointText(control)} ${pointText(v0)}Z" fill="${shorePaint}"/><path d="M${pointText(v0)}Q${pointText(control)} ${pointText(v1)}" fill="none" stroke="#bad1b8" stroke-width="9" opacity=".65"/><path d="M${pointText(v0)}Q${pointText(control)} ${pointText(v1)}" fill="none" stroke="#edf0d2" stroke-width="2.2"/><path d="M${pointText({x:+(p0.x*.76).toFixed(3),y:+(p0.y*.76).toFixed(3)})}Q${pointText({x:+(control.x*1.75).toFixed(3),y:+(control.y*1.75).toFixed(3)})} ${pointText({x:+(p1.x*.76).toFixed(3),y:+(p1.y*.76).toFixed(3)})}" fill="none" stroke="#d7ece0" stroke-width="2" opacity=".45"/></g>`;
       }
     }
     if(type==='ridge'){
@@ -151,25 +152,27 @@
     }
     return details;
   }
+  function tideGradient(id){return '<radialGradient id="'+id+'" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="44"><stop offset=".36" stop-color="#b8d8bb"/><stop offset=".7" stop-color="#94c7c7"/><stop offset="1" stop-color="#76b3c4"/></radialGradient>';}
   function terrainMarkup(type,size=44,seed=0){
     if(!data.terrain[type])throw new Error(`Missing terrain artwork: ${type}`);
     const id=`terrain-icon-${type}-${size}`;
-    return `<g class="terrain-art terrain-${type}"><defs><clipPath id="${id}"><polygon points="${hexPoints(44)}"/></clipPath></defs><g transform="scale(${size/44})"><polygon points="${hexPoints(44)}" fill="${terrainColors[type]}"/><g clip-path="url(#${id})" stroke-linecap="round" stroke-linejoin="round">${terrainDrawing(type,seed)}</g><polygon points="${hexPoints(43.5)}" fill="none" stroke="#cad4ae" stroke-opacity=".19" stroke-width="1"/></g></g>`;
+    return `<g class="terrain-art terrain-${type}"><defs>${tideGradient(id+'-tide')}<clipPath id="${id}"><polygon points="${hexPoints(44)}"/></clipPath></defs><g transform="scale(${size/44})"><polygon points="${hexPoints(44)}" fill="${terrainColors[type]}"/><g clip-path="url(#${id})" stroke-linecap="round" stroke-linejoin="round">${terrainDrawing(type,seed,null,{q:0,r:0},'url(#'+id+'-tide)')}</g><polygon points="${hexPoints(43.5)}" fill="none" stroke="#cad4ae" stroke-opacity=".19" stroke-width="1"/></g></g>`;
   }
-  function terrainMarkupContext(cell,cells,size=44){
-    const type=cell.terrain,ctx=terrainContext(cells,cell),seed=cell.q*31+cell.r*17,id=`terrain-cell-${cell.q<0?'n':'p'}${Math.abs(cell.q)}-${cell.r<0?'n':'p'}${Math.abs(cell.r)}-${size}`;
+  function terrainMarkupContext(cell,cells,size=44,sharedClip='',far=false){
+    const type=cell.terrain,ctx=terrainContext(cells,cell),seed=cell.q*31+cell.r*17,id=sharedClip||`terrain-cell-${cell.q<0?'n':'p'}${Math.abs(cell.q)}-${cell.r<0?'n':'p'}${Math.abs(cell.r)}-${size}`;
     let borders='';
     for(let i=0;i<6;i++){
-      const neighbor=ctx.neighbors[i],continuous=neighbor?.terrain===type&&['ocean','ridge','water','road'].includes(type)||type==='ocean'&&neighbor?.terrain==='coast'||type==='coast'&&neighbor?.terrain==='ocean';
-      if(!continuous){const [p0,p1]=edge(i);borders+=`<path class="terrain-boundary" data-direction="${i}" d="M${pointText(p0)}L${pointText(p1)}" fill="none" stroke="${type==='ocean'?'#8db5aa':'#c5cb9c'}" stroke-opacity="${neighbor?.terrain===type ? .12 : .24}" stroke-width=".65"/>`;}
+      const neighbor=ctx.neighbors[i],continuous=neighbor?.terrain===type||type==='ocean'&&neighbor?.terrain==='coast'||type==='coast'&&neighbor?.terrain==='ocean';
+      if(!continuous){const [p0,p1]=edge(i);borders+=`<path class="terrain-boundary" data-direction="${i}" d="M${pointText(p0)}L${pointText(p1)}" fill="none" stroke="${type==='ocean'?'#8db5aa':'#c5cb9c'}" stroke-opacity=".14" stroke-width=".5"/>`;}
     }
-    return `<g class="terrain-art terrain-${type}" data-art-context="adjacency"><defs><clipPath id="${id}"><polygon points="${hexPoints(44)}"/></clipPath></defs><g transform="scale(${size/44})"><polygon points="${hexPoints(44)}" fill="${terrainColors[type]||data.terrain[type]?.color}"/><g clip-path="url(#${id})" stroke-linecap="round" stroke-linejoin="round">${terrainDrawing(type,seed,ctx,cell)}</g>${borders}</g></g>`;
+    return `<g class="terrain-art terrain-${type}" data-art-context="adjacency">${sharedClip?'':`<defs>${tideGradient(id+'-tide')}<clipPath id="${id}"><polygon points="${hexPoints(44)}"/></clipPath></defs>`}<g transform="scale(${size/44})"><polygon points="${hexPoints(44.45)}" fill="${terrainColors[type]||data.terrain[type]?.color}"/><g clip-path="url(#${id})" stroke-linecap="round" stroke-linejoin="round">${far&&! ['road','coast','ridge','water'].includes(type)?'':terrainDrawing(type,seed,ctx,cell,'url(#'+id+'-tide)')}</g>${borders}</g></g>`;
   }
   function terrainSvg(type){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" role="img" aria-label="${data.terrain[type].name}">${terrainMarkup(type)}</svg>`;}
   const buildingPalettes={hq:{base:'#547685',edge:'#dcebcf',body:'#f3f6f0',dark:'#32566b'},city:{base:'#5d8294',edge:'#b7dae4',body:'#e6eee9',dark:'#446e84'},market:{base:'#94805b',edge:'#e6c77b',body:'#f2e8cc',dark:'#5b777c'},energyfield:{base:'#537f79',edge:'#83dec6',body:'#eaf3e7',dark:'#315f68'},energyplatform:{base:'#426b84',edge:'#83dec6',body:'#eff3e8',dark:'#31566d'},barracks:{base:'#68897a',edge:'#b5ddc5',body:'#edf3e7',dark:'#426a67'},factory:{base:'#65778b',edge:'#e6c77b',body:'#f0eee0',dark:'#3b5c73'},port:{base:'#527b96',edge:'#b7dbe8',body:'#f3f6f0',dark:'#355d78'},airfield:{base:'#627f94',edge:'#b7dbe8',body:'#edf2eb',dark:'#355a73'}};
   function buildingTileMarkup(type,side,level=1){
-    const p=buildingPalettes[type]||buildingPalettes.hq,a=data.factions[side]?.accent||'#e9c77c';
-    return `<g class="building-tile building-tile-${type}" pointer-events="none"><polygon points="${hexPoints(41.7)}" fill="${p.base}" stroke="#15292a" stroke-width="3"/><polygon points="${hexPoints(38.3)}" fill="none" stroke="${p.edge}" stroke-width="1.5" stroke-opacity=".78"/><path d="M-24 26h48m-41 4h34M-29-17l7-4m44 0 7 4" stroke="${p.edge}" stroke-width="1.2" opacity=".35"/><path d="M-13-35h26M-13 35h26" stroke="${a}" stroke-width="3.8"/>${Array.from({length:Math.min(3,level)},(_,i)=>`<circle cx="${(i-(Math.min(3,level)-1)/2)*6}" cy="32" r="1.5" fill="${p.edge}"/>`).join('')}</g>`;
+    const p=buildingPalettes[type]||buildingPalettes.hq,a=data.factions[side]?.accent||'#e9c77c',core=['hq','barracks','factory','port','airfield'].includes(type);
+    if(!core)return '<g class="building-tile resource-plot" pointer-events="none"><ellipse cy="14" rx="34" ry="21" fill="'+p.base+'" opacity=".36"/><path d="M-30 23q28 12 59 0" fill="none" stroke="'+a+'" stroke-width="2"/><path d="M-33 19l-3-5m9 13-2-7m54 7 2-7m6-1 3-5" stroke="#648c71" stroke-width="2"/></g>';
+    return '<g class="building-tile core-platform" pointer-events="none"><path d="M-37 14l7-39h60l7 39-9 20h-56z" fill="#253e50" stroke="#172e3f" stroke-width="2"/><path d="M-34 11l7-32h54l7 32-9 17h-50z" fill="'+p.base+'" stroke="'+p.edge+'" stroke-width="1.5"/><path d="M-28 27v6m56-6v6M-32-12l8-5m48 0 8 5" stroke="'+p.edge+'" stroke-width="2"/><path d="M-17 29h34M-13-24h26" stroke="'+a+'" stroke-width="3"/><path d="M-29 19h8m29 0h21" stroke="'+p.edge+'" stroke-width="1" opacity=".5"/></g>';
   }
   function buildingMarkup(type,side,level=1){
     const a=data.factions[side]?.accent||'#e9c77c',p=buildingPalettes[type]||buildingPalettes.hq,light=p.body,dark=p.dark,metal='#e6dfc0',outline='#213b3c';
@@ -192,11 +195,12 @@
     bodies.barracks=`<path d="M-31 21v-31h62v31" fill="${light}"/><path d="M-34-10l8-15h52l8 15z" fill="${dark}"/><path d="M-23 21V-2h20v23" fill="${dark}"/><path d="M-20 2h14m-14 5h14" stroke="#76b3c4" stroke-width="2"/><path d="M6 18v-12h23v12" fill="#d0e4d9"/><circle cx="17" cy="-3" r="9" fill="${light}"/><circle cx="17" cy="-3" r="4" fill="none" stroke="${a}" stroke-width="2"/><path d="M17 6v9M-29 27h58" stroke="${dark}" stroke-width="2"/>`;
     if(type==='node')return `<g class="building-art building-node"><path d="M0-27L-25 18h50z" fill="${dark}" stroke="#d3d0a9" stroke-width="2"/><circle r="12" fill="#233d45" stroke="${a}" stroke-width="3"/><circle r="4" fill="${a}"/></g>`;
     const expansion=level>1?`<path d="M-35 18V8h9v10m52 0V8h9v10" fill="${p.dark}"/><path d="M-32 11h4m28 0h4" stroke="${p.edge}" stroke-width="2"/>${level===3?`<path d="M-37 24v-5h11v5m52 0v-5h11v5" fill="${light}"/><path d="M-34 20h5m58 0h5" stroke="${a}" stroke-width="2"/>`:''}`:'';
+    const protection=['hq','barracks','factory','port','airfield'].includes(type)?'<g class="core-shield" transform="translate(30 -22)"><path d="M0-7l7 3v6q0 6-7 10-7-4-7-10v-6z" fill="#263f52" stroke="'+a+'" stroke-width="1.5"/><path d="M-3 1l3 3 4-6" fill="none" stroke="#eef5db" stroke-width="1.5"/></g>':'';
     const levels=Array.from({length:level},(_,i)=>`<path d="M${(i-(level-1)/2)*9-3} 37l3-3 3 3-3 3z" fill="${p.edge}" stroke="none"/>`).join('');
-    return `<g class="building-art building-${type}" stroke="${outline}" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><ellipse cy="27" rx="38" ry="8" fill="#10272b" opacity=".7" stroke="none"/>${deck}${expansion}${bodies[type]||bodies.hq}<path d="M-21 30h42" stroke="${a}" stroke-width="2.7"/>${levels}</g>`;
+    return `<g class="building-art building-${type}" stroke="${outline}" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"><ellipse cy="27" rx="38" ry="8" fill="#10272b" opacity=".7" stroke="none"/>${deck}${expansion}${bodies[type]||bodies.hq}<path d="M-21 30h42" stroke="${a}" stroke-width="2.7"/>${levels}${protection}</g>`;
   }
   function buildingSvg(type,side='union',level=1){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="-50 -50 100 100" role="img" aria-label="${data.buildingById[type].name} Lv.${level}">${buildingMarkup(type,side,level)}</svg>`;}
-  const art = { unitMarkup, unitSvg, terrainMarkup, terrainSvg, hexPoints, buildingMarkup, buildingSvg, terrainContext, terrainMarkupContext, buildingTileMarkup };
+  const art = { unitMarkup, unitSvg, terrainMarkup, terrainSvg, hexPoints, buildingMarkup, buildingSvg, terrainContext, terrainMarkupContext, buildingTileMarkup, tideGradient };
   root.GameArt = art;
   if (typeof module !== 'undefined' && module.exports) module.exports = art;
 })(typeof window !== 'undefined' ? window : globalThis);

@@ -1,0 +1,43 @@
+/* Crystal tide field interface: flat geometry, bounded animation, no SVG filters. */
+.battle-frame button.picture-button{background:linear-gradient(145deg,#30475f,#13283f);border:1px solid #b4cdd3;box-shadow:0 2px 0 #102135,0 0 0 1px #132438;border-radius:9px}
+.picture-button .ui-icon{width:33px;height:33px;flex:none}
+.battle-frame button.picture-button:hover,.battle-frame button.picture-button:focus-visible{background:#3d5d76;border-color:#ffe6a9;outline:2px solid #ffe6a9;outline-offset:2px}
+.battle-frame button.picture-button.active{border-color:#ffda81;box-shadow:0 0 0 2px #b78539}
+.battle-frame button.picture-button:disabled{opacity:.48;filter:saturate(.3);box-shadow:none}
+.mobile-ui .battle-frame button.picture-button{padding:2px}
+.illustrated-button{display:inline-flex;align-items:center;justify-content:center;gap:5px}
+.illustrated-button>.ui-icon{width:26px;height:26px}
+.mobile-economy .ui-icon{width:19px;height:19px}
+.production-card>svg,.skill-target-card>svg{width:28px;height:28px}
+.crystal-projection{color:#96f0dc}.projection-attack{color:#ffc29e}
+.projection-brackets{stroke:currentColor;stroke-width:2;fill:none;opacity:.8}
+.projection-thread{stroke:currentColor;stroke-width:1;fill:none;opacity:.36}
+.projection-crystal{fill:currentColor;stroke:#163d50;stroke-width:.7;opacity:.65}
+.capture-range polygon,.deployment-choice polygon{fill-opacity:.035;stroke-dasharray:7 13;stroke-width:2.5}
+.capture-flag{stroke:#fff0b1;stroke-width:2.4}.deployment-marker circle{stroke-dasharray:4 7;fill-opacity:.035}
+.facility-health-card{position:absolute;z-index:12;left:14px;bottom:98px;width:238px;padding:8px;display:flex;gap:7px;align-items:center;color:#ecf6e3;background:linear-gradient(115deg,#173347f5,#24475af5);border:1px solid #91cdbf;border-left:3px solid #95dfc7;border-radius:9px;box-shadow:0 3px 12px #152b4633;pointer-events:auto}
+.facility-health-art{width:51px;height:59px;flex:none}.facility-health-card>div{flex:1;min-width:0}
+.facility-health-card strong{display:block;font-size:12px;color:#fff1ca}.facility-health-card small{display:block;font-size:10px;color:#acd9ce;margin:2px 0}
+.facility-health-card span{font-size:11px;font-variant-numeric:tabular-nums}
+.facility-health-track{height:5px;background:#0e2538;border:1px solid #6d9b9b;border-radius:4px;overflow:hidden;margin-top:3px}
+.facility-health-track .building-health-fill{display:block;height:100%;background:#84e3bd;transition:width .18s ease-out}
+.facility-health-card.health-critical .building-health-fill{background:#ffb197}
+.facility-health-card>button.picture-button{width:25px;height:25px;min-width:25px;min-height:25px;align-self:flex-start;padding:0}
+.facility-health-card>.picture-button .ui-icon{width:22px;height:22px}
+.in-battle .battle-frame:has(.facility-health-card) .selection-slot{bottom:192px}
+.facility-beacon{animation:facility-beacon 3.8s ease-in-out infinite}
+.factory-smoke{animation:facility-smoke 4.8s ease-out infinite;transform-box:fill-box;transform-origin:center bottom}
+.map-static{isolation:auto}.map-static .chibi-body{animation:none!important}
+.board[data-label-density="overview"] .map-static .chibi-body,.board[data-label-density="overview"] .facility-beacon{display:none}
+.is-paused .facility-beacon,.is-paused .factory-smoke{animation-play-state:paused}
+@keyframes facility-beacon{0%,100%{opacity:.38}50%{opacity:.95}}
+@keyframes facility-smoke{0%{opacity:0;transform:translate(0,3px) scale(.7)}35%{opacity:.3}100%{opacity:0;transform:translate(-3px,-10px) scale(1.3)}}
+.mobile-ui .facility-health-card{left:calc(9px + var(--safe-left));bottom:calc(61px + var(--safe-bottom));width:min(220px,calc(100% - 162px - var(--safe-left) - var(--safe-right)));padding:5px;gap:4px}
+.mobile-ui .facility-health-art{width:35px;height:46px}
+.mobile-ui .facility-health-card strong{font-size:11px;padding-right:18px}.mobile-ui .facility-health-card small{font-size:9px}.mobile-ui .facility-health-card span{font-size:10px}
+.mobile-ui .facility-health-card>button.picture-button{position:absolute;right:3px;top:3px;width:21px;height:21px;min-width:21px;min-height:21px}
+.mobile-ui .mobile-mode-chip{bottom:calc(10px + var(--safe-bottom))}
+@media(max-width:360px){.mobile-ui .facility-health-art{display:none}.mobile-ui .facility-health-card{width:calc(100% - 156px - var(--safe-left) - var(--safe-right))}}
+@media(max-height:460px) and (orientation:landscape){.mobile-ui .facility-health-card{width:212px;bottom:calc(11px + var(--safe-bottom))}.mobile-ui .mobile-mode-chip{left:calc(242px + var(--safe-left))}}
+@media(prefers-reduced-motion:reduce){.facility-beacon,.factory-smoke{animation:none}.factory-smoke{display:none}.facility-health-track .building-health-fill{transition:none}}
+body[data-motion-mode="reduced"] .facility-beacon{animation:none}body[data-motion-mode="reduced"] .factory-smoke{display:none}

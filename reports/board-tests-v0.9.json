@@ -93,7 +93,7 @@
       "ok": true
     },
     {
-      "name": "Damaged structure labels remain visible and bars override the pale label background",
+      "name": "Structural cards can be dismissed while map labels remain free of persistent HP",
       "ok": true
     }
   ]

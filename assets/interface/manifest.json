@@ -1,0 +1,191 @@
+{
+  "version": "1.1.4",
+  "style": "原创赛璐璐仪器插画",
+  "icons": [
+    {
+      "id": "close",
+      "label": "关闭",
+      "file": "assets/interface/close.svg"
+    },
+    {
+      "id": "info",
+      "label": "详情",
+      "file": "assets/interface/info.svg"
+    },
+    {
+      "id": "undo",
+      "label": "撤销移动",
+      "file": "assets/interface/undo.svg"
+    },
+    {
+      "id": "pause",
+      "label": "暂停",
+      "file": "assets/interface/pause.svg"
+    },
+    {
+      "id": "play",
+      "label": "继续",
+      "file": "assets/interface/play.svg"
+    },
+    {
+      "id": "menu",
+      "label": "菜单",
+      "file": "assets/interface/menu.svg"
+    },
+    {
+      "id": "money",
+      "label": "金钱",
+      "file": "assets/interface/money.svg"
+    },
+    {
+      "id": "energy",
+      "label": "能源",
+      "file": "assets/interface/energy.svg"
+    },
+    {
+      "id": "next",
+      "label": "下一部队",
+      "file": "assets/interface/next.svg"
+    },
+    {
+      "id": "end",
+      "label": "结束回合",
+      "file": "assets/interface/end.svg"
+    },
+    {
+      "id": "map",
+      "label": "小地图",
+      "file": "assets/interface/map.svg"
+    },
+    {
+      "id": "zoomIn",
+      "label": "放大",
+      "file": "assets/interface/zoomIn.svg"
+    },
+    {
+      "id": "zoomOut",
+      "label": "缩小",
+      "file": "assets/interface/zoomOut.svg"
+    },
+    {
+      "id": "home",
+      "label": "总部",
+      "file": "assets/interface/home.svg"
+    },
+    {
+      "id": "overview",
+      "label": "全图",
+      "file": "assets/interface/overview.svg"
+    },
+    {
+      "id": "army",
+      "label": "部队",
+      "file": "assets/interface/army.svg"
+    },
+    {
+      "id": "build",
+      "label": "建设",
+      "file": "assets/interface/build.svg"
+    },
+    {
+      "id": "log",
+      "label": "记录",
+      "file": "assets/interface/log.svg"
+    },
+    {
+      "id": "flag",
+      "label": "目标",
+      "file": "assets/interface/flag.svg"
+    },
+    {
+      "id": "help",
+      "label": "帮助",
+      "file": "assets/interface/help.svg"
+    },
+    {
+      "id": "produce",
+      "label": "生产",
+      "file": "assets/interface/produce.svg"
+    },
+    {
+      "id": "upgrade",
+      "label": "升级",
+      "file": "assets/interface/upgrade.svg"
+    },
+    {
+      "id": "deployment",
+      "label": "部署格",
+      "file": "assets/interface/deployment.svg"
+    },
+    {
+      "id": "repair",
+      "label": "重建",
+      "file": "assets/interface/repair.svg"
+    },
+    {
+      "id": "save",
+      "label": "保存",
+      "file": "assets/interface/save.svg"
+    },
+    {
+      "id": "export",
+      "label": "导出",
+      "file": "assets/interface/export.svg"
+    },
+    {
+      "id": "sound",
+      "label": "声音",
+      "file": "assets/interface/sound.svg"
+    },
+    {
+      "id": "mute",
+      "label": "静音",
+      "file": "assets/interface/mute.svg"
+    },
+    {
+      "id": "shield",
+      "label": "构筑掩体",
+      "file": "assets/interface/shield.svg"
+    },
+    {
+      "id": "anchor",
+      "label": "锚定防线",
+      "file": "assets/interface/anchor.svg"
+    },
+    {
+      "id": "scan",
+      "label": "主动扫描",
+      "file": "assets/interface/scan.svg"
+    },
+    {
+      "id": "pierce",
+      "label": "穿甲弹",
+      "file": "assets/interface/pierce.svg"
+    },
+    {
+      "id": "shock",
+      "label": "震荡弹",
+      "file": "assets/interface/shock.svg"
+    },
+    {
+      "id": "sniper",
+      "label": "定点狙击",
+      "file": "assets/interface/sniper.svg"
+    },
+    {
+      "id": "jam",
+      "label": "链路干扰",
+      "file": "assets/interface/jam.svg"
+    },
+    {
+      "id": "skillRepair",
+      "label": "应急修复",
+      "file": "assets/interface/skillRepair.svg"
+    },
+    {
+      "id": "cancel",
+      "label": "取消订单",
+      "file": "assets/interface/cancel.svg"
+    }
+  ]
+}

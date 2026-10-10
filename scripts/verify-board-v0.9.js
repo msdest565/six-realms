@@ -13,7 +13,7 @@ function fixture(units=[],buildings=[]){
  const status={innerHTML:''},route={innerHTML:''},labels={innerHTML:''},attributes={},listeners={};let cameraCalls=0,renders=0;
  const board={clientWidth:1280,clientHeight:720,setAttribute:(k,v)=>attributes[k]=v,addEventListener:(k,fn)=>listeners[k]=fn};
  const doc={getElementById:id=>({board,'context-status':status,'route-preview':route,'label-focus-layer':labels}[id]||null),querySelector:()=>null,addEventListener(){}};
- const context={document:doc,innerWidth:1280,innerHeight:720,performance:{now:()=>0},requestAnimationFrame:()=>1,cancelAnimationFrame(){},addEventListener(){},GameGestures:require('../src/gestures'),GameAnime:require('../src/anime'),GameControls:Controls,GameFX:{unlock(){}},console};context.window=context;vm.createContext(context);vm.runInContext(fs.readFileSync('src/battle-ui.js','utf8'),context);
+ const context={document:doc,innerWidth:1280,innerHeight:720,performance:{now:()=>0},requestAnimationFrame:()=>1,cancelAnimationFrame(){},addEventListener(){},GameGestures:require('../src/gestures'),GameAnime:require('../src/anime'),GameIcons:require('../src/icons'),GameScene:require('../src/scene'),GameControls:Controls,GameFX:{unlock(){}},console};context.window=context;vm.createContext(context);vm.runInContext(fs.readFileSync('src/battle-ui.js','utf8'),context);
  const b=context.GameBattleUI.create({ui,D,H,G,A,esc,btn:(text,action)=>`<button data-action="${action}">${text}</button>`,commandButton:(text,cmd)=>`<button>${text}</button>`,xy:c=>({x:Math.sqrt(3)*44*(c.q+c.r/2),y:66*c.r}),bounds:()=>({x:-500,y:-400,w:1000,h:800}),viewer:()=>ui.viewerId||s.actor,knownBuildingAt(c){const actual=s.buildings.find(b=>b.q===c.q&&b.r===c.r);return actual&&G.visible(s,ui.viewerId||s.actor,actual)?actual:Object.values(s.knownBuildings[ui.viewerId||s.actor]).find(b=>b.q===c.q&&b.r===c.r);},unitPanel:()=>'',buildingPanel:()=>'',exercisePanel:()=>'',savesPage:()=>'',render:()=>renders++,act(){},toast(){},home:()=>'',resultPanel:()=>'',onCameraChange:()=>cameraCalls++});
  return {s,ui,b,status,route,labels,attributes,listeners,get cameraCalls(){return cameraCalls;},get renders(){return renders;},hover(q,r){b.bindBoard();listeners.pointermove({target:{closest:()=>({dataset:{cell:q+','+r}})}});}};
 }
@@ -84,20 +84,20 @@ test('Ocean ambience has a bounded layer and motion respects pause and reduced-m
 });
 test('Direct building damage updates numeric HP and reduces the visible structural bar',()=>{
  const a=unit('tank','P1',0,0),fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([a],[fac]);
- const fill=html=>Number(html.match(/class="building-health-fill"[^>]*width="([\d.]+)"/)[1]);
- const before=f.b.board();assert(before.includes('HP 200/200'));assert(before.includes('data-building-health="B"'));
+ const fill=html=>Number(html.match(/class="building-health-fill" style="width:([\d.]+)%/)[1]);f.ui.tile=G.cell(f.s,fac);
+ const before=f.b.buildingHealth();assert(!f.b.board().includes('data-building-health='));assert(before.includes('HP 200/200'));assert(before.includes('data-building-health="B"'));
  assert.equal(G.execute(f.s,Controls.resolve(f.s,{unitId:a.id,cell:fac}).command).ok,true);
- const after=f.b.board();assert(after.includes('HP 150/200'));assert(after.includes('data-hp="150"'));assert(after.includes('map-label-damaged'));assert(fill(after)<fill(before));
+ const after=f.b.buildingHealth();assert(after.includes('HP 150/200'));assert(after.includes('data-hp="150"'));assert(after.includes('facility-health-card'));assert(fill(after)<fill(before));
 });
 test('Protected garrison and building display separate health changes on one tile',()=>{
  const a=unit('tank','P1',0,0),t=unit('infantry','P2',1,0,'TARGET'),fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([a,t],[fac]);
  assert.equal(G.execute(f.s,{kind:'attack',unitId:a.id,targetId:fac.id}).ok,true);f.ui.tile=G.cell(f.s,fac);
- const html=f.b.board();assert(html.includes('HP 185/200'));assert(html.includes('HP 35/80'));assert(html.includes('data-building-health="B"'));assert(html.includes('data-unit-sprite="TARGET"'));
+ const html=f.b.buildingHealth()+f.b.board();assert(html.includes('HP 185/200'));f.hover(1,0);assert(f.labels.innerHTML.includes('HP 35/80'));assert(html.includes('data-building-health="B"'));assert(html.includes('data-unit-sprite="TARGET"'));
 });
 test('Destroyed structures keep a zero-width bar and a clear damaged label',()=>{
  const a=unit('tank','P1',0,0),fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([a],[fac]);fac.hp=10;
  assert.equal(G.execute(f.s,{kind:'attack',unitId:a.id,targetId:fac.id}).ok,true);
- const html=f.b.board();assert(html.includes('HP 0/200'));assert(html.includes('已损毁'));assert(/class="building-health-fill"[^>]*width="0"/.test(html));
+ f.ui.tile=G.cell(f.s,fac);const html=f.b.buildingHealth();assert(html.includes('HP 0/200'));assert(html.includes('已损毁'));assert(/class="building-health-fill" style="width:0%/.test(html));
 });
 test('Income buildings omit structural bars and explain their capture-only role',()=>{
  const f=fixture([], [G.normalizeBuilding(building('city','P2',1,0))]);assert(!f.b.board().includes('data-building-health='));f.hover(1,0);assert(f.labels.innerHTML.includes('收入据点 · 无结构生命值'));
@@ -105,9 +105,10 @@ test('Income buildings omit structural bars and explain their capture-only role'
 test('Hidden structure damage never updates its last-observed health label',()=>{
  const fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([unit('infantry','P1',0,0)],[fac]);
  f.s.settings.fog=true;f.s.vision.P1={ground:['0,0'],air:[]};f.ui.tile=G.cell(f.s,fac);
- const before=f.b.board();fac.hp=25;assert.equal(f.b.board(),before);assert(before.includes('HP 200/200'));assert(before.includes('最后观测'));
+ const before=f.b.buildingHealth();fac.hp=25;assert.equal(f.b.buildingHealth(),before);assert(before.includes('HP 200/200'));assert(before.includes('最后观测'));
 });
-test('Damaged structure labels remain visible and bars override the pale label background',()=>{
- const css=fs.readFileSync('anime.css','utf8');assert(css.includes('.board .building-name-label.map-label-damaged{display:block}'));assert(css.includes('.map-label .building-health-fill{fill:#217e75'));assert(css.includes('.map-label .health-critical .building-health-fill'));
+test('Structural cards can be dismissed while map labels remain free of persistent HP',()=>{
+ const fac=G.normalizeBuilding(building('factory','P2',1,0)),f=fixture([], [fac]);fac.hp=20;f.ui.tile=G.cell(f.s,fac);assert(f.b.buildingHealth().includes('health-critical'));assert(!f.b.board().includes('data-building-health='));f.ui.healthHidden=fac.id;assert.equal(f.b.buildingHealth(),'');f.ui.tile=null;assert.equal(f.b.buildingHealth(),'');
+ const css=fs.readFileSync('world.css','utf8');assert(css.includes('.facility-health-track .building-health-fill'));assert(css.includes('bottom:calc(61px + var(--safe-bottom))'));
 });
 const report={version:'0.9',kind:'Node VM and markup observation contracts; not a browser layout measurement',passed:checks.filter(c=>c.ok).length,total:checks.length,checks};fs.mkdirSync('reports',{recursive:true});fs.writeFileSync('reports/board-tests-v0.9.json',JSON.stringify(report,null,2));console.log(`Board v0.9: ${report.passed}/${report.total}`);if(report.passed!==report.total)process.exitCode=1;
