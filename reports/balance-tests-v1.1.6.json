@@ -1,0 +1,114 @@
+{
+  "version": "1.1.6",
+  "date": "2026-10-10T10:06:20.066Z",
+  "scope": "Air/hell balance, paid AI economy and tactics, legacy migration, real movement encounters + isolated phone controller; not human balance or browser QA",
+  "passed": 24,
+  "total": 24,
+  "results": [
+    {
+      "name": "all ten aircraft have less HP; long bomber retains role without one-hit infantry deletion",
+      "ok": true
+    },
+    {
+      "name": "fighter specializes in air combat, bombing keeps sea/land and AA remains effective",
+      "ok": true
+    },
+    {
+      "name": "air movement uses the reduced whole-turn budget and unchanged energy charging",
+      "ok": true
+    },
+    {
+      "name": "hell numerical and economy boosts are AI-only: 130/115/200 with caps",
+      "ok": true
+    },
+    {
+      "name": "older air and hell saves migrate wounds proportionally once without fresh income",
+      "ok": true
+    },
+    {
+      "name": "pre-difficulty saves and unsupported balance versions retain strict validation",
+      "ok": true
+    },
+    {
+      "name": "standard/hard/hell repeat paid campaign production after authored plan; easy cannot",
+      "ok": true
+    },
+    {
+      "name": "dynamic recruitment still enforces ownership, cost, tiers, authorizations and total 24",
+      "ok": true
+    },
+    {
+      "name": "production plan earliest turn is not submitted early by dynamic recruitment",
+      "ok": true
+    },
+    {
+      "name": "AI fills three idle factories this round with paid orders without spending unit AP",
+      "ok": true
+    },
+    {
+      "name": "AI frees blocked FIFO before continuing recruitment",
+      "ok": true
+    },
+    {
+      "name": "port switches an incompatible land setting to sea and then produces a vessel",
+      "ok": true
+    },
+    {
+      "name": "observed aircraft drives multiple AA orders, not omniscient enemy knowledge",
+      "ok": true
+    },
+    {
+      "name": "advanced AI protects an exposed HQ before new construction and holds the new defender",
+      "ok": true
+    },
+    {
+      "name": "economy never spends rebuild money before repairing a ruined HQ",
+      "ok": true
+    },
+    {
+      "name": "six recruitment turns sustain a real growing army with legal paid orders",
+      "ok": true
+    },
+    {
+      "name": "safe exploration of terrain remains undoable",
+      "ok": true
+    },
+    {
+      "name": "newly visible enemy locks this turn, clears earlier undo, and later moves cannot bypass",
+      "ok": true
+    },
+    {
+      "name": "contact seen only midway through a flight still prohibits retreat undo",
+      "ok": true
+    },
+    {
+      "name": "zero-distance collision with an unseen blocker also prohibits undo",
+      "ok": true
+    },
+    {
+      "name": "already visible enemy and allied units do not disable undo",
+      "ok": true
+    },
+    {
+      "name": "save/load before exploration restores position and clears ephemeral lock, without free income",
+      "ok": true
+    },
+    {
+      "name": "AI contact cannot lock human undo, next turn releases the contact latch",
+      "ok": true
+    },
+    {
+      "name": "phone controller forwards encounters and disables the actual undo icon",
+      "ok": true
+    }
+  ],
+  "benchmarks": [
+    {
+      "label": "hell six recruitment turns",
+      "orders": 17,
+      "peak": 17,
+      "steps": 64,
+      "milliseconds": 233
+    }
+  ]
+}

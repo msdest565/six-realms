@@ -159,8 +159,16 @@
   const levels = {1:'Ⅰ级·基础型',2:'Ⅱ级·主力型',3:'Ⅲ级·强化型'};
   for(const u of units){u.dedicatedAA=['antiair','missileaa','longrangeaa','aafrigate','aamissileship','areaaship'].includes(u.id);if(u.dedicatedAA){u.skill='防空反击';u.skillText='遭直接攻击后，按标准伤害的 1.5 倍反击；每己方回合一次。';}}
   terrain.road.text='整个己方回合仅进入道路时，累计移动预算 +1；首次进入非道路即失去加成。';
+  // v1.1.6: aviation keeps terrain freedom and specialist roles, with a smaller
+  // endurance/movement budget. Old HP is retained only for proportional save migration.
+  const balance={version:1,legacyAirHp:{reconplane:60,tacticalrecon:80,longrangerecon:100,lightfighter:100,fighter:130,heavyfighter:170,lightbomber:100,tacticalbomber:140,bomber:180,helicopter:90},air:{
+    reconplane:{hp:50,damage:15,move:4},tacticalrecon:{hp:65,damage:15,move:5},longrangerecon:{hp:80,armor:0,damage:20,move:7},
+    lightfighter:{hp:85,damage:35,move:5,bonusLand:-25,bonusSea:-25},fighter:{hp:105,armor:5,damage:40,move:6,bonusLand:-30,bonusSea:-30},heavyfighter:{hp:135,armor:10,damage:50,move:6,maxRange:2,bonusAir:35,bonusLand:-35,bonusSea:-35},
+    lightbomber:{hp:80,damage:40,move:4,bonusArmor:5,bonusLight:5},tacticalbomber:{hp:110,armor:5,damage:50,move:5,maxRange:2,bonusArmor:5,bonusLight:5},bomber:{hp:135,armor:5,damage:60,move:7,bonusArmor:10,bonusLight:5},helicopter:{hp:75,damage:30,vision:3,bonusLight:10}
+  }};
+  for(const u of units)if(balance.air[u.id])Object.assign(u,balance.air[u.id]);
   const combat = {minDamage:10,step:10,damageMode:'fixed'};
-  const data = {version:'0.7',combat,factions,systems,units,terrain,buildings,branches,states,economy,levels,
+  const data = {version:'0.7',balance,combat,factions,systems,units,terrain,buildings,branches,states,economy,levels,
     systemById:Object.fromEntries(systems.map(s=>[s.id,s])),
     buildingById:Object.fromEntries(buildings.map(b=>[b.id,b])),byId:Object.fromEntries(units.map(u=>[u.id,u]))};
   root.GameData = data;

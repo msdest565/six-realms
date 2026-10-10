@@ -35,7 +35,7 @@
   {id:'easy',name:'简单',description:'AI 生命与伤害 85%，护甲 90%；前 8 回合不主动夺取总部。'},
   {id:'standard',name:'标准',description:'基准属性，优先夺点、修复、攻击与扩军。'},
   {id:'hard',name:'困难',description:'基准属性；威胁地图、集火、安全走位与反制生产。'},
-  {id:'hell',name:'地狱',description:'增强决策；AI 生命与伤害 120%，护甲 110%，初始资源与收入 150%。'}
+  {id:'hell',name:'地狱',description:'增强决策；AI 生命与伤害 130%，护甲 115%，初始资源与收入 200%；持续扩军与三军反制。'}
  ].map(d=>Object.freeze({...d,...G.difficultyProfiles[d.id]})));
  const tacticalCaches=new WeakMap();
  function canHit(s,a,target){
@@ -71,9 +71,58 @@
   cache.maps.set(type,map);return map;
  }
  function candidate(command,phase,reason,score,extra={}){return {command,phase,reason,score,...extra};}
+ // Facility orders consume resources, not unit AP. Fill available production
+ // capacity before repeating tactical evaluations; every returned order is paid.
+ function mobilize(s){
+  const view=observation(s),p=view.player,id=p.id,level=G.difficulty(s),advanced=['hard','hell'].includes(level),assets=G.ownBuildings(s);
+  if(s.mission&&level==='easy')return null; // introductory authored reinforcement budget
+  if(assets.some(b=>!G.repairBuildingReason(s,b)))return null;
+  const os={...s,units:view.units,buildings:view.buildings},enemies=view.units.filter(u=>!G.allied(s,id,u.owner));
+  const headquarters=G.building(s,p.originalHqId);
+  if(advanced&&headquarters&&!G.occupied(os,headquarters)&&enemies.some(e=>H.distance(e,headquarters)<=4))return null;
+  if(assets.some(b=>b.stock.length&&deploymentSpots(os,b,view.units).length))return null;
+  const committed=[...G.ownUnits(s),...assets.flatMap(b=>[...b.stock,...(b.order?.kind==='unit'?[b.order]:[])])],count=G.count(s),counts=type=>committed.filter(u=>u.type===type).length;
+  const branch=type=>committed.filter(u=>D.byId[u.type].branch===type).length;
+  const factories=assets.filter(b=>D.buildingById[b.type].group==='production'&&G.buildingActive(b)),idle=factories.filter(b=>!b.order&&b.stock.length<3);
+  const air=enemies.filter(u=>H.domain(u,G.cell(s,u))==='air').length,armor=enemies.filter(u=>D.byId[u.type].category==='armored').length,aa=committed.filter(u=>D.byId[u.type].antiAir).length;
+  const fuel=committed.reduce((n,u)=>n+D.byId[u.type].energyPerStep*D.byId[u.type].move*.3,0),gain=G.income(s,id),lowEnergy=p.resources.energy+gain.energy<fuel;
+  if(advanced&&lowEnergy)return null; // allow the energy planner to secure supply first
+  const cap=({easy:8,standard:12,hard:18,hell:22})[level],options=[];
+  // One upgrade at a time, with money reserved for a cheap reinforcement.
+  if(count>=6&&factories.length>=2&&!factories.some(b=>b.order?.kind==='upgrade')&&p.resources.money>=400){
+   const up=idle.filter(b=>!G.upgradeReason(s,b)&&p.resources.money-D.buildingById[b.type].upgrades[b.level-1]>=100).sort((a,b)=>a.level-b.level||a.id.localeCompare(b.id))[0];
+   if(up)return candidate({kind:'upgrade',buildingId:up.id},'economy','保留补兵预算，同时提升一座设施的高级型号产能',160);
+  }
+  if(count<cap){
+   for(const b of idle)for(const d of D.units.filter(d=>d.facility===b.type)){
+    if(d.branch==='air'&&branch('air')>=(level==='hell'?5:3)||d.branch==='navy'&&branch('navy')>=7)continue;
+    let reason=G.productionReason(os,b,d.id),spot=null;
+    if(reason?.includes('部署格')){
+     spot=[b,...H.neighbors(b)].map(c=>G.cell(s,c)).filter(c=>c&&!G.deploymentReason(os,b,c)&&Number.isFinite(H.cost(d.id,c))&&!view.units.some(u=>u.q===c.q&&u.r===c.r)).sort(H.sort)[0];
+     if(spot)reason=G.productionReason(os,{...b,deployment:{q:spot.q,r:spot.r}},d.id);
+    }
+    if(reason)continue;
+    const antiNeed=air>0&&aa<Math.max(2,air*2),infantry=committed.filter(u=>D.byId[u.type].infantry).length,medic=counts('engineer'),artillery=committed.filter(u=>D.byId[u.type].indirect).length;
+    const score=90+(d.damage+d.hp*.2)/d.buildTurns-d.cost*.12-counts(d.id)*22+(d.infantry&&infantry<4?65:0)+(d.antiAir&&antiNeed?140+air*10:0)+(armor?d.bonusArmor*.9:0)+(d.id==='engineer'&&!medic?30:0)-(d.id==='engineer'&&medic?110:0)+(d.indirect&&artillery<2&&count>=6?30:0)-(d.indirect&&artillery>=2?70:0)-(lowEnergy?d.energyPerStep*30:0);
+    options.push(candidate(spot?{kind:'setDeployment',buildingId:b.id,q:spot.q,r:spot.r}:{kind:'produce',buildingId:b.id,type:d.id},spot?'deployment':'economy',spot?'切换到支持目标型号的空部署格，准备生产':antiNeed&&d.antiAir?'持续补充防空，反制已观察到的航空部队':'使用空闲设施持续补兵，平衡低价兵力、装甲与火力支援',score));
+   }
+  }
+  options.sort((a,b)=>b.score-a.score||JSON.stringify(a.command).localeCompare(JSON.stringify(b.command)));
+  if(options.length)return {...options[0],alternatives:options.slice(0,3)};
+  if(!s.mission&&p.resources.money>=350&&!assets.some(b=>b.state==='foundation')){
+   const desired=({easy:2,standard:3,hard:4,hell:5})[level],missing=['barracks','factory',...(air?['airfield']:[])].find(type=>!factories.some(b=>b.type===type));
+   const needIncome=gain.money<120+factories.length*35;
+   const type=missing||(needIncome?'market':factories.length<desired?'factory':null);
+   if(type){
+    const cells=s.cells.filter(c=>G.visible(s,id,c)&&!G.constructReason(os,type,c)).sort((a,b)=>{const rank=c=>enemies.length?Math.min(...enemies.map(e=>H.distance(c,e))):0;return rank(b)-rank(a)||H.sort(a,b);});
+    if(cells.length)return candidate({kind:'construct',type,q:cells[0].q,r:cells[0].r},'economy',needIncome&&!missing?'扩大持续收入，支撑多设施补兵':'增加并行生产设施，避免扩军被单一订单限制',100);
+   }
+  }
+  return null;
+ }
  function advanced(s){
   const view=observation(s),p=view.player,id=p.id,hell=G.difficulty(s)==='hell',enemies=view.units.filter(u=>!G.allied(s,id,u.owner)),own=view.units.filter(u=>u.owner===id&&u.ap>0);
-  const os={...s,units:view.units,buildings:view.buildings},assets=G.ownBuildings(s),choices=[];
+  const os={...s,units:view.units,buildings:view.buildings},assets=G.ownBuildings(s),choices=[],home=G.building(s,p.originalHqId),defenseNeeded=home&&!G.occupied(os,home)&&enemies.some(e=>H.distance(e,home)<=4);
   const risk=(u,c)=>threatMap(os,u,enemies).get(H.key(c.q,c.r))?.damage||0;
   const winning=b=>s.players.some(x=>x.originalHqId===b.id)&&s.settings.victoryMode==='capture_hq';
   const assetValue=b=>winning(b)?1200:b.type==='city'?110:['energyfield','energyplatform'].includes(b.type)?(p.resources.energy<25?150:90):D.buildingById[b.type].group==='production'?100:70;
@@ -93,7 +142,7 @@
    for(const target of targets){
     const skill=D.byId[u.type].skill,offensive=['穿甲弹','震荡弹','定点狙击'].includes(skill)&&!G.skillReason(os,u,target),skillKey=offensive?{'穿甲弹':'pierce','震荡弹':'shock','定点狙击':'sniper'}[skill]:'';
     const preview=G.attackPreview(os,u,target,skillKey);if(preview.reason)continue;
-    const targetModel=D.byId[target.type],kill=preview.targetHp===0,contributors=own.filter(a=>a.id!==u.id&&canHit(os,a,target)).length;
+    const targetModel=D.byId[target.type],kill=preview.targetHp===0,contributors=own.filter(a=>a.id!==u.id&&!G.attackReason(os,a,target)).length;
     const score=preview.damage*(targetModel?1.2:.35)+(preview.buildingDamage||0)*.55-preview.counter*(hell?1.6:1.35)+(kill&&targetModel?140:0)+(targetModel?(1-target.hp/target.maxHp)*45+Math.min(4,contributors)*(hell?14:8)+(targetModel.indirect?25:0)+(target.type==='engineer'?30:0):0)-(preview.attackerHp===0?D.byId[u.type].cost+160:0);
     if(score>0)choices.push(candidate({kind:offensive?'skill':'attack',unitId:u.id,targetId:target.id},'attack',kill?'集中火力击毁可见目标，减少敌方行动':'比较伤害与反击代价，集中火力压低目标生命',score,{preview}));
    }
@@ -106,11 +155,12 @@
   const observedAir=enemies.filter(e=>H.domain(e,G.cell(s,e))==='air').length,observedArmor=enemies.filter(e=>D.byId[e.type].category==='armored').length,aa=committed.filter(u=>D.byId[u.type].antiAir).length;
   const needEnergy=committed.reduce((n,u)=>n+D.byId[u.type].energyPerStep*D.byId[u.type].move*.25,0),gain=G.income(s,id),lowEnergy=p.resources.energy+gain.energy<needEnergy;
   const placement=(type)=>s.cells.filter(c=>!s.settings.fog||s.vision[id].air.includes(H.key(c.q,c.r))).filter(c=>!G.constructReason(os,type,c)).sort((a,b)=>{const hazard=c=>enemies.length?Math.min(...enemies.map(e=>H.distance(c,e))):10;return hazard(b)-hazard(a)||H.sort(a,b);})[0];
-  if(!s.mission&&lowEnergy){
+  if(!s.mission&&lowEnergy&&!defenseNeeded){
    const upgrade=unbusy.filter(b=>['energyfield','energyplatform'].includes(b.type)&&!G.upgradeReason(s,b)).sort((a,b)=>a.id.localeCompare(b.id))[0];
    if(upgrade)return candidate({kind:'upgrade',buildingId:upgrade.id},'economy','升级能源收入，保障下回合机动',90);
    for(const type of ['energyfield','energyplatform']){const c=placement(type);if(c)return candidate({kind:'construct',type,q:c.q,r:c.r},'economy','补充能源设施，避免部队因缺能停滞',90);}
   }
+  if(!defenseNeeded){
   if(s.mission&&id==='red'){
    const plan=s.enemyPlan.filter(o=>o.state==='pending'&&p.ownTurnIndex>=o.earliestOwnTurn).find(o=>!G.productionReason(s,G.building(s,`${s.mission.id}-${o.facility}`),o.unit));
    if(plan)return candidate({kind:'produce',buildingId:`${s.mission.id}-${plan.facility}`,type:plan.unit,planId:plan.id},'economy','执行本关有限生产计划，补充授权兵种',80);
@@ -128,11 +178,12 @@
    if(G.count(s)>=8&&p.resources.money>250){const upgrade=unbusy.filter(b=>D.buildingById[b.type].group==='production'&&!G.upgradeReason(s,b)).sort((a,b)=>a.level-b.level||a.id.localeCompare(b.id))[0];if(upgrade)return candidate({kind:'upgrade',buildingId:upgrade.id},'economy','扩军达到规模后提升生产等级',70);}
    if(!s.mission&&p.resources.money>350){const missing=['barracks','factory','airfield','port'].find(type=>!assets.some(b=>b.type===type&&G.buildingActive(b)));const type=missing||(gain.money<180?'market':null);if(type){const c=placement(type);if(c)return candidate({kind:'construct',type,q:c.q,r:c.r},'economy','扩充可持续收入与缺少的生产体系',65);}}
   }
-  const moves=[],hq=G.building(s,p.originalHqId),urgent=enemies.filter(e=>hq&&H.distance(e,hq)<=3);
+  }
+  const moves=[],hq=G.building(s,p.originalHqId),urgent=enemies.filter(e=>hq&&H.distance(e,hq)<=4),needGuard=hq&&!G.occupied(os,hq)&&urgent.length>0;
   for(const u of own){
-   if(u.id===p.hqGuardId&&hq&&u.q===hq.q&&u.r===hq.r)continue;
-   const goals=[...view.buildings.filter(b=>!G.allied(s,id,b.owner)),...enemies];if(!goals.length)continue;
-   const importance=g=>D.byId[g.type]?(urgent.some(e=>e.id===g.id)?600:130):assetValue(g);
+   if(hq&&u.q===hq.q&&u.r===hq.r)continue;
+   const goals=[...view.buildings.filter(b=>!G.allied(s,id,b.owner)),...enemies,...(needGuard?[hq]:[])];if(!goals.length)continue;
+   const importance=g=>g.id===hq?.id?1600:D.byId[g.type]?(urgent.some(e=>e.id===g.id)?1200:130):assetValue(g);
    const ranked=[...goals].sort((a,b)=>importance(b)/(H.distance(u,b)+2)-importance(a)/(H.distance(u,a)+2)||a.id.localeCompare(b.id));
    const field=objectiveField(os,u,ranked.slice(0,hell?4:3)),old=field.get(H.key(u.q,u.r))??Infinity,oldRisk=risk(u,u);
    for(const route of G.movement(os,u).values()){
@@ -140,6 +191,10 @@
     const danger=risk(u,route),cover=D.terrain[G.cell(s,route).terrain].defense||0;
     const improvement=Number.isFinite(old)?old-now:10;
     const landing=view.buildings.find(b=>b.q===route.q&&b.r===route.r);let score=improvement*20-now-route.energy*.08-danger*(hell?.38:.25)+(now===0?20:0)+cover*.3;if(landing&&!G.allied(s,id,landing.owner)&&u.ap>=2)score+=winning(landing)?2000:assetValue(landing);
+    if(needGuard&&route.q===hq.q&&route.r===hq.r)score+=500;
+    // A move can set up one legal shot this turn. Rank the actual preview,
+    // including anti-air permissions, minimum range, retaliation and cover.
+    if(u.ap>=2&&D.byId[u.type].fireAfterMove){const future={...u,q:route.q,r:route.r,ap:u.ap-1,movedSinceOwnStart:true};let followup=0;for(const enemy of enemies){const shot=G.attackPreview(os,future,enemy);if(!shot.reason&&shot.attackerHp>0)followup=Math.max(followup,shot.damage*.65-shot.counter*.8+(shot.targetHp===0?85:0));}score+=followup;}
     const retreat=u.hp<u.maxHp*.4&&oldRisk>u.hp*.7&&oldRisk-danger>10;
     if(retreat)score+=(oldRisk-danger)*(hell?1.3:1)+50;
     if(score>0)moves.push(candidate({kind:'move',unitId:u.id,q:route.q,r:route.r},retreat?'retreat':'advance',retreat?'将重伤单位移出可见敌军的火力覆盖':'沿可达路线接近目标，并比较敌军威胁与地形掩护',score,{risk:danger}));
@@ -173,7 +228,7 @@
   // Legacy choose() cancels obsolete plans. The decision preview itself never
   // writes game state: both planners receive private copies of plan records.
   const planning={...s,enemyPlan:s.enemyPlan.map(plan=>({...plan}))};
-  const level=G.difficulty(s),result=['hard','hell'].includes(level)?advanced(planning):describe(planning,baseline(planning));
+  const level=G.difficulty(s),supplies=mobilize(planning),result=supplies||(['hard','hell'].includes(level)?advanced(planning):describe(planning,baseline(planning)));
   if(!result)return {command:null,phase:'hold',phaseLabel:'等待',reason:'AI 当前无法行动',scores:[],threat:null,difficulty:level};
   const raw={command:result.command,phase:result.phase,phaseLabel:phaseLabels[result.phase],reason:result.reason,difficulty:level,
    scores:(result.alternatives||[result]).map(x=>({command:x.command,score:Math.round(x.score*100)/100})),

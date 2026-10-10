@@ -18,7 +18,7 @@ test('Four profiles and legacy aliases are canonical',()=>{
 });
 test('Only AI receives unit attribute multipliers; catalog and human stay unchanged',()=>{
  const catalog=JSON.stringify(D.units);
- for(const [difficulty,scale] of [['easy',.85],['standard',1],['hard',1],['hell',1.2]]){
+ for(const [difficulty,scale] of [['easy',.85],['standard',1],['hard',1],['hell',1.3]]){
   const s=G.create(M.fixed('S',2),{difficulty,deferStart:true});
   for(const u of s.units)assert.equal(u.maxHp,Math.round(D.byId[u.type].hp*(u.owner==='P2'?scale:1)));
   const human=G.ownUnits(s,'P1')[0];assert.equal(G.unitStats(s,human).damage,D.byId[human.type].damage);
@@ -27,35 +27,35 @@ test('Only AI receives unit attribute multipliers; catalog and human stay unchan
 });
 test('Damage scales base plus bonuses before armor and terrain cover',()=>{
  const a=unit('infantry','P2',0,0),t=unit('infantry','P1',1,0),easy=fixture([a,t],[],'easy');assert.equal(G.standardDamage(easy,a,t),34);
- const b=unit('infantry','P2',0,0),t2=unit('infantry','P1',1,0),hell=fixture([b,t2],[],'hell');assert.equal(G.standardDamage(hell,b,t2),48);
- const armor=unit('tank','P2',1,0),s=fixture([unit('tank','P1',0,0),armor],[],'hell');assert.equal(G.unitStats(s,armor).armor,22);assert.equal(G.standardDamage(s,s.units[0],armor),D.byId.tank.damage+D.byId.tank.bonusArmor-22);
+ const b=unit('infantry','P2',0,0),t2=unit('infantry','P1',1,0),hell=fixture([b,t2],[],'hell');assert.equal(G.standardDamage(hell,b,t2),52);
+ const armor=unit('tank','P2',1,0),s=fixture([unit('tank','P1',0,0),armor],[],'hell');assert.equal(G.unitStats(s,armor).armor,23);assert.equal(G.standardDamage(s,s.units[0],armor),D.byId.tank.damage+D.byId.tank.bonusArmor-23);
 });
 test('Preview, execution and counterattack agree at both numerical difficulty extremes',()=>{
- for(const [difficulty,damage,counter] of [['easy',34,17],['hell',48,24]]){
+ for(const [difficulty,damage,counter] of [['easy',34,17],['hell',52,26]]){
   const a=unit('infantry','P2',0,0),t=unit('infantry','P1',1,0),s=fixture([a,t],[],difficulty);const r=G.attackPreview(s,a,t);assert.equal(r.damage,damage);assert.equal(r.counter,20); // Human retaliation keeps its baseline damage.
   execute(s,{kind:'attack',unitId:a.id,targetId:t.id});assert.equal(t.hp,80-damage);assert.equal(a.hp,a.maxHp-20);
   const both=G.create(M.fixed('S',2),{difficulty,controllers:['ai','ai']});const x=unit('infantry','P1',0,0),y=unit('infantry','P2',1,0);both.cells=[{q:0,r:0,terrain:'plain'},{q:1,r:0,terrain:'plain'}];both.units=[x,y];G.tuneUnit(both,x);G.tuneUnit(both,y);both.settings.fog=false;assert.equal(G.attackPreview(both,x,y).counter,counter);
  }
 });
 test('Dedicated AA multiplies tuned retaliation once and caps it at attacker HP',()=>{
- const aa=unit('antiair','P2',1,0),bomber=unit('lightbomber','P1',0,0),s=fixture([aa,bomber],[],'hell');s.actor='P1';const r=G.attackPreview(s,bomber,aa);assert.equal(r.counter,100);execute(s,{kind:'attack',unitId:bomber.id,targetId:aa.id});assert.equal(G.unit(s,bomber.id),undefined);
+ const aa=unit('antiair','P2',1,0),bomber=unit('lightbomber','P1',0,0),s=fixture([aa,bomber],[],'hell');s.actor='P1';const r=G.attackPreview(s,bomber,aa);assert.equal(r.counter,80);execute(s,{kind:'attack',unitId:bomber.id,targetId:aa.id});assert.equal(G.unit(s,bomber.id),undefined);
 });
 test('All 38 deployed AI models receive the correct maximum HP',()=>{
- for(const model of D.units){const f=building(model.facility,'P2',0,0),s=fixture([],[f],'hell');f.stock=[{id:'stock',type:model.id,sourceId:f.id}];if(model.branch==='navy'&&!model.amphibious)G.cell(s,{q:1,r:0}).terrain='ocean';execute(s,{kind:'deploy',buildingId:f.id,stockId:'stock',q:1,r:0});assert.equal(s.units[0].maxHp,Math.round(model.hp*1.2));}
+ for(const model of D.units){const f=building(model.facility,'P2',0,0),s=fixture([],[f],'hell');f.stock=[{id:'stock',type:model.id,sourceId:f.id}];if(model.branch==='navy'&&!model.amphibious)G.cell(s,{q:1,r:0}).terrain='ocean';execute(s,{kind:'deploy',buildingId:f.id,stockId:'stock',q:1,r:0});assert.equal(s.units[0].maxHp,Math.round(model.hp*1.3));}
 });
 test('Campaign settings tune enemies, including wounded starting units, before intro',()=>{
  const normal=C.create('C02',{...C.newProgress(),unlocked:['C02']}),hell=C.create('C02',{...C.newProgress(),unlocked:['C02']},{difficulty:'hell'});
- for(const u of hell.units){const base=G.unit(normal,u.id);assert.equal(u.maxHp,Math.round(base.maxHp*(u.owner==='red'?1.2:1)));assert.equal(u.hp,Math.round(base.hp*u.maxHp/base.maxHp));}
+ for(const u of hell.units){const base=G.unit(normal,u.id);assert.equal(u.maxHp,Math.round(base.maxHp*(u.owner==='red'?1.3:1)));assert.equal(u.hp,Math.round(base.hp*u.maxHp/base.maxHp));}
  assert.equal(hell.turnStarted,false);assert.deepEqual(G.player(hell,'union').resources,G.player(normal,'union').resources);
 });
 test('Tuning wounded reinforcements is proportional and idempotent without resetting AP',()=>{
- const s=G.create(M.fixed('S',2),{difficulty:'hell'}),u=unit('infantry','P2',0,0);u.hp=40;u.ap=1;u.status.jam={turn:2,protectedUntil:4};G.tuneUnit(s,u);assert.deepEqual([u.hp,u.maxHp,u.ap],[48,96,1]);const before=JSON.stringify(u);G.tuneUnit(s,u);assert.equal(JSON.stringify(u),before);
+ const s=G.create(M.fixed('S',2),{difficulty:'hell'}),u=unit('infantry','P2',0,0);u.hp=40;u.ap=1;u.status.jam={turn:2,protectedUntil:4};G.tuneUnit(s,u);assert.deepEqual([u.hp,u.maxHp,u.ap],[52,104,1]);const before=JSON.stringify(u);G.tuneUnit(s,u);assert.equal(JSON.stringify(u),before);
 });
 test('Repair uses instance maxHp and cannot overfill a tuned AI unit',()=>{
- const e=unit('engineer','P2',0,0),t=unit('infantry','P2',1,0),s=fixture([e,t],[],'hell');t.hp=80;execute(s,{kind:'skill',unitId:e.id,targetId:t.id});assert.equal(t.hp,96);
+ const e=unit('engineer','P2',0,0),t=unit('infantry','P2',1,0),s=fixture([e,t],[],'hell');t.hp=80;execute(s,{kind:'skill',unitId:e.id,targetId:t.id});assert.equal(t.hp,104);
 });
 test('Hell scales only AI initial resources and income, retaining caps',()=>{
- const s=G.create(M.fixed('S',2),{difficulty:'hell',deferStart:true});assert.deepEqual(G.player(s,'P1').resources,{money:600,energy:60});assert.deepEqual(G.player(s,'P2').resources,{money:900,energy:90});assert.deepEqual(G.income(s,'P2'),{money:180,energy:21});G.begin(s);execute(s,{kind:'end'});assert.deepEqual(G.player(s).resources,{money:1080,energy:111});G.player(s).resources={money:2999,energy:299};s.turnStarted=false;G.begin(s);assert.deepEqual(G.player(s).resources,{money:3000,energy:300});
+ const s=G.create(M.fixed('S',2),{difficulty:'hell',deferStart:true});assert.deepEqual(G.player(s,'P1').resources,{money:600,energy:60});assert.deepEqual(G.player(s,'P2').resources,{money:1200,energy:120});assert.deepEqual(G.income(s,'P2'),{money:240,energy:28});G.begin(s);execute(s,{kind:'end'});assert.deepEqual(G.player(s).resources,{money:1440,energy:148});G.player(s).resources={money:2999,energy:299};s.turnStarted=false;G.begin(s);assert.deepEqual(G.player(s).resources,{money:3000,energy:300});
 });
 test('Neutral and AI-owned buildings keep baseline HP and construction prices',()=>{
  const h=building('hq','P2',0,0),neutral=building('city',null,2,0),s=fixture([],[h,neutral],'hell');const before=G.player(s).resources.money;execute(s,{kind:'construct',type:'market',q:1,r:0});assert.equal(before-G.player(s).resources.money,D.buildingById.market.cost);assert.equal(s.buildings[2].maxHp,null);assert.equal(neutral.hp,null);
@@ -71,7 +71,7 @@ test('Legacy training migrates to easy once and challenge to hard without resour
  }
 });
 test('Corrupt instance HP and unsupported difficulty versions are rejected',()=>{
- const s=G.create(M.fixed('S',2),{difficulty:'hell'});s.units[6].maxHp=999;assert.throws(()=>S.validate(s),/单位/);s.units[6].maxHp=96;s.aiDifficultyVersion=2;assert.throws(()=>S.validate(s),/难度/);
+ const s=G.create(M.fixed('S',2),{difficulty:'hell'});s.units[6].maxHp=999;assert.throws(()=>S.validate(s),/单位/);s.units[6].maxHp=104;s.aiDifficultyVersion=2;assert.throws(()=>S.validate(s),/难度/);
 });
 test('Hard focuses a killable enemy instead of spreading fire',()=>{
  const a=unit('tank','P2',0,0),t=unit('tank','P1',1,0),weak=unit('infantry','P1',-1,0),s=fixture([a,t,weak],[],'hard');weak.hp=10;assert.equal(preview(s).command.targetId,weak.id);
@@ -99,8 +99,8 @@ test('Public decision redacts invisible actions and never exposes private scores
 test('Decision is deterministic and public projection does not re-evaluate or mutate it',()=>{
  const s=G.create(M.fixed('S',2),{difficulty:'hell',controllers:['ai','ai']});const raw=preview(s),before=JSON.stringify(raw);assert.deepEqual(preview(s),raw);AI.forViewer(s,raw,'P2');assert.equal(JSON.stringify(raw),before);
 });
-test('All difficulties preserve campaign finite production authorizations',()=>{
- for(const difficulty of ['easy','standard','hard','hell']){const s=C.create('C02',{...C.newProgress(),unlocked:['C02']},{difficulty});C.confirm(s);execute(s,{kind:'end'});const r=preview(s);if(r.command.kind==='produce')assert.ok(s.enemyPlan.some(p=>p.unit===r.command.type&&p.state==='pending'));G.building(s,'C02-RB').level=3;assert.match(G.productionReason(s,G.building(s,'C02-RB'),'heavyinfantry'),/有限生产计划未授权/);}
+test('Campaign easy retains finite plans; stronger AI respects the chapter model ceiling',()=>{
+ for(const difficulty of ['easy','standard','hard','hell']){const s=C.create('C02',{...C.newProgress(),unlocked:['C02']},{difficulty});C.confirm(s);execute(s,{kind:'end'});const r=preview(s);if(r.command.kind==='produce'){if(difficulty==='easy')assert.ok(s.enemyPlan.some(p=>p.unit===r.command.type&&p.state==='pending'));else assert.ok(s.mission.playerProductionWhitelist.includes(r.command.type));}G.building(s,'C02-RB').level=3;assert.match(G.productionReason(s,G.building(s,'C02-RB'),'heavyinfantry'),difficulty==='easy'?/有限生产计划未授权/:/型号授权未开放/);}
 });
 
 if(!process.argv.includes('--quick'))for(const difficulty of ['easy','standard','hard','hell'])for(const mode of ['free','campaign']){

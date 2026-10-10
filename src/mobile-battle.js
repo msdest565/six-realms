@@ -19,7 +19,7 @@
     if(G.hasBuildingHealth(b)&&b.state==='complete'&&b.hp<=0){const cost=G.repairCost(b);parts.push(command('repair','重建设施',{kind:'repairBuilding',buildingId:b.id},blocked()||G.repairBuildingReason(s,b),`${cost.money}金钱 / ${cost.energy}能源；重建至50%生命。`));}
    }
    if(u||b||ui.tile)parts.push(icon('info','查看详情','drawer-details','','单位、设施与地形的详细资料。'));
-   parts.push(icon('undo','撤销移动','undo-move',blocked()||ui.moveUndoReason,'撤销本回合连续移动；恢复行动点、能源、自动占领和出库。已探明情报保留。攻击、生产、换回合或剧情交接后不可撤销。'));
+   parts.push(icon('undo','撤销移动','undo-move',blocked()||ui.moveUndoReason,'撤销本回合连续移动；恢复行动点、能源、自动占领和出库。探明地形可保留；移动中发现此前不可见敌军后，本回合不可撤销（仍可读档重试）。攻击、生产、换回合或剧情交接后不可撤销。'));
    if(ui.intent||u||b)parts.push(icon('close',ui.intent?'取消技能或配置':'取消选择','clear','','取消选择，不消耗行动。'));
    return `<nav class="mobile-context-rail" aria-label="技能与设施操作">${parts.join('')}</nav>`;
   }

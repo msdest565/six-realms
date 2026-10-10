@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-10T07:53:22.155Z",
+  "date": "2026-10-10T10:06:19.432Z",
   "scope": "Real ui.js and battle-ui.js controller with an isolated VM DOM fixture; no browser or native UI accessed.",
   "passed": 31,
   "total": 31,

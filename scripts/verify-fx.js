@@ -146,7 +146,7 @@ async function finish(promise, maximum = 1200) {
   await test('FX-08', 'Dedicated AA lethal retaliation uses its actual 150 percent loss', () => {
     const a = makeUnit('lightbomber', 'P1', 0, 0), t = makeUnit('antiair', 'P2', 1, 0), s = fixture([a, t]);
     const { plan } = perform(s, { kind: 'attack', unitId: a.id, targetId: t.id });
-    assert.equal(plan.steps[1].damage, 100); assert.equal(plan.steps[1].lethal, true); assert.equal(plan.steps[1].projectile, 'rifle');
+    assert.equal(plan.steps[1].damage, 80); assert.equal(plan.steps[1].lethal, true); assert.equal(plan.steps[1].projectile, 'rifle');
   });
   await test('FX-09', 'An unseen artillery attacker shows only an observed impact and own HP loss', () => {
     const own = makeUnit('infantry', 'P1', 0, 0), enemy = makeUnit('heavyartillery', 'P2', 4, 0), s = fixture([own, enemy], [], true);

@@ -1,11 +1,14 @@
 (function(root){'use strict';
  const clone=value=>JSON.parse(JSON.stringify(value));
  function create(G){
-  let history=[],game=null;
+  let history=[],game=null,encounterTurn=null;
   const boundary=s=>JSON.stringify(s.story&&{queue:s.story.queue,seen:s.story.seen,ending:s.story.ending,progress:s.story.progress,combatLocked:s.story.combatLocked});
-  function clear(){history=[];game=null;}
+  function clear(){history=[];game=null;encounterTurn=null;}
   function snapshot(s){const {cells,...state}=s;return clone(state);}
-  function commit(s,before,command,automatic=false){
+  function commit(s,before,command,automatic=false,outcome={}){
+   if(game===s&&encounterTurn&&s.actor===encounterTurn.actor&&G.player(s).ownTurnIndex===encounterTurn.turn){history=[];return;}
+   const oldState={...before,cells:s.cells},encounter=command.kind==='move'&&(outcome.encounteredEnemyIds?.length||before.units?.some(u=>!G.allied(s,before.actor,u.owner)&&!G.visible(oldState,before.actor,u)&&G.unit(s,u.id)&&G.visible(s,before.actor,G.unit(s,u.id))));
+   if(!automatic&&encounter){history=[];game=s;encounterTurn={actor:s.actor,turn:G.player(s).ownTurnIndex};return;}
    if(automatic||command.kind!=='move'||s.result||s.actor!==before.actor||boundary(s)!==boundary(before)){clear();return;}
    if(game!==s){clear();game=s;}
    const old=before.units.find(u=>u.id===command.unitId),now=G.unit(s,command.unitId);
@@ -13,7 +16,7 @@
    if(!old||!now||old.q===now.q&&old.r===now.r){if(history.length)history.at(-1).revision=s.revision;return;}
    history.push({before,unitId:command.unitId,revision:s.revision});if(history.length>48)history.shift();
   }
-  function reason(s){return !s||game!==s||!history.length?'没有可撤销的移动':s.result||s.handoffRequired||s.story?.queue.length?'当前阶段不能撤销':G.player(s).controller!=='local_human'?'当前不是玩家回合':history.at(-1).revision!==s.revision?'已执行其他行动，不能撤销':'';}
+  function reason(s){if(s&&game===s&&encounterTurn&&s.actor===encounterTurn.actor&&G.player(s).ownTurnIndex===encounterTurn.turn)return '侦察遇敌后本回合不能撤销，可读取先前存档重试';return !s||game!==s||!history.length?'没有可撤销的移动':s.result||s.handoffRequired||s.story?.queue.length?'当前阶段不能撤销':G.player(s).controller!=='local_human'?'当前不是玩家回合':history.at(-1).revision!==s.revision?'已执行其他行动，不能撤销':'';}
   function restore(s){const error=reason(s);if(error)return {ok:false,error};const entry=history.pop(),next=clone(entry.before),revision=s.revision+1,cells=s.cells,millis=s.activeMillis;
    if(next.story)next.story.helpDismissed=s.story.helpDismissed;
    // Keep discovered terrain/intel. Undo never turns exploration into amnesia.

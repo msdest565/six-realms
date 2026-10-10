@@ -47,7 +47,7 @@
   },
   "benchmark": {
     "cells": 961,
-    "milliseconds": 49.06,
+    "milliseconds": 39.7,
     "characters": 2083087
   }
 }
