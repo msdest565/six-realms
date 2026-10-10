@@ -1,6 +1,6 @@
 {
   "scope": "Filesystem and case-sensitive static path validation, no browser/network",
-  "resources": 615,
+  "resources": 618,
   "missing": [],
   "wrongCase": []
 }

@@ -1,0 +1,96 @@
+{
+  "version": "1.1.3",
+  "date": "2026-10-10T04:34:38.323Z",
+  "scope": "Actual game/UI modules in isolated VM; direct touch commands, popup dismissal, transactional movement undo, synthetic pointer gestures, CSS contracts, rules/AI/art/audio regression and filesystem resources. No browser/device layout, FPS or human audio acceptance.",
+  "total": 390,
+  "passed": 390,
+  "suites": [
+    {
+      "file": "core-tests.json",
+      "passed": 65,
+      "total": 65
+    },
+    {
+      "file": "facility-tests-v1.1.json",
+      "passed": 34,
+      "total": 34
+    },
+    {
+      "file": "combat-movement-tests-v1.1.1.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "deployment-tests-v0.9.json",
+      "passed": 36,
+      "total": 36
+    },
+    {
+      "file": "controls-tests-v1.0.json",
+      "passed": 32,
+      "total": 32
+    },
+    {
+      "file": "ui-tests-v0.8.json",
+      "passed": 20,
+      "total": 20
+    },
+    {
+      "file": "ui-integration-tests-v0.9.json",
+      "passed": 31,
+      "total": 31
+    },
+    {
+      "file": "board-tests-v0.9.json",
+      "passed": 23,
+      "total": 23
+    },
+    {
+      "file": "fx-tests-v0.9.json",
+      "passed": 25,
+      "total": 25
+    },
+    {
+      "file": "art-tests.json",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "file": "anime-runtime-tests-v1.0.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "ai-tests-v0.8.json",
+      "passed": 31,
+      "total": 31
+    },
+    {
+      "file": "mobile-tests-v1.1.3.json",
+      "passed": 33,
+      "total": 33
+    },
+    {
+      "file": "mobile-actions-v1.1.3.json",
+      "passed": 19,
+      "total": 19
+    }
+  ],
+  "staticResources": 618,
+  "difficultyGames": 8,
+  "notRerun": [
+    "540 map generator cases",
+    "22 full map/campaign AI games"
+  ],
+  "preserved": {
+    "schemaVersion": "game-0.7",
+    "ruleVersion": "0.7",
+    "storageKey": "six-realms-v0.7",
+    "facilityRulesVersion": 1
+  },
+  "limitations": [
+    "Saved browser access permission blocks localhost preview; no workaround attempted.",
+    "Movement history is page-local, cleared by subsequent committed non-move actions, turn/scene boundaries, loading or reload.",
+    "TapTap packaging/SDK/submission is not part of this release."
+  ]
+}

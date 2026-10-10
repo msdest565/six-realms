@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-10T03:33:30.064Z",
+  "date": "2026-10-10T04:33:33.383Z",
   "scope": "Real ui.js and battle-ui.js controller with an isolated VM DOM fixture; no browser or native UI accessed.",
   "passed": 31,
   "total": 31,
@@ -93,15 +93,15 @@
       "ok": true
     },
     {
-      "name": "Touch movement previews before execution, cancel changes no state and confirm saves exactly once",
+      "name": "Touch movement executes directly, saves once and can undo AP and energy",
       "ok": true
     },
     {
-      "name": "Stale touch previews and paused confirmations cannot execute an outdated order",
+      "name": "Paused touch orders cannot execute or create an undo entry",
       "ok": true
     },
     {
-      "name": "A far-zoom touch recentres and enlarges the target without placing an order",
+      "name": "Touch at overview zoom uses the tapped cell directly without another tap or camera change",
       "ok": true
     },
     {

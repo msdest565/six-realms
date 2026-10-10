@@ -60,6 +60,8 @@
     const intent=options.intent||null,button=options.button||'left';
     const targeting=['skill','deploy','construct','capture','setDeployment'].includes(intent);
     if(button==='left'&&!targeting&&visibleUnit?.owner===s.actor&&viewerId===s.actor){
+      // Re-tapping the selected garrison completes occupation on its own tile.
+      if(!intent&&options.unitId===visibleUnit.id&&visibleBuilding&&!G.captureReason(observed,visibleUnit,visibleBuilding))return command({kind:'capture',unitId:visibleUnit.id,buildingId:visibleBuilding.id});
       return {kind:'select',unitId:visibleUnit.id};
     }
     if(viewerId!==s.actor)return {kind:'inspect'};
@@ -110,6 +112,9 @@
     if(visibleUnit&&!G.allied(observed,u.owner,visibleUnit.owner))return attacks(observed,u,targets);
     if(visibleBuilding&&!G.allied(observed,u.owner,visibleBuilding.owner)){
       if(!G.captureReason(observed,u,visibleBuilding))return command({kind:'capture',unitId:u.id,buildingId:visibleBuilding.id});
+      // Empty reachable facilities are destinations on touch screens. Distant
+      // facilities keep the normal in-range attack command.
+      if(options.preferOccupation&&!G.occupied(observed,c)){const arrival=move(observed,u,c);if(arrival.kind==='command')return arrival;}
       if(visibleBuilding.owner&&G.hasBuildingHealth(visibleBuilding)&&visibleBuilding.hp>0){
         const attack=attacks(observed,u,targets);if(attack.kind==='command')return attack;
       }
