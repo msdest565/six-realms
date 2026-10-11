@@ -6,6 +6,14 @@
   const G = root.Game || (typeof require !== 'undefined' && require('./game'));
   const SVG = 'http://www.w3.org/2000/svg';
   const privateSnapshots = new WeakMap();
+  const auraChimes = new Map();
+  const eliteDesign = Object.freeze(Object.fromEntries([
+    ['E01', '#72e0b6', ['beacon','lantern','passage'], [800,250,1600], [660,880,1100]],
+    ['E02', '#efb95f', ['wedge','armor','breach'], [900,250,1700], [160,240,320]],
+    ['E03', '#baa5f3', ['reticle','ruler','barrage'], [1000,250,1800], [430,645,860]],
+    ['E04', '#7bbdde', ['rescue','shore','landing'], [800,250,1700], [330,495,660]],
+    ['E05', '#a6d4ee', ['wing','formation','sky'], [900,250,1800], [740,925,1110]]
+  ].flatMap(([hero,color,motifs,durations,notes]) => motifs.map((motif,i) => ['elite.'+hero+'-S'+(i+1), Object.freeze({hero,color,motif,duration:durations[i],notes,slot:['active','aura','ultimate'][i]})]))));
   const skillKinds = Object.freeze({
     '穿甲弹': 'pierce', '震荡弹': 'shock', '定点狙击': 'sniper',
     '构筑掩体': 'entrench', '锚定防线': 'anchor', '主动扫描': 'scan',
@@ -62,7 +70,8 @@
     const unit = !!D.byId[entity.type], owner = G.player(s, entity.owner);
     return {
       id: entity.id, type: entity.type, owner: entity.owner, q: entity.q, r: entity.r,
-      hp: entity.hp, maxHp: entity.maxHp, isUnit: unit,
+      hp: entity.hp, maxHp: entity.maxHp, isUnit: unit, characterId: entity.characterId || null,
+      shield: unit ? G.eliteCombat?.shieldAmount(s,entity) || 0 : 0,
       domain: unit ? H.domain(entity, G.cell(s, entity)) : entity.type === 'energyplatform' ? 'sea' : 'land',
       color: owner?.color || '#cfbd87', factionStyle: owner?.factionStyle || 'union',
       ...(unit ? { counterRemaining: entity.counterRemaining, status: copy(entity.status) } : { level: entity.level, state: entity.state })
@@ -142,11 +151,12 @@
       if (from || to) {
         const loss = originalT ? Math.max(0, originalT.hp - (rawTarget?.hp || 0)) : null;
         result.steps.push({ kind: 'shot', from, to, projectile, skill: from ? skill : '',
-          damage: loss, lethal: !!originalT && loss >= originalT.hp, counter: false, shelter:sharedHit(originalT) });
+          damage: loss, shieldDamage: Math.max(0,(originalT?.shield||0)-(t?.shield||0)), lethal: !!originalT && loss >= originalT.hp, counter: false, shelter:sharedHit(originalT) });
         const counterLoss = originalA ? Math.max(0, originalA.hp - (currentActor?.hp || 0)) : 0;
-        if (counterLoss > 0) result.steps.push({ kind: 'shot', from: originalT || t, to: originalA,
+        const counterShield = Math.max(0,(originalA?.shield||0)-(a && currentActor ? G.eliteCombat?.shieldAmount(after,currentActor)||0 : 0));
+        if (counterLoss > 0 || counterShield > 0) result.steps.push({ kind: 'shot', from: originalT || t, to: originalA,
           projectile: originalT || t ? projectileFamily((originalT || t).type, (originalT || t).domain, '', originalA?.domain) : 'unknown',
-          skill: '', damage: counterLoss, lethal: counterLoss >= originalA.hp, counter: true, shelter:sharedHit(originalA) });
+          skill: '', damage: counterLoss, shieldDamage:counterShield, lethal: counterLoss >= originalA.hp, counter: true, shelter:sharedHit(originalA) });
       }
     } else if (command.kind === 'skill' && skill) {
       if (skill === 'repair') {
@@ -186,8 +196,17 @@
     if (eventDeploy) result.steps = result.steps.filter(step => step.kind !== 'deploy');
     if (command.kind === 'end' && events.some(e => e.kind === 'turn')) result.steps = result.steps.filter(step => step.kind !== 'turn');
     const displayedCaptures = new Set(), displayedUnits = new Set();
+    const observedEntity = id => observed[id] || (seen(after,viewerId,G.unit(after,id)||G.building(after,id)) ? summary(after,G.unit(after,id)||G.building(after,id)) : null);
     for (const event of events) {
-      if (captureEvents.has(event.kind) && event.buildingId && !displayedCaptures.has(event.buildingId)) {
+      if (event.kind === 'eliteSkill' || event.kind === 'eliteAura' && event.phase === 'enter') {
+        const from=observedEntity(event.casterId||event.unitId||command.unitId);
+        const hits=(event.hits||[]).filter(h=>observedEntity(h.targetId)).map(h=>({...copy(h),to:observedEntity(h.targetId),buildingId:observedEntity(h.buildingId)?.id||null}));
+        const beneficiaries=(event.beneficiaries||[]).filter(h=>observedEntity(h.targetId)).map(h=>({...copy(h),to:observedEntity(h.targetId)}));
+        const counters=(event.counters||[]).filter(h=>observedEntity(h.targetId)&&from).map(h=>({...copy(h),from:observedEntity(h.targetId),to:from}));
+        if(from||hits.length||beneficiaries.length) result.steps.push({kind:event.kind==='eliteAura'?'eliteAura':'elite',from,eventId:event.eventId,skillId:event.skillId,slot:event.slot,label:event.name||'',hits,beneficiaries,counters,
+          // A beacon position is public only to its own team or while observable.
+          at:from&&(!event.observation?from:seenPoint(after,viewerId,G.unit(after,from.id)||from,event.observation)?{q:event.observation.q,r:event.observation.r}:from)});
+      } else if (captureEvents.has(event.kind) && event.buildingId && !displayedCaptures.has(event.buildingId)) {
         const building = G.building(after, event.buildingId), old = observed[event.buildingId];
         if (building && (old || seen(after, viewerId, building))) {
           const now = seen(after, viewerId, building) ? summary(after, building) : { ...old, owner: null, color: '#cfbd87' };
@@ -397,7 +416,12 @@
   function sampleStatus(){return {cached:sampleCache.size,loading:sampleLoads.size,decodedBytes:sampleBytes,budgetBytes:4*1024*1024};}
   function sound(name, pan = 0) {
     const previousGain=actionGroupGain,previousGroup=actionGroup;actionGroup=root.GameAudio?.groupFor(name)||'battle';actionGroupGain=root.GameAudio?.effectGain(name)??1;if(actionGroupGain===0)return;const previousPan = actionPan; actionPan = Math.max(-.65, Math.min(.65, Number(pan) || 0));
-    try { if(sampled(name))return;name=({'rifle.heavy':'rifle','shell.light':'shell','shell.heavy':'shell','wing':'jet'})[name]||name;switch (name) {
+    try { if(eliteDesign[name]){const d=eliteDesign[name],fast=playbackMode!=='standard',spacing=fast?.035:d.slot==='aura'?.035:.08;
+      // At most four voices per cue; role-specific pitches remain recognizable on phones.
+      d.notes.forEach((f,i)=>tone(f*(d.slot==='ultimate'?1.25:1),d.slot==='aura'?.08:fast?.1:d.slot==='ultimate'?.32:.18,d.hero==='E02'?'triangle':'sine',.065,i*spacing));
+      if(d.slot!=='aura')noise(fast?.08:.16,.055,d.hero==='E02'?850:d.hero==='E03'?1200:d.hero==='E05'?2000:550,.015);
+      return;
+    } if(sampled(name))return;name=({'rifle.heavy':'rifle','shell.light':'shell','shell.heavy':'shell','wing':'jet'})[name]||name;switch (name) {
       case 'retire.land':case 'retire.sea':case 'retire.air':noise(.15,.10,name==='retire.sea'?450:900);tone(280,.12,'sine',.08);tone(520,.12,'sine',.06,.09);break;
       case 'transition':noise(.12,.07,500);tone(160,.09,'triangle',.06);break;
       case 'select':case 'confirm':tone(620,.06,'sine',.07);break;
@@ -514,7 +538,8 @@
       floor.innerHTML = root.GameArt.buildingTileMarkup(entity.type, entity.factionStyle, entity.level);
     }
     const glyph = node('g', { transform: `translate(${offset.x} ${offset.y}) scale(${scale})` }, wrapper);
-    if (entity.isUnit && root.GameArt?.unitMarkup) glyph.innerHTML = root.GameArt.unitMarkup(entity.type, entity.factionStyle, entity.domain,'fx-'+serial+'-'+entity.id);
+    if(entity.characterId&&root.GameTrainingUI) glyph.innerHTML=root.GameTrainingUI.unitSprite(entity);
+    else if (entity.isUnit && root.GameArt?.unitMarkup) glyph.innerHTML = root.GameArt.unitMarkup(entity.type, entity.factionStyle, entity.domain,'fx-'+serial+'-'+entity.id);
     else if (!entity.isUnit && root.GameArt?.buildingMarkup) glyph.innerHTML = root.GameArt.buildingMarkup(entity.type, entity.factionStyle, entity.level);
     else node('path', { d: 'M0-20L17 15H-17Z', fill: entity.color, stroke: '#edf5df', 'stroke-width': 2 }, glyph);
     hideSprite(run, entity.id);
@@ -556,7 +581,7 @@
         const mark=!run.reduced?node('path',{d: f==='N'?'M-12 0Q0 10 12 0':f==='P'?'M-5 0v4m10-4v4':'M-8 0v10m16-10v10',transform:`translate(${a.x} ${a.y+18})`,fill:'none',stroke:f==='N'?'#def6ef':'#647f7a','stroke-width':2,opacity:.3},run.layer):null;if(mark){marks.push(mark);if(marks.length>2)marks.shift().remove();}
         await animate(run,ms,(t,raw)=>{const x=mix(a.x,b.x,t),y=mix(a.y,b.y,t);glyph.wrapper.setAttribute('transform',`translate(${x} ${y})`);root.GameAnime?.pose(glyph.glyph,'move',raw,run.mode);
           if(!contact&&raw>=.5){contact=true;if(!run.reduced&&['P','T','R','W','G'].includes(f)&&clock+ms*.5-lastContact>=(run.mode==='fast'?160:120)){soundAt(run,f==='P'?'infantry':f==='W'?'wheel':f==='G'?'leg':'track',{x,y});lastContact=clock+ms*.5;}}
-          if(!switched&&raw>=.5&&p.domain!==path[i-1].domain){glyph.glyph.innerHTML=root.GameArt.unitMarkup(step.unit.type,step.unit.factionStyle,p.domain,'fx-'+serial+'-'+step.unit.id);root.GameAnime?.face(glyph.glyph,step.unit.type,p.domain,heading);soundAt(run,'transition',{x,y});switched=true;}
+          if(!switched&&raw>=.5&&p.domain!==path[i-1].domain){glyph.glyph.innerHTML=step.unit.characterId&&root.GameTrainingUI?root.GameTrainingUI.unitSprite(step.unit):root.GameArt.unitMarkup(step.unit.type,step.unit.factionStyle,p.domain,'fx-'+serial+'-'+step.unit.id);root.GameAnime?.face(glyph.glyph,step.unit.type,p.domain,heading);soundAt(run,'transition',{x,y});switched=true;}
         },ease);clock+=ms;if(run.cancelled)break;
       }if(run.cancelled)break;
     }
@@ -567,6 +592,7 @@
     return { x: mix(a.x, b.x, t), y: mix(a.y, b.y, t) - arc };
   }
   async function impact(run, step, p, targetGlyph, ms=310) {
+    if(step.shieldDamage>0) floating(run,{x:p.x,y:p.y-15},'护盾 −'+step.shieldDamage,'#a3e9ff',ms);
     if(step.shelter){
       floating(run,{x:p.x,y:p.y-30},`设施 −${step.shelter.damage}${step.shelter.lethal?' · 损毁':''}`,'#89d7cc',ms);
       soundAt(run,step.shelter.lethal?'destruction':'hit.building',p);
@@ -621,6 +647,45 @@
     await animate(run,times.settle-times.impact,t=>{if(wave){wave.setAttribute('r',10+t*35);wave.setAttribute('opacity',1-t);}root.GameAnime?.pose(source?.glyph,step.kind==='capture'?'capture':'skill',.7+t*.3,run.mode);root.GameAnime?.pose(glyph?.glyph,'deploy',t,run.mode);});wave?.remove();source?.wrapper.remove();glyph?.wrapper.remove();
   }
 
+  const eliteMotifs={
+    beacon:'M-6-14h12v23H-6zM0-20v4m-12-5-5-4m29 4 5-4',
+    lantern:'M-5-8h10v16H-5zM-15 0h5m20 0h5',
+    passage:'M-12 14V-4H0m-4-7 9 7-9 7M8 14V3h13m-5-6 7 6-7 6',
+    wedge:'M-17 12 0-16 17 12Z M-8 3h16M0-23v6',
+    armor:'M-12-13h24v16L0 15-12 3zM-5 0h10m-5-5v10',
+    breach:'M-18 14-10-12 0-4 10-12 18 14M-8 0 0 10 8 0',
+    reticle:'M-22 0h12m20 0h12M0-22v12m0 20v12M-12-12h24v24h-24z',
+    ruler:'M-19 0h38M-15-7v14m10-10v6m10-10v14m10-10v6',
+    barrage:'M-21 14h42M-15 9v-24m15 24v-29m15 29v-24M-19-8l4-7 4 7m7-5 4-7 4 7m7-5 4-7 4 7',
+    rescue:'M-13-7q0-11 13-11T13-7q0 11-13 11T-13-7M0-10v25m-7-7 7 7 7-7',
+    shore:'M-18 5q9-8 18 0t18 0M0-18v16m-7-7 7 7 7-7',
+    landing:'M-20 10h40M-14 5v-17m14 17v-17m14 17v-17M-19-5l5-7 5 7m5 0 5-7 5 7m5 0 5-7 5 7M-16 17q8-7 16 0t16 0',
+    wing:'M0-20 4-3 23 9 4 5 0 18-4 5-23 9-4-3z',
+    formation:'M-16 9-7 0-2 6m-5-6 3-8M1 4 10-5l5 6m-5-6 3-8',
+    sky:'M-24 13Q0-24 24 13M-18 20Q0-4 18 20M0-22v12m-5-5 5 5 5-5'
+  };
+  async function eliteEffect(run,step){
+    const d=eliteDesign[step.eventId];if(!d)return;
+    const at=step.at||step.from||step.hits[0]?.to||step.beneficiaries[0]?.to;if(!at)return;
+    const p=run.xy(at),aura=step.kind==='eliteAura',duration=run.reduced?120:run.mode==='fast'?(aura?150:step.slot==='ultimate'?450:300):d.duration;
+    if(aura){const now=root.performance?.now?.()??Date.now(),last=auraChimes.get(d.hero)??-Infinity;if(now-last>=800){soundAt(run,step.eventId,p);auraChimes.set(d.hero,now);}}
+    else soundAt(run,step.eventId,step.hits[0]?.to?run.xy(step.hits[0].to):p);
+    const destinations=[...(step.hits||[]).map(h=>({...h,hit:true})),...(step.beneficiaries||[])].filter((h,i,list)=>list.findIndex(x=>x.targetId===h.targetId)===i).slice(0,8);
+    if(!destinations.length)destinations.push({to:at});
+    const counterTime=(step.counters?.length?duration*.2:0),mainTime=duration-counterTime;
+    const marks=destinations.map((h,i)=>{const q=run.xy(h.to),group=node('g',{'data-elite-effect':step.eventId,transform:`translate(${q.x} ${q.y})`,opacity:0},run.layer);
+      node('path',{d:eliteMotifs[d.motif],fill:'none',stroke:d.color,'stroke-width':2.4,'stroke-linecap':'round','stroke-linejoin':'round'},group);
+      const circle=node('circle',{r:28,fill:'none',stroke:d.color,'stroke-width':1.6,'stroke-dasharray':aura?'4 7':null},group);
+      const line=!run.reduced&&!aura?node('path',{d:`M${p.x} ${p.y}L${q.x} ${q.y}`,fill:'none',stroke:d.color,'stroke-width':1.5,'stroke-dasharray':d.hero==='E03'?'3 6':'8 3',opacity:0},run.layer):null;
+      return {group,circle,line,q,h,offset:i*Math.min(50,mainTime*.2/Math.max(1,destinations.length-1)),shown:false};});
+    await animate(run,mainTime,(_,raw)=>{const elapsed=raw*mainTime;for(const m of marks){const t=Math.max(0,Math.min(1,(elapsed-m.offset)/Math.max(1,mainTime-m.offset)));m.group.setAttribute('opacity',t===0?0:Math.min(1,t*5)*(1-Math.max(0,(t-.65)/.35)));if(!run.reduced)m.circle.setAttribute('r',20+t*(aura?10:30));m.line?.setAttribute('opacity',Math.max(0,1-t)*.55);
+      if(!m.shown&&t>=.35){m.shown=true;const h=m.h;const labels=[];if(h.damage>0)labels.push('−'+h.damage);if(h.shieldDamage>0)labels.push('盾−'+h.shieldDamage);if(h.heal>0)labels.push('HP+'+h.heal);if(h.shieldGranted>0)labels.push('盾+'+h.shieldGranted);if(h.moveBonus>0)labels.push('移动+'+h.moveBonus);if(h.armorBonus>0)labels.push('装甲+'+h.armorBonus);if(h.buildingDamage>0)labels.push('设施−'+h.buildingDamage);if(!labels.length&&!aura)labels.push(step.label);if(labels.length)floating(run,m.q,labels.join(' · '),d.color,Math.min(350,duration*.4));}
+    }});
+    for(const m of marks){m.group.remove();m.line?.remove();}
+    // Counter hits are the engine's frozen ordered results, never recomputed here.
+    for(const hit of step.counters||[]){if(run.cancelled)break;const q=run.xy(hit.to);await floating(run,q,'反击 −'+(hit.damage||0)+(hit.shieldDamage?' · 盾−'+hit.shieldDamage:''),colors.counter,counterTime/step.counters.length);}
+  }
+
   function cleanup(run) {
     // Floating labels can outlast the main impact by a few frames. Settle those
     // too, so no orphan RAF survives switching pages or replacing the battle.
@@ -646,7 +711,7 @@
       if (!enabled || !board || !root.document || !root.requestAnimationFrame) {
         playbackMode=mode==='reduced'||root.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'reduced':fast||mode==='fast'?'fast':'standard';
         // Sound remains an independent preference when visual effects are disabled.
-        for (const step of sequence.steps) sound(step.kind === 'shot' ? step.lethal?(step.to?.isUnit?'retire.'+step.to.domain:'destruction'):'unknown' : step.kind === 'move' ? step.segments[0][0].family : step.kind);
+        for (const step of sequence.steps) {if(step.kind==='eliteAura'){const d=eliteDesign[step.eventId],now=root.performance?.now?.()??Date.now();if(d&&now-(auraChimes.get(d.hero)??-Infinity)<800)continue;if(d)auraChimes.set(d.hero,now);}sound(step.eventId|| (step.kind === 'shot' ? step.lethal?(step.to?.isUnit?'retire.'+step.to.domain:'destruction'):'unknown' : step.kind === 'move' ? step.segments[0][0].family : step.kind));}
         return outcome;
       }
       const reduced = mode==='reduced'||!!root.matchMedia?.('(prefers-reduced-motion: reduce)').matches;mode=reduced?'reduced':fast||mode==='fast'?'fast':'standard';
@@ -667,6 +732,7 @@
           if (run.cancelled) break;
           if (step.kind === 'move') await moveEffect(run, step);
           else if (step.kind === 'shot') await shotEffect(run, step);
+          else if (step.kind === 'elite' || step.kind === 'eliteAura') await eliteEffect(run,step);
           else if (step.kind === 'blocked') { sound('cancel'); await pulse(run, run.xy(step.at), '#ffbd88', 200, 24, '路线受阻'); }
           else if (step.kind === 'turn') sound('turn');
           else await supportEffect(run, step);
@@ -678,7 +744,7 @@
   }
 
   const api = { capture, plan, play, cancel, setPaused, unlock, setEnabled, setSoundEnabled, setAmbienceEnabled, setScene, setVolume, settings,
-    motionFamily, projectileFamily, skillKinds, soundDesign, ambienceProfile, refreshAudioGroups, feedback, sampleStatus };
+    motionFamily, projectileFamily, skillKinds, soundDesign, eliteDesign, ambienceProfile, refreshAudioGroups, feedback, sampleStatus };
   root.GameFX = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof window !== 'undefined' ? window : globalThis);

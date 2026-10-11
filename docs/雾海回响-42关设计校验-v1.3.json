@@ -1,0 +1,574 @@
+{
+  "schemaVersion": "design-audit-1.3",
+  "updated": "2026-10-11",
+  "designOnly": true,
+  "status": "passed",
+  "assertionsTotal": 9339,
+  "assertionsPassed": 9339,
+  "errors": [],
+  "scope": "最终三权威JSON的属性/成长/奖励/技能/剧情/15肖像节点与42地图合法性/人口预算/首次收入/初始队可达性/四难度延迟开场创建；SVG和对白阅读版逐项核对。不是AI对局、精英技能运行或真人平衡结果。",
+  "artifacts": {
+    "chapters": 6,
+    "missions": 42,
+    "maps": 42,
+    "mapCells": 3110,
+    "initialUnits": 615,
+    "initialEnemyUnits": 400,
+    "addedEnemyUnits": 187,
+    "buildings": 341,
+    "addedEnemyFacilities": 47,
+    "authoredPaidOrders": 187,
+    "heroes": 5,
+    "attributeRows": 50,
+    "skills": 15,
+    "plannedPortraits": 15,
+    "plannedSkillAudioEvents": 15,
+    "scenes": 143,
+    "speakers": 49,
+    "visibleCharacters": 12769,
+    "bodyCharacters": 11778,
+    "maxVisiblePerScene": 110
+  },
+  "missionAudit": [
+    {
+      "missionId": "S01",
+      "playerUnits": 3,
+      "enemyUnits": 4,
+      "buildings": 5,
+      "levelCap": 3,
+      "paidOrderQuota": 2,
+      "eliteCandidates": []
+    },
+    {
+      "missionId": "S02",
+      "playerUnits": 3,
+      "enemyUnits": 4,
+      "buildings": 5,
+      "levelCap": 3,
+      "paidOrderQuota": 2,
+      "eliteCandidates": []
+    },
+    {
+      "missionId": "S03",
+      "playerUnits": 3,
+      "enemyUnits": 5,
+      "buildings": 5,
+      "levelCap": 3,
+      "paidOrderQuota": 3,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S04",
+      "playerUnits": 4,
+      "enemyUnits": 5,
+      "buildings": 5,
+      "levelCap": 3,
+      "paidOrderQuota": 3,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S05",
+      "playerUnits": 4,
+      "enemyUnits": 6,
+      "buildings": 6,
+      "levelCap": 3,
+      "paidOrderQuota": 3,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S06",
+      "playerUnits": 4,
+      "enemyUnits": 6,
+      "buildings": 6,
+      "levelCap": 3,
+      "paidOrderQuota": 3,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S07",
+      "playerUnits": 4,
+      "enemyUnits": 6,
+      "buildings": 7,
+      "levelCap": 3,
+      "paidOrderQuota": 3,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S08",
+      "playerUnits": 4,
+      "enemyUnits": 6,
+      "buildings": 7,
+      "levelCap": 5,
+      "paidOrderQuota": 4,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S09",
+      "playerUnits": 4,
+      "enemyUnits": 6,
+      "buildings": 7,
+      "levelCap": 5,
+      "paidOrderQuota": 4,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S10",
+      "playerUnits": 4,
+      "enemyUnits": 7,
+      "buildings": 8,
+      "levelCap": 5,
+      "paidOrderQuota": 4,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S11",
+      "playerUnits": 4,
+      "enemyUnits": 7,
+      "buildings": 7,
+      "levelCap": 5,
+      "paidOrderQuota": 4,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S12",
+      "playerUnits": 4,
+      "enemyUnits": 8,
+      "buildings": 8,
+      "levelCap": 5,
+      "paidOrderQuota": 4,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S13",
+      "playerUnits": 5,
+      "enemyUnits": 8,
+      "buildings": 8,
+      "levelCap": 5,
+      "paidOrderQuota": 4,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S14",
+      "playerUnits": 5,
+      "enemyUnits": 8,
+      "buildings": 8,
+      "levelCap": 5,
+      "paidOrderQuota": 4,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S15",
+      "playerUnits": 5,
+      "enemyUnits": 8,
+      "buildings": 8,
+      "levelCap": 6,
+      "paidOrderQuota": 6,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S16",
+      "playerUnits": 5,
+      "enemyUnits": 8,
+      "buildings": 8,
+      "levelCap": 6,
+      "paidOrderQuota": 6,
+      "eliteCandidates": [
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S17",
+      "playerUnits": 5,
+      "enemyUnits": 9,
+      "buildings": 8,
+      "levelCap": 6,
+      "paidOrderQuota": 6,
+      "eliteCandidates": [
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S18",
+      "playerUnits": 5,
+      "enemyUnits": 9,
+      "buildings": 9,
+      "levelCap": 6,
+      "paidOrderQuota": 6,
+      "eliteCandidates": [
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S19",
+      "playerUnits": 5,
+      "enemyUnits": 10,
+      "buildings": 9,
+      "levelCap": 6,
+      "paidOrderQuota": 6,
+      "eliteCandidates": [
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S20",
+      "playerUnits": 5,
+      "enemyUnits": 10,
+      "buildings": 9,
+      "levelCap": 6,
+      "paidOrderQuota": 6,
+      "eliteCandidates": [
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S21",
+      "playerUnits": 6,
+      "enemyUnits": 10,
+      "buildings": 9,
+      "levelCap": 6,
+      "paidOrderQuota": 6,
+      "eliteCandidates": [
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S22",
+      "playerUnits": 5,
+      "enemyUnits": 9,
+      "buildings": 8,
+      "levelCap": 8,
+      "paidOrderQuota": 7,
+      "eliteCandidates": [
+        "E01"
+      ]
+    },
+    {
+      "missionId": "S23",
+      "playerUnits": 5,
+      "enemyUnits": 9,
+      "buildings": 8,
+      "levelCap": 8,
+      "paidOrderQuota": 7,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S24",
+      "playerUnits": 5,
+      "enemyUnits": 10,
+      "buildings": 8,
+      "levelCap": 8,
+      "paidOrderQuota": 7,
+      "eliteCandidates": [
+        "E01",
+        "E05"
+      ]
+    },
+    {
+      "missionId": "S25",
+      "playerUnits": 5,
+      "enemyUnits": 10,
+      "buildings": 8,
+      "levelCap": 8,
+      "paidOrderQuota": 7,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S26",
+      "playerUnits": 5,
+      "enemyUnits": 11,
+      "buildings": 8,
+      "levelCap": 8,
+      "paidOrderQuota": 7,
+      "eliteCandidates": [
+        "E01",
+        "E05"
+      ]
+    },
+    {
+      "missionId": "S27",
+      "playerUnits": 5,
+      "enemyUnits": 11,
+      "buildings": 8,
+      "levelCap": 8,
+      "paidOrderQuota": 7,
+      "eliteCandidates": [
+        "E01",
+        "E05"
+      ]
+    },
+    {
+      "missionId": "S28",
+      "playerUnits": 6,
+      "enemyUnits": 11,
+      "buildings": 8,
+      "levelCap": 8,
+      "paidOrderQuota": 7,
+      "eliteCandidates": [
+        "E01",
+        "E05"
+      ]
+    },
+    {
+      "missionId": "S29",
+      "playerUnits": 6,
+      "enemyUnits": 10,
+      "buildings": 9,
+      "levelCap": 9,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S30",
+      "playerUnits": 6,
+      "enemyUnits": 11,
+      "buildings": 9,
+      "levelCap": 9,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S31",
+      "playerUnits": 6,
+      "enemyUnits": 11,
+      "buildings": 9,
+      "levelCap": 9,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "missionId": "S32",
+      "playerUnits": 6,
+      "enemyUnits": 12,
+      "buildings": 9,
+      "levelCap": 9,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "missionId": "S33",
+      "playerUnits": 6,
+      "enemyUnits": 12,
+      "buildings": 9,
+      "levelCap": 9,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "missionId": "S34",
+      "playerUnits": 6,
+      "enemyUnits": 13,
+      "buildings": 9,
+      "levelCap": 9,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "missionId": "S35",
+      "playerUnits": 6,
+      "enemyUnits": 13,
+      "buildings": 9,
+      "levelCap": 9,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "missionId": "S36",
+      "playerUnits": 6,
+      "enemyUnits": 12,
+      "buildings": 10,
+      "levelCap": 10,
+      "paidOrderQuota": 9,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S37",
+      "playerUnits": 6,
+      "enemyUnits": 13,
+      "buildings": 10,
+      "levelCap": 10,
+      "paidOrderQuota": 9,
+      "eliteCandidates": [
+        "E04",
+        "E05"
+      ]
+    },
+    {
+      "missionId": "S38",
+      "playerUnits": 6,
+      "enemyUnits": 13,
+      "buildings": 10,
+      "levelCap": 10,
+      "paidOrderQuota": 9,
+      "eliteCandidates": [
+        "E04"
+      ]
+    },
+    {
+      "missionId": "S39",
+      "playerUnits": 7,
+      "enemyUnits": 14,
+      "buildings": 10,
+      "levelCap": 10,
+      "paidOrderQuota": 9,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E03",
+        "E04",
+        "E05"
+      ]
+    },
+    {
+      "missionId": "S40",
+      "playerUnits": 7,
+      "enemyUnits": 14,
+      "buildings": 10,
+      "levelCap": 10,
+      "paidOrderQuota": 9,
+      "eliteCandidates": [
+        "E01",
+        "E02"
+      ]
+    },
+    {
+      "missionId": "S41",
+      "playerUnits": 7,
+      "enemyUnits": 15,
+      "buildings": 10,
+      "levelCap": 10,
+      "paidOrderQuota": 9,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E05"
+      ]
+    },
+    {
+      "missionId": "S42",
+      "playerUnits": 7,
+      "enemyUnits": 16,
+      "buildings": 10,
+      "levelCap": 10,
+      "paidOrderQuota": 8,
+      "eliteCandidates": [
+        "E01",
+        "E02",
+        "E04",
+        "E05"
+      ]
+    }
+  ],
+  "runtimeBaseline": "1.1.6",
+  "runtimeCodeModified": false,
+  "runtimeElitesImplemented": false,
+  "plannedAssetsProduced": false,
+  "fullAIPlaythroughMeasured": false,
+  "humanBalanceMeasured": false,
+  "threeHourCompletionMeasured": false,
+  "phoneAudiovisualVerified": false,
+  "mapVisualInspection": {
+    "status": "rendered_and_visually_reviewed",
+    "maps": [
+      "S01",
+      "S18",
+      "S42"
+    ],
+    "engine": "bundled sharp",
+    "findings": "标题、坐标、完整单位/建筑/新增部署标记和底部图例可读，无裁切遮盖；不验证运行迷雾或手机战斗。"
+  },
+  "priorAgentAudit": {
+    "assertions": 5741,
+    "scope": "直接临时注入GameContent调用GameMaps.campaign/Game.create/Hex.routes/productionReason的静态兼容与编成/部署/预算审核；未改运行代码，未证明AI策略已执行、精英已实装或三小时真人平衡。"
+  },
+  "sourceHashes": {
+    "精英角色与养成配置-v0.2.json": "85b788e4fdaf7038b6eca4816fae3fcbc37c9f81c6a871b389bd2e9cadb6f304",
+    "雾海回响-6章42关配置-v1.3.json": "e0621b5fd187f741ebbfb6b14cdb9da7c6ece6c1cf4dc8176d626f3a4b58598f",
+    "雾海回响-42关剧情台词-v1.3.json": "5f3d410c4156f4c3701ae0fcf4a2d7a88211c802322f31c1f864b67ec41af07a"
+  },
+  "documentLinkReview": {
+    "status": "passed",
+    "files": 16,
+    "checkedLinks": 171,
+    "errors": []
+  },
+  "trainingArchiveMockup": {
+    "path": "精英训练档案-界面草图-v0.2.svg",
+    "status": "rendered_and_visually_reviewed",
+    "exampleEarned": 700,
+    "exampleSpent": 420,
+    "exampleBalance": 280,
+    "nextUpgradeCost": 260,
+    "portraits": "placeholder_planned_assets"
+  },
+  "handoffAcceptanceSpecifications": {
+    "count": 90,
+    "status": "specified_not_executed"
+  }
+}

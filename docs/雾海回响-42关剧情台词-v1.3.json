@@ -1,0 +1,4985 @@
+{
+  "version": "1.3-design",
+  "title": "把黎明送回六域",
+  "gameTitle": "六域：雾海回响",
+  "language": "zh-CN",
+  "updated": "2026-10-11",
+  "status": "v1.3 设计交付附件；五名精英、十级培养及十五张章节立绘均待接入，全部新人物图片为 planned，未修改运行内容或旧存档。",
+  "sourceNotes": [
+    "基于 v1.2 剧情附件，保留六章四十二关、PROLOGUE-42/EPILOGUE-42 与 S01…S42 的 INTRO/MID/OUTRO 共 128 个主场景兼容键。",
+    "依据当前开发现状 v1.1.6、机装少女世界观与五名精英初稿；本次按新授权更新为 Lv1—10、章节上限 3/5/6/8/9/10。",
+    "五名精英是唯一个体，使用独立 characterId，不覆盖或改名既有常规模型少女。初稿中五级培养与协同完成发放训练档案的口径不再适用本稿。",
+    "角色/章节立绘由首次剧情完成或明确协同完成解锁；训练积分每关每难度独立首胜一次，简单50/标准100/困难150/地狱200，重玩不重复、高难度不递补低难度。观看对白、立绘更新和情绪成长均不提升等级。",
+    "主关卡数、原胜利类型和旧 C01…C07 不变；新精英场景不投放本关单位、不恢复战场属性、不生成资源或自动占领。",
+    "2026-10-11根整合：与精英v0.2统一15张立绘名、机装比较基型、技能正式名及OUTRO解锁时点；训练奖励在首胜结果另行去重登记。"
+  ],
+  "scope": {
+    "chapterCount": 6,
+    "stageCount": 42,
+    "mainSceneCount": 128,
+    "elitePortraitSceneCount": 15,
+    "sceneCount": 143,
+    "regularSpeakerCount": 44,
+    "eliteSpeakerCount": 5,
+    "primarySpeakers": [
+      "infantry",
+      "engineer",
+      "marine",
+      "reconplane",
+      "tank"
+    ],
+    "eliteCharacters": [
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05"
+    ],
+    "plannedEliteStoryPortraits": 15,
+    "newMandatoryPortraits": 15,
+    "imageDeliveryStatus": "本附件只有美术需求、立绘ID与章节解锁条件；未生成或交付任何新增图片。普通38型号既有美术仍保留。"
+  },
+  "playbackPolicy": {
+    "dialogueHasNoBattleMutations": true,
+    "intro": "战斗开场简报播放期间不发收入、不生成单位、不占领设施；玩家确认简报后，按正常首回合流程结算收入，禁止重复播放或读档再次发放。",
+    "mid": "严格读取主配置每关 midTrigger：在符合该关条件的已可观测成功事件后，或规定所属方回合边界兜底播放。必须等原子战斗事务、反击及胜负结算完成；快速胜利时未看的 MID 在战后 OUTRO 前补播。对白本身不改变迷雾、归属或规则。",
+    "outro": "真实战术胜利后播放，并按 result.reason 区分总部占领、全建筑占领及其他方出局等真实结果；玩家明确选择协同完成后也播放同一 OUTRO。协同完成只记录 assisted_completed 与剧情交接，不修改战场建筑归属、HP、资源、库存，不授予战术胜利章。交接书、船期、民用检修及生活供电属于后续联队依约交接的叙事，不报告未接管的本图建筑为战术已取得。",
+    "seenTracking": "在台词确认后标为已读，不在排队或开始播放时标记。每关的剧情记录与解锁结果应原子保存。",
+    "speakerContinuity": "普通型号频道代表不绑定唯一棋子；五名精英另有 characterId，可由后方联络发言，不要求地图实例幸存。退场不免费复活，不阻断剧情。正式加入关卡前不获得战斗配置资格，除注明的后方频道客串。",
+    "observationBoundary": "对白不提供未知敌军坐标、数量、HP、部署、当前库存或隐藏行动。静海频道为议题通信，不提供战术全知。",
+    "modeCompatibility": "所有台词兼容既有总部占领/全建筑占领两种胜利；护送、守路、接线属于叙事或可选目标，不新增强制胜利类型。",
+    "ruleBaseline": "本格占领与自动占领、合法地形、一格一单位；收入设施无 HP；损毁结构设施付资金和能源重建至 50%；工程主动结构修复不超过 50%；专职防空只在自身受到合法直接攻击后按 1.5 倍伤害反击；地面炮兵移动后不攻击，镇海可移动后攻击；潜锋不隐形。",
+    "postOutro": "按 elitePresentationPolicy 与 postOutroSceneOrder 追加精英故事；角色/立绘允许明确协同剧情完成，训练积分仅真实战术胜利。主OUTRO与精英故事均不修改本局战场状态。",
+    "antagonistContext": "更强的敌军来自静海令升级警戒、统筹预备队编成与跨域调度对峙。只叙述公开命令和责任争论，不泄露未观测敌军坐标/数量/资源，不把统筹军改成纯恶反派或隐藏阴谋。"
+  },
+  "speakers": {
+    "infantry": {
+      "unitId": "infantry",
+      "displayName": "前哨",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "温和警觉；从守住一座城成长为承担跨域最低供给。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "walker": {
+      "unitId": "walker",
+      "displayName": "哨兵",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "干练直率；把可靠落实为掩体、通路和清楚的交接。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "heavyinfantry": {
+      "unitId": "heavyinfantry",
+      "displayName": "壁垒",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "可靠沉稳；愿意承担压力，也尊重伙伴独立决定。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "lighttank": {
+      "unitId": "lighttank",
+      "displayName": "雨燕",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "活泼利落；爱走短路，逐渐理解节省能源不只关乎自己。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "tank": {
+      "unitId": "tank",
+      "displayName": "棱镜",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "冷静稳健；战斗为恢复生产创造条件，不以破坏为成就。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "heavy": {
+      "unitId": "heavy",
+      "displayName": "磐石",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "坚毅少言；珍惜被自己挡在身后的人与设施。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "lightartillery": {
+      "unitId": "lightartillery",
+      "displayName": "火萤",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "专注温柔；在细小校准里表达认真。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "artillery": {
+      "unitId": "artillery",
+      "displayName": "弧光",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "有条理；信任伙伴报出的观测，不把推测当事实。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "heavyartillery": {
+      "unitId": "heavyartillery",
+      "displayName": "雷砧",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "寡言耐心；愿意为别人等待一个准确窗口。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "antiair": {
+      "unitId": "antiair",
+      "displayName": "天幕",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "警觉但不紧张；提醒队友保护彼此需要真实行动。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "missileaa": {
+      "unitId": "missileaa",
+      "displayName": "穹盾",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "严谨克制；宁可多核对一次，也不许诺不存在的保护。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "longrangeaa": {
+      "unitId": "longrangeaa",
+      "displayName": "星垒",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "沉着；把很大的责任拆成有限而可验证的安排。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "navaldestroyer": {
+      "unitId": "navaldestroyer",
+      "displayName": "潮刃",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "爽朗；喜欢干净的航道，也尊重与自己不同的岸上队友。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "cruiser": {
+      "unitId": "cruiser",
+      "displayName": "巡岚",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "自信而负责；主动听取地面、舰装与航空的不同节奏。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "battleship": {
+      "unitId": "battleship",
+      "displayName": "镇海",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "威严厚重；炮火的意义是让交接发生，不是抹去海岸。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "marine": {
+      "unitId": "marine",
+      "displayName": "浪锋",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "果断爽朗；理解故乡情感，仍选择共享船期和有限储备。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "assaultmarine": {
+      "unitId": "assaultmarine",
+      "displayName": "破浪",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "勇敢；会承认害怕，仍把行动与伙伴的准备对齐。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "heavymarine": {
+      "unitId": "heavymarine",
+      "displayName": "礁盾",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "耐心；不催促慢一步的人，愿意替通路承受压力。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "aafrigate": {
+      "unitId": "aafrigate",
+      "displayName": "云帆",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "细心；注意船期、轮班和队友容易忽略的小事。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "aamissileship": {
+      "unitId": "aamissileship",
+      "displayName": "海幕",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "负责；把护航安排讲清楚，不宣称能挡住每一次来袭。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "areaaship": {
+      "unitId": "areaaship",
+      "displayName": "穹海",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "庄重而温柔；承认能力边界，重视共同承担。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "reconplane": {
+      "unitId": "reconplane",
+      "displayName": "纸鸢",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "好奇；从喜欢发现新路线成长为愿意验证并分享可靠坐标。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "tacticalrecon": {
+      "unitId": "tacticalrecon",
+      "displayName": "望隼",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "理性；在可见与未知之间保持清楚的界线。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "longrangerecon": {
+      "unitId": "longrangerecon",
+      "displayName": "天眼",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "敏锐；宁愿多飞一次，也不把未经确认的线画进公共图。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "lightfighter": {
+      "unitId": "lightfighter",
+      "displayName": "青隼",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "好胜；学习让自己的速度服务侦察伙伴的任务。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "fighter": {
+      "unitId": "fighter",
+      "displayName": "苍隼",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "果断；制空是给别人留下工作窗口，不只追逐战绩。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "heavyfighter": {
+      "unitId": "heavyfighter",
+      "displayName": "霄刃",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "冷峻可靠；会为轻机装伙伴主动放缓节奏。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "lightbomber": {
+      "unitId": "lightbomber",
+      "displayName": "鸣雷",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "明快；认真区分能做的支援与不能承担的制空。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "tacticalbomber": {
+      "unitId": "tacticalbomber",
+      "displayName": "惊雷",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "利落；把载荷和任务逐一核对，避免徒然消耗。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "bomber": {
+      "unitId": "bomber",
+      "displayName": "远雷",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "坚韧；看重最终能重新工作的人与设施。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "scout": {
+      "unitId": "scout",
+      "displayName": "游隼",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "健谈；会讲路边细节，也知道未观测的地方不能靠猜。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "engineer": {
+      "unitId": "engineer",
+      "displayName": "织补",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "细致；勇于承认修复局限，用实际试验完善分段重联。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "antitank": {
+      "unitId": "antitank",
+      "displayName": "猎矛",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "耐心；愿意守住一条不显眼的维修道路。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "jammer": {
+      "unitId": "jammer",
+      "displayName": "脉冲",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "灵巧；尊重双方人格自主，干扰只争取短暂指挥窗口。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "destroyer": {
+      "unitId": "destroyer",
+      "displayName": "长钉",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "专注；把等待当作工作的一部分，不抢伙伴的时机。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "amphibious": {
+      "unitId": "amphibious",
+      "displayName": "涉潮",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "随和；善于连接岸上与海面伙伴的不同需要。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "submarine": {
+      "unitId": "submarine",
+      "displayName": "潜锋",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "安静；说话少，承诺只建立在真实可行的海路上。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "helicopter": {
+      "unitId": "helicopter",
+      "displayName": "蜂鸟",
+      "faction": "union",
+      "organization": "晨潮协作联队",
+      "voiceNotes": "活泼体贴；喜欢关照低处的人，不把轻快当作冒险理由。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；这里是型号代表的联队频道声音，不与某一个唯一地图棋子绑定。相同型号的其他队员是具有独立记忆与选择的个体。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，不新增必需肖像。"
+    },
+    "red-walker": {
+      "unitId": "walker",
+      "displayName": "静海哨兵",
+      "faction": "red",
+      "organization": "静海统筹军",
+      "voiceNotes": "执行封锁也牵挂当地居民；需要可追责的通行安排。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；代表既有型号的静海频道个体，不是全体同型号的唯一人格，也不要求某一敌方棋子幸存。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，加珊瑚红三角与静海频道标签；无需新增肖像。"
+    },
+    "red-engineer": {
+      "unitId": "engineer",
+      "displayName": "静海织补",
+      "faction": "red",
+      "organization": "静海统筹军",
+      "voiceNotes": "同样珍惜设备与生命；担心未经验证的重联再次损毁电网。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；代表既有型号的静海频道个体，不是全体同型号的唯一人格，也不要求某一敌方棋子幸存。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，加珊瑚红三角与静海频道标签；无需新增肖像。"
+    },
+    "red-aafrigate": {
+      "unitId": "aafrigate",
+      "displayName": "静海云帆",
+      "faction": "red",
+      "organization": "静海统筹军",
+      "voiceNotes": "理解港区急需补给；忧虑抢运造成既有船期全部失效。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；代表既有型号的静海频道个体，不是全体同型号的唯一人格，也不要求某一敌方棋子幸存。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，加珊瑚红三角与静海频道标签；无需新增肖像。"
+    },
+    "red-fighter": {
+      "unitId": "fighter",
+      "displayName": "静海苍隼",
+      "faction": "red",
+      "organization": "静海统筹军",
+      "voiceNotes": "希望保住安全空域；接受实测信息，却不凭一句保证撤下职责。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；代表既有型号的静海频道个体，不是全体同型号的唯一人格，也不要求某一敌方棋子幸存。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，加珊瑚红三角与静海频道标签；无需新增肖像。"
+    },
+    "red-heavy": {
+      "unitId": "heavy",
+      "displayName": "静海磐石",
+      "faction": "red",
+      "organization": "静海统筹军",
+      "voiceNotes": "坚持集中储备保住核心工业；并非要让边远地区受苦。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；代表既有型号的静海频道个体，不是全体同型号的唯一人格，也不要求某一敌方棋子幸存。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，加珊瑚红三角与静海频道标签；无需新增肖像。"
+    },
+    "red-areaaship": {
+      "unitId": "areaaship",
+      "displayName": "静海穹海",
+      "faction": "red",
+      "organization": "静海统筹军",
+      "voiceNotes": "守护主库与海峡；要求让重联风险和责任都可以被核验。",
+      "identityNotes": "明确成年女性外形与身份的织星人工生命；代表既有型号的静海频道个体，不是全体同型号的唯一人格，也不要求某一敌方棋子幸存。",
+      "portraitPolicy": "复用该 unitId 现有型号头像，加珊瑚红三角与静海频道标签；无需新增肖像。"
+    },
+    "elite-E01": {
+      "speakerId": "elite-E01",
+      "characterId": "E01",
+      "unitId": "walker",
+      "displayName": "林小禾",
+      "personalCallsign": "灯芽",
+      "faction": "union",
+      "organization": "晨潮协作联队 · 晨潮接线组",
+      "ageYears": 12,
+      "voiceNotes": "好奇认真，熟悉具体居民与街区；会得意，也愿意承认未知与寻求成年伙伴帮助。",
+      "identityNotes": "十二岁未成年成长型星芯个体，年龄、社会身份与儿童脸部和体态一致。成年队员协作保障；训练等级、机装等级和年龄分别记录，不随养成长大。",
+      "portraitPolicy": "独立精英角色头像与章节立绘均待制作；关联 characterId 与 portraitId，不将普通型号头像或其他人物改名冒充。缺图显示姓名名牌与中性占位，不声称已有图片。",
+      "assetsStatus": "planned",
+      "joinMissionId": "S02",
+      "preJoinChannelPolicy": "正式加入前不作为可配置精英；必要的地区背景描述不投放地图人物。"
+    },
+    "elite-E02": {
+      "speakerId": "elite-E02",
+      "characterId": "E02",
+      "unitId": "tank",
+      "displayName": "唐砺",
+      "personalCallsign": "回铸",
+      "faction": "union",
+      "organization": "晨潮协作联队 · 晨潮接线组",
+      "ageYears": 18,
+      "voiceNotes": "年轻直接、讲义气，愿意冲在前面；逐渐不再把返回整备当作失败。",
+      "identityNotes": "十八岁成年星芯个体，沙金高束发与石墨琥珀定制装甲形成独立形象；训练不改变年龄或身体形象。",
+      "portraitPolicy": "独立精英角色头像与章节立绘均待制作；关联 characterId 与 portraitId，不将普通型号头像或其他人物改名冒充。缺图显示姓名名牌与中性占位，不声称已有图片。",
+      "assetsStatus": "planned",
+      "joinMissionId": "S09",
+      "preJoinChannelPolicy": "正式加入前不作为可配置精英；必要的地区背景描述不投放地图人物。"
+    },
+    "elite-E03": {
+      "speakerId": "elite-E03",
+      "characterId": "E03",
+      "unitId": "artillery",
+      "displayName": "季知弦",
+      "personalCallsign": "准弦",
+      "faction": "union",
+      "organization": "晨潮协作联队 · 晨潮接线组",
+      "ageYears": 25,
+      "voiceNotes": "精确有耐心，会一本正经地讲干笑话；学习接受可用误差，给伙伴留下继续工作的空间。",
+      "identityNotes": "二十五岁成年星芯个体，深紫低辫、灰白工程服、测距镜和真实展开炮架；训练不改变年龄或身体形象。",
+      "portraitPolicy": "独立精英角色头像与章节立绘均待制作；关联 characterId 与 portraitId，不将普通型号头像或其他人物改名冒充。缺图显示姓名名牌与中性占位，不声称已有图片。",
+      "assetsStatus": "planned",
+      "joinMissionId": "S29",
+      "preJoinChannelPolicy": "正式加入前不作为可配置精英；必要的地区背景描述不投放地图人物。"
+    },
+    "elite-E04": {
+      "speakerId": "elite-E04",
+      "characterId": "E04",
+      "unitId": "assaultmarine",
+      "displayName": "江澜声",
+      "personalCallsign": "潮灯",
+      "faction": "union",
+      "organization": "晨潮协作联队 · 晨潮接线组",
+      "ageYears": 30,
+      "voiceNotes": "从容爽朗、经验丰富，善于发现少写的岗位；会帮忙，也认真让别人接手。",
+      "identityNotes": "三十岁成年星芯个体，深蓝短发、蓝白防护制服、橙色救援标记、折叠艇与救援绳结；成熟来自面容与经验，训练不改变年龄或身体形象。",
+      "portraitPolicy": "独立精英角色头像与章节立绘均待制作；关联 characterId 与 portraitId，不将普通型号头像或其他人物改名冒充。缺图显示姓名名牌与中性占位，不声称已有图片。",
+      "assetsStatus": "planned",
+      "joinMissionId": "S15",
+      "preJoinChannelPolicy": "正式加入前不作为可配置精英；必要的地区背景描述不投放地图人物。"
+    },
+    "elite-E05": {
+      "speakerId": "elite-E05",
+      "characterId": "E05",
+      "unitId": "fighter",
+      "displayName": "陆栖云",
+      "personalCallsign": "归航",
+      "faction": "union",
+      "organization": "晨潮协作联队 · 晨潮接线组",
+      "ageYears": 35,
+      "voiceNotes": "温暖且判断干脆，经验丰富；提醒别人吃饭，也学习为自己留下回程与休息。",
+      "identityNotes": "三十五岁成年星芯个体与专业飞行员，明确母亲身份；收养九岁人类孩子阿澄，孩子在镜原由亲属照顾。雾银低髻、银蓝机翼与归航鸟标记保持，训练不改变年龄或身体形象。",
+      "portraitPolicy": "独立精英角色头像与章节立绘均待制作；关联 characterId 与 portraitId，不将普通型号头像或其他人物改名冒充。缺图显示姓名名牌与中性占位，不声称已有图片。",
+      "assetsStatus": "planned",
+      "joinMissionId": "S22",
+      "preJoinChannelPolicy": "只在 ELITE-E01-P02 以镜原后方协作频道参与；未正式加入，不获得战斗配置资格。",
+      "preJoinCameoSceneIds": [
+        "ELITE-E01-P02"
+      ]
+    }
+  },
+  "chapters": {
+    "CH01": {
+      "chapterId": "CH01",
+      "order": 1,
+      "region": "岚岸",
+      "title": "灯还亮着",
+      "stageIds": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06",
+        "S07"
+      ],
+      "narrativeGoal": "从一张限时通行单出发，恢复小城与维修道路的交接条件。",
+      "cooperationArc": "前哨从守住故乡成长为承认门外的人也在责任里；游隼诚实报告未知，哨兵将可靠落实为通路与整备安排。",
+      "conflict": "地方储备有限，静海守备担心无序放行；双方以最低留存和通行名单推进可追责的交接。",
+      "conclusion": "道路调度与本地需求送往白沼，第一座城按战后维修计划逐步亮灯。",
+      "presentation": "七关保持本章独特的供给难题与协作成长；简报说明将做什么，战中频道不预称胜利，战后以指挥交接与公共整备后续安排承接两种胜利模式。",
+      "eliteNarrativeArc": "小禾在 S02 交接后加入，学习区分确认与未知，把具体居民需求带进跨域清单；S07 与镜原后方频道的栖云通信，不提前开放后者出战。",
+      "effectiveTrainingLevelCap": 3,
+      "elitePortraitUnlocks": [
+        "E01-P01",
+        "E01-P02"
+      ]
+    },
+    "CH02": {
+      "chapterId": "CH02",
+      "order": 2,
+      "region": "白沼",
+      "title": "白沼的织补线",
+      "stageIds": [
+        "S08",
+        "S09",
+        "S10",
+        "S11",
+        "S12",
+        "S13",
+        "S14"
+      ],
+      "narrativeGoal": "用有限的低功率试验验证分段重联，明确后续运输、观测与制造需求。",
+      "cooperationArc": "织补承认修复边界，雨燕学会等伙伴核对，猎矛把不显眼的维修路视为值得承担的工作。",
+      "conflict": "双方工程少女都担心二次停机；检修失败、持续负载和误差被共同记录，不以情绪替代测试。",
+      "conclusion": "分段重联图与测试记录交付，下一步向盐湾争取公共运输。",
+      "presentation": "七关保持本章独特的供给难题与协作成长；简报说明将做什么，战中频道不预称胜利，战后以指挥交接与公共整备后续安排承接两种胜利模式。",
+      "eliteNarrativeArc": "唐砺在 S09 交接后加入，重建代价与返回检修使她重新理解可靠；S14 留下维护接口与后续协作训练方向。",
+      "effectiveTrainingLevelCap": 5,
+      "elitePortraitUnlocks": [
+        "E02-P01",
+        "E02-P02"
+      ]
+    },
+    "CH03": {
+      "chapterId": "CH03",
+      "order": 3,
+      "region": "盐湾",
+      "title": "浪锋驶向盐湾",
+      "stageIds": [
+        "S15",
+        "S16",
+        "S17",
+        "S18",
+        "S19",
+        "S20",
+        "S21"
+      ],
+      "narrativeGoal": "建立能够接续的公共船期与海陆衔接，把有限储备纳入共享运输。",
+      "cooperationArc": "浪锋理解故乡情感，礁盾帮助写明底线，云帆把职责与轮班安排细到每个伙伴。",
+      "conflict": "地方保留储备与跨域共享冲突，静海护航队担心抢运毁掉船期；公开留存和有限机位成为协作条件。",
+      "conclusion": "共享运输清单与公共船期交付，精密设备和零件有机会跨域抵达。",
+      "presentation": "七关保持本章独特的供给难题与协作成长；简报说明将做什么，战中频道不预称胜利，战后以指挥交接与公共整备后续安排承接两种胜利模式。",
+      "eliteNarrativeArc": "澜声在 S15 交接后加入，把熟悉港口的经验变为公共船期与岗位交接；S21 与小禾将具体居民需求写成可执行安排。",
+      "effectiveTrainingLevelCap": 6,
+      "elitePortraitUnlocks": [
+        "E04-P01",
+        "E04-P02"
+      ]
+    },
+    "CH04": {
+      "chapterId": "CH04",
+      "order": 4,
+      "region": "镜原",
+      "title": "天空留下的路",
+      "stageIds": [
+        "S22",
+        "S23",
+        "S24",
+        "S25",
+        "S26",
+        "S27",
+        "S28"
+      ],
+      "narrativeGoal": "在晶潮干扰下重新标定可复核的中继线路，让海峡联队使用可靠坐标。",
+      "cooperationArc": "纸鸢学会保留诚实的空白，青隼让速度服务他人，霄刃与天眼把护航节奏和有效条件讲清。",
+      "conflict": "静海航空队不接受永久安全的口头保证；时间、误差、复核周期和载荷分工使信息能够被双方核验。",
+      "conclusion": "云间中继坐标及复核流程交付，重联仍缺砺岭的实物接口。",
+      "presentation": "七关保持本章独特的供给难题与协作成长；简报说明将做什么，战中频道不预称胜利，战后以指挥交接与公共整备后续安排承接两种胜利模式。",
+      "eliteNarrativeArc": "栖云在 S22 交接后正式加入，安排观测、护航与轮换，也留下自己的回程；S28 云图换装来自设备更新，不改变年龄或自动提高能力。",
+      "effectiveTrainingLevelCap": 8,
+      "elitePortraitUnlocks": [
+        "E05-P01",
+        "E05-P02"
+      ]
+    },
+    "CH05": {
+      "chapterId": "CH05",
+      "order": 5,
+      "region": "砺岭",
+      "title": "棱镜之下",
+      "stageIds": [
+        "S29",
+        "S30",
+        "S31",
+        "S32",
+        "S33",
+        "S34",
+        "S35"
+      ],
+      "narrativeGoal": "恢复能够继续整备的重工条件，让图纸、运输与坐标对应实际接口。",
+      "cooperationArc": "棱镜将推进与生产一起考虑，火萤获得伙伴等待，脉冲尊重双方人格，壁垒守住需要时间的工作。",
+      "conflict": "静海磐石坚持集中储备保住核心工业；最低功率、配对记录和复核责任回应其真实担忧。",
+      "conclusion": "接口配对表和材料安排交付，前五域的成果送往潮门接线计划。",
+      "presentation": "七关保持本章独特的供给难题与协作成长；简报说明将做什么，战中频道不预称胜利，战后以指挥交接与公共整备后续安排承接两种胜利模式。",
+      "eliteNarrativeArc": "知弦在 S29 交接后加入，在 S32 与唐砺共同保留工厂；唐砺在 S34 接受静海磐石的真实顾虑，知弦学习用可用误差完成协作。",
+      "effectiveTrainingLevelCap": 9,
+      "elitePortraitUnlocks": [
+        "E02-P03",
+        "E03-P01",
+        "E03-P02"
+      ]
+    },
+    "CH06": {
+      "chapterId": "CH06",
+      "order": 6,
+      "region": "潮门",
+      "title": "把黎明送回六域",
+      "stageIds": [
+        "S36",
+        "S37",
+        "S38",
+        "S39",
+        "S40",
+        "S41",
+        "S42"
+      ],
+      "narrativeGoal": "将海峡接续、岸线准备、主库安全与中央交接合为一章，完成共同最低供给。",
+      "cooperationArc": "巡岚协调三军节奏，潜锋如实说明风险，织补接受公开核对，前哨拒绝用新的独断替代旧封锁。",
+      "conflict": "静海穹海要求可验证的负载与停机条件；联队同时证明反对永久军管和反对各域抢用。",
+      "conclusion": "中央枢纽交接、最低供给上线、静海令暂停；各域以公开调度和灾时协调保留继续修复的条件。",
+      "presentation": "七关保持本章独特的供给难题与协作成长；简报说明将做什么，战中频道不预称胜利，战后以指挥交接与公共整备后续安排承接两种胜利模式。",
+      "eliteNarrativeArc": "小禾 S36 提醒需求清单里具体的人，澜声 S39 学会交出绳结，知弦 S40 为炮火后的接线留空间；栖云 S42 完成与阿澄的渡船约定，五人都由实际训练积分成长。",
+      "effectiveTrainingLevelCap": 10,
+      "elitePortraitUnlocks": [
+        "E01-P03",
+        "E03-P03",
+        "E04-P03",
+        "E05-P03"
+      ]
+    }
+  },
+  "stageMetadata": {
+    "S01": {
+      "stageId": "S01",
+      "chapterId": "CH01",
+      "title": "最后通行单",
+      "order": 1,
+      "sceneIds": [
+        "S01-INTRO",
+        "S01-MID",
+        "S01-OUTRO"
+      ]
+    },
+    "S02": {
+      "stageId": "S02",
+      "chapterId": "CH01",
+      "title": "窗边的灯",
+      "order": 2,
+      "sceneIds": [
+        "S02-INTRO",
+        "S02-MID",
+        "S02-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E01-P01"
+      ],
+      "presentationSequence": [
+        "S02-INTRO",
+        "S02-MID",
+        "S02-OUTRO",
+        "ELITE-E01-P01"
+      ]
+    },
+    "S03": {
+      "stageId": "S03",
+      "chapterId": "CH01",
+      "title": "转角的回声",
+      "order": 3,
+      "sceneIds": [
+        "S03-INTRO",
+        "S03-MID",
+        "S03-OUTRO"
+      ]
+    },
+    "S04": {
+      "stageId": "S04",
+      "chapterId": "CH01",
+      "title": "空出的整备位",
+      "order": 4,
+      "sceneIds": [
+        "S04-INTRO",
+        "S04-MID",
+        "S04-OUTRO"
+      ]
+    },
+    "S05": {
+      "stageId": "S05",
+      "chapterId": "CH01",
+      "title": "给陌生人的补给",
+      "order": 5,
+      "sceneIds": [
+        "S05-INTRO",
+        "S05-MID",
+        "S05-OUTRO"
+      ]
+    },
+    "S06": {
+      "stageId": "S06",
+      "chapterId": "CH01",
+      "title": "守住维修道",
+      "order": 6,
+      "sceneIds": [
+        "S06-INTRO",
+        "S06-MID",
+        "S06-OUTRO"
+      ]
+    },
+    "S07": {
+      "stageId": "S07",
+      "chapterId": "CH01",
+      "title": "第一座亮起的城",
+      "order": 7,
+      "sceneIds": [
+        "S07-INTRO",
+        "S07-MID",
+        "S07-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E01-P02"
+      ],
+      "presentationSequence": [
+        "S07-INTRO",
+        "S07-MID",
+        "S07-OUTRO",
+        "ELITE-E01-P02"
+      ]
+    },
+    "S08": {
+      "stageId": "S08",
+      "chapterId": "CH02",
+      "title": "停机的配电庭",
+      "order": 8,
+      "sceneIds": [
+        "S08-INTRO",
+        "S08-MID",
+        "S08-OUTRO"
+      ]
+    },
+    "S09": {
+      "stageId": "S09",
+      "chapterId": "CH02",
+      "title": "不是所有裂口都能补",
+      "order": 9,
+      "sceneIds": [
+        "S09-INTRO",
+        "S09-MID",
+        "S09-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E02-P01"
+      ],
+      "presentationSequence": [
+        "S09-INTRO",
+        "S09-MID",
+        "S09-OUTRO",
+        "ELITE-E02-P01"
+      ]
+    },
+    "S10": {
+      "stageId": "S10",
+      "chapterId": "CH02",
+      "title": "两座蓄能站",
+      "order": 10,
+      "sceneIds": [
+        "S10-INTRO",
+        "S10-MID",
+        "S10-OUTRO"
+      ]
+    },
+    "S11": {
+      "stageId": "S11",
+      "chapterId": "CH02",
+      "title": "水网里的短途车",
+      "order": 11,
+      "sceneIds": [
+        "S11-INTRO",
+        "S11-MID",
+        "S11-OUTRO"
+      ]
+    },
+    "S12": {
+      "stageId": "S12",
+      "chapterId": "CH02",
+      "title": "另一边的织补",
+      "order": 12,
+      "sceneIds": [
+        "S12-INTRO",
+        "S12-MID",
+        "S12-OUTRO"
+      ]
+    },
+    "S13": {
+      "stageId": "S13",
+      "chapterId": "CH02",
+      "title": "低功率试验",
+      "order": 13,
+      "sceneIds": [
+        "S13-INTRO",
+        "S13-MID",
+        "S13-OUTRO"
+      ]
+    },
+    "S14": {
+      "stageId": "S14",
+      "chapterId": "CH02",
+      "title": "未完的重联图",
+      "order": 14,
+      "sceneIds": [
+        "S14-INTRO",
+        "S14-MID",
+        "S14-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E02-P02"
+      ],
+      "presentationSequence": [
+        "S14-INTRO",
+        "S14-MID",
+        "S14-OUTRO",
+        "ELITE-E02-P02"
+      ]
+    },
+    "S15": {
+      "stageId": "S15",
+      "chapterId": "CH03",
+      "title": "港口还有一班船",
+      "order": 15,
+      "sceneIds": [
+        "S15-INTRO",
+        "S15-MID",
+        "S15-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E04-P01"
+      ],
+      "presentationSequence": [
+        "S15-INTRO",
+        "S15-MID",
+        "S15-OUTRO",
+        "ELITE-E04-P01"
+      ]
+    },
+    "S16": {
+      "stageId": "S16",
+      "chapterId": "CH03",
+      "title": "岸线的另一面",
+      "order": 16,
+      "sceneIds": [
+        "S16-INTRO",
+        "S16-MID",
+        "S16-OUTRO"
+      ]
+    },
+    "S17": {
+      "stageId": "S17",
+      "chapterId": "CH03",
+      "title": "云帆下的补给",
+      "order": 17,
+      "sceneIds": [
+        "S17-INTRO",
+        "S17-MID",
+        "S17-OUTRO"
+      ]
+    },
+    "S18": {
+      "stageId": "S18",
+      "chapterId": "CH03",
+      "title": "平台不属于一座城",
+      "order": 18,
+      "sceneIds": [
+        "S18-INTRO",
+        "S18-MID",
+        "S18-OUTRO"
+      ]
+    },
+    "S19": {
+      "stageId": "S19",
+      "chapterId": "CH03",
+      "title": "留给故乡的储备",
+      "order": 19,
+      "sceneIds": [
+        "S19-INTRO",
+        "S19-MID",
+        "S19-OUTRO"
+      ]
+    },
+    "S20": {
+      "stageId": "S20",
+      "chapterId": "CH03",
+      "title": "不再封闭的泊位",
+      "order": 20,
+      "sceneIds": [
+        "S20-INTRO",
+        "S20-MID",
+        "S20-OUTRO"
+      ]
+    },
+    "S21": {
+      "stageId": "S21",
+      "chapterId": "CH03",
+      "title": "第一份共享运输表",
+      "order": 21,
+      "sceneIds": [
+        "S21-INTRO",
+        "S21-MID",
+        "S21-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E04-P02"
+      ],
+      "presentationSequence": [
+        "S21-INTRO",
+        "S21-MID",
+        "S21-OUTRO",
+        "ELITE-E04-P02"
+      ]
+    },
+    "S22": {
+      "stageId": "S22",
+      "chapterId": "CH04",
+      "title": "导航灯失联",
+      "order": 22,
+      "sceneIds": [
+        "S22-INTRO",
+        "S22-MID",
+        "S22-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E05-P01"
+      ],
+      "presentationSequence": [
+        "S22-INTRO",
+        "S22-MID",
+        "S22-OUTRO",
+        "ELITE-E05-P01"
+      ]
+    },
+    "S23": {
+      "stageId": "S23",
+      "chapterId": "CH04",
+      "title": "看见不等于够得到",
+      "order": 23,
+      "sceneIds": [
+        "S23-INTRO",
+        "S23-MID",
+        "S23-OUTRO"
+      ]
+    },
+    "S24": {
+      "stageId": "S24",
+      "chapterId": "CH04",
+      "title": "云层之间",
+      "order": 24,
+      "sceneIds": [
+        "S24-INTRO",
+        "S24-MID",
+        "S24-OUTRO"
+      ]
+    },
+    "S25": {
+      "stageId": "S25",
+      "chapterId": "CH04",
+      "title": "地面的天空",
+      "order": 25,
+      "sceneIds": [
+        "S25-INTRO",
+        "S25-MID",
+        "S25-OUTRO"
+      ]
+    },
+    "S26": {
+      "stageId": "S26",
+      "chapterId": "CH04",
+      "title": "载荷的去处",
+      "order": 26,
+      "sceneIds": [
+        "S26-INTRO",
+        "S26-MID",
+        "S26-OUTRO"
+      ]
+    },
+    "S27": {
+      "stageId": "S27",
+      "chapterId": "CH04",
+      "title": "最远的一段坐标",
+      "order": 27,
+      "sceneIds": [
+        "S27-INTRO",
+        "S27-MID",
+        "S27-OUTRO"
+      ]
+    },
+    "S28": {
+      "stageId": "S28",
+      "chapterId": "CH04",
+      "title": "把坐标交给海峡",
+      "order": 28,
+      "sceneIds": [
+        "S28-INTRO",
+        "S28-MID",
+        "S28-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E05-P02"
+      ],
+      "presentationSequence": [
+        "S28-INTRO",
+        "S28-MID",
+        "S28-OUTRO",
+        "ELITE-E05-P02"
+      ]
+    },
+    "S29": {
+      "stageId": "S29",
+      "chapterId": "CH05",
+      "title": "缺一枚接口",
+      "order": 29,
+      "sceneIds": [
+        "S29-INTRO",
+        "S29-MID",
+        "S29-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E03-P01"
+      ],
+      "presentationSequence": [
+        "S29-INTRO",
+        "S29-MID",
+        "S29-OUTRO",
+        "ELITE-E03-P01"
+      ]
+    },
+    "S30": {
+      "stageId": "S30",
+      "chapterId": "CH05",
+      "title": "轻履带的先行线",
+      "order": 30,
+      "sceneIds": [
+        "S30-INTRO",
+        "S30-MID",
+        "S30-OUTRO"
+      ]
+    },
+    "S31": {
+      "stageId": "S31",
+      "chapterId": "CH05",
+      "title": "稳定炮架",
+      "order": 31,
+      "sceneIds": [
+        "S31-INTRO",
+        "S31-MID",
+        "S31-OUTRO"
+      ]
+    },
+    "S32": {
+      "stageId": "S32",
+      "chapterId": "CH05",
+      "title": "一座必须留下的工厂",
+      "order": 32,
+      "sceneIds": [
+        "S32-INTRO",
+        "S32-MID",
+        "S32-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E03-P02"
+      ],
+      "presentationSequence": [
+        "S32-INTRO",
+        "S32-MID",
+        "S32-OUTRO",
+        "ELITE-E03-P02"
+      ]
+    },
+    "S33": {
+      "stageId": "S33",
+      "chapterId": "CH05",
+      "title": "短暂的指挥窗口",
+      "order": 33,
+      "sceneIds": [
+        "S33-INTRO",
+        "S33-MID",
+        "S33-OUTRO"
+      ]
+    },
+    "S34": {
+      "stageId": "S34",
+      "chapterId": "CH05",
+      "title": "磐石的另一种坚持",
+      "order": 34,
+      "sceneIds": [
+        "S34-INTRO",
+        "S34-MID",
+        "S34-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E02-P03"
+      ],
+      "presentationSequence": [
+        "S34-INTRO",
+        "S34-MID",
+        "S34-OUTRO",
+        "ELITE-E02-P03"
+      ]
+    },
+    "S35": {
+      "stageId": "S35",
+      "chapterId": "CH05",
+      "title": "接口已经配对",
+      "order": 35,
+      "sceneIds": [
+        "S35-INTRO",
+        "S35-MID",
+        "S35-OUTRO"
+      ]
+    },
+    "S36": {
+      "stageId": "S36",
+      "chapterId": "CH06",
+      "title": "最后一份接线表",
+      "order": 36,
+      "sceneIds": [
+        "S36-INTRO",
+        "S36-MID",
+        "S36-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E01-P03"
+      ],
+      "presentationSequence": [
+        "S36-INTRO",
+        "S36-MID",
+        "S36-OUTRO",
+        "ELITE-E01-P03"
+      ]
+    },
+    "S37": {
+      "stageId": "S37",
+      "chapterId": "CH06",
+      "title": "海峡仍在呼吸",
+      "order": 37,
+      "sceneIds": [
+        "S37-INTRO",
+        "S37-MID",
+        "S37-OUTRO"
+      ]
+    },
+    "S38": {
+      "stageId": "S38",
+      "chapterId": "CH06",
+      "title": "穹海下的护航",
+      "order": 38,
+      "sceneIds": [
+        "S38-INTRO",
+        "S38-MID",
+        "S38-OUTRO"
+      ]
+    },
+    "S39": {
+      "stageId": "S39",
+      "chapterId": "CH06",
+      "title": "水闸之后",
+      "order": 39,
+      "sceneIds": [
+        "S39-INTRO",
+        "S39-MID",
+        "S39-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E04-P03"
+      ],
+      "presentationSequence": [
+        "S39-INTRO",
+        "S39-MID",
+        "S39-OUTRO",
+        "ELITE-E04-P03"
+      ]
+    },
+    "S40": {
+      "stageId": "S40",
+      "chapterId": "CH06",
+      "title": "主库不能熄灭",
+      "order": 40,
+      "sceneIds": [
+        "S40-INTRO",
+        "S40-MID",
+        "S40-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E03-P03"
+      ],
+      "presentationSequence": [
+        "S40-INTRO",
+        "S40-MID",
+        "S40-OUTRO",
+        "ELITE-E03-P03"
+      ]
+    },
+    "S41": {
+      "stageId": "S41",
+      "chapterId": "CH06",
+      "title": "静海令的最后防线",
+      "order": 41,
+      "sceneIds": [
+        "S41-INTRO",
+        "S41-MID",
+        "S41-OUTRO"
+      ]
+    },
+    "S42": {
+      "stageId": "S42",
+      "chapterId": "CH06",
+      "title": "把黎明送回六域",
+      "order": 42,
+      "sceneIds": [
+        "S42-INTRO",
+        "S42-MID",
+        "S42-OUTRO"
+      ],
+      "postOutroScenes": [
+        "ELITE-E05-P03"
+      ],
+      "presentationSequence": [
+        "S42-INTRO",
+        "S42-MID",
+        "S42-OUTRO",
+        "ELITE-E05-P03",
+        "EPILOGUE-42"
+      ]
+    }
+  },
+  "scenes": {
+    "PROLOGUE-42": {
+      "id": "PROLOGUE-42",
+      "title": "雾海的最后通行单",
+      "kind": "PROLOGUE",
+      "stageId": null,
+      "chapterId": null,
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "岚岸的窗灯一盏盏熄灭，最后通行单只保到天亮。我们接到的任务，是把维修物资送出去。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "把工具带齐，先让维修队有路可走。我不想替每个人决定答案，只想让六域还有一起修复的机会。"
+        }
+      ],
+      "text": "前哨：岚岸的窗灯一盏盏熄灭，最后通行单只保到天亮。我们接到的任务，是把维修物资送出去。\n\n织补：把工具带齐，先让维修队有路可走。我不想替每个人决定答案，只想让六域还有一起修复的机会。"
+    },
+    "S01-INTRO": {
+      "id": "S01-INTRO",
+      "title": "最后通行单 · 简报",
+      "kind": "INTRO",
+      "stageId": "S01",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "最后通行单只保到天亮。维修物资还在岚岸路上，我不想让这张纸变成小城最后的消息。"
+        },
+        {
+          "speakerId": "walker",
+          "text": "我理解路口守备的顾虑。但关上门之前，至少该给还在等维修的人留一条路。"
+        }
+      ],
+      "text": "前哨：最后通行单只保到天亮。维修物资还在岚岸路上，我不想让这张纸变成小城最后的消息。\n\n哨兵：我理解路口守备的顾虑。但关上门之前，至少该给还在等维修的人留一条路。"
+    },
+    "S01-MID": {
+      "id": "S01-MID",
+      "title": "最后通行单 · 联队频道",
+      "kind": "MID",
+      "stageId": "S01",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "scout",
+          "text": "道路通向哪里可以先查清。没有看见的守军，我不会靠昨天的地图替大家做保证。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "我们向前，是为了争取一次交接。清除挡路的火力，也要记得路尽头还有人生活。"
+        }
+      ],
+      "text": "游隼：道路通向哪里可以先查清。没有看见的守军，我不会靠昨天的地图替大家做保证。\n\n前哨：我们向前，是为了争取一次交接。清除挡路的火力，也要记得路尽头还有人生活。"
+    },
+    "S01-OUTRO": {
+      "id": "S01-OUTRO",
+      "title": "最后通行单 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S01",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "walker",
+          "text": "这次指挥交接已经成立。公共整备同盟可以把维修通行重新列入安排，不必再只等封锁解除。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "我曾以为守住城门就是全部职责。今天开始，门外等待的人也在我们的责任里。"
+        }
+      ],
+      "text": "哨兵：这次指挥交接已经成立。公共整备同盟可以把维修通行重新列入安排，不必再只等封锁解除。\n\n前哨：我曾以为守住城门就是全部职责。今天开始，门外等待的人也在我们的责任里。"
+    },
+    "S02-INTRO": {
+      "id": "S02-INTRO",
+      "title": "窗边的灯 · 简报",
+      "kind": "INTRO",
+      "stageId": "S02",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "小城最后亮着的是值班室的窗灯。居民把备用电留给那里，好让维修队还能找到联系人。"
+        },
+        {
+          "speakerId": "walker",
+          "text": "我们也得留下守备安排。让所有人一起冲出去，再把后方交给运气，不算负责。"
+        }
+      ],
+      "text": "前哨：小城最后亮着的是值班室的窗灯。居民把备用电留给那里，好让维修队还能找到联系人。\n\n哨兵：我们也得留下守备安排。让所有人一起冲出去，再把后方交给运气，不算负责。"
+    },
+    "S02-MID": {
+      "id": "S02-MID",
+      "title": "窗边的灯 · 联队频道",
+      "kind": "MID",
+      "stageId": "S02",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "城市的供给支撑下一回合的整备。接管不是换一面旗，而是接下这些人的生活。"
+        },
+        {
+          "speakerId": "scout",
+          "text": "我记得窗边有一盆薄荷。能把灯留给小事的地方，值得我们认真看清每个路口。"
+        }
+      ],
+      "text": "前哨：城市的供给支撑下一回合的整备。接管不是换一面旗，而是接下这些人的生活。\n\n游隼：我记得窗边有一盆薄荷。能把灯留给小事的地方，值得我们认真看清每个路口。"
+    },
+    "S02-OUTRO": {
+      "id": "S02-OUTRO",
+      "title": "窗边的灯 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S02",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "通路交接让值班室有了新的排班。我们把居民需求一并交给整备同盟，没有替他们选择离开。"
+        },
+        {
+          "speakerId": "walker",
+          "text": "灯会按供电计划逐步回来。我想先把那扇窗擦干净，让回来的人看得更清楚。"
+        }
+      ],
+      "text": "前哨：通路交接让值班室有了新的排班。我们把居民需求一并交给整备同盟，没有替他们选择离开。\n\n哨兵：灯会按供电计划逐步回来。我想先把那扇窗擦干净，让回来的人看得更清楚。"
+    },
+    "S03-INTRO": {
+      "id": "S03-INTRO",
+      "title": "转角的回声 · 简报",
+      "kind": "INTRO",
+      "stageId": "S03",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "scout",
+          "text": "原路传来机装声，旧图却只画着仓棚。让我先查清转角，别让大家跟着回声赌一次。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "我认识岚岸的路牌，陌生转角也会等游隼确认。熟悉自己的街区，不代表可以替大家猜出雾里的情况。"
+        }
+      ],
+      "text": "游隼：原路传来机装声，旧图却只画着仓棚。让我先查清转角，别让大家跟着回声赌一次。\n\n林小禾：我认识岚岸的路牌，陌生转角也会等游隼确认。熟悉自己的街区，不代表可以替大家猜出雾里的情况。"
+    },
+    "S03-MID": {
+      "id": "S03-MID",
+      "title": "转角的回声 · 联队频道",
+      "kind": "MID",
+      "stageId": "S03",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "scout",
+          "text": "当前可见的路线才算可靠。雾外的安静不代表没有人，我会把未知也标在图上。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "这段是我看过的，后面还不知道。我会把两种地方分开写，免得伙伴把我的猜想当成确认。"
+        }
+      ],
+      "text": "游隼：当前可见的路线才算可靠。雾外的安静不代表没有人，我会把未知也标在图上。\n\n林小禾：这段是我看过的，后面还不知道。我会把两种地方分开写，免得伙伴把我的猜想当成确认。"
+    },
+    "S03-OUTRO": {
+      "id": "S03-OUTRO",
+      "title": "转角的回声 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S03",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "scout",
+          "text": "路口交接记录添了一条绕行说明，没确认的地段仍然留白。公共地图不该为了好看填满。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "谢谢你把不确定也说出来。联队不需要一个全知的伙伴，需要彼此能够信任。"
+        }
+      ],
+      "text": "游隼：路口交接记录添了一条绕行说明，没确认的地段仍然留白。公共地图不该为了好看填满。\n\n前哨：谢谢你把不确定也说出来。联队不需要一个全知的伙伴，需要彼此能够信任。"
+    },
+    "S04-INTRO": {
+      "id": "S04-INTRO",
+      "title": "空出的整备位 · 简报",
+      "kind": "INTRO",
+      "stageId": "S04",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "walker",
+          "text": "整备棚里有人等着编成，可部署通路堵了。先把出发的地方让开，队伍才能真正增加。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "预备队的伙伴都完成了训练，各自带着自己的经历来报到。我们先腾出通路，让她们找到能够出发的位置。"
+        }
+      ],
+      "text": "哨兵：整备棚里有人等着编成，可部署通路堵了。先把出发的地方让开，队伍才能真正增加。\n\n前哨：预备队的伙伴都完成了训练，各自带着自己的经历来报到。我们先腾出通路，让她们找到能够出发的位置。"
+    },
+    "S04-MID": {
+      "id": "S04-MID",
+      "title": "空出的整备位 · 联队频道",
+      "kind": "MID",
+      "stageId": "S04",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "walker",
+          "text": "设施只会按队首先后安排出库。我们别把待部署机位，当成可以无限塞人的仓库。"
+        },
+        {
+          "speakerId": "scout",
+          "text": "我喜欢新队员的问候，但先把机位与通路看清。让路比说欢迎更能帮到她们。"
+        }
+      ],
+      "text": "哨兵：设施只会按队首先后安排出库。我们别把待部署机位，当成可以无限塞人的仓库。\n\n游隼：我喜欢新队员的问候，但先把机位与通路看清。让路比说欢迎更能帮到她们。"
+    },
+    "S04-OUTRO": {
+      "id": "S04-OUTRO",
+      "title": "空出的整备位 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S04",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "walker",
+          "text": "整备通路有了明确的交接责任。后续编成仍要付出零件与能源，不能只靠一句动员。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "新队员报出的名字都不同。我会慢慢记住，也会记得她们不是任何人的替代品。"
+        }
+      ],
+      "text": "哨兵：整备通路有了明确的交接责任。后续编成仍要付出零件与能源，不能只靠一句动员。\n\n前哨：新队员报出的名字都不同。我会慢慢记住，也会记得她们不是任何人的替代品。"
+    },
+    "S05-INTRO": {
+      "id": "S05-INTRO",
+      "title": "给陌生人的补给 · 简报",
+      "kind": "INTRO",
+      "stageId": "S05",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "岚岸的备用物资并不宽裕。有守备队问我，为什么要把下一车零件送给还没见过的白沼人。"
+        },
+        {
+          "speakerId": "scout",
+          "text": "我也想先补好故乡的路。但白沼的蓄能装置停下，我们这里再多货箱也点不亮灯。"
+        }
+      ],
+      "text": "前哨：岚岸的备用物资并不宽裕。有守备队问我，为什么要把下一车零件送给还没见过的白沼人。\n\n游隼：我也想先补好故乡的路。但白沼的蓄能装置停下，我们这里再多货箱也点不亮灯。"
+    },
+    "S05-MID": {
+      "id": "S05-MID",
+      "title": "给陌生人的补给 · 联队频道",
+      "kind": "MID",
+      "stageId": "S05",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "walker",
+          "text": "分享不是把库存一把清空。先写出本地最低需要，再把能送的部分交给共同船期。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "白沼的检修室也有人等灯吧。我的清单先写岚岸，再给他们留一行；不能认识谁，才记得谁需要。"
+        }
+      ],
+      "text": "哨兵：分享不是把库存一把清空。先写出本地最低需要，再把能送的部分交给共同船期。\n\n林小禾：白沼的检修室也有人等灯吧。我的清单先写岚岸，再给他们留一行；不能认识谁，才记得谁需要。"
+    },
+    "S05-OUTRO": {
+      "id": "S05-OUTRO",
+      "title": "给陌生人的补给 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S05",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "本次交接附上岚岸的最低需求和可调拨份额。整备同盟会让接收方也看见这些限制。"
+        },
+        {
+          "speakerId": "scout",
+          "text": "我给货箱夹了一张小城明信片。让白沼知道，送出这些零件的是具体的人和具体的家。"
+        }
+      ],
+      "text": "前哨：本次交接附上岚岸的最低需求和可调拨份额。整备同盟会让接收方也看见这些限制。\n\n游隼：我给货箱夹了一张小城明信片。让白沼知道，送出这些零件的是具体的人和具体的家。"
+    },
+    "S06-INTRO": {
+      "id": "S06-INTRO",
+      "title": "守住维修道 · 简报",
+      "kind": "INTRO",
+      "stageId": "S06",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "维修队需要停靠和更换部件的时间。我可以修好还能参战的机装，不能把退场队员凭空叫回来。"
+        },
+        {
+          "speakerId": "antitank",
+          "text": "我愿意守住这条不显眼的路。别人的工具能安稳落下，也是我们战斗的结果。"
+        }
+      ],
+      "text": "织补：维修队需要停靠和更换部件的时间。我可以修好还能参战的机装，不能把退场队员凭空叫回来。\n\n猎矛：我愿意守住这条不显眼的路。别人的工具能安稳落下，也是我们战斗的结果。"
+    },
+    "S06-MID": {
+      "id": "S06-MID",
+      "title": "守住维修道 · 联队频道",
+      "kind": "MID",
+      "stageId": "S06",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "red-walker",
+          "text": "路口放行以后，补给会不会被抢走？守备队不能只凭你们一声保证取消自己的职责。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "把通行名单与最低留存交给双方核对。我们先打通交接，不要求你们放弃追问。"
+        }
+      ],
+      "text": "静海哨兵：路口放行以后，补给会不会被抢走？守备队不能只凭你们一声保证取消自己的职责。\n\n前哨：把通行名单与最低留存交给双方核对。我们先打通交接，不要求你们放弃追问。"
+    },
+    "S06-OUTRO": {
+      "id": "S06-OUTRO",
+      "title": "守住维修道 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S06",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "维修通路的交接说明已送到双方。需要重建的设施另列预算，退场队员交由后续救援整备。"
+        },
+        {
+          "speakerId": "antitank",
+          "text": "今天没有人要记住我的位置也没关系。只要明天有人还能沿这条路把工具送出去。"
+        }
+      ],
+      "text": "织补：维修通路的交接说明已送到双方。需要重建的设施另列预算，退场队员交由后续救援整备。\n\n猎矛：今天没有人要记住我的位置也没关系。只要明天有人还能沿这条路把工具送出去。"
+    },
+    "S07-INTRO": {
+      "id": "S07-INTRO",
+      "title": "第一座亮起的城 · 简报",
+      "kind": "INTRO",
+      "stageId": "S07",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "我们走过了路口，却还没把全城照亮。最后这份道路调度交接，决定维修物资能否持续进来。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "出发前我想再核对那扇窗，把需求写进白沼的清单。向前走也要记得有人正在等我们回来。"
+        }
+      ],
+      "text": "前哨：我们走过了路口，却还没把全城照亮。最后这份道路调度交接，决定维修物资能否持续进来。\n\n林小禾：出发前我想再核对那扇窗，把需求写进白沼的清单。向前走也要记得有人正在等我们回来。"
+    },
+    "S07-MID": {
+      "id": "S07-MID",
+      "title": "第一座亮起的城 · 联队频道",
+      "kind": "MID",
+      "stageId": "S07",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "先接回能够运作的路，再分批安排检修。城市的灯会逐步回来，我们也要为机装的下一段行程留下储备。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "我们不用追着每个对手离开。关键是让指挥交接成立，让大家有继续生活的通路。"
+        }
+      ],
+      "text": "织补：先接回能够运作的路，再分批安排检修。城市的灯会逐步回来，我们也要为机装的下一段行程留下储备。\n\n前哨：我们不用追着每个对手离开。关键是让指挥交接成立，让大家有继续生活的通路。"
+    },
+    "S07-OUTRO": {
+      "id": "S07-OUTRO",
+      "title": "第一座亮起的城 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S07",
+      "chapterId": "CH01",
+      "lines": [
+        {
+          "speakerId": "walker",
+          "text": "道路调度交接完成，第一批维修计划可以执行。白沼已经收到我们的需求，也发来了检修记录。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "小城会先亮起一部分灯。我把林奶奶的窗写进清单，带去白沼；离开不是把这里忘掉。"
+        }
+      ],
+      "text": "哨兵：道路调度交接完成，第一批维修计划可以执行。白沼已经收到我们的需求，也发来了检修记录。\n\n林小禾：小城会先亮起一部分灯。我把林奶奶的窗写进清单，带去白沼；离开不是把这里忘掉。"
+    },
+    "S08-INTRO": {
+      "id": "S08-INTRO",
+      "title": "停机的配电庭 · 简报",
+      "kind": "INTRO",
+      "stageId": "S08",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "白沼的配电庭停机了，备用线路还在。与其赌主网突然恢复，我想先证明一小段线路能够工作。"
+        },
+        {
+          "speakerId": "lighttank",
+          "text": "我的轻履带适合把消息送到不同节点。请把真正可走的路给我，水网看着近不代表能穿过去。"
+        }
+      ],
+      "text": "织补：白沼的配电庭停机了，备用线路还在。与其赌主网突然恢复，我想先证明一小段线路能够工作。\n\n雨燕：我的轻履带适合把消息送到不同节点。请把真正可走的路给我，水网看着近不代表能穿过去。"
+    },
+    "S08-MID": {
+      "id": "S08-MID",
+      "title": "停机的配电庭 · 联队频道",
+      "kind": "MID",
+      "stageId": "S08",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "能源站是供给节点，不是能修生命值的结构设施。接管与检修安排要分清，才不会白忙。"
+        },
+        {
+          "speakerId": "antitank",
+          "text": "我把稳定射线留给需要它的方向。工具和载荷都有限，今天先让第一段线路有机会。"
+        }
+      ],
+      "text": "织补：能源站是供给节点，不是能修生命值的结构设施。接管与检修安排要分清，才不会白忙。\n\n猎矛：我把稳定射线留给需要它的方向。工具和载荷都有限，今天先让第一段线路有机会。"
+    },
+    "S08-OUTRO": {
+      "id": "S08-OUTRO",
+      "title": "停机的配电庭 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S08",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "配电调度的交接有了依据。整备同盟开始核对备用线路，重联仍需要逐段测试和真实储备。"
+        },
+        {
+          "speakerId": "lighttank",
+          "text": "你工作时会把每个端子擦干净。我以前嫌慢，现在知道那是给后面的伙伴留下可靠的起点。"
+        }
+      ],
+      "text": "织补：配电调度的交接有了依据。整备同盟开始核对备用线路，重联仍需要逐段测试和真实储备。\n\n雨燕：你工作时会把每个端子擦干净。我以前嫌慢，现在知道那是给后面的伙伴留下可靠的起点。"
+    },
+    "S09-INTRO": {
+      "id": "S09-INTRO",
+      "title": "不是所有裂口都能补 · 简报",
+      "kind": "INTRO",
+      "stageId": "S09",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "停机的生产设施需要付费重建。资金和能源支付后，只恢复到一半结构，剩下的要继续等整备。"
+        },
+        {
+          "speakerId": "lighttank",
+          "text": "那就把预算写清楚。我愿意少跑一段不必要的路，好让这笔重建能源留给真正需要的地方。"
+        }
+      ],
+      "text": "织补：停机的生产设施需要付费重建。资金和能源支付后，只恢复到一半结构，剩下的要继续等整备。\n\n雨燕：那就把预算写清楚。我愿意少跑一段不必要的路，好让这笔重建能源留给真正需要的地方。"
+    },
+    "S09-MID": {
+      "id": "S09-MID",
+      "title": "不是所有裂口都能补 · 联队频道",
+      "kind": "MID",
+      "stageId": "S09",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "我的工具能修复仍可用的机装，不能免费重建废墟。设施主动修复也不能越过一半上限。"
+        },
+        {
+          "speakerId": "antitank",
+          "text": "承认做不到，不会让我们变得没用。把有限的能力摆在明处，伙伴才知道如何接着做。"
+        }
+      ],
+      "text": "织补：我的工具能修复仍可用的机装，不能免费重建废墟。设施主动修复也不能越过一半上限。\n\n猎矛：承认做不到，不会让我们变得没用。把有限的能力摆在明处，伙伴才知道如何接着做。"
+    },
+    "S09-OUTRO": {
+      "id": "S09-OUTRO",
+      "title": "不是所有裂口都能补 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S09",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "本次交接记录列明重建费用和半结构恢复规则。未完成的工程仍在预算里，没有被胜利抹去。"
+        },
+        {
+          "speakerId": "lighttank",
+          "text": "我在工具箱旁留了一杯温水。修理不能解决一切，但至少不用让认真工作的人忘记休息。"
+        }
+      ],
+      "text": "织补：本次交接记录列明重建费用和半结构恢复规则。未完成的工程仍在预算里，没有被胜利抹去。\n\n雨燕：我在工具箱旁留了一杯温水。修理不能解决一切，但至少不用让认真工作的人忘记休息。"
+    },
+    "S10-INTRO": {
+      "id": "S10-INTRO",
+      "title": "两座蓄能站 · 简报",
+      "kind": "INTRO",
+      "stageId": "S10",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "单独一处储备只能撑住很短的调度。两座蓄能站需要错开峰值，而不是同时把功率推到最高。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "我打开能完成的这一段，再等伙伴接上。白沼的重建预算提醒我，可靠也包括为下一趟留下能源。"
+        }
+      ],
+      "text": "织补：单独一处储备只能撑住很短的调度。两座蓄能站需要错开峰值，而不是同时把功率推到最高。\n\n唐砺：我打开能完成的这一段，再等伙伴接上。白沼的重建预算提醒我，可靠也包括为下一趟留下能源。"
+    },
+    "S10-MID": {
+      "id": "S10-MID",
+      "title": "两座蓄能站 · 联队频道",
+      "kind": "MID",
+      "stageId": "S10",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "lighttank",
+          "text": "剩余能源要按真实路程算。我很想多绕一圈查清全部，今天也得为返程留下份额。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "供给有限不等于只能放弃一边。先让两边都获得基本功率，再谈更高的产量。"
+        }
+      ],
+      "text": "雨燕：剩余能源要按真实路程算。我很想多绕一圈查清全部，今天也得为返程留下份额。\n\n织补：供给有限不等于只能放弃一边。先让两边都获得基本功率，再谈更高的产量。"
+    },
+    "S10-OUTRO": {
+      "id": "S10-OUTRO",
+      "title": "两座蓄能站 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S10",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "配电调度交接附上错峰方案，各地最低供给与维护预算都在表里。谁也没有获得无限使用的承诺。"
+        },
+        {
+          "speakerId": "antitank",
+          "text": "我们把两边的最低需求都放在同一页。那页纸很小，却比谁先抢完储备更像一份计划。"
+        }
+      ],
+      "text": "织补：配电调度交接附上错峰方案，各地最低供给与维护预算都在表里。谁也没有获得无限使用的承诺。\n\n猎矛：我们把两边的最低需求都放在同一页。那页纸很小，却比谁先抢完储备更像一份计划。"
+    },
+    "S11-INTRO": {
+      "id": "S11-INTRO",
+      "title": "水网里的短途车 · 简报",
+      "kind": "INTRO",
+      "stageId": "S11",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "lighttank",
+          "text": "地图上隔水的两条路离得很近，可我的履带不能渡海。先走桥边的陆路，别把捷径想出来。"
+        },
+        {
+          "speakerId": "scout",
+          "text": "我来核对桥头和岸线。你擅长跑得快，我擅长把能不能走说明白，正好可以分工。"
+        }
+      ],
+      "text": "雨燕：地图上隔水的两条路离得很近，可我的履带不能渡海。先走桥边的陆路，别把捷径想出来。\n\n游隼：我来核对桥头和岸线。你擅长跑得快，我擅长把能不能走说明白，正好可以分工。"
+    },
+    "S11-MID": {
+      "id": "S11-MID",
+      "title": "水网里的短途车 · 联队频道",
+      "kind": "MID",
+      "stageId": "S11",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "elite-E02",
+          "text": "路线看着近，也得让侦察确认。我不想为了证明机装可靠，等卡在半途才承认应该回来检查。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "每条线路都有自己的承载边界，机装也是。不是所有看上去相近的接口都能直接接起来。"
+        }
+      ],
+      "text": "唐砺：路线看着近，也得让侦察确认。我不想为了证明机装可靠，等卡在半途才承认应该回来检查。\n\n织补：每条线路都有自己的承载边界，机装也是。不是所有看上去相近的接口都能直接接起来。"
+    },
+    "S11-OUTRO": {
+      "id": "S11-OUTRO",
+      "title": "水网里的短途车 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S11",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "scout",
+          "text": "短途调度交接标出了合法陆路与桥头。未确认的浅水段仍留给有相应机装的伙伴处理。"
+        },
+        {
+          "speakerId": "lighttank",
+          "text": "我少跑了一段冤枉路，也少催了一次大家。以后说快跟上之前，我会先看看身后的路线。"
+        }
+      ],
+      "text": "游隼：短途调度交接标出了合法陆路与桥头。未确认的浅水段仍留给有相应机装的伙伴处理。\n\n雨燕：我少跑了一段冤枉路，也少催了一次大家。以后说快跟上之前，我会先看看身后的路线。"
+    },
+    "S12-INTRO": {
+      "id": "S12-INTRO",
+      "title": "另一边的织补 · 简报",
+      "kind": "INTRO",
+      "stageId": "S12",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "静海工程频道使用与我们相同的织星接口。她们也在修设备，只是认为分散调度会带来第二次停机。"
+        },
+        {
+          "speakerId": "red-engineer",
+          "text": "我们保留下来的检修记录可以核对。但请别把一张重联图纸，当作所有线路已经安全的证明。"
+        }
+      ],
+      "text": "织补：静海工程频道使用与我们相同的织星接口。她们也在修设备，只是认为分散调度会带来第二次停机。\n\n静海织补：我们保留下来的检修记录可以核对。但请别把一张重联图纸，当作所有线路已经安全的证明。"
+    },
+    "S12-MID": {
+      "id": "S12-MID",
+      "title": "另一边的织补 · 联队频道",
+      "kind": "MID",
+      "stageId": "S12",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "我接受这句话。把失败记录也放进测试条件，才能知道这条线究竟能承受多少。"
+        },
+        {
+          "speakerId": "red-engineer",
+          "text": "型号相同不代表意见相同。若你们愿意公开负载与误差，争论至少能落在真实数据上。"
+        }
+      ],
+      "text": "织补：我接受这句话。把失败记录也放进测试条件，才能知道这条线究竟能承受多少。\n\n静海织补：型号相同不代表意见相同。若你们愿意公开负载与误差，争论至少能落在真实数据上。"
+    },
+    "S12-OUTRO": {
+      "id": "S12-OUTRO",
+      "title": "另一边的织补 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S12",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "交接成立后，双方可以交换检修记录。每份数据都注明来源与责任，共用接口不会抹去各自的选择。"
+        },
+        {
+          "speakerId": "red-engineer",
+          "text": "把你的测试结果送来。我会按同一份标准核对，因为我也不想让另一座城重新熄灯。"
+        }
+      ],
+      "text": "织补：交接成立后，双方可以交换检修记录。每份数据都注明来源与责任，共用接口不会抹去各自的选择。\n\n静海织补：把你的测试结果送来。我会按同一份标准核对，因为我也不想让另一座城重新熄灯。"
+    },
+    "S13-INTRO": {
+      "id": "S13-INTRO",
+      "title": "低功率试验 · 简报",
+      "kind": "INTRO",
+      "stageId": "S13",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "这次测试只验证一段备用线。它若能以低功率维持基本供给，我们才有理由继续扩大范围。"
+        },
+        {
+          "speakerId": "antitank",
+          "text": "我会把需要稳定的地方守住。试验不是让你一个人承担风险，也不是让大家闭眼相信。"
+        }
+      ],
+      "text": "织补：这次测试只验证一段备用线。它若能以低功率维持基本供给，我们才有理由继续扩大范围。\n\n猎矛：我会把需要稳定的地方守住。试验不是让你一个人承担风险，也不是让大家闭眼相信。"
+    },
+    "S13-MID": {
+      "id": "S13-MID",
+      "title": "低功率试验 · 联队频道",
+      "kind": "MID",
+      "stageId": "S13",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "red-engineer",
+          "text": "静海令提高了节点警戒，预备队也要守住现有供给。请记录持续负载，不要用一次峰值替一夜照明做保证。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "我们会记录持续负载和掉电点。好消息需要证据，不好看的数字也必须留在报告里。"
+        }
+      ],
+      "text": "静海织补：静海令提高了节点警戒，预备队也要守住现有供给。请记录持续负载，不要用一次峰值替一夜照明做保证。\n\n织补：我们会记录持续负载和掉电点。好消息需要证据，不好看的数字也必须留在报告里。"
+    },
+    "S13-OUTRO": {
+      "id": "S13-OUTRO",
+      "title": "低功率试验 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S13",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "配电交接让战后的分段试验具备条件，整备同盟开始验证持续供给。方案仍只使用有限储备。"
+        },
+        {
+          "speakerId": "lighttank",
+          "text": "这回我不催你把结果写得更漂亮。灯能稳稳亮过一夜，比一瞬间亮得像太阳更好。"
+        }
+      ],
+      "text": "织补：配电交接让战后的分段试验具备条件，整备同盟开始验证持续供给。方案仍只使用有限储备。\n\n雨燕：这回我不催你把结果写得更漂亮。灯能稳稳亮过一夜，比一瞬间亮得像太阳更好。"
+    },
+    "S14-INTRO": {
+      "id": "S14-INTRO",
+      "title": "未完的重联图 · 简报",
+      "kind": "INTRO",
+      "stageId": "S14",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "图纸已经连起地方备用网，但跨域部分仍是虚线。没有运输、观测和零件，虚线不会自己发亮。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "把缺的接口、观测和运力逐项写清吧。我先清出一段能接上的路，伙伴到了，再继续往前。"
+        }
+      ],
+      "text": "织补：图纸已经连起地方备用网，但跨域部分仍是虚线。没有运输、观测和零件，虚线不会自己发亮。\n\n唐砺：把缺的接口、观测和运力逐项写清吧。我先清出一段能接上的路，伙伴到了，再继续往前。"
+    },
+    "S14-MID": {
+      "id": "S14-MID",
+      "title": "未完的重联图 · 联队频道",
+      "kind": "MID",
+      "stageId": "S14",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "antitank",
+          "text": "不用把困难藏起来才能得到帮助。清楚说出需要什么，伙伴才知道自己的位置。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "我们争取这份交接，是给后续试验留出通路。每一段正式上线仍要有人检查、有人负责。"
+        }
+      ],
+      "text": "猎矛：不用把困难藏起来才能得到帮助。清楚说出需要什么，伙伴才知道自己的位置。\n\n织补：我们争取这份交接，是给后续试验留出通路。每一段正式上线仍要有人检查、有人负责。"
+    },
+    "S14-OUTRO": {
+      "id": "S14-OUTRO",
+      "title": "未完的重联图 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S14",
+      "chapterId": "CH02",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "白沼交出分段重联图与测试记录。低功率方案具备继续验证的基础，下一步需要盐湾的公共船期。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "我把岚岸明信片夹在图纸后面。线条通向的不是六块颜色，是六域还在等待的人。"
+        }
+      ],
+      "text": "织补：白沼交出分段重联图与测试记录。低功率方案具备继续验证的基础，下一步需要盐湾的公共船期。\n\n前哨：我把岚岸明信片夹在图纸后面。线条通向的不是六块颜色，是六域还在等待的人。"
+    },
+    "S15-INTRO": {
+      "id": "S15-INTRO",
+      "title": "港口还有一班船 · 简报",
+      "kind": "INTRO",
+      "stageId": "S15",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "盐湾还有最后一班补给安排。有人想让它只开向自己的家，可白沼的零件也正等着这一班。"
+        },
+        {
+          "speakerId": "navaldestroyer",
+          "text": "海上和岸上都得有人工作。我护住能走的水路，岸上的接管交给能合法抵达的伙伴。"
+        }
+      ],
+      "text": "浪锋：盐湾还有最后一班补给安排。有人想让它只开向自己的家，可白沼的零件也正等着这一班。\n\n潮刃：海上和岸上都得有人工作。我护住能走的水路，岸上的接管交给能合法抵达的伙伴。"
+    },
+    "S15-MID": {
+      "id": "S15-MID",
+      "title": "港口还有一班船 · 联队频道",
+      "kind": "MID",
+      "stageId": "S15",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "我知道舍不得故乡是什么感觉。争取公共船期，不代表谁的家就必须排到永远没有以后。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "把需求和运力放到一起算。任何航线都不能许诺把有限的储备同时送满所有地方。"
+        }
+      ],
+      "text": "浪锋：我知道舍不得故乡是什么感觉。争取公共船期，不代表谁的家就必须排到永远没有以后。\n\n织补：把需求和运力放到一起算。任何航线都不能许诺把有限的储备同时送满所有地方。"
+    },
+    "S15-OUTRO": {
+      "id": "S15-OUTRO",
+      "title": "港口还有一班船 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S15",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "港区调度交接给公共船期留下位置。补给计划由整备同盟按清单接续，库存有限，运输也仍需要时间。"
+        },
+        {
+          "speakerId": "navaldestroyer",
+          "text": "等航路安稳些，我想请大家尝盐湾的海盐饼干。分享货舱之前，我们也可以先分享一张桌子。"
+        }
+      ],
+      "text": "浪锋：港区调度交接给公共船期留下位置。补给计划由整备同盟按清单接续，库存有限，运输也仍需要时间。\n\n潮刃：等航路安稳些，我想请大家尝盐湾的海盐饼干。分享货舱之前，我们也可以先分享一张桌子。"
+    },
+    "S16-INTRO": {
+      "id": "S16-INTRO",
+      "title": "岸线的另一面 · 简报",
+      "kind": "INTRO",
+      "stageId": "S16",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "amphibious",
+          "text": "岸边的道路与海面各有一段难走。我可以收起浮舱接上陆路，大型舰装就不必硬往岸上挤。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "岸上交接与海上接驳各有岗位，我先把名单写清。能走到那一格的人接管，其他伙伴把自己的通路照看好。"
+        }
+      ],
+      "text": "涉潮：岸边的道路与海面各有一段难走。我可以收起浮舱接上陆路，大型舰装就不必硬往岸上挤。\n\n江澜声：岸上交接与海上接驳各有岗位，我先把名单写清。能走到那一格的人接管，其他伙伴把自己的通路照看好。"
+    },
+    "S16-MID": {
+      "id": "S16-MID",
+      "title": "岸线的另一面 · 联队频道",
+      "kind": "MID",
+      "stageId": "S16",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "amphibious",
+          "text": "海上行进比陆地更耗战略能源。路程看着一样，也要重新算一次够不够。"
+        },
+        {
+          "speakerId": "navaldestroyer",
+          "text": "我留在合法水域，把各自能做的部分说明白。协作不需要谁假装拥有所有本领。"
+        }
+      ],
+      "text": "涉潮：海上行进比陆地更耗战略能源。路程看着一样，也要重新算一次够不够。\n\n潮刃：我留在合法水域，把各自能做的部分说明白。协作不需要谁假装拥有所有本领。"
+    },
+    "S16-OUTRO": {
+      "id": "S16-OUTRO",
+      "title": "岸线的另一面 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S16",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "岸线指挥交接完成，海陆衔接方式列入公共安排。后续航班仍需护航、整备和按时补能。"
+        },
+        {
+          "speakerId": "amphibious",
+          "text": "我把岸上的路牌也画进海图了。原来帮助两边看懂彼此，有时只需要多画一个箭头。"
+        }
+      ],
+      "text": "浪锋：岸线指挥交接完成，海陆衔接方式列入公共安排。后续航班仍需护航、整备和按时补能。\n\n涉潮：我把岸上的路牌也画进海图了。原来帮助两边看懂彼此，有时只需要多画一个箭头。"
+    },
+    "S17-INTRO": {
+      "id": "S17-INTRO",
+      "title": "云帆下的补给 · 简报",
+      "kind": "INTRO",
+      "stageId": "S17",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "aafrigate",
+          "text": "护航排班不能只写全部由舰队负责。对舰、对空和岸上交接各有伙伴，我们得把份额分清。"
+        },
+        {
+          "speakerId": "navaldestroyer",
+          "text": "我的炮火能帮上另一部分，但也有局限。先看清真实目标，别让漂亮的舰装替我们做承诺。"
+        }
+      ],
+      "text": "云帆：护航排班不能只写全部由舰队负责。对舰、对空和岸上交接各有伙伴，我们得把份额分清。\n\n潮刃：我的炮火能帮上另一部分，但也有局限。先看清真实目标，别让漂亮的舰装替我们做承诺。"
+    },
+    "S17-MID": {
+      "id": "S17-MID",
+      "title": "云帆下的补给 · 联队频道",
+      "kind": "MID",
+      "stageId": "S17",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "aafrigate",
+          "text": "专职防空只在自身遭受合法直接攻击时以一点五倍伤害反击，不会替邻格队友自动拦截。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "那我会认真选接驳时机。明白谁能做什么，比以为自己永远有人替挡更安全。"
+        }
+      ],
+      "text": "云帆：专职防空只在自身遭受合法直接攻击时以一点五倍伤害反击，不会替邻格队友自动拦截。\n\n浪锋：那我会认真选接驳时机。明白谁能做什么，比以为自己永远有人替挡更安全。"
+    },
+    "S17-OUTRO": {
+      "id": "S17-OUTRO",
+      "title": "云帆下的补给 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S17",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "aafrigate",
+          "text": "护航调度交接有了明确分工。运输安排按照实际通路推进，雷达范围不会变成覆盖所有人的屏障。"
+        },
+        {
+          "speakerId": "navaldestroyer",
+          "text": "云帆把轮班表写得像节拍。我以前嫌太细，今天才发现，细到每个人就没人被忘掉。"
+        }
+      ],
+      "text": "云帆：护航调度交接有了明确分工。运输安排按照实际通路推进，雷达范围不会变成覆盖所有人的屏障。\n\n潮刃：云帆把轮班表写得像节拍。我以前嫌太细，今天才发现，细到每个人就没人被忘掉。"
+    },
+    "S18-INTRO": {
+      "id": "S18-INTRO",
+      "title": "平台不属于一座城 · 简报",
+      "kind": "INTRO",
+      "stageId": "S18",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "海上能源平台撑着沿岸补给，附近城市却想独占它的产出。我们要谈的是最低份额，不是谁嗓门大。"
+        },
+        {
+          "speakerId": "aafrigate",
+          "text": "平台在合法海洋格上，我可以实际进入并接驳。岸上的建筑仍交给能进入那一格的伙伴。"
+        }
+      ],
+      "text": "浪锋：海上能源平台撑着沿岸补给，附近城市却想独占它的产出。我们要谈的是最低份额，不是谁嗓门大。\n\n云帆：平台在合法海洋格上，我可以实际进入并接驳。岸上的建筑仍交给能进入那一格的伙伴。"
+    },
+    "S18-MID": {
+      "id": "S18-MID",
+      "title": "平台不属于一座城 · 联队频道",
+      "kind": "MID",
+      "stageId": "S18",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "能源平台没有结构生命值供我们修复。控制节点后，后续检修与运输仍要有真实安排。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "清单上给每个地区留一行，也给设备维护留一行。谁都拿光，明天就不会有产出。"
+        }
+      ],
+      "text": "织补：能源平台没有结构生命值供我们修复。控制节点后，后续检修与运输仍要有真实安排。\n\n浪锋：清单上给每个地区留一行，也给设备维护留一行。谁都拿光，明天就不会有产出。"
+    },
+    "S18-OUTRO": {
+      "id": "S18-OUTRO",
+      "title": "平台不属于一座城 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S18",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "区域调度交接把平台供给纳入共同核对。产出与海运能力仍有限，公开份额也要留下维护的余地。"
+        },
+        {
+          "speakerId": "aafrigate",
+          "text": "平台值班员问我们来自哪里。我说，今天来自正在互相等待的六域，不只来自最近的海岸。"
+        }
+      ],
+      "text": "浪锋：区域调度交接把平台供给纳入共同核对。产出与海运能力仍有限，公开份额也要留下维护的余地。\n\n云帆：平台值班员问我们来自哪里。我说，今天来自正在互相等待的六域，不只来自最近的海岸。"
+    },
+    "S19-INTRO": {
+      "id": "S19-INTRO",
+      "title": "留给故乡的储备 · 简报",
+      "kind": "INTRO",
+      "stageId": "S19",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "有人说，先救故乡才配谈协作。我没有资格笑她，因为岚岸熄灯时，前哨也一直想着那扇窗。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "我理解舍不得故乡。把本地最低留存写进协议，再让其他地区也看得懂，分享才不用只靠一时勇气。"
+        }
+      ],
+      "text": "浪锋：有人说，先救故乡才配谈协作。我没有资格笑她，因为岚岸熄灯时，前哨也一直想着那扇窗。\n\n江澜声：我理解舍不得故乡。把本地最低留存写进协议，再让其他地区也看得懂，分享才不用只靠一时勇气。"
+    },
+    "S19-MID": {
+      "id": "S19-MID",
+      "title": "留给故乡的储备 · 联队频道",
+      "kind": "MID",
+      "stageId": "S19",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "assaultmarine",
+          "text": "我想立刻打开前面的路，也怕家里等不到下一班。可以害怕，但不能让恐惧替别人分配命运。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "我们先让船期持续下来。今天留给故乡的一份，也需要别的地区明天还能继续供货。"
+        }
+      ],
+      "text": "破浪：我想立刻打开前面的路，也怕家里等不到下一班。可以害怕，但不能让恐惧替别人分配命运。\n\n浪锋：我们先让船期持续下来。今天留给故乡的一份，也需要别的地区明天还能继续供货。"
+    },
+    "S19-OUTRO": {
+      "id": "S19-OUTRO",
+      "title": "留给故乡的储备 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S19",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "heavymarine",
+          "text": "交接清单明确了本地留存、跨域份额和下一次核对时间。谁也没有被要求一次交空自己的生活。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "我给故乡写信，说盐湾没有把它忘记。然后把同样的话，认真写进发往其他五域的信里。"
+        }
+      ],
+      "text": "礁盾：交接清单明确了本地留存、跨域份额和下一次核对时间。谁也没有被要求一次交空自己的生活。\n\n浪锋：我给故乡写信，说盐湾没有把它忘记。然后把同样的话，认真写进发往其他五域的信里。"
+    },
+    "S20-INTRO": {
+      "id": "S20-INTRO",
+      "title": "不再封闭的泊位 · 简报",
+      "kind": "INTRO",
+      "stageId": "S20",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "assaultmarine",
+          "text": "港区的门开过很多次，却总只给一张通行名单。今天我想让下一班也有能够核对的公共安排。"
+        },
+        {
+          "speakerId": "red-aafrigate",
+          "text": "统筹军按升级警戒安排预备队，是怕抢运让原有船期一起失效。开放需要可接续的排班，不是取消所有边界。"
+        }
+      ],
+      "text": "破浪：港区的门开过很多次，却总只给一张通行名单。今天我想让下一班也有能够核对的公共安排。\n\n静海云帆：统筹军按升级警戒安排预备队，是怕抢运让原有船期一起失效。开放需要可接续的排班，不是取消所有边界。"
+    },
+    "S20-MID": {
+      "id": "S20-MID",
+      "title": "不再封闭的泊位 · 联队频道",
+      "kind": "MID",
+      "stageId": "S20",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "heavymarine",
+          "text": "我们愿意留下最低留存和机位上限，也给设备检修留出时间。公共安排要能够执行，不只能够说服人。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "把双方的担心都写进船期。我们打开泊位，是为了让秩序服务更多人，不是不要秩序。"
+        }
+      ],
+      "text": "礁盾：我们愿意留下最低留存和机位上限，也给设备检修留出时间。公共安排要能够执行，不只能够说服人。\n\n浪锋：把双方的担心都写进船期。我们打开泊位，是为了让秩序服务更多人，不是不要秩序。"
+    },
+    "S20-OUTRO": {
+      "id": "S20-OUTRO",
+      "title": "不再封闭的泊位 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S20",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "elite-E04",
+          "text": "港区调度交接完成，整备同盟按核对过的船期接续运输。我要把岗位交给下一班，不把所有工作留给自己。"
+        },
+        {
+          "speakerId": "red-aafrigate",
+          "text": "我会把这份安排送回频道。若它能持续运作，我也希望自己的港口不再只有封锁铃声。"
+        }
+      ],
+      "text": "江澜声：港区调度交接完成，整备同盟按核对过的船期接续运输。我要把岗位交给下一班，不把所有工作留给自己。\n\n静海云帆：我会把这份安排送回频道。若它能持续运作，我也希望自己的港口不再只有封锁铃声。"
+    },
+    "S21-INTRO": {
+      "id": "S21-INTRO",
+      "title": "第一份共享运输表 · 简报",
+      "kind": "INTRO",
+      "stageId": "S21",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "第一次公共船期要同时接上白沼图纸、岚岸需求和镜原的设备。我们不能把一条通路当成全部完成。"
+        },
+        {
+          "speakerId": "amphibious",
+          "text": "海面到道路的最后一段由我接上。你把船期说清，我把陆路交给能继续前进的伙伴。"
+        }
+      ],
+      "text": "浪锋：第一次公共船期要同时接上白沼图纸、岚岸需求和镜原的设备。我们不能把一条通路当成全部完成。\n\n涉潮：海面到道路的最后一段由我接上。你把船期说清，我把陆路交给能继续前进的伙伴。"
+    },
+    "S21-MID": {
+      "id": "S21-MID",
+      "title": "第一份共享运输表 · 联队频道",
+      "kind": "MID",
+      "stageId": "S21",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "navaldestroyer",
+          "text": "保持可行的护航路线，把能源用在必要航程。多一圈威风，不会让货物更早到达。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "运输表上每一行都要能找到接班岗位。我熟悉的名字只是其中一部分，其他人的需要也得有人接住。"
+        }
+      ],
+      "text": "潮刃：保持可行的护航路线，把能源用在必要航程。多一圈威风，不会让货物更早到达。\n\n江澜声：运输表上每一行都要能找到接班岗位。我熟悉的名字只是其中一部分，其他人的需要也得有人接住。"
+    },
+    "S21-OUTRO": {
+      "id": "S21-OUTRO",
+      "title": "第一份共享运输表 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S21",
+      "chapterId": "CH03",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "盐湾交出共享运输清单与公共船期。镜原可以接到需要的精密设备，白沼也能等到后续零件。"
+        },
+        {
+          "speakerId": "heavymarine",
+          "text": "码头有人把旧封锁牌翻过来，写上下一班时间。我希望以后让人安心的，是时间，不是枪口。"
+        }
+      ],
+      "text": "浪锋：盐湾交出共享运输清单与公共船期。镜原可以接到需要的精密设备，白沼也能等到后续零件。\n\n礁盾：码头有人把旧封锁牌翻过来，写上下一班时间。我希望以后让人安心的，是时间，不是枪口。"
+    },
+    "S22-INTRO": {
+      "id": "S22-INTRO",
+      "title": "导航灯失联 · 简报",
+      "kind": "INTRO",
+      "stageId": "S22",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "reconplane",
+          "text": "晶潮把远程频道切成了杂音，旧坐标不一定还能用。我想找到的是可验证的线路，不是一张漂亮新图。"
+        },
+        {
+          "speakerId": "lightfighter",
+          "text": "我给你争取观测窗口。以前总想比别人飞得快，今天先让你有时间把事情看清。"
+        }
+      ],
+      "text": "纸鸢：晶潮把远程频道切成了杂音，旧坐标不一定还能用。我想找到的是可验证的线路，不是一张漂亮新图。\n\n青隼：我给你争取观测窗口。以前总想比别人飞得快，今天先让你有时间把事情看清。"
+    },
+    "S22-MID": {
+      "id": "S22-MID",
+      "title": "导航灯失联 · 联队频道",
+      "kind": "MID",
+      "stageId": "S22",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "reconplane",
+          "text": "扫描只扩大实际观测，雾外仍然未知。导航灯暗了，不代表下面没有需要帮助的人。"
+        },
+        {
+          "speakerId": "antiair",
+          "text": "地面也会继续工作。天空伙伴的任务不是替我们看遍全图，而是把可靠消息接下来。"
+        }
+      ],
+      "text": "纸鸢：扫描只扩大实际观测，雾外仍然未知。导航灯暗了，不代表下面没有需要帮助的人。\n\n天幕：地面也会继续工作。天空伙伴的任务不是替我们看遍全图，而是把可靠消息接下来。"
+    },
+    "S22-OUTRO": {
+      "id": "S22-OUTRO",
+      "title": "导航灯失联 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S22",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "reconplane",
+          "text": "机场调度交接给新的观测工作留下通路。旧航线逐段复核，尚未确认的地方继续保留空白。"
+        },
+        {
+          "speakerId": "lightfighter",
+          "text": "我把最快的那段航程留在记录里，没有拿来夸口。速度能让伙伴安心时，才最像我们的本领。"
+        }
+      ],
+      "text": "纸鸢：机场调度交接给新的观测工作留下通路。旧航线逐段复核，尚未确认的地方继续保留空白。\n\n青隼：我把最快的那段航程留在记录里，没有拿来夸口。速度能让伙伴安心时，才最像我们的本领。"
+    },
+    "S23-INTRO": {
+      "id": "S23-INTRO",
+      "title": "看见不等于够得到 · 简报",
+      "kind": "INTRO",
+      "stageId": "S23",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "tacticalrecon",
+          "text": "光学镜能看得更远，可看见并不意味着所有武器都能到达。我会把观测与可行路线分开标。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "给我能核对的目标和通路就好。即使机装足够厚重，也不能隔着未知替联队承担结果。"
+        }
+      ],
+      "text": "望隼：光学镜能看得更远，可看见并不意味着所有武器都能到达。我会把观测与可行路线分开标。\n\n棱镜：给我能核对的目标和通路就好。即使机装足够厚重，也不能隔着未知替联队承担结果。"
+    },
+    "S23-MID": {
+      "id": "S23-MID",
+      "title": "看见不等于够得到 · 联队频道",
+      "kind": "MID",
+      "stageId": "S23",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "tacticalrecon",
+          "text": "只有当前观测能作为即时信息。旧记录也有价值，但要写清它不是现在的现场。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "未知可以坦然说出来。我会按观测安排编队，也会把回程算进去，不拿伙伴的信任替代一段未经确认的航线。"
+        }
+      ],
+      "text": "望隼：只有当前观测能作为即时信息。旧记录也有价值，但要写清它不是现在的现场。\n\n陆栖云：未知可以坦然说出来。我会按观测安排编队，也会把回程算进去，不拿伙伴的信任替代一段未经确认的航线。"
+    },
+    "S23-OUTRO": {
+      "id": "S23-OUTRO",
+      "title": "看见不等于够得到 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S23",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "tacticalrecon",
+          "text": "中继调度交接附上观测时间和使用边界。整备同盟知道哪些线可以继续验证，哪些仍需补查。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "我会等可靠坐标，而不是催你把未知变成肯定。被信任的伙伴，也应该能够坦然说还不知道。"
+        }
+      ],
+      "text": "望隼：中继调度交接附上观测时间和使用边界。整备同盟知道哪些线可以继续验证，哪些仍需补查。\n\n棱镜：我会等可靠坐标，而不是催你把未知变成肯定。被信任的伙伴，也应该能够坦然说还不知道。"
+    },
+    "S24-INTRO": {
+      "id": "S24-INTRO",
+      "title": "云层之间 · 简报",
+      "kind": "INTRO",
+      "stageId": "S24",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "lightfighter",
+          "text": "我想先冲过那片云，但侦察窗口不是比速度。纸鸢需要什么样的时间，我先听清楚。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "你负责能完成的一段，不必把整片天空都扛在肩上。护航之后还有归途，速度也要留给伙伴能够跟上的节奏。"
+        }
+      ],
+      "text": "青隼：我想先冲过那片云，但侦察窗口不是比速度。纸鸢需要什么样的时间，我先听清楚。\n\n陆栖云：你负责能完成的一段，不必把整片天空都扛在肩上。护航之后还有归途，速度也要留给伙伴能够跟上的节奏。"
+    },
+    "S24-MID": {
+      "id": "S24-MID",
+      "title": "云层之间 · 联队频道",
+      "kind": "MID",
+      "stageId": "S24",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "reconplane",
+          "text": "我会按实际观测提交结果，不因为有人护航就把未知填满。你们争取来的时间值得认真使用。"
+        },
+        {
+          "speakerId": "lightfighter",
+          "text": "收到。今天不数我飞得多快，数有多少可靠消息能够传回联队。"
+        }
+      ],
+      "text": "纸鸢：我会按实际观测提交结果，不因为有人护航就把未知填满。你们争取来的时间值得认真使用。\n\n青隼：收到。今天不数我飞得多快，数有多少可靠消息能够传回联队。"
+    },
+    "S24-OUTRO": {
+      "id": "S24-OUTRO",
+      "title": "云层之间 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S24",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "fighter",
+          "text": "空域调度的交接为后续观测提供条件。护航安排仍有资源边界，不能保证每一次出行都没有风险。"
+        },
+        {
+          "speakerId": "lightfighter",
+          "text": "纸鸢说下次请我看她收藏的云图。我会等她画完，也会学着不把等待当成输了一次。"
+        }
+      ],
+      "text": "苍隼：空域调度的交接为后续观测提供条件。护航安排仍有资源边界，不能保证每一次出行都没有风险。\n\n青隼：纸鸢说下次请我看她收藏的云图。我会等她画完，也会学着不把等待当成输了一次。"
+    },
+    "S25-INTRO": {
+      "id": "S25-INTRO",
+      "title": "地面的天空 · 简报",
+      "kind": "INTRO",
+      "stageId": "S25",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "antiair",
+          "text": "机场在地面，天空的工作也需要这里的整备。别只盯着远处机翼，把能出发的地方忘了。"
+        },
+        {
+          "speakerId": "missileaa",
+          "text": "我们保护的方式是合法出击与受击反击。雷达画出的范围，不是自动替所有邻格挡弹的圈。"
+        }
+      ],
+      "text": "天幕：机场在地面，天空的工作也需要这里的整备。别只盯着远处机翼，把能出发的地方忘了。\n\n穹盾：我们保护的方式是合法出击与受击反击。雷达画出的范围，不是自动替所有邻格挡弹的圈。"
+    },
+    "S25-MID": {
+      "id": "S25-MID",
+      "title": "地面的天空 · 联队频道",
+      "kind": "MID",
+      "stageId": "S25",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "longrangeaa",
+          "text": "范围再大也有边界。把地面通路、机位和能源安排好，伙伴才能继续使用这片天空。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "地面的防空伙伴也有需要照看的方向。雷达不是绝对安全的承诺，航空编队会认真对齐观察和轮换。"
+        }
+      ],
+      "text": "星垒：范围再大也有边界。把地面通路、机位和能源安排好，伙伴才能继续使用这片天空。\n\n陆栖云：地面的防空伙伴也有需要照看的方向。雷达不是绝对安全的承诺，航空编队会认真对齐观察和轮换。"
+    },
+    "S25-OUTRO": {
+      "id": "S25-OUTRO",
+      "title": "地面的天空 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S25",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "missileaa",
+          "text": "整备调度交接建立了地空协作安排。受损结构、待办订单和有限机位都写进记录，没有假装一切已经完好。"
+        },
+        {
+          "speakerId": "longrangeaa",
+          "text": "值班室把我们三种雷达画在一张图上，又认真标出空白。我喜欢这张图，没有人假装无所不能。"
+        }
+      ],
+      "text": "穹盾：整备调度交接建立了地空协作安排。受损结构、待办订单和有限机位都写进记录，没有假装一切已经完好。\n\n星垒：值班室把我们三种雷达画在一张图上，又认真标出空白。我喜欢这张图，没有人假装无所不能。"
+    },
+    "S26-INTRO": {
+      "id": "S26-INTRO",
+      "title": "载荷的去处 · 简报",
+      "kind": "INTRO",
+      "stageId": "S26",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "lightbomber",
+          "text": "我的载荷用于地面和海面，不能替战斗机对空。分工写清楚，才不会在需要时互相误会。"
+        },
+        {
+          "speakerId": "helicopter",
+          "text": "我也是轻型地海支援，旋翼不代表制空本领。低处的通路有工作等着我们，不必争着像谁。"
+        }
+      ],
+      "text": "鸣雷：我的载荷用于地面和海面，不能替战斗机对空。分工写清楚，才不会在需要时互相误会。\n\n蜂鸟：我也是轻型地海支援，旋翼不代表制空本领。低处的通路有工作等着我们，不必争着像谁。"
+    },
+    "S26-MID": {
+      "id": "S26-MID",
+      "title": "载荷的去处 · 联队频道",
+      "kind": "MID",
+      "stageId": "S26",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "tacticalbomber",
+          "text": "每一份载荷都花费整备与能源。看清能完成的支援，再决定这一趟是否值得。"
+        },
+        {
+          "speakerId": "fighter",
+          "text": "天空的对空任务交给有相应武装的伙伴。被帮助的人不需要证明自己也能做完全一样的事。"
+        }
+      ],
+      "text": "惊雷：每一份载荷都花费整备与能源。看清能完成的支援，再决定这一趟是否值得。\n\n苍隼：天空的对空任务交给有相应武装的伙伴。被帮助的人不需要证明自己也能做完全一样的事。"
+    },
+    "S26-OUTRO": {
+      "id": "S26-OUTRO",
+      "title": "载荷的去处 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S26",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "lightbomber",
+          "text": "支援调度交接把不同载荷的职责分开记录。后续观测仍要复核，剩余能源也要留给真正需要的航程。"
+        },
+        {
+          "speakerId": "helicopter",
+          "text": "鸣雷问我是不是总惦记下面的人。我说，是呀，能飞起来，是为了看见他们怎样回家。"
+        }
+      ],
+      "text": "鸣雷：支援调度交接把不同载荷的职责分开记录。后续观测仍要复核，剩余能源也要留给真正需要的航程。\n\n蜂鸟：鸣雷问我是不是总惦记下面的人。我说，是呀，能飞起来，是为了看见他们怎样回家。"
+    },
+    "S27-INTRO": {
+      "id": "S27-INTRO",
+      "title": "最远的一段坐标 · 简报",
+      "kind": "INTRO",
+      "stageId": "S27",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "longrangerecon",
+          "text": "最后一段中继需要重新实测。我不想拿一次模糊回波，换一整支海峡联队对坐标的信任。"
+        },
+        {
+          "speakerId": "heavyfighter",
+          "text": "我按你的观测节奏护航。机装更重，不代表要轻装伙伴为了我加快每一步，先把可靠消息交出去。"
+        }
+      ],
+      "text": "天眼：最后一段中继需要重新实测。我不想拿一次模糊回波，换一整支海峡联队对坐标的信任。\n\n霄刃：我按你的观测节奏护航。机装更重，不代表要轻装伙伴为了我加快每一步，先把可靠消息交出去。"
+    },
+    "S27-MID": {
+      "id": "S27-MID",
+      "title": "最远的一段坐标 · 联队频道",
+      "kind": "MID",
+      "stageId": "S27",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "red-fighter",
+          "text": "警戒联队继续核对航线。你们提交新坐标，也请保留观测时间和误差；晶潮变化时，今天的图仍会成为旧图。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "记录会写清有效条件和复核周期。我也把接班与回程留下，让下一班知道什么时候必须重新确认。"
+        }
+      ],
+      "text": "静海苍隼：警戒联队继续核对航线。你们提交新坐标，也请保留观测时间和误差；晶潮变化时，今天的图仍会成为旧图。\n\n陆栖云：记录会写清有效条件和复核周期。我也把接班与回程留下，让下一班知道什么时候必须重新确认。"
+    },
+    "S27-OUTRO": {
+      "id": "S27-OUTRO",
+      "title": "最远的一段坐标 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S27",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "longrangerecon",
+          "text": "中继交接形成了可复核的线路记录。坐标也会随晶潮变化而失效，后续每一班航程都需要重新确认。"
+        },
+        {
+          "speakerId": "red-fighter",
+          "text": "把这样的记录送来，比让我相信一句不会出事更有意义。我们都不想让护航变成没有归途。"
+        }
+      ],
+      "text": "天眼：中继交接形成了可复核的线路记录。坐标也会随晶潮变化而失效，后续每一班航程都需要重新确认。\n\n静海苍隼：把这样的记录送来，比让我相信一句不会出事更有意义。我们都不想让护航变成没有归途。"
+    },
+    "S28-INTRO": {
+      "id": "S28-INTRO",
+      "title": "把坐标交给海峡 · 简报",
+      "kind": "INTRO",
+      "stageId": "S28",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "reconplane",
+          "text": "图上仍有一些空白，但通向海峡的关键线路已经有了核对方法。现在要让使用它的人也看得懂。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "把有时限的坐标和复核条件一起给我。海上伙伴会认真读，不会把它当成永远不变的承诺。"
+        }
+      ],
+      "text": "纸鸢：图上仍有一些空白，但通向海峡的关键线路已经有了核对方法。现在要让使用它的人也看得懂。\n\n浪锋：把有时限的坐标和复核条件一起给我。海上伙伴会认真读，不会把它当成永远不变的承诺。"
+    },
+    "S28-MID": {
+      "id": "S28-MID",
+      "title": "把坐标交给海峡 · 联队频道",
+      "kind": "MID",
+      "stageId": "S28",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "tacticalrecon",
+          "text": "别只传一串数字，也要传为什么可信、什么时候失效。共享信息，同样需要共享判断的边界。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "我把字写大些，也把过期条件标清。海上的伙伴能读懂，我就可以按轮班回去，让阿澄不用只等别人归航。"
+        }
+      ],
+      "text": "望隼：别只传一串数字，也要传为什么可信、什么时候失效。共享信息，同样需要共享判断的边界。\n\n陆栖云：我把字写大些，也把过期条件标清。海上的伙伴能读懂，我就可以按轮班回去，让阿澄不用只等别人归航。"
+    },
+    "S28-OUTRO": {
+      "id": "S28-OUTRO",
+      "title": "把坐标交给海峡 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S28",
+      "chapterId": "CH04",
+      "lines": [
+        {
+          "speakerId": "reconplane",
+          "text": "镜原交出云间中继坐标和复核流程。潮门海峡可以据此制定接线计划，下一步还缺砺岭的实物接口。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "我给图纸盖了个小船印记。不是替坐标增加准确度，是告诉你：收到消息的人，正在认真准备。"
+        }
+      ],
+      "text": "纸鸢：镜原交出云间中继坐标和复核流程。潮门海峡可以据此制定接线计划，下一步还缺砺岭的实物接口。\n\n浪锋：我给图纸盖了个小船印记。不是替坐标增加准确度，是告诉你：收到消息的人，正在认真准备。"
+    },
+    "S29-INTRO": {
+      "id": "S29-INTRO",
+      "title": "缺一枚接口 · 简报",
+      "kind": "INTRO",
+      "stageId": "S29",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "tank",
+          "text": "白沼有图纸，盐湾有船期，镜原有坐标。可缺少正确的接口零件，这些努力仍接不到主库上。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "砺岭能够装配它们。我们要争取继续生产的条件，不是打碎工厂之后庆祝图纸再也没人反对。"
+        }
+      ],
+      "text": "棱镜：白沼有图纸，盐湾有船期，镜原有坐标。可缺少正确的接口零件，这些努力仍接不到主库上。\n\n织补：砺岭能够装配它们。我们要争取继续生产的条件，不是打碎工厂之后庆祝图纸再也没人反对。"
+    },
+    "S29-MID": {
+      "id": "S29-MID",
+      "title": "缺一枚接口 · 联队频道",
+      "kind": "MID",
+      "stageId": "S29",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "heavyinfantry",
+          "text": "我守住需要等待的方向。守备不是叫别人躲在我后面，而是让她们放心完成自己的部分。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "把推进和后续整备一起考虑。能打通今天的路，也要给明天的队员留一个可以工作的地方。"
+        }
+      ],
+      "text": "壁垒：我守住需要等待的方向。守备不是叫别人躲在我后面，而是让她们放心完成自己的部分。\n\n棱镜：把推进和后续整备一起考虑。能打通今天的路，也要给明天的队员留一个可以工作的地方。"
+    },
+    "S29-OUTRO": {
+      "id": "S29-OUTRO",
+      "title": "缺一枚接口 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S29",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "重工调度交接建立了接口生产的核对通路。实际零件还需要材料、装配与运输，每一道工序都有伙伴接续。"
+        },
+        {
+          "speakerId": "heavyinfantry",
+          "text": "工人给接口盒贴了一枚太阳。我不擅长说漂亮话，但愿意让这枚太阳被送到有人需要的地方。"
+        }
+      ],
+      "text": "织补：重工调度交接建立了接口生产的核对通路。实际零件还需要材料、装配与运输，每一道工序都有伙伴接续。\n\n壁垒：工人给接口盒贴了一枚太阳。我不擅长说漂亮话，但愿意让这枚太阳被送到有人需要的地方。"
+    },
+    "S30-INTRO": {
+      "id": "S30-INTRO",
+      "title": "轻履带的先行线 · 简报",
+      "kind": "INTRO",
+      "stageId": "S30",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "lighttank",
+          "text": "重工道路宽，可拐弯不一定容易。让我先核对能走的线，再让棱镜把推进安排接上。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "给我能核对的通路与未知就好。我能承担自己的火力压力，也会等消息回来，不把推进叫作永远不能回头。"
+        }
+      ],
+      "text": "雨燕：重工道路宽，可拐弯不一定容易。让我先核对能走的线，再让棱镜把推进安排接上。\n\n唐砺：给我能核对的通路与未知就好。我能承担自己的火力压力，也会等消息回来，不把推进叫作永远不能回头。"
+    },
+    "S30-MID": {
+      "id": "S30-MID",
+      "title": "轻履带的先行线 · 联队频道",
+      "kind": "MID",
+      "stageId": "S30",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "lighttank",
+          "text": "快不等于必须独自抢先。我把消息送回来，大家一起过去，也没有浪费我的速度。"
+        },
+        {
+          "speakerId": "heavy",
+          "text": "我的步伐慢，但能稳住需要承受压力的位置。不要为了等我，就把自己的长处也收起来。"
+        }
+      ],
+      "text": "雨燕：快不等于必须独自抢先。我把消息送回来，大家一起过去，也没有浪费我的速度。\n\n磐石：我的步伐慢，但能稳住需要承受压力的位置。不要为了等我，就把自己的长处也收起来。"
+    },
+    "S30-OUTRO": {
+      "id": "S30-OUTRO",
+      "title": "轻履带的先行线 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S30",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "tank",
+          "text": "道路调度交接让轻重机装能够接续。我们保留各自的推进节奏，也将待查路段和补能安排一并交了出去。"
+        },
+        {
+          "speakerId": "lighttank",
+          "text": "我在路线图上画了三种脚步，不再只画最快那一种。联队是一群人一起到达，不是一个人先到。"
+        }
+      ],
+      "text": "棱镜：道路调度交接让轻重机装能够接续。我们保留各自的推进节奏，也将待查路段和补能安排一并交了出去。\n\n雨燕：我在路线图上画了三种脚步，不再只画最快那一种。联队是一群人一起到达，不是一个人先到。"
+    },
+    "S31-INTRO": {
+      "id": "S31-INTRO",
+      "title": "稳定炮架 · 简报",
+      "kind": "INTRO",
+      "stageId": "S31",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "lightartillery",
+          "text": "先把支撑脚放稳，才能认真交出这一发。地面炮兵移动后不能射击，推进得和伙伴错开节奏。"
+        },
+        {
+          "speakerId": "elite-E03",
+          "text": "先稳住炮架，再使用能核对的观测。近处有盲区，移动后不能开炮；我会把自己的节奏说给伙伴听。"
+        }
+      ],
+      "text": "火萤：先把支撑脚放稳，才能认真交出这一发。地面炮兵移动后不能射击，推进得和伙伴错开节奏。\n\n季知弦：先稳住炮架，再使用能核对的观测。近处有盲区，移动后不能开炮；我会把自己的节奏说给伙伴听。"
+    },
+    "S31-MID": {
+      "id": "S31-MID",
+      "title": "稳定炮架 · 联队频道",
+      "kind": "MID",
+      "stageId": "S31",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "elite-E02",
+          "text": "炮位准备时，我负责能继续推进的一段。知弦不必替机装假装没有边界，我也不把等待当成白走。"
+        },
+        {
+          "speakerId": "lightartillery",
+          "text": "谢谢。有人愿意替我留一个稳定窗口，细小的校准就不会被当作拖慢大家。"
+        }
+      ],
+      "text": "唐砺：炮位准备时，我负责能继续推进的一段。知弦不必替机装假装没有边界，我也不把等待当成白走。\n\n火萤：谢谢。有人愿意替我留一个稳定窗口，细小的校准就不会被当作拖慢大家。"
+    },
+    "S31-OUTRO": {
+      "id": "S31-OUTRO",
+      "title": "稳定炮架 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S31",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "artillery",
+          "text": "火力调度交接明确了炮装与推进队的节奏。远射支援仍需重新核对观测、射程和移动状态。"
+        },
+        {
+          "speakerId": "lightartillery",
+          "text": "我把支撑脚上的泥擦掉了，给下一位队员留好位置。认真等过的一次，也值得认真收尾。"
+        }
+      ],
+      "text": "弧光：火力调度交接明确了炮装与推进队的节奏。远射支援仍需重新核对观测、射程和移动状态。\n\n火萤：我把支撑脚上的泥擦掉了，给下一位队员留好位置。认真等过的一次，也值得认真收尾。"
+    },
+    "S32-INTRO": {
+      "id": "S32-INTRO",
+      "title": "一座必须留下的工厂 · 简报",
+      "kind": "INTRO",
+      "stageId": "S32",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "tank",
+          "text": "损毁工厂仍保留归属与等级，但要付资金和能源重建到一半结构。我们要把这笔代价纳入计划。"
+        },
+        {
+          "speakerId": "elite-E03",
+          "text": "留好重建预算，工厂还要给下一队装接口。工程工具不能免费重建，也不能把结构主动修过一半。"
+        }
+      ],
+      "text": "棱镜：损毁工厂仍保留归属与等级，但要付资金和能源重建到一半结构。我们要把这笔代价纳入计划。\n\n季知弦：留好重建预算，工厂还要给下一队装接口。工程工具不能免费重建，也不能把结构主动修过一半。"
+    },
+    "S32-MID": {
+      "id": "S32-MID",
+      "title": "一座必须留下的工厂 · 联队频道",
+      "kind": "MID",
+      "stageId": "S32",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "heavyinfantry",
+          "text": "能让结构分担一部分伤害，不代表伙伴没有受伤风险。我会同时看清守军和设施的状态。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "别把保存工厂当成不许付出代价。该推进时推进，但损毁会清除旧订单与库存，重建也不能把它们找回来。"
+        }
+      ],
+      "text": "壁垒：能让结构分担一部分伤害，不代表伙伴没有受伤风险。我会同时看清守军和设施的状态。\n\n棱镜：别把保存工厂当成不许付出代价。该推进时推进，但损毁会清除旧订单与库存，重建也不能把它们找回来。"
+    },
+    "S32-OUTRO": {
+      "id": "S32-OUTRO",
+      "title": "一座必须留下的工厂 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S32",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "工厂交接说明保留实际受损状态，重建费用另行支付。胜利不会补回已清除的订单或免费恢复结构。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "有人想把战果写成留下多少残骸。我更愿意记，交接以后还有多少人能够继续在这里工作。"
+        }
+      ],
+      "text": "织补：工厂交接说明保留实际受损状态，重建费用另行支付。胜利不会补回已清除的订单或免费恢复结构。\n\n棱镜：有人想把战果写成留下多少残骸。我更愿意记，交接以后还有多少人能够继续在这里工作。"
+    },
+    "S33-INTRO": {
+      "id": "S33-INTRO",
+      "title": "短暂的指挥窗口 · 简报",
+      "kind": "INTRO",
+      "stageId": "S33",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "jammer",
+          "text": "我能短时扰乱指挥链路，不能接管敌方人格。请把这个窗口用在能完成的推进上，不要许诺永久压制。"
+        },
+        {
+          "speakerId": "destroyer",
+          "text": "我会等稳定的射线与合适目标。长炮很显眼，却不能替我越过观测和直射的条件。"
+        }
+      ],
+      "text": "脉冲：我能短时扰乱指挥链路，不能接管敌方人格。请把这个窗口用在能完成的推进上，不要许诺永久压制。\n\n长钉：我会等稳定的射线与合适目标。长炮很显眼，却不能替我越过观测和直射的条件。"
+    },
+    "S33-MID": {
+      "id": "S33-MID",
+      "title": "短暂的指挥窗口 · 联队频道",
+      "kind": "MID",
+      "stageId": "S33",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "jammer",
+          "text": "对面也是有记忆与选择的人工生命。我们争取行动机会，不是把她们改写成服从自己的工具。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "把干扰、观测和突破口对齐，再告诉伙伴什么时候能接上。清出一段不难，留下能继续使用的路更重要。"
+        }
+      ],
+      "text": "脉冲：对面也是有记忆与选择的人工生命。我们争取行动机会，不是把她们改写成服从自己的工具。\n\n唐砺：把干扰、观测和突破口对齐，再告诉伙伴什么时候能接上。清出一段不难，留下能继续使用的路更重要。"
+    },
+    "S33-OUTRO": {
+      "id": "S33-OUTRO",
+      "title": "短暂的指挥窗口 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S33",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "destroyer",
+          "text": "指挥交接给后续工序留下窗口。各队的伤损与整备仍需继续处理，短暂干扰终究不能代替长期协作。"
+        },
+        {
+          "speakerId": "jammer",
+          "text": "我把频率旋钮拨回了平常的位置。等停战后，希望频道里能多一点问候，少一点必须压过谁。"
+        }
+      ],
+      "text": "长钉：指挥交接给后续工序留下窗口。各队的伤损与整备仍需继续处理，短暂干扰终究不能代替长期协作。\n\n脉冲：我把频率旋钮拨回了平常的位置。等停战后，希望频道里能多一点问候，少一点必须压过谁。"
+    },
+    "S34-INTRO": {
+      "id": "S34-INTRO",
+      "title": "磐石的另一种坚持 · 简报",
+      "kind": "INTRO",
+      "stageId": "S34",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "red-heavy",
+          "text": "静海令提高了重工警戒，预备队也得由设施和储备支撑。我坚持集中供给，因为不能再输掉核心工业。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "我也不愿重工停下。可边远地区断电，零件和运输也会失去接续，集中储备不能把这种代价藏起来。"
+        }
+      ],
+      "text": "静海磐石：静海令提高了重工警戒，预备队也得由设施和储备支撑。我坚持集中供给，因为不能再输掉核心工业。\n\n唐砺：我也不愿重工停下。可边远地区断电，零件和运输也会失去接续，集中储备不能把这种代价藏起来。"
+    },
+    "S34-MID": {
+      "id": "S34-MID",
+      "title": "磐石的另一种坚持 · 联队频道",
+      "kind": "MID",
+      "stageId": "S34",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "red-heavy",
+          "text": "你们的方案是否留下核心最低功率和复核办法？我不能拿这里的人，替一句共享承担全部风险。"
+        },
+        {
+          "speakerId": "elite-E03",
+          "text": "把最低功率、可用误差和暂停条件公开。方案不要求你放弃保护，只要求能核对谁在承担代价。"
+        }
+      ],
+      "text": "静海磐石：你们的方案是否留下核心最低功率和复核办法？我不能拿这里的人，替一句共享承担全部风险。\n\n季知弦：把最低功率、可用误差和暂停条件公开。方案不要求你放弃保护，只要求能核对谁在承担代价。"
+    },
+    "S34-OUTRO": {
+      "id": "S34-OUTRO",
+      "title": "磐石的另一种坚持 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S34",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "tank",
+          "text": "重工调度交接附上最低功率与共同复核要求。意见并未自动统一，但双方已经能核对同一份依据。"
+        },
+        {
+          "speakerId": "red-heavy",
+          "text": "我会认真读这份记录。若它能让别人继续生活，也保住这里的机器，坚持不必只有一种形状。"
+        }
+      ],
+      "text": "棱镜：重工调度交接附上最低功率与共同复核要求。意见并未自动统一，但双方已经能核对同一份依据。\n\n静海磐石：我会认真读这份记录。若它能让别人继续生活，也保住这里的机器，坚持不必只有一种形状。"
+    },
+    "S35-INTRO": {
+      "id": "S35-INTRO",
+      "title": "接口已经配对 · 简报",
+      "kind": "INTRO",
+      "stageId": "S35",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "heavyartillery",
+          "text": "最后一段攻坚需要准确的窗口。我可以等伙伴的观测，不必用更远的炮口证明自己应该先说话。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "接口配对要核对公差、负载和装配条件。图纸与零件能对上，才有资格送去中央主库。"
+        }
+      ],
+      "text": "雷砧：最后一段攻坚需要准确的窗口。我可以等伙伴的观测，不必用更远的炮口证明自己应该先说话。\n\n织补：接口配对要核对公差、负载和装配条件。图纸与零件能对上，才有资格送去中央主库。"
+    },
+    "S35-MID": {
+      "id": "S35-MID",
+      "title": "接口已经配对 · 联队频道",
+      "kind": "MID",
+      "stageId": "S35",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "elite-E03",
+          "text": "把能完成的这一发交出去，也给接管队留下路。不必等一个没有误差的世界，才能认真做好手上的工作。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "今天要带走的是可以使用的配对记录，也要留下能够继续整备的责任安排。"
+        }
+      ],
+      "text": "季知弦：把能完成的这一发交出去，也给接管队留下路。不必等一个没有误差的世界，才能认真做好手上的工作。\n\n棱镜：今天要带走的是可以使用的配对记录，也要留下能够继续整备的责任安排。"
+    },
+    "S35-OUTRO": {
+      "id": "S35-OUTRO",
+      "title": "接口已经配对 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S35",
+      "chapterId": "CH05",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "砺岭交出接口配对表与材料安排。盐湾负责接续运输，镜原的坐标让它们有机会抵达潮门。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "白沼教我算返程，砺岭教我留整备。现在这条路上有伙伴接续，我来打开下一段，也会按时回来检修。"
+        }
+      ],
+      "text": "织补：砺岭交出接口配对表与材料安排。盐湾负责接续运输，镜原的坐标让它们有机会抵达潮门。\n\n唐砺：白沼教我算返程，砺岭教我留整备。现在这条路上有伙伴接续，我来打开下一段，也会按时回来检修。"
+    },
+    "S36-INTRO": {
+      "id": "S36-INTRO",
+      "title": "最后一份接线表 · 简报",
+      "kind": "INTRO",
+      "stageId": "S36",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "cruiser",
+          "text": "岚岸的需求、白沼的图纸、盐湾的船期、镜原的坐标和砺岭的接口，都要在海峡这边对齐。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "清单上还有林奶奶的窗、白沼的检修室和很多我没见过的人。我把谁在等写清，请大家一起核对最低需要。"
+        }
+      ],
+      "text": "巡岚：岚岸的需求、白沼的图纸、盐湾的船期、镜原的坐标和砺岭的接口，都要在海峡这边对齐。\n\n林小禾：清单上还有林奶奶的窗、白沼的检修室和很多我没见过的人。我把谁在等写清，请大家一起核对最低需要。"
+    },
+    "S36-MID": {
+      "id": "S36-MID",
+      "title": "最后一份接线表 · 联队频道",
+      "kind": "MID",
+      "stageId": "S36",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "reconplane",
+          "text": "我会按复核条件继续核对坐标。过去的努力是依据，不是让我们今天可以省略检查的理由。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "把岗位、接班时刻和核对条件说清，海上才能接上地面与天空。我会把经验交出去，而不是把每段都揽过来。"
+        }
+      ],
+      "text": "纸鸢：我会按复核条件继续核对坐标。过去的努力是依据，不是让我们今天可以省略检查的理由。\n\n江澜声：把岗位、接班时刻和核对条件说清，海上才能接上地面与天空。我会把经验交出去，而不是把每段都揽过来。"
+    },
+    "S36-OUTRO": {
+      "id": "S36-OUTRO",
+      "title": "最后一份接线表 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S36",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "外围调度交接形成最后一份接线表。每段任务与责任人已经写清，主库接入仍需后续实际交接。"
+        },
+        {
+          "speakerId": "cruiser",
+          "text": "这份表比任何一张航图都热闹。我很高兴，六域终于不是六个频道各自喊着自己的名字。"
+        }
+      ],
+      "text": "织补：外围调度交接形成最后一份接线表。每段任务与责任人已经写清，主库接入仍需后续实际交接。\n\n巡岚：这份表比任何一张航图都热闹。我很高兴，六域终于不是六个频道各自喊着自己的名字。"
+    },
+    "S37-INTRO": {
+      "id": "S37-INTRO",
+      "title": "海峡仍在呼吸 · 简报",
+      "kind": "INTRO",
+      "stageId": "S37",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "submarine",
+          "text": "我沿真实可行的海路工作，不会因为舰装像潜艇就自动隐形。不要把我的安静误读成没有风险。"
+        },
+        {
+          "speakerId": "cruiser",
+          "text": "你把可行航段说清，我安排其他伙伴接续。海峡需要持续通行，不能只打开一瞬间。"
+        }
+      ],
+      "text": "潜锋：我沿真实可行的海路工作，不会因为舰装像潜艇就自动隐形。不要把我的安静误读成没有风险。\n\n巡岚：你把可行航段说清，我安排其他伙伴接续。海峡需要持续通行，不能只打开一瞬间。"
+    },
+    "S37-MID": {
+      "id": "S37-MID",
+      "title": "海峡仍在呼吸 · 联队频道",
+      "kind": "MID",
+      "stageId": "S37",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "marine",
+          "text": "海面和岸上都还有各自的工作。我们依据当前观测接驳，不让一条旧路线替大家承担判断。"
+        },
+        {
+          "speakerId": "submarine",
+          "text": "我话不多，但会把不确定的地方说出来。能够被核对的消息，比让伙伴猜我的意思更可靠。"
+        }
+      ],
+      "text": "浪锋：海面和岸上都还有各自的工作。我们依据当前观测接驳，不让一条旧路线替大家承担判断。\n\n潜锋：我话不多，但会把不确定的地方说出来。能够被核对的消息，比让伙伴猜我的意思更可靠。"
+    },
+    "S37-OUTRO": {
+      "id": "S37-OUTRO",
+      "title": "海峡仍在呼吸 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S37",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "cruiser",
+          "text": "海峡调度交接让公共运输有了接续依据。今天通过的航段也得继续复核，船期需要能源、检修与轮班一起支撑。"
+        },
+        {
+          "speakerId": "submarine",
+          "text": "岸上的灯照到海面时，没有把雾赶尽。我觉得这样就够了，至少有人知道我们正在一起回来。"
+        }
+      ],
+      "text": "巡岚：海峡调度交接让公共运输有了接续依据。今天通过的航段也得继续复核，船期需要能源、检修与轮班一起支撑。\n\n潜锋：岸上的灯照到海面时，没有把雾赶尽。我觉得这样就够了，至少有人知道我们正在一起回来。"
+    },
+    "S38-INTRO": {
+      "id": "S38-INTRO",
+      "title": "穹海下的护航 · 简报",
+      "kind": "INTRO",
+      "stageId": "S38",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "areaaship",
+          "text": "海峡的空海压力需要共同分担。我能承担一部分防空，不能把任何雷达范围许诺成绝对安全。"
+        },
+        {
+          "speakerId": "aamissileship",
+          "text": "我会把合法攻击方向和轮班安排说清。巡岚负责另一部分，我们也要让登陆伙伴知道剩下的风险。"
+        }
+      ],
+      "text": "穹海：海峡的空海压力需要共同分担。我能承担一部分防空，不能把任何雷达范围许诺成绝对安全。\n\n海幕：我会把合法攻击方向和轮班安排说清。巡岚负责另一部分，我们也要让登陆伙伴知道剩下的风险。"
+    },
+    "S38-MID": {
+      "id": "S38-MID",
+      "title": "穹海下的护航 · 联队频道",
+      "kind": "MID",
+      "stageId": "S38",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "bomber",
+          "text": "护航不是让我忘记载荷用途。我只支援地面与海面，天空的交战交给相应武装的队友。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "谢谢你把边界说清。我也会把观察窗口与归程交给接班队，谁都不需要独自留到所有风险消失。"
+        }
+      ],
+      "text": "远雷：护航不是让我忘记载荷用途。我只支援地面与海面，天空的交战交给相应武装的队友。\n\n陆栖云：谢谢你把边界说清。我也会把观察窗口与归程交给接班队，谁都不需要独自留到所有风险消失。"
+    },
+    "S38-OUTRO": {
+      "id": "S38-OUTRO",
+      "title": "穹海下的护航 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S38",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "aamissileship",
+          "text": "护航调度交接记录了空海分工与资源边界。我们把未覆盖的方向也交给接班队，不让一张排班表掩住风险。"
+        },
+        {
+          "speakerId": "areaaship",
+          "text": "我听见地面频道说了一声收到。没有长长的感谢，却让我知道，这一份责任已经有人接住了。"
+        }
+      ],
+      "text": "海幕：护航调度交接记录了空海分工与资源边界。我们把未覆盖的方向也交给接班队，不让一张排班表掩住风险。\n\n穹海：我听见地面频道说了一声收到。没有长长的感谢，却让我知道，这一份责任已经有人接住了。"
+    },
+    "S39-INTRO": {
+      "id": "S39-INTRO",
+      "title": "水闸之后 · 简报",
+      "kind": "INTRO",
+      "stageId": "S39",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "elite-E04",
+          "text": "水闸之后是地面通路。先核对海陆岗位，再让重甲接上；我把接驳办法交给下一班，不替每个人决定每一步。"
+        },
+        {
+          "speakerId": "amphibious",
+          "text": "我把浮舱与履带的切换放进计划。哪一段需要更多能源，哪一段能够上岸，都要提前说清。"
+        }
+      ],
+      "text": "江澜声：水闸之后是地面通路。先核对海陆岗位，再让重甲接上；我把接驳办法交给下一班，不替每个人决定每一步。\n\n涉潮：我把浮舱与履带的切换放进计划。哪一段需要更多能源，哪一段能够上岸，都要提前说清。"
+    },
+    "S39-MID": {
+      "id": "S39-MID",
+      "title": "水闸之后 · 联队频道",
+      "kind": "MID",
+      "stageId": "S39",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "heavy",
+          "text": "我不催你们把岸线一次清空。给我一条合法可走的路，我会承担重甲该承担的部分。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "不是我一直守在这里才叫可靠。让后面的队伍知道如何接手，这条通路才会在换班以后继续工作。"
+        }
+      ],
+      "text": "磐石：我不催你们把岸线一次清空。给我一条合法可走的路，我会承担重甲该承担的部分。\n\n江澜声：不是我一直守在这里才叫可靠。让后面的队伍知道如何接手，这条通路才会在换班以后继续工作。"
+    },
+    "S39-OUTRO": {
+      "id": "S39-OUTRO",
+      "title": "水闸之后 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S39",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "amphibious",
+          "text": "岸线调度交接为后续重甲提供接续安排。水闸由整备同盟按表核对操作，每一次切换都要先确认线路。"
+        },
+        {
+          "speakerId": "heavymarine",
+          "text": "我把接驳绳结又检查了一遍。大家笑我慢，我也笑，能放心松手的时候才值得赶下一段。"
+        }
+      ],
+      "text": "涉潮：岸线调度交接为后续重甲提供接续安排。水闸由整备同盟按表核对操作，每一次切换都要先确认线路。\n\n礁盾：我把接驳绳结又检查了一遍。大家笑我慢，我也笑，能放心松手的时候才值得赶下一段。"
+    },
+    "S40-INTRO": {
+      "id": "S40-INTRO",
+      "title": "主库不能熄灭 · 简报",
+      "kind": "INTRO",
+      "stageId": "S40",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "battleship",
+          "text": "我能机动后开炮，但每一发仍要核对目标与合法射程。厚重舰装不是把海岸抹平的理由。"
+        },
+        {
+          "speakerId": "bomber",
+          "text": "我的载荷用于地面与海面，不负责制空。我们清除封锁，是让接线工作能够发生，而不是替工作本身。"
+        }
+      ],
+      "text": "镇海：我能机动后开炮，但每一发仍要核对目标与合法射程。厚重舰装不是把海岸抹平的理由。\n\n远雷：我的载荷用于地面与海面，不负责制空。我们清除封锁，是让接线工作能够发生，而不是替工作本身。"
+    },
+    "S40-MID": {
+      "id": "S40-MID",
+      "title": "主库不能熄灭 · 联队频道",
+      "kind": "MID",
+      "stageId": "S40",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "elite-E03",
+          "text": "保住主库，也给地方留下最低供给。我完成能核对的火力支援，剩下的交接让伙伴来做，不追逐一发完美答案。"
+        },
+        {
+          "speakerId": "battleship",
+          "text": "那就给接管伙伴留下道路，也给以后使用主库的人留下设备。炮火停下时，责任还要继续。"
+        }
+      ],
+      "text": "季知弦：保住主库，也给地方留下最低供给。我完成能核对的火力支援，剩下的交接让伙伴来做，不追逐一发完美答案。\n\n镇海：那就给接管伙伴留下道路，也给以后使用主库的人留下设备。炮火停下时，责任还要继续。"
+    },
+    "S40-OUTRO": {
+      "id": "S40-OUTRO",
+      "title": "主库不能熄灭 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S40",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "主库外围指挥交接给安全接入留下条件。储备没有因此增加，后续重联仍按既定顺序分段完成。"
+        },
+        {
+          "speakerId": "bomber",
+          "text": "我希望以后有人记得这片天空，不只是因为我们来过，也因为她们终于可以在下面继续生活。"
+        }
+      ],
+      "text": "织补：主库外围指挥交接给安全接入留下条件。储备没有因此增加，后续重联仍按既定顺序分段完成。\n\n远雷：我希望以后有人记得这片天空，不只是因为我们来过，也因为她们终于可以在下面继续生活。"
+    },
+    "S41-INTRO": {
+      "id": "S41-INTRO",
+      "title": "静海令的最后防线 · 简报",
+      "kind": "INTRO",
+      "stageId": "S41",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "red-areaaship",
+          "text": "静海令已把各处警戒交给共同调度。我守护主库与海峡，请提交复核与停机条件，不能只靠一句不会出事。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "五域的记录、最低功率和分段顺序都已送来。我们愿意接受公开核对，也要求边远地区拥有底线。"
+        }
+      ],
+      "text": "静海穹海：静海令已把各处警戒交给共同调度。我守护主库与海峡，请提交复核与停机条件，不能只靠一句不会出事。\n\n织补：五域的记录、最低功率和分段顺序都已送来。我们愿意接受公开核对，也要求边远地区拥有底线。"
+    },
+    "S41-MID": {
+      "id": "S41-MID",
+      "title": "静海令的最后防线 · 联队频道",
+      "kind": "MID",
+      "stageId": "S41",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "red-areaaship",
+          "text": "若负载变化，谁来决定暂停哪一段？中央需要协调，地方也必须承担不能各自抢用的责任。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "把应急条件和共同复核写进交接。我们拒绝永久封锁，也不能用另一种独断代替它。"
+        }
+      ],
+      "text": "静海穹海：若负载变化，谁来决定暂停哪一段？中央需要协调，地方也必须承担不能各自抢用的责任。\n\n前哨：把应急条件和共同复核写进交接。我们拒绝永久封锁，也不能用另一种独断代替它。"
+    },
+    "S41-OUTRO": {
+      "id": "S41-OUTRO",
+      "title": "静海令的最后防线 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S41",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "engineer",
+          "text": "外围交接形成主库安全接入的核对记录。最后枢纽仍需实际接管，每项责任也必须留下能够追问的名字。"
+        },
+        {
+          "speakerId": "red-areaaship",
+          "text": "我会将核对结果送回中央。若这份秩序能保住六域，就该有人认真考虑静海令之外的办法。"
+        }
+      ],
+      "text": "织补：外围交接形成主库安全接入的核对记录。最后枢纽仍需实际接管，每项责任也必须留下能够追问的名字。\n\n静海穹海：我会将核对结果送回中央。若这份秩序能保住六域，就该有人认真考虑静海令之外的办法。"
+    },
+    "S42-INTRO": {
+      "id": "S42-INTRO",
+      "title": "把黎明送回六域 · 简报",
+      "kind": "INTRO",
+      "stageId": "S42",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "我们从一扇亮着的窗走到这里，带来了五域的实际工作。最后要完成中央枢纽交接，让最低供给上线。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "分段顺序已经核对，储备仍然有限。让每个地区持续获得基本功率，比让一处短暂全亮更重要。"
+        }
+      ],
+      "text": "前哨：我们从一扇亮着的窗走到这里，带来了五域的实际工作。最后要完成中央枢纽交接，让最低供给上线。\n\n织补：分段顺序已经核对，储备仍然有限。让每个地区持续获得基本功率，比让一处短暂全亮更重要。"
+    },
+    "S42-MID": {
+      "id": "S42-MID",
+      "title": "把黎明送回六域 · 联队频道",
+      "kind": "MID",
+      "stageId": "S42",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "elite-E05",
+          "text": "线路按约定继续复核，回程与接班也已经写清。今天的成功需要明天继续工作，也需要大家认真休息。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "接管枢纽是为了完成交接，不必把所有对手都追到退场。把最后一个窗口留给真正的接线。"
+        }
+      ],
+      "text": "陆栖云：线路按约定继续复核，回程与接班也已经写清。今天的成功需要明天继续工作，也需要大家认真休息。\n\n棱镜：接管枢纽是为了完成交接，不必把所有对手都追到退场。把最后一个窗口留给真正的接线。"
+    },
+    "S42-OUTRO": {
+      "id": "S42-OUTRO",
+      "title": "把黎明送回六域 · 交接",
+      "kind": "OUTRO",
+      "stageId": "S42",
+      "chapterId": "CH06",
+      "lines": [
+        {
+          "speakerId": "infantry",
+          "text": "中央枢纽交接完成，六域启动共同最低供给，暂停静海令，并将灾时协调与公开复核写入协议。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "公共渡船开始排第一班恢复船期。最后的岗位由我交给接班者，栖云也该按约定回去，让阿澄等到她。"
+        }
+      ],
+      "text": "前哨：中央枢纽交接完成，六域启动共同最低供给，暂停静海令，并将灾时协调与公开复核写入协议。\n\n江澜声：公共渡船开始排第一班恢复船期。最后的岗位由我交给接班者，栖云也该按约定回去，让阿澄等到她。"
+    },
+    "EPILOGUE-42": {
+      "id": "EPILOGUE-42",
+      "title": "等一班渡船",
+      "kind": "EPILOGUE",
+      "stageId": null,
+      "chapterId": null,
+      "lines": [
+        {
+          "speakerId": "elite-E01",
+          "text": "林奶奶的窗又亮了，我的地图也添了许多名字。以后还会有不知道的路，我会问，也会把自己需要帮助说清。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "海风没有变，公共船期却可以被六域一起查看。我圈好了回家的班次，阿澄和接班伙伴都知道什么时候等我。"
+        }
+      ],
+      "text": "林小禾：林奶奶的窗又亮了，我的地图也添了许多名字。以后还会有不知道的路，我会问，也会把自己需要帮助说清。\n\n陆栖云：海风没有变，公共船期却可以被六域一起查看。我圈好了回家的班次，阿澄和接班伙伴都知道什么时候等我。"
+    },
+    "ELITE-E01-P01": {
+      "id": "ELITE-E01-P01",
+      "title": "街区灯芽 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S02",
+      "chapterId": "CH01",
+      "characterId": "E01",
+      "portraitId": "E01-P01",
+      "unlockMissionId": "S02",
+      "lines": [
+        {
+          "speakerId": "elite-E01",
+          "text": "我叫林小禾。图里有面包店和林奶奶的窗，不知道的路也会留白。"
+        },
+        {
+          "speakerId": "infantry",
+          "text": "欢迎加入。陌生设备就问伙伴，认真求助不会让你的消息变轻。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "那我先整理灯路和工具包，给大家教我的办法也留个位置。"
+        }
+      ],
+      "text": "林小禾：我叫林小禾。图里有面包店和林奶奶的窗，不知道的路也会留白。\n\n前哨：欢迎加入。陌生设备就问伙伴，认真求助不会让你的消息变轻。\n\n林小禾：那我先整理灯路和工具包，给大家教我的办法也留个位置。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E01-P02": {
+      "id": "ELITE-E01-P02",
+      "title": "城门外的灯 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S07",
+      "chapterId": "CH01",
+      "characterId": "E01",
+      "portraitId": "E01-P02",
+      "unlockMissionId": "S07",
+      "lines": [
+        {
+          "speakerId": "elite-E01",
+          "text": "灯盒换了新夹扣，林奶奶的窗还在。亮一点，不代表我就知道所有的路。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "镜原后方收到。要恢复的是有人正在等的灯，认真把那扇窗写下来。",
+          "channelContext": "镜原后方公共整备协作频道；入队前通信，不赋予战斗配置资格。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "我也想让伙伴接上同一份消息。等训练准备好，再把联络的办法做得更可靠。"
+        }
+      ],
+      "text": "林小禾：灯盒换了新夹扣，林奶奶的窗还在。亮一点，不代表我就知道所有的路。\n\n陆栖云：镜原后方收到。要恢复的是有人正在等的灯，认真把那扇窗写下来。\n\n林小禾：我也想让伙伴接上同一份消息。等训练准备好，再把联络的办法做得更可靠。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E01-P03": {
+      "id": "ELITE-E01-P03",
+      "title": "清单里的那扇窗 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S36",
+      "chapterId": "CH06",
+      "characterId": "E01",
+      "portraitId": "E01-P03",
+      "unlockMissionId": "S36",
+      "lines": [
+        {
+          "speakerId": "elite-E01",
+          "text": "防风外套多了地图扣，我还是记得那扇窗。不用比谁都厉害，也能把一个人的需要写清。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "写清谁在等、下一段由谁接。你的观察已经能让别人接着执行。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "黎明通行的练习继续做。我会帮忙，也会告诉大家什么时候需要帮忙。"
+        }
+      ],
+      "text": "林小禾：防风外套多了地图扣，我还是记得那扇窗。不用比谁都厉害，也能把一个人的需要写清。\n\n江澜声：写清谁在等、下一段由谁接。你的观察已经能让别人接着执行。\n\n林小禾：黎明通行的练习继续做。我会帮忙，也会告诉大家什么时候需要帮忙。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E02-P01": {
+      "id": "ELITE-E02-P01",
+      "title": "装甲内侧的签名 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S09",
+      "chapterId": "CH02",
+      "characterId": "E02",
+      "portraitId": "E02-P01",
+      "unlockMissionId": "S09",
+      "lines": [
+        {
+          "speakerId": "elite-E02",
+          "text": "我叫唐砺，装甲里贴着检修签名。以前怕人看见伤痕，现在先算返程与整备。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "欢迎加入。贯甲能打开一段路，后续队伍能不能接上也要一起考虑。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "你们能接上，我再往前。需要回来检修的时候，我也会把话说清。"
+        }
+      ],
+      "text": "唐砺：我叫唐砺，装甲里贴着检修签名。以前怕人看见伤痕，现在先算返程与整备。\n\n织补：欢迎加入。贯甲能打开一段路，后续队伍能不能接上也要一起考虑。\n\n唐砺：你们能接上，我再往前。需要回来检修的时候，我也会把话说清。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E02-P02": {
+      "id": "ELITE-E02-P02",
+      "title": "你们能接上，我再往前 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S14",
+      "chapterId": "CH02",
+      "characterId": "E02",
+      "portraitId": "E02-P02",
+      "unlockMissionId": "S14",
+      "lines": [
+        {
+          "speakerId": "elite-E02",
+          "text": "新夹扣留给维护接口，旧签名没撕。我不再把不肯回来当作可靠。"
+        },
+        {
+          "speakerId": "engineer",
+          "text": "整备光环是协作训练的方向。先练熟返回和交接，装备不能替人记住责任。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "图上那些虚线，和伙伴一段段接。学会等下一队，也可以叫突破。"
+        }
+      ],
+      "text": "唐砺：新夹扣留给维护接口，旧签名没撕。我不再把不肯回来当作可靠。\n\n织补：整备光环是协作训练的方向。先练熟返回和交接，装备不能替人记住责任。\n\n唐砺：图上那些虚线，和伙伴一段段接。学会等下一队，也可以叫突破。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E02-P03": {
+      "id": "ELITE-E02-P03",
+      "title": "回铸不等于失败 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S34",
+      "chapterId": "CH05",
+      "characterId": "E02",
+      "portraitId": "E02-P03",
+      "unlockMissionId": "S34",
+      "lines": [
+        {
+          "speakerId": "elite-E02",
+          "text": "楔甲重新铸好了，我还是唐砺。磐石担心工厂停机，我也不愿下一队没处整备。"
+        },
+        {
+          "speakerId": "elite-E03",
+          "text": "可靠不需要没有损伤，只需要坦诚算出代价。给质疑你的人也留一份计划。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "回铸突破继续演练，检修签名继续留。我清出一段，让大家能接上。"
+        }
+      ],
+      "text": "唐砺：楔甲重新铸好了，我还是唐砺。磐石担心工厂停机，我也不愿下一队没处整备。\n\n季知弦：可靠不需要没有损伤，只需要坦诚算出代价。给质疑你的人也留一份计划。\n\n唐砺：回铸突破继续演练，检修签名继续留。我清出一段，让大家能接上。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E03-P01": {
+      "id": "ELITE-E03-P01",
+      "title": "刻度之间 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S29",
+      "chapterId": "CH05",
+      "characterId": "E03",
+      "portraitId": "E03-P01",
+      "unlockMissionId": "S29",
+      "lines": [
+        {
+          "speakerId": "elite-E03",
+          "text": "季知弦，测距本里夹着砺岭的干花。校射先看可靠观测，再交出能完成的部分。"
+        },
+        {
+          "speakerId": "tank",
+          "text": "欢迎加入。我们替炮位留窗口，也请你给接管队留一段继续前进的路。"
+        },
+        {
+          "speakerId": "elite-E03",
+          "text": "协作条件写清了。汤的浓度尚未核准，那项允许晚些研究。"
+        }
+      ],
+      "text": "季知弦：季知弦，测距本里夹着砺岭的干花。校射先看可靠观测，再交出能完成的部分。\n\n棱镜：欢迎加入。我们替炮位留窗口，也请你给接管队留一段继续前进的路。\n\n季知弦：协作条件写清了。汤的浓度尚未核准，那项允许晚些研究。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E03-P02": {
+      "id": "ELITE-E03-P02",
+      "title": "留下工厂 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S32",
+      "chapterId": "CH05",
+      "characterId": "E03",
+      "portraitId": "E03-P02",
+      "unlockMissionId": "S32",
+      "lines": [
+        {
+          "speakerId": "elite-E02",
+          "text": "你给记录架换了锁扣，我却想先从旁边过去。可下一队仍要在这里装接口。"
+        },
+        {
+          "speakerId": "elite-E03",
+          "text": "那就留预算，也写清误差。观测光环的训练，要让共享消息帮上伙伴下一步。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "一起算能留下工厂的办法吧。突破与整备，不再是图纸的两面。"
+        }
+      ],
+      "text": "唐砺：你给记录架换了锁扣，我却想先从旁边过去。可下一队仍要在这里装接口。\n\n季知弦：那就留预算，也写清误差。观测光环的训练，要让共享消息帮上伙伴下一步。\n\n唐砺：一起算能留下工厂的办法吧。突破与整备，不再是图纸的两面。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E03-P03": {
+      "id": "ELITE-E03-P03",
+      "title": "炮火之后的工作 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S40",
+      "chapterId": "CH06",
+      "characterId": "E03",
+      "portraitId": "E03-P03",
+      "unlockMissionId": "S40",
+      "lines": [
+        {
+          "speakerId": "elite-E03",
+          "text": "支架更稳，不代表没有误差。我完成可核对的一部分，把后面的工作交给你们。"
+        },
+        {
+          "speakerId": "elite-E02",
+          "text": "我等你说清窗口，也在该接上的时候接上。你不用独自等完美答案。"
+        },
+        {
+          "speakerId": "elite-E03",
+          "text": "终点协奏继续演练。炮火后还有接线、检修和一锅汤，能留下它们才算准确。"
+        }
+      ],
+      "text": "季知弦：支架更稳，不代表没有误差。我完成可核对的一部分，把后面的工作交给你们。\n\n唐砺：我等你说清窗口，也在该接上的时候接上。你不用独自等完美答案。\n\n季知弦：终点协奏继续演练。炮火后还有接线、检修和一锅汤，能留下它们才算准确。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E04-P01": {
+      "id": "ELITE-E04-P01",
+      "title": "港口潮灯 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S15",
+      "chapterId": "CH03",
+      "characterId": "E04",
+      "portraitId": "E04-P01",
+      "unlockMissionId": "S15",
+      "lines": [
+        {
+          "speakerId": "elite-E04",
+          "text": "江澜声，盐湾登陆队。绳结和轮班表都带了，别全交给我，先写清谁接哪一段。"
+        },
+        {
+          "speakerId": "marine",
+          "text": "欢迎加入。公共船期也要让陌生港口的人知道，下一班怎样来。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "救援先听清需要，再确认能抵达的路。盐湾的办法，下一位队长也该接得住。"
+        }
+      ],
+      "text": "江澜声：江澜声，盐湾登陆队。绳结和轮班表都带了，别全交给我，先写清谁接哪一段。\n\n浪锋：欢迎加入。公共船期也要让陌生港口的人知道，下一班怎样来。\n\n江澜声：救援先听清需要，再确认能抵达的路。盐湾的办法，下一位队长也该接得住。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E04-P02": {
+      "id": "ELITE-E04-P02",
+      "title": "下一班的名字 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S21",
+      "chapterId": "CH03",
+      "characterId": "E04",
+      "portraitId": "E04-P02",
+      "unlockMissionId": "S21",
+      "lines": [
+        {
+          "speakerId": "elite-E04",
+          "text": "新岗位名签挂好了，旧纪念章还在。船期不能只写我认识的那些名字。"
+        },
+        {
+          "speakerId": "elite-E01",
+          "text": "这里有林奶奶，也有白沼检修室。怎样写，才能让陌生人知道下一段怎么做？"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "写地点、时段和岗位。岸线光环的练习也一样，让协作不用每次先找到我。"
+        }
+      ],
+      "text": "江澜声：新岗位名签挂好了，旧纪念章还在。船期不能只写我认识的那些名字。\n\n林小禾：这里有林奶奶，也有白沼检修室。怎样写，才能让陌生人知道下一段怎么做？\n\n江澜声：写地点、时段和岗位。岸线光环的练习也一样，让协作不用每次先找到我。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E04-P03": {
+      "id": "ELITE-E04-P03",
+      "title": "把绳结交出去 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S39",
+      "chapterId": "CH06",
+      "characterId": "E04",
+      "portraitId": "E04-P03",
+      "unlockMissionId": "S39",
+      "lines": [
+        {
+          "speakerId": "elite-E04",
+          "text": "外衣挡雨，绳结交给下一班。潮灯登陆的演练，也要学着让别人确认结果。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "我核对空中回程，地面按你们的安排。可以互相指错，不必把风险都揽着。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "那请你看好自己的归途。我离开以后通路仍能工作，也是一种可靠。"
+        }
+      ],
+      "text": "江澜声：外衣挡雨，绳结交给下一班。潮灯登陆的演练，也要学着让别人确认结果。\n\n陆栖云：我核对空中回程，地面按你们的安排。可以互相指错，不必把风险都揽着。\n\n江澜声：那请你看好自己的归途。我离开以后通路仍能工作，也是一种可靠。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E05-P01": {
+      "id": "ELITE-E05-P01",
+      "title": "先算归途 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S22",
+      "chapterId": "CH04",
+      "characterId": "E05",
+      "portraitId": "E05-P01",
+      "unlockMissionId": "S22",
+      "lines": [
+        {
+          "speakerId": "elite-E05",
+          "text": "陆栖云，镜原飞行员。阿澄画的归航鸟提醒我，照看别人也要留下自己回来的那份。"
+        },
+        {
+          "speakerId": "reconplane",
+          "text": "欢迎加入。编队需要你的经验，也需要你说出疲惫，不只把安稳留给别人。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "航线复核，轮换写清。我答应阿澄，回去一起看第一班公共渡船。"
+        }
+      ],
+      "text": "陆栖云：陆栖云，镜原飞行员。阿澄画的归航鸟提醒我，照看别人也要留下自己回来的那份。\n\n纸鸢：欢迎加入。编队需要你的经验，也需要你说出疲惫，不只把安稳留给别人。\n\n陆栖云：航线复核，轮换写清。我答应阿澄，回去一起看第一班公共渡船。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E05-P02": {
+      "id": "ELITE-E05-P02",
+      "title": "会变化的云图 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S28",
+      "chapterId": "CH04",
+      "characterId": "E05",
+      "portraitId": "E05-P02",
+      "unlockMissionId": "S28",
+      "lines": [
+        {
+          "speakerId": "elite-E05",
+          "text": "新图板防雨了，云却还会变。坐标清楚，也不能保证以后不用再看。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "把复核条件交给甲板伙伴，把接班时刻交给我。经验需要接续，不能累坏一个人。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "归航光环是后续编队训练的方向。先练清观察与轮换，也认真照顾自己。"
+        }
+      ],
+      "text": "陆栖云：新图板防雨了，云却还会变。坐标清楚，也不能保证以后不用再看。\n\n江澜声：把复核条件交给甲板伙伴，把接班时刻交给我。经验需要接续，不能累坏一个人。\n\n陆栖云：归航光环是后续编队训练的方向。先练清观察与轮换，也认真照顾自己。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    },
+    "ELITE-E05-P03": {
+      "id": "ELITE-E05-P03",
+      "title": "与阿澄的渡船约定 · 精英章节故事",
+      "kind": "ELITE_PORTRAIT",
+      "stageId": "S42",
+      "chapterId": "CH06",
+      "characterId": "E05",
+      "portraitId": "E05-P03",
+      "unlockMissionId": "S42",
+      "lines": [
+        {
+          "speakerId": "elite-E05",
+          "text": "阿澄把归航鸟画进时刻表，怕我忘记回家。我先圈好自己的班次。"
+        },
+        {
+          "speakerId": "elite-E04",
+          "text": "最后名单我来确认。晴空回响以后还能练，今天按约定回去，不必多留一夜。"
+        },
+        {
+          "speakerId": "elite-E05",
+          "text": "谢谢。机翼收拢了，工作会继续；现在把海风和那班渡船，留给等我的孩子。"
+        }
+      ],
+      "text": "陆栖云：阿澄把归航鸟画进时刻表，怕我忘记回家。我先圈好自己的班次。\n\n江澜声：最后名单我来确认。晴空回响以后还能练，今天按约定回去，不必多留一夜。\n\n陆栖云：谢谢。机翼收拢了，工作会继续；现在把海风和那班渡船，留给等我的孩子。",
+      "assetStatus": "planned",
+      "playbackPosition": "本关主 OUTRO 后，按 postOutroSceneOrder 顺序追加；S42 的此场在 EPILOGUE-42 前。",
+      "skillNarrativePolicy": "技能提及表示训练方向与协作理解，不由此场授予技能、等级、数值或本关战斗效果；实际可用性仍以关外训练等级与章上限为准。",
+      "repeatViewPolicy": "首看可跳过，档案/画廊可回看；回看只展示，不重复解锁角色、立绘或训练积分。"
+    }
+  },
+  "writingBudget": {
+    "mainVisibleCharactersTarget": [
+      9500,
+      11500
+    ],
+    "eliteSceneVisibleCharactersTarget": [
+      1000,
+      2000
+    ],
+    "combinedVisibleCharactersTarget": [
+      11000,
+      13500
+    ],
+    "perSceneTextHardMaximum": 110,
+    "counting": "按 Unicode 字符统计各 scenes[].text，去除空白，包含展示名与标点；正文统计只计 lines[].text，标题另计。",
+    "timing": "新增十五段故事按每段两到三句预算；训练配置与看图时间另外计算。字数是文案阅读预算，三小时全流程目标仍需真人试玩，不是本稿验收结论。",
+    "currentDraftCounts": {
+      "mainScenes": 128,
+      "eliteScenes": 15,
+      "allScenes": 143,
+      "mainVisibleCharacters": 11174,
+      "eliteVisibleCharacters": 1595,
+      "combinedVisibleCharacters": 12769,
+      "combinedBodyCharacters": 11778,
+      "maxSceneVisibleCharacters": 110,
+      "maxSceneBodyCharacters": 99
+    },
+    "countStatus": "本次 v1.3 文稿重新计算的字数，不沿用 v1.2 校验报告；不代表图片已制作、规则已实现或真人通关验证。"
+  },
+  "schemaVersion": "campaign-story-design-1.3",
+  "campaignId": "dawn-six-domains-42",
+  "contentVersion": "campaign-design-1.3",
+  "created": "2026-10-11",
+  "designOnly": true,
+  "basedOnStoryVersion": "campaign-story-design-1.2",
+  "eliteCharacters": {
+    "E01": {
+      "characterId": "E01",
+      "name": "林小禾",
+      "personalCallsign": "灯芽",
+      "ageYears": 12,
+      "region": "岚岸",
+      "role": "步兵 / 街区联络与观察",
+      "baseUnitId": "heavyinfantry",
+      "speakerId": "elite-E01",
+      "joinMissionId": "S02",
+      "portraitIds": [
+        "E01-P01",
+        "E01-P02",
+        "E01-P03"
+      ],
+      "characterTheme": "从急于证明能帮忙，成长为可信消息的记录者；与澜声一起把具体需求转成清单，与栖云互相确认归途。",
+      "joinCompletionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "deploymentNotes": "本关完成后加入关外名册；后续关前可按合法体系槽位配置，仍遵守精英名额、编制、地形、原守军与必须保留的普通单位。台词不要求本关部署或某一棋子幸存。",
+      "uniquePersonPolicy": "每名是独立唯一个体；普通型号继续量产编成，精英不经生产设施复制，退场不在本关地图复活。",
+      "skillNameStatus": "以精英角色与养成配置-v0.2.json的名称与效果为准，剧情不直接改变战斗状态。",
+      "skillProgression": [
+        {
+          "kind": "active",
+          "unlockLevel": 1,
+          "skillId": "E01-S1",
+          "name": "灯芽信标"
+        },
+        {
+          "kind": "aura",
+          "unlockLevel": 3,
+          "skillId": "E01-S2",
+          "name": "街区联络"
+        },
+        {
+          "kind": "ultimate",
+          "unlockLevel": 5,
+          "skillId": "E01-S3",
+          "name": "黎明通行"
+        }
+      ],
+      "ageAndPortraitContinuity": "十二岁未成年成长型星芯个体，年龄、社会身份与儿童脸部和体态一致。成年队员协作保障；训练等级、机装等级和年龄分别记录，不随养成长大。",
+      "preJoinCameoSceneIds": [],
+      "comparisonModelIsNotEliteIdentity": true
+    },
+    "E02": {
+      "characterId": "E02",
+      "name": "唐砺",
+      "personalCallsign": "回铸",
+      "ageYears": 18,
+      "region": "白沼出身 / 砺岭整备",
+      "role": "主战坦克 / 突破与接续",
+      "baseUnitId": "heavy",
+      "speakerId": "elite-E02",
+      "joinMissionId": "S09",
+      "portraitIds": [
+        "E02-P01",
+        "E02-P02",
+        "E02-P03"
+      ],
+      "characterTheme": "把可靠从硬撑扩展为留能源、等伙伴与返回检修；与知弦约定推进节奏，也理解静海磐石对核心工业的担忧。",
+      "joinCompletionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "deploymentNotes": "本关完成后加入关外名册；后续关前可按合法体系槽位配置，仍遵守精英名额、编制、地形、原守军与必须保留的普通单位。台词不要求本关部署或某一棋子幸存。",
+      "uniquePersonPolicy": "每名是独立唯一个体；普通型号继续量产编成，精英不经生产设施复制，退场不在本关地图复活。",
+      "skillNameStatus": "以精英角色与养成配置-v0.2.json的名称与效果为准，剧情不直接改变战斗状态。",
+      "skillProgression": [
+        {
+          "kind": "active",
+          "unlockLevel": 1,
+          "skillId": "E02-S1",
+          "name": "楔形破阵"
+        },
+        {
+          "kind": "aura",
+          "unlockLevel": 3,
+          "skillId": "E02-S2",
+          "name": "整备共振"
+        },
+        {
+          "kind": "ultimate",
+          "unlockLevel": 5,
+          "skillId": "E02-S3",
+          "name": "回铸突破"
+        }
+      ],
+      "ageAndPortraitContinuity": "十八岁成年星芯个体，沙金高束发与石墨琥珀定制装甲形成独立形象；训练不改变年龄或身体形象。",
+      "preJoinCameoSceneIds": [],
+      "comparisonModelIsNotEliteIdentity": true
+    },
+    "E03": {
+      "characterId": "E03",
+      "name": "季知弦",
+      "personalCallsign": "准弦",
+      "ageYears": 25,
+      "region": "砺岭",
+      "role": "自行炮车 / 校射与留出接管空间",
+      "baseUnitId": "heavyartillery",
+      "speakerId": "elite-E03",
+      "joinMissionId": "S29",
+      "portraitIds": [
+        "E03-P01",
+        "E03-P02",
+        "E03-P03"
+      ],
+      "characterTheme": "从等待一次完美射击，成长为按可信观测与协作节奏交出可完成的部分；与唐砺共同保留工厂和后续生产。",
+      "joinCompletionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "deploymentNotes": "本关完成后加入关外名册；后续关前可按合法体系槽位配置，仍遵守精英名额、编制、地形、原守军与必须保留的普通单位。台词不要求本关部署或某一棋子幸存。",
+      "uniquePersonPolicy": "每名是独立唯一个体；普通型号继续量产编成，精英不经生产设施复制，退场不在本关地图复活。",
+      "skillNameStatus": "以精英角色与养成配置-v0.2.json的名称与效果为准，剧情不直接改变战斗状态。",
+      "skillProgression": [
+        {
+          "kind": "active",
+          "unlockLevel": 1,
+          "skillId": "E03-S1",
+          "name": "分区校射"
+        },
+        {
+          "kind": "aura",
+          "unlockLevel": 3,
+          "skillId": "E03-S2",
+          "name": "观测校核"
+        },
+        {
+          "kind": "ultimate",
+          "unlockLevel": 5,
+          "skillId": "E03-S3",
+          "name": "终点协奏"
+        }
+      ],
+      "ageAndPortraitContinuity": "二十五岁成年星芯个体，深紫低辫、灰白工程服、测距镜和真实展开炮架；训练不改变年龄或身体形象。",
+      "preJoinCameoSceneIds": [],
+      "comparisonModelIsNotEliteIdentity": true
+    },
+    "E04": {
+      "characterId": "E04",
+      "name": "江澜声",
+      "personalCallsign": "潮灯",
+      "ageYears": 30,
+      "region": "盐湾",
+      "role": "海军陆战队 / 接驳与职责交接",
+      "baseUnitId": "heavymarine",
+      "speakerId": "elite-E04",
+      "joinMissionId": "S15",
+      "portraitIds": [
+        "E04-P01",
+        "E04-P02",
+        "E04-P03"
+      ],
+      "characterTheme": "从揽下熟悉港口的所有工作，成长为把经验写成跨域可执行安排；相信栖云的复核，也让小禾的观察得到尊重。",
+      "joinCompletionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "deploymentNotes": "本关完成后加入关外名册；后续关前可按合法体系槽位配置，仍遵守精英名额、编制、地形、原守军与必须保留的普通单位。台词不要求本关部署或某一棋子幸存。",
+      "uniquePersonPolicy": "每名是独立唯一个体；普通型号继续量产编成，精英不经生产设施复制，退场不在本关地图复活。",
+      "skillNameStatus": "以精英角色与养成配置-v0.2.json的名称与效果为准，剧情不直接改变战斗状态。",
+      "skillProgression": [
+        {
+          "kind": "active",
+          "unlockLevel": 1,
+          "skillId": "E04-S1",
+          "name": "潮线掩护"
+        },
+        {
+          "kind": "aura",
+          "unlockLevel": 3,
+          "skillId": "E04-S2",
+          "name": "岸线协作"
+        },
+        {
+          "kind": "ultimate",
+          "unlockLevel": 5,
+          "skillId": "E04-S3",
+          "name": "潮灯登陆"
+        }
+      ],
+      "ageAndPortraitContinuity": "三十岁成年星芯个体，深蓝短发、蓝白防护制服、橙色救援标记、折叠艇与救援绳结；成熟来自面容与经验，训练不改变年龄或身体形象。",
+      "preJoinCameoSceneIds": [],
+      "comparisonModelIsNotEliteIdentity": true
+    },
+    "E05": {
+      "characterId": "E05",
+      "name": "陆栖云",
+      "personalCallsign": "归航",
+      "ageYears": 35,
+      "region": "镜原",
+      "role": "空军 / 制空与航空护航",
+      "baseUnitId": "heavyfighter",
+      "speakerId": "elite-E05",
+      "joinMissionId": "S22",
+      "portraitIds": [
+        "E05-P01",
+        "E05-P02",
+        "E05-P03"
+      ],
+      "characterTheme": "从把风险全揽在自己身上，成长为可靠轮换与按时归航；尊重小禾观察，与澜声相互校核并兑现与阿澄的渡船约定。",
+      "joinCompletionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "deploymentNotes": "本关完成后加入关外名册；后续关前可按合法体系槽位配置，仍遵守精英名额、编制、地形、原守军与必须保留的普通单位。台词不要求本关部署或某一棋子幸存。",
+      "uniquePersonPolicy": "每名是独立唯一个体；普通型号继续量产编成，精英不经生产设施复制，退场不在本关地图复活。",
+      "skillNameStatus": "以精英角色与养成配置-v0.2.json的名称与效果为准，剧情不直接改变战斗状态。",
+      "skillProgression": [
+        {
+          "kind": "active",
+          "unlockLevel": 1,
+          "skillId": "E05-S1",
+          "name": "归航引导"
+        },
+        {
+          "kind": "aura",
+          "unlockLevel": 3,
+          "skillId": "E05-S2",
+          "name": "归航编队"
+        },
+        {
+          "kind": "ultimate",
+          "unlockLevel": 5,
+          "skillId": "E05-S3",
+          "name": "晴空回响"
+        }
+      ],
+      "ageAndPortraitContinuity": "三十五岁成年星芯个体与专业飞行员，明确母亲身份；收养九岁人类孩子阿澄，孩子在镜原由亲属照顾。雾银低髻、银蓝机翼与归航鸟标记保持，训练不改变年龄或身体形象。",
+      "preJoinCameoSceneIds": [
+        "ELITE-E01-P02"
+      ],
+      "comparisonModelIsNotEliteIdentity": true
+    }
+  },
+  "elitePortraits": {
+    "E01-P01": {
+      "portraitId": "E01-P01",
+      "characterId": "E01",
+      "sequence": 1,
+      "title": "窗边的灯芽",
+      "unlockMissionId": "S02",
+      "sceneId": "ELITE-E01-P01",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "青绿长袖、长裤、方背包；双手扶暖黄灯盒，认真而略紧张。",
+      "ageYears": 12,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确十二岁儿童脸部与体态",
+        "长袖防护外套、合身长裤与功能护具",
+        "不使用性感化服饰、性化姿势或以身体成熟表现升级"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E01-P01.png"
+    },
+    "E01-P02": {
+      "portraitId": "E01-P02",
+      "characterId": "E01",
+      "sequence": 2,
+      "title": "城门联络员",
+      "unlockMissionId": "S07",
+      "sceneId": "ELITE-E01-P02",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "加反光联络背心与街区路线卡；一手举灯一手指地图，保持儿童体态。",
+      "ageYears": 12,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确十二岁儿童脸部与体态",
+        "长袖防护外套、合身长裤与功能护具",
+        "不使用性感化服饰、性化姿势或以身体成熟表现升级"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E01-P02.png"
+    },
+    "E01-P03": {
+      "portraitId": "E01-P03",
+      "characterId": "E01",
+      "sequence": 3,
+      "title": "清单上的黎明",
+      "unlockMissionId": "S36",
+      "sceneId": "ELITE-E01-P03",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "外套保留灯芽徽章，六域清单装入透明地图袋；站在重新亮起的街灯旁，笑容轻松。",
+      "ageYears": 12,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确十二岁儿童脸部与体态",
+        "长袖防护外套、合身长裤与功能护具",
+        "不使用性感化服饰、性化姿势或以身体成熟表现升级"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E01-P03.png"
+    },
+    "E02-P01": {
+      "portraitId": "E02-P01",
+      "characterId": "E02",
+      "sequence": 1,
+      "title": "白沼试车记录",
+      "unlockMissionId": "S09",
+      "sceneId": "ELITE-E02-P01",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "石墨驾驶服、琥珀楔形甲、金色高束发；主炮收拢，掌心贴炮座。",
+      "ageYears": 18,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E02-P01.png"
+    },
+    "E02-P02": {
+      "portraitId": "E02-P02",
+      "characterId": "E02",
+      "sequence": 2,
+      "title": "维修师的签名",
+      "unlockMissionId": "S14",
+      "sceneId": "ELITE-E02-P02",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "增加真实维修签名、白沼织补接口与可拆护板；半蹲检查履带，不以战损破衣表现。",
+      "ageYears": 18,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E02-P02.png"
+    },
+    "E02-P03": {
+      "portraitId": "E02-P03",
+      "characterId": "E02",
+      "sequence": 3,
+      "title": "回铸后的推进者",
+      "unlockMissionId": "S34",
+      "sceneId": "ELITE-E02-P03",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "砺岭整备升级的楔形装甲与柔金轮廓灯；回头招呼后续编队，炮座有完整维修记录。",
+      "ageYears": 18,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E02-P03.png"
+    },
+    "E03-P01": {
+      "portraitId": "E03-P01",
+      "characterId": "E03",
+      "sequence": 1,
+      "title": "缺口测距员",
+      "unlockMissionId": "S29",
+      "sceneId": "ELITE-E03-P01",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "灰白工程外套与长裤、深紫低辫；测距镜与折叠炮架，姿态专注。",
+      "ageYears": 25,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E03-P01.png"
+    },
+    "E03-P02": {
+      "portraitId": "E03-P02",
+      "characterId": "E03",
+      "sequence": 2,
+      "title": "留住制造线",
+      "unlockMissionId": "S32",
+      "sceneId": "ELITE-E03-P02",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "工厂交接袖章与接口校核册；支架展开，手指地图给队友留出的空格。",
+      "ageYears": 25,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E03-P02.png"
+    },
+    "E03-P03": {
+      "portraitId": "E03-P03",
+      "characterId": "E03",
+      "sequence": 3,
+      "title": "炮火之后的工作",
+      "unlockMissionId": "S40",
+      "sceneId": "ELITE-E03-P03",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "炮架刻上六域校核序列，深紫短披肩为防护层；合上测距本、侧身看向接线工队。",
+      "ageYears": 25,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E03-P03.png"
+    },
+    "E04-P01": {
+      "portraitId": "E04-P01",
+      "characterId": "E04",
+      "sequence": 1,
+      "title": "港口还有一班船",
+      "unlockMissionId": "S15",
+      "sceneId": "ELITE-E04-P01",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "蓝白防水制服、橙色救援绳、V形折叠艇；检查最后一班船名册。",
+      "ageYears": 30,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E04-P01.png"
+    },
+    "E04-P02": {
+      "portraitId": "E04-P02",
+      "characterId": "E04",
+      "sequence": 2,
+      "title": "共享船期的潮灯",
+      "unlockMissionId": "S21",
+      "sceneId": "ELITE-E04-P02",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "共享运输表、分区救援扣件；成熟从容，手势指向下一班交接者。",
+      "ageYears": 30,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E04-P02.png"
+    },
+    "E04-P03": {
+      "portraitId": "E04-P03",
+      "characterId": "E04",
+      "sequence": 3,
+      "title": "接过绳结的人",
+      "unlockMissionId": "S39",
+      "sceneId": "ELITE-E04-P03",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "六域轮班徽记、防水调度板；将救援绳结递给普通陆战队员，保留有力量的登陆体态。",
+      "ageYears": 30,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E04-P03.png"
+    },
+    "E05-P01": {
+      "portraitId": "E05-P01",
+      "characterId": "E05",
+      "sequence": 1,
+      "title": "失联导航的归航鸟",
+      "unlockMissionId": "S22",
+      "sceneId": "ELITE-E05-P01",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "深蓝完整飞行服、雾银低髻、柔金归航鸟；拿失联导航板，温暖坚定。",
+      "ageYears": 35,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E05-P01.png"
+    },
+    "E05-P02": {
+      "portraitId": "E05-P02",
+      "characterId": "E05",
+      "sequence": 2,
+      "title": "会变化的云图",
+      "unlockMissionId": "S28",
+      "sceneId": "ELITE-E05-P02",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "镜原实测中继标记与可复核云图；机翼展开，眼神专业，手势提醒预留返航能源。",
+      "ageYears": 35,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E05-P02.png"
+    },
+    "E05-P03": {
+      "portraitId": "E05-P03",
+      "characterId": "E05",
+      "sequence": 3,
+      "title": "回家的第一班渡船",
+      "unlockMissionId": "S42",
+      "sceneId": "ELITE-E05-P03",
+      "assetStatus": "planned",
+      "assetPath": null,
+      "assetPurpose": "章节剧情换装 / 设备更新立绘；既有年龄、脸部、身形保持。",
+      "artDirection": "渡船背景、机翼收拢，夹克上保留阿澄画的归航鸟；抱着茶杯微笑，母亲气质通过神情表达。",
+      "ageYears": 35,
+      "bodyContinuity": "与第一张同一人物、同一年龄和身体形象；只更新服装、设备、表情、工作姿态与场景，不因训练等级变成熟或改变身形。",
+      "representationConstraints": [
+        "明确该角色既定成年年龄与职业身份",
+        "完整工作服与真实机械结构",
+        "设备升级不自动改变战斗数值"
+      ],
+      "unlockNotes": "角色/立绘首次剧情完成即可获得，包括玩家明确选择协同完成；可跳过并在画廊回看。立绘阶段不等于训练等级。",
+      "plannedAssetPath": "assets/elites/portraits/E05-P03.png"
+    }
+  },
+  "eliteUnlocks": [
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E01-P01",
+      "characterId": "E01",
+      "portraitId": "E01-P01",
+      "sceneId": "ELITE-E01-P01",
+      "unlockMissionId": "S02",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": true,
+      "characterClaimId": "dawn-six-domains-42:character:E01",
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E01-P02",
+      "characterId": "E01",
+      "portraitId": "E01-P02",
+      "sceneId": "ELITE-E01-P02",
+      "unlockMissionId": "S07",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E01-P03",
+      "characterId": "E01",
+      "portraitId": "E01-P03",
+      "sceneId": "ELITE-E01-P03",
+      "unlockMissionId": "S36",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E02-P01",
+      "characterId": "E02",
+      "portraitId": "E02-P01",
+      "sceneId": "ELITE-E02-P01",
+      "unlockMissionId": "S09",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": true,
+      "characterClaimId": "dawn-six-domains-42:character:E02",
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E02-P02",
+      "characterId": "E02",
+      "portraitId": "E02-P02",
+      "sceneId": "ELITE-E02-P02",
+      "unlockMissionId": "S14",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E02-P03",
+      "characterId": "E02",
+      "portraitId": "E02-P03",
+      "sceneId": "ELITE-E02-P03",
+      "unlockMissionId": "S34",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E03-P01",
+      "characterId": "E03",
+      "portraitId": "E03-P01",
+      "sceneId": "ELITE-E03-P01",
+      "unlockMissionId": "S29",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": true,
+      "characterClaimId": "dawn-six-domains-42:character:E03",
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E03-P02",
+      "characterId": "E03",
+      "portraitId": "E03-P02",
+      "sceneId": "ELITE-E03-P02",
+      "unlockMissionId": "S32",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E03-P03",
+      "characterId": "E03",
+      "portraitId": "E03-P03",
+      "sceneId": "ELITE-E03-P03",
+      "unlockMissionId": "S40",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E04-P01",
+      "characterId": "E04",
+      "portraitId": "E04-P01",
+      "sceneId": "ELITE-E04-P01",
+      "unlockMissionId": "S15",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": true,
+      "characterClaimId": "dawn-six-domains-42:character:E04",
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E04-P02",
+      "characterId": "E04",
+      "portraitId": "E04-P02",
+      "sceneId": "ELITE-E04-P02",
+      "unlockMissionId": "S21",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E04-P03",
+      "characterId": "E04",
+      "portraitId": "E04-P03",
+      "sceneId": "ELITE-E04-P03",
+      "unlockMissionId": "S39",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E05-P01",
+      "characterId": "E05",
+      "portraitId": "E05-P01",
+      "sceneId": "ELITE-E05-P01",
+      "unlockMissionId": "S22",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": true,
+      "characterClaimId": "dawn-six-domains-42:character:E05",
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E05-P02",
+      "characterId": "E05",
+      "portraitId": "E05-P02",
+      "sceneId": "ELITE-E05-P02",
+      "unlockMissionId": "S28",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    },
+    {
+      "unlockId": "dawn-six-domains-42:portrait:E05-P03",
+      "characterId": "E05",
+      "portraitId": "E05-P03",
+      "sceneId": "ELITE-E05-P03",
+      "unlockMissionId": "S42",
+      "completionKinds": [
+        "tactical_victory",
+        "assisted_completed"
+      ],
+      "joinCharacter": false,
+      "characterClaimId": null,
+      "repeatableReward": false,
+      "assetStatus": "planned",
+      "changesBattleState": false
+    }
+  ],
+  "postOutroSceneOrder": {
+    "S02": [
+      "ELITE-E01-P01"
+    ],
+    "S07": [
+      "ELITE-E01-P02"
+    ],
+    "S36": [
+      "ELITE-E01-P03"
+    ],
+    "S09": [
+      "ELITE-E02-P01"
+    ],
+    "S14": [
+      "ELITE-E02-P02"
+    ],
+    "S34": [
+      "ELITE-E02-P03"
+    ],
+    "S29": [
+      "ELITE-E03-P01"
+    ],
+    "S32": [
+      "ELITE-E03-P02"
+    ],
+    "S40": [
+      "ELITE-E03-P03"
+    ],
+    "S15": [
+      "ELITE-E04-P01"
+    ],
+    "S21": [
+      "ELITE-E04-P02"
+    ],
+    "S39": [
+      "ELITE-E04-P03"
+    ],
+    "S22": [
+      "ELITE-E05-P01"
+    ],
+    "S28": [
+      "ELITE-E05-P02"
+    ],
+    "S42": [
+      "ELITE-E05-P03"
+    ]
+  },
+  "trainingProgression": {
+    "levelRange": [
+      1,
+      10
+    ],
+    "chapterLevelCaps": {
+      "CH01": 3,
+      "CH02": 5,
+      "CH03": 6,
+      "CH04": 8,
+      "CH05": 9,
+      "CH06": 10
+    },
+    "skillUnlockLevels": {
+      "active": 1,
+      "aura": 3,
+      "ultimate": 5
+    },
+    "levelSource": "关外积分分配；具体成本/属性/技能参数唯一来源为精英角色与养成配置-v0.2.json。",
+    "trainingRewardEligibility": {
+      "completionKinds": [
+        "tactical_victory"
+      ],
+      "requiresActualBattleVictory": true,
+      "checksResultReason": true,
+      "assistedCompletedAwardsTrainingPoints": false,
+      "assistedCompletionDoesNotConsumeTacticalTrainingClaim": true,
+      "deduplicationKeyPattern": "dawn-six-domains-42:training-points:{missionId}:{difficulty}",
+      "notes": "每关每难度独立首胜领取：简单50、标准100、困难150、地狱200，总计500。同关同难度重玩、换胜利模式或读档不再领取；高难度首胜不自动领取较低难度。协同仅解锁剧情/角色/立绘，不发积分，也不占用任何难度的首胜领取资格；以后该难度首次真实战术胜利可领对应积分。",
+      "firstEligibleVictoryPerMissionDifficultyOnly": true,
+      "pointsByDifficulty": {
+        "easy": 50,
+        "standard": 100,
+        "hard": 150,
+        "hell": 200
+      },
+      "difficultyDisplayNames": {
+        "easy": "简单",
+        "standard": "标准",
+        "hard": "困难",
+        "hell": "地狱"
+      },
+      "autoClaimLowerDifficulties": false,
+      "replaySameDifficultyPoints": 0,
+      "missionMaximumTrainingPoints": 500,
+      "allFortyTwoMissionsMaximumTrainingPoints": 21000,
+      "standardFirstVictoriesTotal": 4200
+    },
+    "portraitChangesNeverIncreaseLevels": true,
+    "dialogueNeverIncreasesLevels": true,
+    "ageNeverTracksTrainingLevel": true,
+    "chapterCapTiming": "关外配置与新对局快照按所在章节上限冻结有效训练等级；不会因剧情台词、看图或战中情绪触发升阶、补满HP或额外行动。"
+  },
+  "elitePresentationPolicy": {
+    "unlockCommitPoint": "确认或跳过本关主OUTRO时，在独立战役进度事务中原子保存任务剧情完成、角色/立绘解锁ID、下一关解锁与精英故事待播队列；首胜积分已在真实胜利结果事务另行登记，不能在此重复发。个人故事可跳过，不要求完整阅读后才解锁。",
+    "rewardTiming": "训练积分在首次真实胜利结果事务按campaignId+missionId+difficulty原子登记，各难度50/100/150/200；OUTRO或精英场景确认不再发奖。角色/立绘在主OUTRO确认或跳过后入档，个人故事可以跳过。",
+    "playbackOrder": "主 INTRO → 主 MID（必要时战后补播）→ 主 OUTRO → 本关 postOutroSceneOrder；S42 最后为 ELITE-E05-P03 → EPILOGUE-42。",
+    "seenCommit": "确认、跳过或明确离开场景时标已读；队列开始播放时不标已读。中断可继续队列，不重新执行解锁或积分领取。",
+    "replay": "重玩与档案回看可以显示已解锁故事与立绘；角色/立绘不重复领取，同难度重玩积分为0，其他难度首次真实胜利仅领本难度份额，不自动领取较低难度；回看不投放人物。",
+    "assistedCompletion": "协同剧情完成可以加入角色、解锁章节立绘与下一段故事；保留 assisted_completed，不改战场归属/HP/AP/订单/库存/资源，不授战术胜利章，不发训练积分。",
+    "portraitSkillSeparation": "P01/P02/P03 只记录章节剧情与服装设备版本。观看 P02 不等于达到 Lv3，观看 P03 不等于达到 Lv5，具体技能必须满足真实训练等级。",
+    "missingAssets": "全部15张章节精英立绘为 planned，assetPath 为 null。待资产制作后映射真实文件；此前只显示中性姓名名牌与占位说明，不伪称新增图片已交付，也不以普通成年型号头像冒充十二岁小禾。",
+    "characterContinuity": "普通型号是可重复编成的不同成年人，E01…E05 是各自唯一人物。精英可在后方频道发言，不要求本关出战或保持某个棋子存活。",
+    "preJoinCameo": "ELITE-E01-P02 中的陆栖云来自镜原后方公共整备协作频道，尚未正式加入。她在 S22 完成后才进入可配置名册。",
+    "noNewVictoryModes": true
+  }
+}

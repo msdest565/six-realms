@@ -1,0 +1,167 @@
+{
+  "date": "2026-10-11T07:19:32.556Z",
+  "passed": 40,
+  "total": 40,
+  "results": [
+    {
+      "name": "50 frozen rows use authored stats and fixed permissions; ordinary catalogue remains 38",
+      "ok": true
+    },
+    {
+      "name": "chapter replay freezes level and every skill parameter without changing archive level",
+      "ok": true
+    },
+    {
+      "name": "elite aircraft avoids legacy ordinary air HP conversion and keeps true seven-step budget",
+      "ok": true
+    },
+    {
+      "name": "elite infantry/amphibious movement preserves terrain and zero energy",
+      "ok": true
+    },
+    {
+      "name": "E01 beacon adds LOS observation and observed land/sea fire; caster retreat removes it",
+      "ok": true
+    },
+    {
+      "name": "E01 beacon rejects ocean, blocked ray and invisible target atomically",
+      "ok": true
+    },
+    {
+      "name": "E01 aura is real-time, ground only, recomputes each recipient LOS and ends on retreat",
+      "ok": true
+    },
+    {
+      "name": "E01 ultimate grants shields and budgets without AP refund; observation persists after retreat",
+      "ok": true
+    },
+    {
+      "name": "E02 active snapshots full fire/armor-ignore and direct retaliation; no inherited ordinary skill",
+      "ok": true
+    },
+    {
+      "name": "E02 active may directly hit every empty hostile structure; preview equals execution and structures never counter",
+      "ok": true
+    },
+    {
+      "name": "E02 active coordinate targeting after movement can destroy an empty structure and atomically clear its orders",
+      "ok": true
+    },
+    {
+      "name": "E02 active structure IDs redirect to visible ground defenders once, preserving shelter and retaliation",
+      "ok": true
+    },
+    {
+      "name": "E02 active rejects income points and ruined structures without spending AP, energy, charge or cooldown",
+      "ok": true
+    },
+    {
+      "name": "E02 empty structure targeting retains visibility, own range, direct LOS and strict single-target validation",
+      "ok": true
+    },
+    {
+      "name": "multi-target elite attacks keep units-only primary and extra targets despite direct-skill structure support",
+      "ok": true
+    },
+    {
+      "name": "E02 aura armor and step energy apply to ground armored only, including own virtual route",
+      "ok": true
+    },
+    {
+      "name": "E02 ultimate hits all outgoing targets before each stable surviving counter, shielding first",
+      "ok": true
+    },
+    {
+      "name": "E02 explicit multi-target list rejects hidden, duplicates, range and over-cap without costs",
+      "ok": true
+    },
+    {
+      "name": "E03 active has independent splash raw scale, four cap, indirect no counter and two-cell blind spot",
+      "ok": true
+    },
+    {
+      "name": "E03 aura adds real fire to sea and land, extra sight only to indirect; keeps mobile fire ban",
+      "ok": true
+    },
+    {
+      "name": "E03 ultimate obeys each own range/vision despite radius two and snapshots fire before armor",
+      "ok": true
+    },
+    {
+      "name": "E04 active heals living land/sea only to max HP, single shields cannot stack, no building heal",
+      "ok": true
+    },
+    {
+      "name": "E04 aura protects amphibious sea and land; removed at retreat without granting sea access",
+      "ok": true
+    },
+    {
+      "name": "E04 ultimate heals 90, shields 90, move +1 but does not reset AP or spent movement",
+      "ok": true
+    },
+    {
+      "name": "E05 active only accepts a legal friendly aircraft, gives shield/armor/energy for two caster starts",
+      "ok": true
+    },
+    {
+      "name": "E05 aura raises aircraft stats without changing bomber anti-air permissions",
+      "ok": true
+    },
+    {
+      "name": "E05 ultimate hits air only, shields friendly air before counters and remains vulnerable to AA",
+      "ok": true
+    },
+    {
+      "name": "all damage divides structure first then shield; shield may absorb every unit HP point",
+      "ok": true
+    },
+    {
+      "name": "resource points offer no structural shield share; shield pool refresh uses max, not sum",
+      "ok": true
+    },
+    {
+      "name": "multiple different aura IDs add; duplicate same ID takes largest value",
+      "ok": true
+    },
+    {
+      "name": "charge first start zero, later starts +25, active +20, ordinary attack once and counter zero",
+      "ok": true
+    },
+    {
+      "name": "failed skill consumes no AP, energy, charge, cooldown; ultimate cannot repeat",
+      "ok": true
+    },
+    {
+      "name": "beacon and buff expiry use caster clock only; reading/preview never advances clocks",
+      "ok": true
+    },
+    {
+      "name": "ordinary engineer repairs elite true max HP and cannot manufacture elite IDs",
+      "ok": true
+    },
+    {
+      "name": "direct LOS, artillery post-move ban and air guarding structure permissions remain exact",
+      "ok": true
+    },
+    {
+      "name": "all 15 skills strengthen authored parameters at levels 6 through 10",
+      "ok": true
+    },
+    {
+      "name": "all outgoing splash lands before a lethal first counter stops later retaliation",
+      "ok": true
+    },
+    {
+      "name": "granted buffs survive caster retreat but clear when its owner is eliminated",
+      "ok": true
+    },
+    {
+      "name": "fog target lists and area secondary selection never include unobserved enemies",
+      "ok": true
+    },
+    {
+      "name": "aura entry feedback uses five distinct skill events without continuous replay",
+      "ok": true
+    }
+  ]
+}

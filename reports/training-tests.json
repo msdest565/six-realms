@@ -1,0 +1,90 @@
+{
+  "passed": 21,
+  "total": 21,
+  "results": [
+    {
+      "name": "authoritative source: all 50 stat rows, 15 skills, costs 2430/12150",
+      "ok": true
+    },
+    {
+      "name": "new independent archive: locked five Lv1, zero reward, 42×4 slots; planned portraits never load paths",
+      "ok": true
+    },
+    {
+      "name": "same mission four real tactical difficulties = 500; modes share slot; no lower reward auto-claim",
+      "ok": true
+    },
+    {
+      "name": "freeze difficulty at start: mutable settings and result presentation cannot redirect claim",
+      "ok": true
+    },
+    {
+      "name": "old tutorial, free battles, losses, draw, and assisted outro give zero; assisted does not occupy slot",
+      "ok": true
+    },
+    {
+      "name": "real victory result awards before OUTRO; repeated after/confirm/render/save restore remains once",
+      "ok": true
+    },
+    {
+      "name": "chapter caps 3/5/6/8/9/10 unlock via assisted progress without free level or credits",
+      "ok": true
+    },
+    {
+      "name": "15 portraits and personal stories unlock from exact OUTRO, preserve age/trust independent of level",
+      "ok": true
+    },
+    {
+      "name": "exact upgrade debit and below-cap rejection; insufficient points never change archive",
+      "ok": true
+    },
+    {
+      "name": "100% reset of real spend preserves claims, portraits, trust, chapter progress; repeated reset cannot mint points",
+      "ok": true
+    },
+    {
+      "name": "active battle locks upgrade/reset in lobby; ended battle and portrait choice cannot alter frozen units",
+      "ok": true
+    },
+    {
+      "name": "replacement slots preserve id/location/guard/population; no illegal or duplicate hero deployment",
+      "ok": true
+    },
+    {
+      "name": "Lv10 old-chapter replay freezes Lv3 skills; archive upgrades do not refill HP/AP or replace parameters",
+      "ok": true
+    },
+    {
+      "name": "failed localStorage writes atomically preserve rewards, paid levels, and refund ledger",
+      "ok": true
+    },
+    {
+      "name": "SL/import old ongoing and winning snapshots cannot roll back local archive or duplicate points",
+      "ok": true
+    },
+    {
+      "name": "claim-set imports merge income once, keep local spend, reject invalid claims rather than add balances",
+      "ok": true
+    },
+    {
+      "name": "new campaign progress remains independent from old C01–C07 in saves and imported snapshots",
+      "ok": true
+    },
+    {
+      "name": "cross-device import carries confirmed OUTRO unlocks/cap without points; incomplete or watched-only scenes do not grant heroes",
+      "ok": true
+    },
+    {
+      "name": "archive corruption never silently resets claims or permits negative balance / fake refunds",
+      "ok": true
+    },
+    {
+      "name": "frozen elite stats, charge/CD/shield/observation and duplicate identity fail strict storage validation",
+      "ok": true
+    },
+    {
+      "name": "all 168 real victory slots total 21000, standard 42 = 4200, no invented mode slots",
+      "ok": true
+    }
+  ]
+}

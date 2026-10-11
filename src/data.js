@@ -171,6 +171,16 @@
   const data = {version:'0.7',balance,combat,factions,systems,units,terrain,buildings,branches,states,economy,levels,
     systemById:Object.fromEntries(systems.map(s=>[s.id,s])),
     buildingById:Object.fromEntries(buildings.map(b=>[b.id,b])),byId:Object.fromEntries(units.map(u=>[u.id,u]))};
+  // Elites remain one existing battlefield instance, outside the production catalogue.
+  // Frozen combat data is the only source of their level-dependent attributes.
+  data.unitModel = function(unit){
+    if(typeof unit==='string')return data.byId[unit];
+    const base=data.byId[unit?.type];if(!base)return null;
+    const elite=unit.characterId&&unit.elite;if(!elite)return base;
+    return {...base,...data.byId[elite.inheritUnitId],...elite.fixedStats,...elite.stats,
+      id:unit.type,characterId:unit.characterId,name:elite.name,type:elite.name,
+      code:unit.characterId,skill:'精英技能',skillText:'使用冻结有效等级的主动、光环与大招。'};
+  };
   root.GameData = data;
   if (typeof module !== 'undefined' && module.exports) module.exports = data;
 })(typeof window !== 'undefined' ? window : globalThis);

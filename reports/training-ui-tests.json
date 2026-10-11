@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-11T07:19:33.470Z",
+  "scope": "Real training, campaign and phone controller in isolated VM DOM. No browser paint, phone touch hardware or audible output measured.",
+  "passed": 11,
+  "total": 11,
+  "results": [
+    {
+      "name": "Phone lobby exposes training; five locked heroes have neutral placeholders and no planned URL requests",
+      "ok": true
+    },
+    {
+      "name": "Actual victory credits enable UI upgrade and exact refund without losing portraits or claim slots",
+      "ok": true
+    },
+    {
+      "name": "Portrait/story tabs keep acquisition separate from art; reward table has all 168 slots",
+      "ok": true
+    },
+    {
+      "name": "New and old campaign menus use independent entry, phone preflight replaces one slot and saves frozen hero",
+      "ok": true
+    },
+    {
+      "name": "Phone skill click arms legal map targets; one target tap commits AP/energy/CD without confirmation",
+      "ok": true
+    },
+    {
+      "name": "Unfinished battle locks training in lobby and detail dismisses by backdrop or X",
+      "ok": true
+    },
+    {
+      "name": "Explicit elite speaker uses hero placeholder; ordinary channels use their precise 38-model avatar",
+      "ok": true
+    },
+    {
+      "name": "Phone area skill has an edge preview and can heal only a chosen wounded unit outside the default recipients",
+      "ok": true
+    },
+    {
+      "name": "Long-press intel shows frozen elite range and exclusive skills, not inherited ordinary skill",
+      "ok": true
+    },
+    {
+      "name": "Victory feedback shows actual points; archive write failure clears busy, retains result, and retries once",
+      "ok": true
+    },
+    {
+      "name": "Indirect area order keeps the primary target, allows fewer secondary hits, and cancel spends nothing",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "scope": "Actual engine eliteSkill/aura results, observed plans, deterministic SVG/RAF and synthetic source-voice accounting; no browser paint, human audible or mobile device validation",
+  "passed": 14,
+  "total": 14,
+  "results": [
+    {
+      "name": "15 unique authored event mappings: separate motifs/color/three-tone signatures and slot timings",
+      "ok": true
+    },
+    {
+      "name": "10 actual active/ultimate transactions plan frozen hits, shields, healing and stable counter order",
+      "ok": true
+    },
+    {
+      "name": "five actual aura entries generate only enter events, repeated vision/read and departures produce no aura chime plan",
+      "ok": true
+    },
+    {
+      "name": "hidden support casters/beneficiaries give no plan or sounds to an unobserving enemy",
+      "ok": true
+    },
+    {
+      "name": "partially visible area hits filter every unseen target and hidden caster coordinates",
+      "ok": true
+    },
+    {
+      "name": "E01 beacon uses actual frozen observation point, but an enemy seeing only caster cannot read unseen beacon coordinates",
+      "ok": true
+    },
+    {
+      "name": "ordinary attacks against shielded ordinary infantry show shield loss and facility damage while HP stays intact",
+      "ok": true
+    },
+    {
+      "name": "ordinary zero-HP-loss retaliation remains visible when counter only consumes attacker shield",
+      "ok": true
+    },
+    {
+      "name": "all 15 events play in standard/fast/reduced/muted paths without mutating battle data or leaving nodes/RAF",
+      "ok": true
+    },
+    {
+      "name": "eight-target reduced playback preserves all eight shield/damage labels and at most eight marker groups",
+      "ok": true
+    },
+    {
+      "name": "elite event uses no more than four synthesized source voices even for eight targets",
+      "ok": true
+    },
+    {
+      "name": "mixed six-enemy/six-friendly E05 ultimate keeps engine result intact and bounds simultaneous visual markers at eight",
+      "ok": true
+    },
+    {
+      "name": "aura sound throttles per hero at 800ms, silent on repeated membership and no-board visual-off paths",
+      "ok": true
+    },
+    {
+      "name": "pause freezes elite visual clock; cancellation/replacement/detached board clean exactly once",
+      "ok": true
+    }
+  ]
+}

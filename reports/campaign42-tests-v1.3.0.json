@@ -1,0 +1,97 @@
+{
+  "version": "1.3.0",
+  "date": "2026-10-11T07:17:05.780Z",
+  "scope": "42 delivered runtime maps, 168 openings, 143 scene playback, 15 unlock nodes, real command-budget enforcement, restore, observation and sampled tactical AI; no full 42 tactical completion or device/human balance claims.",
+  "passed": 22,
+  "total": 22,
+  "results": [
+    {
+      "name": "42 missions form six distinct seven-stage chapters and retain seven tutorial IDs",
+      "ok": true
+    },
+    {
+      "name": "128 main and 15 personal scenes preserve all 49 exact speaker channels",
+      "ok": true
+    },
+    {
+      "name": "42 real maps contain 215 player units, 400 enemy units, 341 buildings and 187 paid plans",
+      "ok": true
+    },
+    {
+      "name": "all 168 four-difficulty openings apply current ordinary air stats and hell scaling once",
+      "ok": true
+    },
+    {
+      "name": "explicit current-air map inputs are never converted through legacy air HP twice",
+      "ok": true
+    },
+    {
+      "name": "first intro gates first income and Sxx progress is saved independently from Cxx",
+      "ok": true
+    },
+    {
+      "name": "full assisted mainline confirms all 143 scenes and all 15 portrait nodes without training points",
+      "ok": true
+    },
+    {
+      "name": "replaying a completed mission repeats personal text but grants no duplicate portrait or points",
+      "ok": true
+    },
+    {
+      "name": "same-system elite replaces an original key and HQ guard without adding population",
+      "ok": true
+    },
+    {
+      "name": "authored and adaptive orders share two slots and real paid money without free spawns",
+      "ok": true
+    },
+    {
+      "name": "parallel, cumulative-spend, money-reserve and energy-reserve refusals are atomic",
+      "ok": true
+    },
+    {
+      "name": "two facilities competing for the final shared paid slot accept only one command",
+      "ok": true
+    },
+    {
+      "name": "a real pending order blocks another idle source when one parallel slot is allowed",
+      "ok": true
+    },
+    {
+      "name": "unit deaths and production facility capture never restore spent quotas",
+      "ok": true
+    },
+    {
+      "name": "restore preserves paid history and rejects missing, excess, or forged enemy budgets",
+      "ok": true
+    },
+    {
+      "name": "easy mode pays finite authored orders and never fills adaptive quota",
+      "ok": true
+    },
+    {
+      "name": "standard new-campaign AI immediately returns a legal guard to a threatened empty HQ",
+      "ok": true
+    },
+    {
+      "name": "standard AI enters a reachable empty HQ to win rather than endlessly attacking its structure",
+      "ok": true
+    },
+    {
+      "name": "visible elites inform threat models but changing a hidden elite does not change a decision",
+      "ok": true
+    },
+    {
+      "name": "new-campaign AI executes legal commands in all six chapter openings",
+      "ok": true
+    },
+    {
+      "name": "fallback victory report describes actual elimination rather than claiming all buildings captured",
+      "ok": true
+    },
+    {
+      "name": "an actual S01 HQ capture claims before OUTRO, restores once, and shares the reward slot across modes",
+      "ok": true
+    }
+  ]
+}

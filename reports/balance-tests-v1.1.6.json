@@ -1,6 +1,6 @@
 {
   "version": "1.1.6",
-  "date": "2026-10-10T10:06:20.066Z",
+  "date": "2026-10-11T07:04:45.127Z",
   "scope": "Air/hell balance, paid AI economy and tactics, legacy migration, real movement encounters + isolated phone controller; not human balance or browser QA",
   "passed": 24,
   "total": 24,
@@ -108,7 +108,7 @@
       "orders": 17,
       "peak": 17,
       "steps": 64,
-      "milliseconds": 233
+      "milliseconds": 298
     }
   ]
 }
