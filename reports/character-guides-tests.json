@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-11T14:46:20.590Z",
+  "scope": "Real controller + isolated VM DOM; recommended legal deployment, first appearance and frozen skill instructions. No browser paint or hardware touch measured.",
+  "passed": 16,
+  "total": 16,
+  "results": [
+    {
+      "name": "Static browser entry loads guide code and styles before the real UI controller",
+      "ok": true
+    },
+    {
+      "name": "An unlocked hero is recommended in preflight, described in words, then really replaces a frozen initial slot",
+      "ok": true
+    },
+    {
+      "name": "Recommendations obey legal same-system slots, two-unit cap, uniqueness and unlocks across all 42 missions",
+      "ok": true
+    },
+    {
+      "name": "Player can cancel, switch position and restore recommendations without accidental deployment or resource spend",
+      "ok": true
+    },
+    {
+      "name": "Confirmed joining story names the new ally, real skill and first legal mission in the result screen",
+      "ok": true
+    },
+    {
+      "name": "First deployment guide offers the real skill, focus, full steps, and persistent acknowledgement outside battle saves",
+      "ok": true
+    },
+    {
+      "name": "Every ordinary model gets an individual introduction and passive/self/target skills have matching operation steps",
+      "ok": true
+    },
+    {
+      "name": "All five elites and all 15 frozen skills have accurate names, instruction modes and energy costs",
+      "ok": true
+    },
+    {
+      "name": "Newly opened aura gets another guide, lower-level replay does not repeat a read milestone",
+      "ok": true
+    },
+    {
+      "name": "First high-level appearance explains every open skill before one acknowledgement can mark it read",
+      "ok": true
+    },
+    {
+      "name": "P2 first human turn and restored P2 turn use the actual viewer without exposing P1 or bypassing handoff",
+      "ok": true
+    },
+    {
+      "name": "Engineer repair teaching matches the real command consuming all remaining action points",
+      "ok": true
+    },
+    {
+      "name": "Ordinary targeting instructions match actual sniper movement, shock-unit, jammer-air and repair-ownership restrictions",
+      "ok": true
+    },
+    {
+      "name": "Elite operation text distinguishes actual target modes, self support, attack permissions and each aura benefit",
+      "ok": true
+    },
+    {
+      "name": "Acknowledged heroes stay read after reload, while a newly appearing ordinary model gets its own teaching card",
+      "ok": true
+    },
+    {
+      "name": "Guides respect pause, AI, story, menus and fog; unknown enemy types never enter the player teaching queue",
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,2112 @@
+{
+  "version": "1.3.1",
+  "date": "2026-10-11T14:49:04.753Z",
+  "scope": "Actual game/controller VM regressions plus independent elite PNG/WebP inspection. Desktop real-browser E01 flow recorded separately.",
+  "passed": 576,
+  "total": 576,
+  "suites": [
+    {
+      "file": "training-tests.json",
+      "passed": 21,
+      "total": 21
+    },
+    {
+      "file": "elite-combat-tests.json",
+      "passed": 40,
+      "total": 40
+    },
+    {
+      "file": "campaign42-tests-v1.3.0.json",
+      "passed": 22,
+      "total": 22
+    },
+    {
+      "file": "training-ui-tests.json",
+      "passed": 11,
+      "total": 11
+    },
+    {
+      "file": "elite-fx-tests.json",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "file": "core-tests.json",
+      "passed": 65,
+      "total": 65
+    },
+    {
+      "file": "facility-tests-v1.1.json",
+      "passed": 34,
+      "total": 34
+    },
+    {
+      "file": "combat-movement-tests-v1.1.1.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "deployment-tests-v0.9.json",
+      "passed": 36,
+      "total": 36
+    },
+    {
+      "file": "controls-tests-v1.0.json",
+      "passed": 32,
+      "total": 32
+    },
+    {
+      "file": "ui-tests-v0.8.json",
+      "passed": 20,
+      "total": 20
+    },
+    {
+      "file": "ui-integration-tests-v0.9.json",
+      "passed": 31,
+      "total": 31
+    },
+    {
+      "file": "tutorial-tests-v1.1.5.json",
+      "passed": 17,
+      "total": 17
+    },
+    {
+      "file": "mobile-tests-v1.1.3.json",
+      "passed": 33,
+      "total": 33
+    },
+    {
+      "file": "mobile-actions-v1.1.3.json",
+      "passed": 19,
+      "total": 19
+    },
+    {
+      "file": "board-tests-v0.9.json",
+      "passed": 23,
+      "total": 23
+    },
+    {
+      "file": "scene-tests-v1.1.4.json",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "file": "fx-tests-v0.9.json",
+      "passed": 25,
+      "total": 25
+    },
+    {
+      "file": "art-tests.json",
+      "passed": 9,
+      "total": 9
+    },
+    {
+      "file": "anime-runtime-tests-v1.0.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "ai-tests-v0.8.json",
+      "passed": 31,
+      "total": 31
+    },
+    {
+      "file": "balance-tests-v1.1.6.json",
+      "passed": 24,
+      "total": 24
+    },
+    {
+      "file": "character-guides-tests.json",
+      "passed": 16,
+      "total": 16
+    },
+    {
+      "file": "elite-art-v1.3.1.json",
+      "passed": 7,
+      "total": 7
+    }
+  ],
+  "staticResources": {
+    "scope": "Filesystem and case-sensitive static path validation, no browser/network",
+    "resources": 751,
+    "missing": [],
+    "wrongCase": []
+  },
+  "eliteArt": {
+    "files": 79,
+    "bytes": 60077794,
+    "webpBytes": 3187828,
+    "portraits": 15,
+    "avatars": 5,
+    "chibiForms": 6,
+    "chibiDirections": 12,
+    "prompts": "assets/elites/generation.json",
+    "pixelQA": "reports/elite-chibi-pixels-v1.3.1.json"
+  },
+  "maps": {
+    "total": 540,
+    "generated": 497,
+    "fallback": 43
+  },
+  "oldCompletedBattles": 23,
+  "newRepresentativeBattles": {
+    "version": "1.3.0",
+    "date": "2026-10-11T09:14:51.656Z",
+    "scope": "Six chapter representatives at standard HQ difficulty plus one legal two-elite opening. Both sides use observation-only automated controllers; not full 42-mission completion, a human victory-route proof, balance or real device QA.",
+    "limits": {
+      "maxRounds": 150,
+      "maxCommands": 10000,
+      "maxMilliseconds": 90000
+    },
+    "cases": [
+      {
+        "missionId": "S01",
+        "elites": [],
+        "fog": false,
+        "actions": 63,
+        "commandKinds": {
+          "produce": 6,
+          "move": 22,
+          "end": 13,
+          "attack": 21,
+          "setDeployment": 1
+        },
+        "peakPopulation": {
+          "union": 5,
+          "red": 5
+        },
+        "paidEnemyOrders": 1,
+        "paidEnemyCost": 35,
+        "illegalCommands": [],
+        "assertionFailures": [],
+        "completed": true,
+        "status": "finished",
+        "lastCommands": [
+          {
+            "actor": "red",
+            "round": 5,
+            "command": {
+              "kind": "attack",
+              "unitId": "S01-R02",
+              "targetId": "UNIT-9"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 5,
+            "command": {
+              "kind": "move",
+              "unitId": "S01-R04",
+              "q": 3,
+              "r": 0
+            }
+          },
+          {
+            "actor": "red",
+            "round": 6,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 6,
+            "command": {
+              "kind": "attack",
+              "unitId": "S01-U01",
+              "targetId": "S01-UP"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 6,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 6,
+            "command": {
+              "kind": "move",
+              "unitId": "S01-R02",
+              "q": 1,
+              "r": 0
+            }
+          },
+          {
+            "actor": "red",
+            "round": 6,
+            "command": {
+              "kind": "attack",
+              "unitId": "S01-R02",
+              "targetId": "S01-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 6,
+            "command": {
+              "kind": "move",
+              "unitId": "S01-R04",
+              "q": 2,
+              "r": 0
+            }
+          },
+          {
+            "actor": "red",
+            "round": 6,
+            "command": {
+              "kind": "attack",
+              "unitId": "S01-R04",
+              "targetId": "S01-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 7,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "move",
+              "unitId": "S01-R02",
+              "q": 1,
+              "r": 1
+            }
+          }
+        ],
+        "rounds": 7,
+        "milliseconds": 161,
+        "result": {
+          "winner": "red",
+          "winnerTeamId": "red",
+          "winningPlayers": [
+            "red"
+          ],
+          "triggerBuildingId": "S01-UHQ",
+          "reason": "接管敌方原始总部",
+          "round": 7,
+          "activeMillis": 0,
+          "stats": {
+            "union": {
+              "produced": 3,
+              "captures": 2,
+              "constructed": 0,
+              "repaired": 0,
+              "upgraded": 0,
+              "energy": 5,
+              "kills": 2,
+              "damage": 350
+            },
+            "red": {
+              "produced": 1,
+              "captures": 4,
+              "constructed": 0,
+              "repaired": 0,
+              "upgraded": 0,
+              "energy": 7,
+              "kills": 6,
+              "damage": 545
+            }
+          },
+          "buildingTotal": 5
+        },
+        "enemyBudget": {
+          "limits": {
+            "designOnly": true,
+            "sharedBy": "authored_plan_and_adaptive_orders",
+            "maxPaidOrders": 2,
+            "authoredOrderQuota": 1,
+            "adaptiveOrderQuota": 1,
+            "authoredListTotalStandardCost": 35,
+            "maxMoneySpentOnNewUnits": 155,
+            "maxSimultaneousOrders": 1,
+            "reserveRebuildMoney": 120,
+            "reserveMovementEnergy": 16,
+            "countInitialUnitsInCap": true,
+            "populationCap": 24,
+            "unitDeathsDoNotRefreshPaidOrderQuota": true,
+            "facilityCapturedOrDestroyedCancelsRemainingOrders": true,
+            "payAtOrderStart": true,
+            "refundPolicy": "按既有取消规则；预算记录总已支付单位费用，不能靠取消重开刷新次数。",
+            "implementationStatus": "待适配；v1.1.6只读取enemyProductionPlan/easy及授权/库存/人口/账户，尚不读取本有限共享预算。"
+          },
+          "ledger": {
+            "version": 1,
+            "paidOrdersUsed": 1,
+            "moneySpentOnNewUnits": 35,
+            "authoredUsed": [],
+            "adaptiveUsed": [
+              "ORDER-3"
+            ],
+            "records": [
+              {
+                "orderId": "ORDER-3",
+                "buildingId": "S01-RB13",
+                "type": "infantry",
+                "cost": 35,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 1
+              }
+            ]
+          }
+        },
+        "finalResources": [
+          {
+            "id": "union",
+            "money": 415,
+            "energy": 53,
+            "population": 0,
+            "ownTurn": 7
+          },
+          {
+            "id": "red",
+            "money": 685,
+            "energy": 69,
+            "population": 3,
+            "ownTurn": 7
+          }
+        ]
+      },
+      {
+        "missionId": "S08",
+        "elites": [],
+        "fog": true,
+        "actions": 114,
+        "commandKinds": {
+          "skill": 4,
+          "produce": 10,
+          "move": 37,
+          "end": 17,
+          "attack": 45,
+          "upgrade": 1
+        },
+        "peakPopulation": {
+          "union": 5,
+          "red": 9
+        },
+        "paidEnemyOrders": 4,
+        "paidEnemyCost": 365,
+        "illegalCommands": [],
+        "assertionFailures": [],
+        "completed": true,
+        "status": "finished",
+        "lastCommands": [
+          {
+            "actor": "union",
+            "round": 8,
+            "command": {
+              "kind": "attack",
+              "unitId": "S08-U01",
+              "targetId": "UNIT-18"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 8,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "attack",
+              "unitId": "S08-R03",
+              "targetId": "S08-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "move",
+              "unitId": "S08-R02",
+              "q": 3,
+              "r": 1
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "attack",
+              "unitId": "S08-R02",
+              "targetId": "S08-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-12",
+              "q": 4,
+              "r": 1
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-12",
+              "targetId": "S08-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-6",
+              "q": 4,
+              "r": 0
+            }
+          },
+          {
+            "actor": "red",
+            "round": 9,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 9,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 9,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-6",
+              "targetId": "S08-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 9,
+            "command": {
+              "kind": "move",
+              "unitId": "S08-R03",
+              "q": 1,
+              "r": 1
+            }
+          }
+        ],
+        "rounds": 9,
+        "milliseconds": 626,
+        "result": {
+          "winner": "red",
+          "winnerTeamId": "red",
+          "winningPlayers": [
+            "red"
+          ],
+          "triggerBuildingId": "S08-UHQ",
+          "reason": "接管敌方原始总部",
+          "round": 9,
+          "activeMillis": 0,
+          "stats": {
+            "union": {
+              "produced": 5,
+              "captures": 1,
+              "constructed": 0,
+              "repaired": 2,
+              "upgraded": 0,
+              "energy": 25,
+              "kills": 5,
+              "damage": 520
+            },
+            "red": {
+              "produced": 4,
+              "captures": 4,
+              "constructed": 0,
+              "repaired": 2,
+              "upgraded": 1,
+              "energy": 49,
+              "kills": 9,
+              "damage": 940
+            }
+          },
+          "buildingTotal": 7
+        },
+        "enemyBudget": {
+          "limits": {
+            "designOnly": true,
+            "sharedBy": "authored_plan_and_adaptive_orders",
+            "maxPaidOrders": 4,
+            "authoredOrderQuota": 3,
+            "adaptiveOrderQuota": 1,
+            "authoredListTotalStandardCost": 255,
+            "maxMoneySpentOnNewUnits": 375,
+            "maxSimultaneousOrders": 2,
+            "reserveRebuildMoney": 120,
+            "reserveMovementEnergy": 16,
+            "countInitialUnitsInCap": true,
+            "populationCap": 24,
+            "unitDeathsDoNotRefreshPaidOrderQuota": true,
+            "facilityCapturedOrDestroyedCancelsRemainingOrders": true,
+            "payAtOrderStart": true,
+            "refundPolicy": "按既有取消规则；预算记录总已支付单位费用，不能靠取消重开刷新次数。",
+            "implementationStatus": "待适配；v1.1.6只读取enemyProductionPlan/easy及授权/库存/人口/账户，尚不读取本有限共享预算。"
+          },
+          "ledger": {
+            "version": 1,
+            "paidOrdersUsed": 4,
+            "moneySpentOnNewUnits": 365,
+            "authoredUsed": [
+              "plan-1",
+              "plan-0",
+              "plan-2"
+            ],
+            "adaptiveUsed": [
+              "ORDER-3"
+            ],
+            "records": [
+              {
+                "orderId": "ORDER-3",
+                "buildingId": "S08-RF",
+                "type": "lightartillery",
+                "cost": 110,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 1
+              },
+              {
+                "orderId": "ORDER-7",
+                "buildingId": "S08-RB13",
+                "type": "infantry",
+                "cost": 35,
+                "source": "authored",
+                "planId": "plan-1",
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-8",
+                "buildingId": "S08-RF",
+                "type": "antiair",
+                "cost": 120,
+                "source": "authored",
+                "planId": "plan-0",
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-15",
+                "buildingId": "S08-RF",
+                "type": "engineer",
+                "cost": 100,
+                "source": "authored",
+                "planId": "plan-2",
+                "ownTurn": 4
+              }
+            ]
+          }
+        },
+        "finalResources": [
+          {
+            "id": "union",
+            "money": 240,
+            "energy": 81,
+            "population": 0,
+            "ownTurn": 9
+          },
+          {
+            "id": "red",
+            "money": 765,
+            "energy": 165,
+            "population": 5,
+            "ownTurn": 9
+          }
+        ]
+      },
+      {
+        "missionId": "S15",
+        "elites": [],
+        "fog": true,
+        "actions": 205,
+        "commandKinds": {
+          "attack": 87,
+          "produce": 27,
+          "move": 29,
+          "end": 40,
+          "skill": 10,
+          "setDeployment": 6,
+          "repairBuilding": 6
+        },
+        "peakPopulation": {
+          "union": 7,
+          "red": 8
+        },
+        "paidEnemyOrders": 4,
+        "paidEnemyCost": 480,
+        "illegalCommands": [],
+        "assertionFailures": [],
+        "completed": true,
+        "status": "finished",
+        "lastCommands": [
+          {
+            "actor": "union",
+            "round": 20,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-39",
+              "targetId": "UNIT-13"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 20,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-40",
+              "targetId": "UNIT-13"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 20,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-42",
+              "targetId": "UNIT-13"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 20,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-46",
+              "targetId": "UNIT-13"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 20,
+            "command": {
+              "kind": "produce",
+              "buildingId": "S15-RP",
+              "type": "marine"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 20,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-45",
+              "q": 2,
+              "r": 3
+            }
+          },
+          {
+            "actor": "union",
+            "round": 20,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 20,
+            "command": {
+              "kind": "skill",
+              "unitId": "UNIT-13",
+              "targetId": "UNIT-39"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 21,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 21,
+            "command": {
+              "kind": "setDeployment",
+              "buildingId": "S15-RP",
+              "q": 6,
+              "r": 3
+            }
+          },
+          {
+            "actor": "union",
+            "round": 21,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-40",
+              "targetId": "UNIT-13"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 21,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-48",
+              "q": 6,
+              "r": 4
+            }
+          }
+        ],
+        "rounds": 21,
+        "milliseconds": 585,
+        "result": {
+          "winner": "union",
+          "winnerTeamId": "union",
+          "winningPlayers": [
+            "union"
+          ],
+          "triggerBuildingId": "S15-RHQ",
+          "reason": "接管敌方原始总部",
+          "round": 21,
+          "activeMillis": 0,
+          "stats": {
+            "union": {
+              "produced": 17,
+              "captures": 5,
+              "constructed": 0,
+              "repaired": 6,
+              "upgraded": 0,
+              "energy": 12,
+              "kills": 12,
+              "damage": 1611
+            },
+            "red": {
+              "produced": 4,
+              "captures": 1,
+              "constructed": 0,
+              "repaired": 0,
+              "upgraded": 0,
+              "energy": 22,
+              "kills": 16,
+              "damage": 2494
+            }
+          },
+          "buildingTotal": 8
+        },
+        "enemyBudget": {
+          "limits": {
+            "designOnly": true,
+            "sharedBy": "authored_plan_and_adaptive_orders",
+            "maxPaidOrders": 6,
+            "authoredOrderQuota": 4,
+            "adaptiveOrderQuota": 2,
+            "authoredListTotalStandardCost": 455,
+            "maxMoneySpentOnNewUnits": 895,
+            "maxSimultaneousOrders": 2,
+            "reserveRebuildMoney": 120,
+            "reserveMovementEnergy": 35,
+            "countInitialUnitsInCap": true,
+            "populationCap": 24,
+            "unitDeathsDoNotRefreshPaidOrderQuota": true,
+            "facilityCapturedOrDestroyedCancelsRemainingOrders": true,
+            "payAtOrderStart": true,
+            "refundPolicy": "按既有取消规则；预算记录总已支付单位费用，不能靠取消重开刷新次数。",
+            "implementationStatus": "待适配；v1.1.6只读取enemyProductionPlan/easy及授权/库存/人口/账户，尚不读取本有限共享预算。"
+          },
+          "ledger": {
+            "version": 1,
+            "paidOrdersUsed": 4,
+            "moneySpentOnNewUnits": 480,
+            "authoredUsed": [
+              "plan-1",
+              "plan-3"
+            ],
+            "adaptiveUsed": [
+              "ORDER-3",
+              "ORDER-9"
+            ],
+            "records": [
+              {
+                "orderId": "ORDER-3",
+                "buildingId": "S15-RF13",
+                "type": "artillery",
+                "cost": 180,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 1
+              },
+              {
+                "orderId": "ORDER-9",
+                "buildingId": "S15-RF13",
+                "type": "tank",
+                "cost": 140,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-14",
+                "buildingId": "S15-RF13",
+                "type": "lighttank",
+                "cost": 90,
+                "source": "authored",
+                "planId": "plan-1",
+                "ownTurn": 3
+              },
+              {
+                "orderId": "ORDER-19",
+                "buildingId": "S15-RF13",
+                "type": "scout",
+                "cost": 70,
+                "source": "authored",
+                "planId": "plan-3",
+                "ownTurn": 4
+              }
+            ]
+          }
+        },
+        "finalResources": [
+          {
+            "id": "union",
+            "money": 170,
+            "energy": 300,
+            "population": 6,
+            "ownTurn": 21
+          },
+          {
+            "id": "red",
+            "money": 1535,
+            "energy": 228,
+            "population": 0,
+            "ownTurn": 20
+          }
+        ]
+      },
+      {
+        "missionId": "S22",
+        "elites": [],
+        "fog": true,
+        "actions": 73,
+        "commandKinds": {
+          "produce": 7,
+          "upgrade": 3,
+          "move": 31,
+          "end": 7,
+          "attack": 23,
+          "setDeployment": 1,
+          "skill": 1
+        },
+        "peakPopulation": {
+          "union": 6,
+          "red": 11
+        },
+        "paidEnemyOrders": 4,
+        "paidEnemyCost": 660,
+        "illegalCommands": [],
+        "assertionFailures": [],
+        "completed": true,
+        "status": "finished",
+        "lastCommands": [
+          {
+            "actor": "union",
+            "round": 4,
+            "command": {
+              "kind": "attack",
+              "unitId": "S22-U01",
+              "targetId": "S22-R04"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 4,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "attack",
+              "unitId": "S22-R04",
+              "targetId": "S22-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "attack",
+              "unitId": "S22-R09",
+              "targetId": "S22-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "produce",
+              "buildingId": "S22-RA",
+              "type": "lightbomber"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "move",
+              "unitId": "S22-R06",
+              "q": 1,
+              "r": 4
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "attack",
+              "unitId": "S22-R06",
+              "targetId": "S22-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "move",
+              "unitId": "S22-R08",
+              "q": 1,
+              "r": 2
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "attack",
+              "unitId": "S22-R08",
+              "targetId": "S22-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-13",
+              "q": 4,
+              "r": 2
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-13",
+              "targetId": "S22-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 4,
+            "command": {
+              "kind": "move",
+              "unitId": "S22-R07",
+              "q": 1,
+              "r": 1
+            }
+          }
+        ],
+        "rounds": 4,
+        "milliseconds": 1165,
+        "result": {
+          "winner": "red",
+          "winnerTeamId": "red",
+          "winningPlayers": [
+            "red"
+          ],
+          "triggerBuildingId": "S22-UHQ",
+          "reason": "接管敌方原始总部",
+          "round": 4,
+          "activeMillis": 0,
+          "stats": {
+            "union": {
+              "produced": 1,
+              "captures": 1,
+              "constructed": 0,
+              "repaired": 0,
+              "upgraded": 1,
+              "energy": 42,
+              "kills": 2,
+              "damage": 305
+            },
+            "red": {
+              "produced": 3,
+              "captures": 5,
+              "constructed": 0,
+              "repaired": 1,
+              "upgraded": 2,
+              "energy": 94,
+              "kills": 6,
+              "damage": 553
+            }
+          },
+          "buildingTotal": 8
+        },
+        "enemyBudget": {
+          "limits": {
+            "designOnly": true,
+            "sharedBy": "authored_plan_and_adaptive_orders",
+            "maxPaidOrders": 7,
+            "authoredOrderQuota": 5,
+            "adaptiveOrderQuota": 2,
+            "authoredListTotalStandardCost": 730,
+            "maxMoneySpentOnNewUnits": 1170,
+            "maxSimultaneousOrders": 2,
+            "reserveRebuildMoney": 120,
+            "reserveMovementEnergy": 35,
+            "countInitialUnitsInCap": true,
+            "populationCap": 24,
+            "unitDeathsDoNotRefreshPaidOrderQuota": true,
+            "facilityCapturedOrDestroyedCancelsRemainingOrders": true,
+            "payAtOrderStart": true,
+            "refundPolicy": "按既有取消规则；预算记录总已支付单位费用，不能靠取消重开刷新次数。",
+            "implementationStatus": "待适配；v1.1.6只读取enemyProductionPlan/easy及授权/库存/人口/账户，尚不读取本有限共享预算。"
+          },
+          "ledger": {
+            "version": 1,
+            "paidOrdersUsed": 4,
+            "moneySpentOnNewUnits": 660,
+            "authoredUsed": [
+              "plan-1",
+              "plan-2"
+            ],
+            "adaptiveUsed": [
+              "ORDER-4",
+              "ORDER-5"
+            ],
+            "records": [
+              {
+                "orderId": "ORDER-4",
+                "buildingId": "S22-RF13",
+                "type": "artillery",
+                "cost": 180,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 1
+              },
+              {
+                "orderId": "ORDER-5",
+                "buildingId": "S22-UF",
+                "type": "lightartillery",
+                "cost": 110,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 1
+              },
+              {
+                "orderId": "ORDER-10",
+                "buildingId": "S22-RF13",
+                "type": "missileaa",
+                "cost": 180,
+                "source": "authored",
+                "planId": "plan-1",
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-14",
+                "buildingId": "S22-RA",
+                "type": "lightbomber",
+                "cost": 190,
+                "source": "authored",
+                "planId": "plan-2",
+                "ownTurn": 4
+              }
+            ]
+          }
+        },
+        "finalResources": [
+          {
+            "id": "union",
+            "money": 75,
+            "energy": 74,
+            "population": 0,
+            "ownTurn": 4
+          },
+          {
+            "id": "red",
+            "money": 150,
+            "energy": 167,
+            "population": 11,
+            "ownTurn": 4
+          }
+        ]
+      },
+      {
+        "missionId": "S29",
+        "elites": [],
+        "fog": true,
+        "actions": 267,
+        "commandKinds": {
+          "upgrade": 2,
+          "produce": 29,
+          "move": 88,
+          "end": 32,
+          "attack": 87,
+          "skill": 25,
+          "setDeployment": 4
+        },
+        "peakPopulation": {
+          "union": 11,
+          "red": 13
+        },
+        "paidEnemyOrders": 8,
+        "paidEnemyCost": 885,
+        "illegalCommands": [],
+        "assertionFailures": [],
+        "completed": true,
+        "status": "finished",
+        "lastCommands": [
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "produce",
+              "buildingId": "S29-UF",
+              "type": "lighttank"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "produce",
+              "buildingId": "S29-UB",
+              "type": "walker"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-50",
+              "q": 8,
+              "r": 4
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-50",
+              "targetId": "S29-R01"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-56",
+              "q": 4,
+              "r": 1
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-53",
+              "q": 7,
+              "r": 6
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-54",
+              "q": 5,
+              "r": 2
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-48",
+              "q": 6,
+              "r": 6
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-46",
+              "q": 7,
+              "r": 5
+            }
+          },
+          {
+            "actor": "union",
+            "round": 16,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 17,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 17,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-50",
+              "q": 9,
+              "r": 5
+            }
+          }
+        ],
+        "rounds": 17,
+        "milliseconds": 1744,
+        "result": {
+          "winner": "union",
+          "winnerTeamId": "union",
+          "winningPlayers": [
+            "union"
+          ],
+          "triggerBuildingId": "S29-RHQ",
+          "reason": "接管敌方原始总部",
+          "round": 17,
+          "activeMillis": 0,
+          "stats": {
+            "union": {
+              "produced": 21,
+              "captures": 7,
+              "constructed": 0,
+              "repaired": 1,
+              "upgraded": 1,
+              "energy": 100,
+              "kills": 18,
+              "damage": 2119
+            },
+            "red": {
+              "produced": 8,
+              "captures": 4,
+              "constructed": 0,
+              "repaired": 1,
+              "upgraded": 1,
+              "energy": 85,
+              "kills": 16,
+              "damage": 1810
+            }
+          },
+          "buildingTotal": 9
+        },
+        "enemyBudget": {
+          "limits": {
+            "designOnly": true,
+            "sharedBy": "authored_plan_and_adaptive_orders",
+            "maxPaidOrders": 8,
+            "authoredOrderQuota": 6,
+            "adaptiveOrderQuota": 2,
+            "authoredListTotalStandardCost": 655,
+            "maxMoneySpentOnNewUnits": 1335,
+            "maxSimultaneousOrders": 2,
+            "reserveRebuildMoney": 120,
+            "reserveMovementEnergy": 60,
+            "countInitialUnitsInCap": true,
+            "populationCap": 24,
+            "unitDeathsDoNotRefreshPaidOrderQuota": true,
+            "facilityCapturedOrDestroyedCancelsRemainingOrders": true,
+            "payAtOrderStart": true,
+            "refundPolicy": "按既有取消规则；预算记录总已支付单位费用，不能靠取消重开刷新次数。",
+            "implementationStatus": "待适配；v1.1.6只读取enemyProductionPlan/easy及授权/库存/人口/账户，尚不读取本有限共享预算。"
+          },
+          "ledger": {
+            "version": 1,
+            "paidOrdersUsed": 8,
+            "moneySpentOnNewUnits": 885,
+            "authoredUsed": [
+              "plan-1",
+              "plan-0",
+              "plan-3",
+              "plan-2",
+              "plan-5",
+              "plan-4"
+            ],
+            "adaptiveUsed": [
+              "ORDER-4",
+              "ORDER-9"
+            ],
+            "records": [
+              {
+                "orderId": "ORDER-4",
+                "buildingId": "S29-RB13",
+                "type": "walker",
+                "cost": 50,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 1
+              },
+              {
+                "orderId": "ORDER-9",
+                "buildingId": "S29-RF",
+                "type": "artillery",
+                "cost": 180,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-10",
+                "buildingId": "S29-RB13",
+                "type": "antitank",
+                "cost": 65,
+                "source": "authored",
+                "planId": "plan-1",
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-17",
+                "buildingId": "S29-RF",
+                "type": "missileaa",
+                "cost": 180,
+                "source": "authored",
+                "planId": "plan-0",
+                "ownTurn": 3
+              },
+              {
+                "orderId": "ORDER-23",
+                "buildingId": "S29-RB13",
+                "type": "heavyinfantry",
+                "cost": 80,
+                "source": "authored",
+                "planId": "plan-3",
+                "ownTurn": 4
+              },
+              {
+                "orderId": "ORDER-24",
+                "buildingId": "S29-RF",
+                "type": "engineer",
+                "cost": 100,
+                "source": "authored",
+                "planId": "plan-2",
+                "ownTurn": 4
+              },
+              {
+                "orderId": "ORDER-32",
+                "buildingId": "S29-RB13",
+                "type": "walker",
+                "cost": 50,
+                "source": "authored",
+                "planId": "plan-5",
+                "ownTurn": 6
+              },
+              {
+                "orderId": "ORDER-33",
+                "buildingId": "S29-RF",
+                "type": "missileaa",
+                "cost": 180,
+                "source": "authored",
+                "planId": "plan-4",
+                "ownTurn": 6
+              }
+            ]
+          }
+        },
+        "finalResources": [
+          {
+            "id": "union",
+            "money": 125,
+            "energy": 208,
+            "population": 11,
+            "ownTurn": 17
+          },
+          {
+            "id": "red",
+            "money": 1685,
+            "energy": 219,
+            "population": 0,
+            "ownTurn": 16
+          }
+        ]
+      },
+      {
+        "missionId": "S36",
+        "elites": [],
+        "fog": true,
+        "actions": 157,
+        "commandKinds": {
+          "produce": 18,
+          "move": 57,
+          "end": 15,
+          "attack": 57,
+          "skill": 9,
+          "setDeployment": 1
+        },
+        "peakPopulation": {
+          "union": 9,
+          "red": 14
+        },
+        "paidEnemyOrders": 9,
+        "paidEnemyCost": 2080,
+        "illegalCommands": [],
+        "assertionFailures": [],
+        "completed": true,
+        "status": "finished",
+        "lastCommands": [
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "attack",
+              "unitId": "S36-R04",
+              "targetId": "S36-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "attack",
+              "unitId": "S36-R07",
+              "targetId": "S36-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-20",
+              "targetId": "S36-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-31",
+              "q": 4,
+              "r": 1
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-31",
+              "targetId": "S36-U01"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-25",
+              "q": 4,
+              "r": 5
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "move",
+              "unitId": "S36-R05",
+              "q": 6,
+              "r": 4
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-30",
+              "q": 6,
+              "r": 5
+            }
+          },
+          {
+            "actor": "red",
+            "round": 7,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-26",
+              "q": 5,
+              "r": 0
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 8,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 8,
+            "command": {
+              "kind": "move",
+              "unitId": "S36-R04",
+              "q": 1,
+              "r": 4
+            }
+          }
+        ],
+        "rounds": 8,
+        "milliseconds": 2362,
+        "result": {
+          "winner": "red",
+          "winnerTeamId": "red",
+          "winningPlayers": [
+            "red"
+          ],
+          "triggerBuildingId": "S36-UHQ",
+          "reason": "接管敌方原始总部",
+          "round": 8,
+          "activeMillis": 0,
+          "stats": {
+            "union": {
+              "produced": 6,
+              "captures": 3,
+              "constructed": 0,
+              "repaired": 0,
+              "upgraded": 0,
+              "energy": 28,
+              "kills": 7,
+              "damage": 850
+            },
+            "red": {
+              "produced": 9,
+              "captures": 7,
+              "constructed": 0,
+              "repaired": 0,
+              "upgraded": 0,
+              "energy": 248,
+              "kills": 12,
+              "damage": 1596
+            }
+          },
+          "buildingTotal": 10
+        },
+        "enemyBudget": {
+          "limits": {
+            "designOnly": true,
+            "sharedBy": "authored_plan_and_adaptive_orders",
+            "maxPaidOrders": 9,
+            "authoredOrderQuota": 7,
+            "adaptiveOrderQuota": 2,
+            "authoredListTotalStandardCost": 1855,
+            "maxMoneySpentOnNewUnits": 2535,
+            "maxSimultaneousOrders": 3,
+            "reserveRebuildMoney": 120,
+            "reserveMovementEnergy": 60,
+            "countInitialUnitsInCap": true,
+            "populationCap": 24,
+            "unitDeathsDoNotRefreshPaidOrderQuota": true,
+            "facilityCapturedOrDestroyedCancelsRemainingOrders": true,
+            "payAtOrderStart": true,
+            "refundPolicy": "按既有取消规则；预算记录总已支付单位费用，不能靠取消重开刷新次数。",
+            "implementationStatus": "待适配；v1.1.6只读取enemyProductionPlan/easy及授权/库存/人口/账户，尚不读取本有限共享预算。"
+          },
+          "ledger": {
+            "version": 1,
+            "paidOrdersUsed": 9,
+            "moneySpentOnNewUnits": 2080,
+            "authoredUsed": [
+              "plan-2",
+              "plan-0",
+              "plan-1",
+              "plan-5",
+              "plan-3",
+              "plan-4",
+              "plan-6"
+            ],
+            "adaptiveUsed": [
+              "ORDER-8",
+              "ORDER-9"
+            ],
+            "records": [
+              {
+                "orderId": "ORDER-8",
+                "buildingId": "S36-RP",
+                "type": "assaultmarine",
+                "cost": 85,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-9",
+                "buildingId": "S36-RF13",
+                "type": "tank",
+                "cost": 140,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-10",
+                "buildingId": "S36-RA13",
+                "type": "heavyfighter",
+                "cost": 340,
+                "source": "authored",
+                "planId": "plan-2",
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-16",
+                "buildingId": "S36-RP",
+                "type": "heavymarine",
+                "cost": 125,
+                "source": "authored",
+                "planId": "plan-0",
+                "ownTurn": 3
+              },
+              {
+                "orderId": "ORDER-17",
+                "buildingId": "S36-RF13",
+                "type": "destroyer",
+                "cost": 160,
+                "source": "authored",
+                "planId": "plan-1",
+                "ownTurn": 3
+              },
+              {
+                "orderId": "ORDER-21",
+                "buildingId": "S36-RA13",
+                "type": "tacticalbomber",
+                "cost": 270,
+                "source": "authored",
+                "planId": "plan-5",
+                "ownTurn": 4
+              },
+              {
+                "orderId": "ORDER-27",
+                "buildingId": "S36-RP",
+                "type": "cruiser",
+                "cost": 340,
+                "source": "authored",
+                "planId": "plan-3",
+                "ownTurn": 5
+              },
+              {
+                "orderId": "ORDER-28",
+                "buildingId": "S36-RF13",
+                "type": "artillery",
+                "cost": 180,
+                "source": "authored",
+                "planId": "plan-4",
+                "ownTurn": 5
+              },
+              {
+                "orderId": "ORDER-32",
+                "buildingId": "S36-RP",
+                "type": "areaaship",
+                "cost": 440,
+                "source": "authored",
+                "planId": "plan-6",
+                "ownTurn": 6
+              }
+            ]
+          }
+        },
+        "finalResources": [
+          {
+            "id": "union",
+            "money": 130,
+            "energy": 218,
+            "population": 0,
+            "ownTurn": 8
+          },
+          {
+            "id": "red",
+            "money": 360,
+            "energy": 128,
+            "population": 14,
+            "ownTurn": 8
+          }
+        ]
+      },
+      {
+        "missionId": "S29",
+        "elites": [
+          {
+            "characterId": "E01",
+            "level": 6,
+            "effectiveLevel": 6
+          },
+          {
+            "characterId": "E02",
+            "level": 6,
+            "effectiveLevel": 6
+          }
+        ],
+        "fog": true,
+        "actions": 209,
+        "commandKinds": {
+          "upgrade": 2,
+          "produce": 24,
+          "move": 76,
+          "end": 20,
+          "attack": 60,
+          "skill": 18,
+          "eliteSkill": 6,
+          "setDeployment": 2,
+          "repairBuilding": 1
+        },
+        "peakPopulation": {
+          "union": 13,
+          "red": 12
+        },
+        "paidEnemyOrders": 8,
+        "paidEnemyCost": 885,
+        "illegalCommands": [],
+        "assertionFailures": [],
+        "completed": true,
+        "status": "finished",
+        "lastCommands": [
+          {
+            "actor": "union",
+            "round": 10,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-41",
+              "targetId": "S29-R01"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 10,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-42",
+              "q": 5,
+              "r": 2
+            }
+          },
+          {
+            "actor": "union",
+            "round": 10,
+            "command": {
+              "kind": "move",
+              "unitId": "S29-U05",
+              "q": 6,
+              "r": 3
+            }
+          },
+          {
+            "actor": "union",
+            "round": 10,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-42",
+              "q": 6,
+              "r": 2
+            }
+          },
+          {
+            "actor": "union",
+            "round": 10,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 10,
+            "command": {
+              "kind": "attack",
+              "unitId": "S29-R01",
+              "targetId": "UNIT-31"
+            }
+          },
+          {
+            "actor": "red",
+            "round": 11,
+            "command": {
+              "kind": "end"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 11,
+            "command": {
+              "kind": "eliteSkill",
+              "unitId": "S29-U02",
+              "slot": "active",
+              "targetId": "S29-RB13"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 11,
+            "command": {
+              "kind": "skill",
+              "unitId": "UNIT-31",
+              "targetId": "S29-RF"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 11,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-19",
+              "targetId": "S29-R01"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 11,
+            "command": {
+              "kind": "attack",
+              "unitId": "UNIT-26",
+              "targetId": "S29-R01"
+            }
+          },
+          {
+            "actor": "union",
+            "round": 11,
+            "command": {
+              "kind": "move",
+              "unitId": "UNIT-41",
+              "q": 9,
+              "r": 5
+            }
+          }
+        ],
+        "rounds": 11,
+        "milliseconds": 3067,
+        "result": {
+          "winner": "union",
+          "winnerTeamId": "union",
+          "winningPlayers": [
+            "union"
+          ],
+          "triggerBuildingId": "S29-RHQ",
+          "reason": "接管敌方原始总部",
+          "round": 11,
+          "activeMillis": 0,
+          "stats": {
+            "union": {
+              "produced": 16,
+              "captures": 7,
+              "constructed": 0,
+              "repaired": 6,
+              "upgraded": 1,
+              "energy": 119,
+              "kills": 18,
+              "damage": 2433
+            },
+            "red": {
+              "produced": 8,
+              "captures": 3,
+              "constructed": 0,
+              "repaired": 2,
+              "upgraded": 1,
+              "energy": 41,
+              "kills": 9,
+              "damage": 1004
+            }
+          },
+          "buildingTotal": 9
+        },
+        "enemyBudget": {
+          "limits": {
+            "designOnly": true,
+            "sharedBy": "authored_plan_and_adaptive_orders",
+            "maxPaidOrders": 8,
+            "authoredOrderQuota": 6,
+            "adaptiveOrderQuota": 2,
+            "authoredListTotalStandardCost": 655,
+            "maxMoneySpentOnNewUnits": 1335,
+            "maxSimultaneousOrders": 2,
+            "reserveRebuildMoney": 120,
+            "reserveMovementEnergy": 60,
+            "countInitialUnitsInCap": true,
+            "populationCap": 24,
+            "unitDeathsDoNotRefreshPaidOrderQuota": true,
+            "facilityCapturedOrDestroyedCancelsRemainingOrders": true,
+            "payAtOrderStart": true,
+            "refundPolicy": "按既有取消规则；预算记录总已支付单位费用，不能靠取消重开刷新次数。",
+            "implementationStatus": "待适配；v1.1.6只读取enemyProductionPlan/easy及授权/库存/人口/账户，尚不读取本有限共享预算。"
+          },
+          "ledger": {
+            "version": 1,
+            "paidOrdersUsed": 8,
+            "moneySpentOnNewUnits": 885,
+            "authoredUsed": [
+              "plan-1",
+              "plan-0",
+              "plan-3",
+              "plan-2",
+              "plan-5",
+              "plan-4"
+            ],
+            "adaptiveUsed": [
+              "ORDER-4",
+              "ORDER-9"
+            ],
+            "records": [
+              {
+                "orderId": "ORDER-4",
+                "buildingId": "S29-RB13",
+                "type": "walker",
+                "cost": 50,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 1
+              },
+              {
+                "orderId": "ORDER-9",
+                "buildingId": "S29-RF",
+                "type": "artillery",
+                "cost": 180,
+                "source": "adaptive",
+                "planId": null,
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-10",
+                "buildingId": "S29-RB13",
+                "type": "antitank",
+                "cost": 65,
+                "source": "authored",
+                "planId": "plan-1",
+                "ownTurn": 2
+              },
+              {
+                "orderId": "ORDER-17",
+                "buildingId": "S29-RF",
+                "type": "missileaa",
+                "cost": 180,
+                "source": "authored",
+                "planId": "plan-0",
+                "ownTurn": 3
+              },
+              {
+                "orderId": "ORDER-23",
+                "buildingId": "S29-RB13",
+                "type": "heavyinfantry",
+                "cost": 80,
+                "source": "authored",
+                "planId": "plan-3",
+                "ownTurn": 4
+              },
+              {
+                "orderId": "ORDER-24",
+                "buildingId": "S29-RF",
+                "type": "engineer",
+                "cost": 100,
+                "source": "authored",
+                "planId": "plan-2",
+                "ownTurn": 4
+              },
+              {
+                "orderId": "ORDER-35",
+                "buildingId": "S29-RB13",
+                "type": "walker",
+                "cost": 50,
+                "source": "authored",
+                "planId": "plan-5",
+                "ownTurn": 6
+              },
+              {
+                "orderId": "ORDER-36",
+                "buildingId": "S29-RF",
+                "type": "missileaa",
+                "cost": 180,
+                "source": "authored",
+                "planId": "plan-4",
+                "ownTurn": 6
+              }
+            ]
+          }
+        },
+        "finalResources": [
+          {
+            "id": "union",
+            "money": 140,
+            "energy": 79,
+            "population": 13,
+            "ownTurn": 11
+          },
+          {
+            "id": "red",
+            "money": 615,
+            "energy": 221,
+            "population": 0,
+            "ownTurn": 10
+          }
+        ]
+      }
+    ],
+    "finished": 7,
+    "boundedWithoutError": 7,
+    "illegalCommands": 0,
+    "total": 7
+  },
+  "browser": {
+    "report": "ui-browser-v1.3.1.json",
+    "passed": 11,
+    "total": 11,
+    "environment": {
+      "browser": "Codex in-app browser",
+      "viewport": "1280 x 720 desktop",
+      "input": "Browser semantic controls and grid-cell buttons",
+      "storage": "Isolated port 18877 browser origin; original port 8877 saves were untouched."
+    },
+    "limitations": [
+      "Real browser paint and interaction coverage is desktop E01 / Lv1 only.",
+      "No phone hardware, physical touch input, sound output, other elite skills, high-level battle skills, or full campaign tactical completion is claimed.",
+      "Other heroes, all 38 ordinary models, high-level first appearance, P2 viewer restoration and engineer AP wording are covered by the separate isolated controller/VM regression report, not this browser record."
+    ]
+  },
+  "limitations": [
+    "No recorded elite voice, separated layered original PSD or hand-drawn sprite frame sets",
+    "Real browser gameplay coverage is desktop E01 Lv1; phone hardware/FPS/audible output not measured",
+    "No full human 42-mission two-mode completion or three-hour balance validation",
+    "Deployment status is verified separately in .local/art-v131-published.json"
+  ]
+}

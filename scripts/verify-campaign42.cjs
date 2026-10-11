@@ -16,7 +16,8 @@ test('42 missions form six distinct seven-stage chapters and retain seven tutori
 test('128 main and 15 personal scenes preserve all 49 exact speaker channels',()=>{
  const scenes=Object.values(Content.story42.scenes);assert.equal(scenes.length,143);assert.equal(scenes.filter(s=>s.characterId).length,15);assert.equal(Object.keys(Content.story42.speakers).length,49);
  for(const s of scenes){assert.equal(Content.scenes[s.id].text,s.text);for(const line of s.lines)assert.ok(Content.story42.speakers[line.speakerId]);}
- for(const speaker of Object.values(Content.story42.speakers).filter(s=>s.characterId)){assert.ok(speaker.characterId.startsWith('E'));assert.equal(speaker.assetsStatus,'planned');for(const portrait of Object.values(Content.story42.elitePortraits))assert.equal(portrait.assetPath,null);}
+ for(const speaker of Object.values(Content.story42.speakers).filter(s=>s.characterId)){assert.ok(speaker.characterId.startsWith('E'));assert.equal(speaker.assetsStatus,'delivered');}
+ for(const portrait of Object.values(Content.story42.elitePortraits)){assert.equal(portrait.assetStatus,'delivered');assert.equal(portrait.assetPath,'assets/elites/portraits/'+portrait.portraitId+'.png');assert.ok(fs.existsSync(portrait.assetPath));}
 });
 test('42 real maps contain 215 player units, 400 enemy units, 341 buildings and 187 paid plans',()=>{
  const maps=C.missions(id).map(m=>M.campaign(m.id));assert.equal(maps.reduce((n,m)=>n+m.initialUnits.filter(u=>u.owner==='union').length,0),215);assert.equal(maps.reduce((n,m)=>n+m.initialUnits.filter(u=>u.owner==='red').length,0),400);assert.equal(maps.reduce((n,m)=>n+m.buildings.length,0),341);assert.equal(maps.reduce((n,m)=>n+m.mission.enemyProductionPlan.length,0),187);

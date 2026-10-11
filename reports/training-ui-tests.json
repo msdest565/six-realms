@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-11T07:19:33.470Z",
+  "date": "2026-10-11T09:15:02.539Z",
   "scope": "Real training, campaign and phone controller in isolated VM DOM. No browser paint, phone touch hardware or audible output measured.",
   "passed": 11,
   "total": 11,
@@ -13,7 +13,7 @@
       "ok": true
     },
     {
-      "name": "Portrait/story tabs keep acquisition separate from art; reward table has all 168 slots",
+      "name": "Portrait/story tabs show only acquired artwork; reward table has all 168 slots",
       "ok": true
     },
     {
@@ -29,7 +29,7 @@
       "ok": true
     },
     {
-      "name": "Explicit elite speaker uses hero placeholder; ordinary channels use their precise 38-model avatar",
+      "name": "Explicit elite speaker uses acquired hero avatar; ordinary channels use their precise model avatar",
       "ok": true
     },
     {

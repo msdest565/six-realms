@@ -1,0 +1,92 @@
+{
+  "version": "1.3.1",
+  "date": "2026-10-11T08:56:53.355Z",
+  "method": "Real Codex in-app browser UI clicks, accessibility snapshots, screenshots, and read-only DOM inspection.",
+  "origin": "http://127.0.0.1:18877/?v=1.3.1",
+  "environment": {
+    "browser": "Codex in-app browser",
+    "viewport": "1280 x 720 desktop",
+    "input": "Browser semantic controls and grid-cell buttons",
+    "storage": "Isolated port 18877 browser origin; original port 8877 saves were untouched."
+  },
+  "conditions": [
+    "S01 and S02 were completed with the existing 协同接管 UI, then all result story scenes were explicitly confirmed.",
+    "协同接管 did not count as a tactical first win; shared training points remained 0.",
+    "Only E01 / 林小禾 · 灯芽 was unlocked and used in the real browser; archive level and effective battle level were both 1.",
+    "No page-side application objects or localStorage were modified through evaluate; DOM inspection was read-only."
+  ],
+  "results": [
+    {
+      "name": "Lobby text navigation and main actions",
+      "ok": true,
+      "evidence": "Full named navigation and clear routes were visibly present at v1.3.1."
+    },
+    {
+      "name": "Joining story to actual deployment",
+      "ok": true,
+      "evidence": "S02 story handoff displayed E01 joining notice; S03 preflight recommended E01 and replaced infantry at (1,3), then E01 was present on the map."
+    },
+    {
+      "name": "Preflight names and steps",
+      "ok": true,
+      "evidence": "Selected name/callsign, original model and coordinates, effective level, active operation instructions, and unavailable aura/ultimate levels were visible."
+    },
+    {
+      "name": "Formal unlocked portrait qualification",
+      "ok": true,
+      "evidence": "Training roster and portrait modal contained E01-P01.webp loaded=true; the four locked characters and E01 P02/P03 rendered locked placeholders without image sources."
+    },
+    {
+      "name": "Formal face and battle sprite",
+      "ok": true,
+      "evidence": "Guide avatar E01.webp and selected portrait E01-P01.webp loaded=true; SVG map referenced E01-land-front.webp, and the independent chibi was visibly painted after E01 moved to (1,4)."
+    },
+    {
+      "name": "First character guide and control visibility",
+      "ok": true,
+      "evidence": "Automatic E01 role/skill/cost instructions appeared after intro confirmation; focus selected E01. Coach was repositioned away from desktop selected-unit buttons."
+    },
+    {
+      "name": "Individual ordinary character guidance",
+      "ok": true,
+      "evidence": "Acknowledging E01 advanced to scout 游隼 and then engineer 织补; acknowledging the final card returned to direct commands."
+    },
+    {
+      "name": "Full skill detail and repeat reading",
+      "ok": true,
+      "evidence": "Full detail displayed role, frozen levels, actual stats, action instructions, active/aura/ultimate descriptions and unlock levels. After acknowledging E01, its details still opened the teaching modal."
+    },
+    {
+      "name": "Actual character movement",
+      "ok": true,
+      "evidence": "A direct move from (1,3) to (1,4) consumed one AP, leaving AP1 and energy34. Formal chibi remained visible."
+    },
+    {
+      "name": "Actual named active skill",
+      "ok": true,
+      "evidence": "Clicked 灯芽信标 then visible land cell (2,4). AP became0; energy remained34; status drawer showed charge20/100 and the configured 0energy, cooldown2-own-turn description."
+    },
+    {
+      "name": "Final console warnings/errors",
+      "ok": true,
+      "evidence": "The final browser dev log read returned [] for error/warn levels."
+    }
+  ],
+  "limitations": [
+    "Real browser paint and interaction coverage is desktop E01 / Lv1 only.",
+    "No phone hardware, physical touch input, sound output, other elite skills, high-level battle skills, or full campaign tactical completion is claimed.",
+    "Other heroes, all 38 ordinary models, high-level first appearance, P2 viewer restoration and engineer AP wording are covered by the separate isolated controller/VM regression report, not this browser record."
+  ],
+  "screenshots": [
+    "ui-v1.3.1-lobby.jpg",
+    "ui-v1.3.1-portrait-unlocks.jpg",
+    "ui-v1.3.1-preflight.jpg",
+    "ui-v1.3.1-first-character-guide.jpg",
+    "ui-v1.3.1-character-skills.jpg",
+    "ui-v1.3.1-ordinary-character-guide.jpg",
+    "ui-v1.3.1-battle-elite.jpg",
+    "ui-v1.3.1-skill-result.jpg"
+  ],
+  "relatedControllerReport": "character-guides-tests.json",
+  "note": "The later review corrected engineer instruction wording, added all-open-skill descriptions to first cards, and current-viewer ownership. These targeted controller cases passed 14/14; the screenshots demonstrate the desktop Lv1 E01 workflow."
+}

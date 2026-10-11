@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-11T14:46:21.938Z",
+  "scope": "Elite visual qualification, frozen battle art, animation asset identity and 79 real PNG/WebP files; no GPU or subjective art acceptance",
+  "passed": 7,
+  "total": 7,
+  "results": [
+    {
+      "name": "Archive renders only acquired selected portraits and never planned or ordinary art",
+      "ok": true
+    },
+    {
+      "name": "Story debut and exact personal scene can display art without modifying qualification",
+      "ok": true
+    },
+    {
+      "name": "Restored battles retain frozen portrait even without a local archive or after archive selection changes",
+      "ok": true
+    },
+    {
+      "name": "Five precise avatars and six battlefield forms use separate elite assets",
+      "ok": true
+    },
+    {
+      "name": "Animation facing preserves elite identity and asymmetric equipment through land/sea changes",
+      "ok": true
+    },
+    {
+      "name": "WebP failure retries original PNG once and then shows an explicit neutral art fallback",
+      "ok": true
+    },
+    {
+      "name": "All 79 delivered files match manifest, case, dimensions and transparent chibi requirements",
+      "ok": true
+    }
+  ]
+}

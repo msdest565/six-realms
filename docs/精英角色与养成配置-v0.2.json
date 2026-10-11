@@ -1,11 +1,11 @@
 {
   "schemaVersion": "elite-design-0.2",
   "contentVersion": "0.2",
-  "designOnly": true,
+  "designOnly": false,
   "updated": "2026-10-11",
-  "status": "document_ready_runtime_and_art_pending",
+  "status": "runtime_and_character_art_delivered",
   "campaignId": "dawn-six-domains-42",
-  "runtimeBaseline": "1.1.6",
+  "runtimeBaseline": "1.3.1",
   "campaignSource": "雾海回响-6章42关配置-v1.3.json",
   "storySource": "雾海回响-42关剧情台词-v1.3.json",
   "training": {
@@ -372,8 +372,10 @@
           "unlockSceneId": "ELITE-E01-P01",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E01-P01.png",
-          "status": "planned",
-          "artDirection": "青绿长袖、长裤、方背包；双手扶暖黄灯盒，认真而略紧张。"
+          "status": "delivered",
+          "artDirection": "青绿长袖、长裤、方背包；双手扶暖黄灯盒，认真而略紧张。",
+          "assetPath": "assets/elites/portraits/E01-P01.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E01-P02",
@@ -382,8 +384,10 @@
           "unlockSceneId": "ELITE-E01-P02",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E01-P02.png",
-          "status": "planned",
-          "artDirection": "加反光联络背心与街区路线卡；一手举灯一手指地图，保持儿童体态。"
+          "status": "delivered",
+          "artDirection": "加反光联络背心与街区路线卡；一手举灯一手指地图，保持儿童体态。",
+          "assetPath": "assets/elites/portraits/E01-P02.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E01-P03",
@@ -392,8 +396,10 @@
           "unlockSceneId": "ELITE-E01-P03",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E01-P03.png",
-          "status": "planned",
-          "artDirection": "外套保留灯芽徽章，六域清单装入透明地图袋；站在重新亮起的街灯旁，笑容轻松。"
+          "status": "delivered",
+          "artDirection": "外套保留灯芽徽章，六域清单装入透明地图袋；站在重新亮起的街灯旁，笑容轻松。",
+          "assetPath": "assets/elites/portraits/E01-P03.png",
+          "artDeliveryVersion": "1.3.1"
         }
       ],
       "combatCategory": "light",
@@ -686,8 +692,10 @@
           "unlockSceneId": "ELITE-E02-P01",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E02-P01.png",
-          "status": "planned",
-          "artDirection": "石墨驾驶服、琥珀楔形甲、金色高束发；主炮收拢，掌心贴炮座。"
+          "status": "delivered",
+          "artDirection": "石墨驾驶服、琥珀楔形甲、金色高束发；主炮收拢，掌心贴炮座。",
+          "assetPath": "assets/elites/portraits/E02-P01.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E02-P02",
@@ -696,8 +704,10 @@
           "unlockSceneId": "ELITE-E02-P02",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E02-P02.png",
-          "status": "planned",
-          "artDirection": "增加真实维修签名、白沼织补接口与可拆护板；半蹲检查履带，不以战损破衣表现。"
+          "status": "delivered",
+          "artDirection": "增加真实维修签名、白沼织补接口与可拆护板；半蹲检查履带，不以战损破衣表现。",
+          "assetPath": "assets/elites/portraits/E02-P02.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E02-P03",
@@ -706,8 +716,10 @@
           "unlockSceneId": "ELITE-E02-P03",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E02-P03.png",
-          "status": "planned",
-          "artDirection": "砺岭整备升级的楔形装甲与柔金轮廓灯；回头招呼后续编队，炮座有完整维修记录。"
+          "status": "delivered",
+          "artDirection": "砺岭整备升级的楔形装甲与柔金轮廓灯；回头招呼后续编队，炮座有完整维修记录。",
+          "assetPath": "assets/elites/portraits/E02-P03.png",
+          "artDeliveryVersion": "1.3.1"
         }
       ],
       "combatCategory": "armored",
@@ -1004,8 +1016,10 @@
           "unlockSceneId": "ELITE-E03-P01",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E03-P01.png",
-          "status": "planned",
-          "artDirection": "灰白工程外套与长裤、深紫低辫；测距镜与折叠炮架，姿态专注。"
+          "status": "delivered",
+          "artDirection": "灰白工程外套与长裤、深紫低辫；测距镜与折叠炮架，姿态专注。",
+          "assetPath": "assets/elites/portraits/E03-P01.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E03-P02",
@@ -1014,8 +1028,10 @@
           "unlockSceneId": "ELITE-E03-P02",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E03-P02.png",
-          "status": "planned",
-          "artDirection": "工厂交接袖章与接口校核册；支架展开，手指地图给队友留出的空格。"
+          "status": "delivered",
+          "artDirection": "工厂交接袖章与接口校核册；支架展开，手指地图给队友留出的空格。",
+          "assetPath": "assets/elites/portraits/E03-P02.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E03-P03",
@@ -1024,8 +1040,10 @@
           "unlockSceneId": "ELITE-E03-P03",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E03-P03.png",
-          "status": "planned",
-          "artDirection": "炮架刻上六域校核序列，深紫短披肩为防护层；合上测距本、侧身看向接线工队。"
+          "status": "delivered",
+          "artDirection": "炮架刻上六域校核序列，深紫短披肩为防护层；合上测距本、侧身看向接线工队。",
+          "assetPath": "assets/elites/portraits/E03-P03.png",
+          "artDeliveryVersion": "1.3.1"
         }
       ],
       "combatCategory": "armored",
@@ -1332,8 +1350,10 @@
           "unlockSceneId": "ELITE-E04-P01",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E04-P01.png",
-          "status": "planned",
-          "artDirection": "蓝白防水制服、橙色救援绳、V形折叠艇；检查最后一班船名册。"
+          "status": "delivered",
+          "artDirection": "蓝白防水制服、橙色救援绳、V形折叠艇；检查最后一班船名册。",
+          "assetPath": "assets/elites/portraits/E04-P01.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E04-P02",
@@ -1342,8 +1362,10 @@
           "unlockSceneId": "ELITE-E04-P02",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E04-P02.png",
-          "status": "planned",
-          "artDirection": "共享运输表、分区救援扣件；成熟从容，手势指向下一班交接者。"
+          "status": "delivered",
+          "artDirection": "共享运输表、分区救援扣件；成熟从容，手势指向下一班交接者。",
+          "assetPath": "assets/elites/portraits/E04-P02.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E04-P03",
@@ -1352,8 +1374,10 @@
           "unlockSceneId": "ELITE-E04-P03",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E04-P03.png",
-          "status": "planned",
-          "artDirection": "六域轮班徽记、防水调度板；将救援绳结递给普通陆战队员，保留有力量的登陆体态。"
+          "status": "delivered",
+          "artDirection": "六域轮班徽记、防水调度板；将救援绳结递给普通陆战队员，保留有力量的登陆体态。",
+          "assetPath": "assets/elites/portraits/E04-P03.png",
+          "artDeliveryVersion": "1.3.1"
         }
       ],
       "combatCategory": "light",
@@ -1683,8 +1707,10 @@
           "unlockSceneId": "ELITE-E05-P01",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E05-P01.png",
-          "status": "planned",
-          "artDirection": "深蓝完整飞行服、雾银低髻、柔金归航鸟；拿失联导航板，温暖坚定。"
+          "status": "delivered",
+          "artDirection": "深蓝完整飞行服、雾银低髻、柔金归航鸟；拿失联导航板，温暖坚定。",
+          "assetPath": "assets/elites/portraits/E05-P01.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E05-P02",
@@ -1693,8 +1719,10 @@
           "unlockSceneId": "ELITE-E05-P02",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E05-P02.png",
-          "status": "planned",
-          "artDirection": "镜原实测中继标记与可复核云图；机翼展开，眼神专业，手势提醒预留返航能源。"
+          "status": "delivered",
+          "artDirection": "镜原实测中继标记与可复核云图；机翼展开，眼神专业，手势提醒预留返航能源。",
+          "assetPath": "assets/elites/portraits/E05-P02.png",
+          "artDeliveryVersion": "1.3.1"
         },
         {
           "id": "E05-P03",
@@ -1703,8 +1731,10 @@
           "unlockSceneId": "ELITE-E05-P03",
           "unlockAcceptsAssisted": true,
           "plannedPath": "assets/elites/portraits/E05-P03.png",
-          "status": "planned",
-          "artDirection": "渡船背景、机翼收拢，夹克上保留阿澄画的归航鸟；抱着茶杯微笑，母亲气质通过神情表达。"
+          "status": "delivered",
+          "artDirection": "渡船背景、机翼收拢，夹克上保留阿澄画的归航鸟；抱着茶杯微笑，母亲气质通过神情表达。",
+          "assetPath": "assets/elites/portraits/E05-P03.png",
+          "artDeliveryVersion": "1.3.1"
         }
       ],
       "combatCategory": "armored",
